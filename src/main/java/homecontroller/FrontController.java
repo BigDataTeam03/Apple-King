@@ -58,10 +58,12 @@ public class FrontController extends HttpServlet {
 		String viewPage = null; 
 		
 		
+		
 		String uri = request.getRequestURI();
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
-		
+//		com = "/signup.do";
+		System.out.println("controlloe start");
 		switch(com) {
 		
 		//Login Page
@@ -87,8 +89,11 @@ public class FrontController extends HttpServlet {
 		case ("/signupStart.do"):					//go to signup page.
 				viewPage = "signup_view.jsp";
 				break;
-		
-		case ("/signup.do"):						//the process of making an account.
+				//the process of making an account.
+		case ("/signup.do"):
+//				System.out.println(session.getAttribute("ID"));
+				System.out.println(request.getParameter("id"));
+				System.out.println("signup do 를 실행합니다. ");
 				command = new SignupCommand();
 				command.execute(request, response);
 				response.sendRedirect("loginStart.do");
