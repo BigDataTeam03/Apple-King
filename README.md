@@ -12,8 +12,10 @@ Team Member : 박동근, 이서, 강범식, 김수민
 
 # Develpment Environment 
 
-Programmin Language : Java 
+Programmin Language : Java 17
 
-Framework : MVC pattern 
+Framework : MVC pattern (Java, JSP, Servelet) 
 
 Database management system : Mysql
+
+Other Tools : DBeaver, 
