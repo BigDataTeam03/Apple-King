@@ -39,31 +39,19 @@ public class aProductListServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		
 		System.out.println("aProductListServlet 을 실행합니다.");
-		
-		response.setContentType("text/html;charset=UTF-8"); // html 에 텍스트타입으로 만들어서 보내려고 이걸쓰는것이다. 
-		
+		response.setContentType("text/html;charset=UTF-8");  
 		HttpSession session = request.getSession();
-		System.out.println(" js 에서 parameter 를 가져온다.  ");
-		
-		System.out.println(request.getParameter("name"));
-		
-		//Request 로 받아온 값을 변수로 지정한다
-//		String 	 product_code 			= request.getParameter("product_code");
-//		System.out.println(product_code);
-		String 	 product_name			= "";
-//		String 	 product_name			= request.getParameter("product_name");
-//		int    	 product_qty 			= Integer.parseInt(request.getParameter("product_qty"));
-//		String 	 origin 				= request.getParameter("origin");
-//		String	 manufacture_date 		= request.getParameter("manufacture_date");
-//		int		 weigtht 				= Integer.parseInt(request.getParameter("weigtht"));
-//		int		 size 					= Integer.parseInt(request.getParameter("size"));
-//		String 	 detail_image_name 		= request.getParameter("detail_image_name");
-//		int 	 view_count 			=Integer.parseInt(request.getParameter("view_count"));
-//		String 	 product_reg_date 		= request.getParameter("product_reg_date");
-//		String 	 kind 					= request.getParameter("kind");
-//		String 	 product_image_names 	= request.getParameter("product_image_names");
+
+		String product_name = "";
+			if (request.getParameter("name") == null) {
+				product_name = "";					
+			}else {
+			    product_name = request.getParameter("name") ;
+			}
+
 //		//상품 총 갯수를 나타내기 위한 변수지정
 		int totalProductNumber =0;
 		
@@ -116,11 +104,11 @@ public class aProductListServlet extends HttpServlet {
 				productdto.setProduct_name		 (rs.getString(	"product_name")); 		// 2
 				productdto.setProduct_qty		 (rs.getInt(	"product_qty")); 		// 3
 				productdto.setManufacture_date	 (rs.getString(	"manufacture_date")); 	// 4 
-				productdto.setWeigtht			 (rs.getInt("weight")); 			// 5
+				productdto.setWeight			 (rs.getInt("weight")); 			// 5
 				productdto.setSize  			 (rs.getString(	"size")); 				// 6
 				productdto.setDetail_image_name  (rs.getString(	"detail_image_name")); 	// 7 
 				productdto.setView_count  		 (rs.getInt(	"view_count")); 		// 8
-				productdto.setProduct_reg_dat 	 (rs.getString(	"product_reg_date")); 	// 9 
+				productdto.setProduct_reg_date 	 (rs.getString(	"product_reg_date")); 	// 9 
 				productdto.setKind  			 (rs.getString(	"kind")); 				// 10
 				productdto.setProduct_image_names(rs.getString(	"product_image_names"));// 11 
 				
