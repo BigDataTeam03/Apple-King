@@ -52,46 +52,43 @@ public class FrontController extends HttpServlet {
 	
 		// Make Session
 		HttpSession session =request.getSession();
-		
-		
 		Command command = null; 
-		String viewPage = null; 
-		
-		
-		
+		String viewPage = null;
 		String uri = request.getRequestURI();
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
-//		com = "/signup.do";
-		System.out.println("controlloe start");
+		System.out.println("controller start");
 		switch(com) {
 		
 		//Login Page
-		case("/loginStart.do"):						//this just shows the log in page.
+		case("/loginStart.do"):						
 			viewPage = "login_view.jsp";
 			break;	
 				
 		//Login Action 	
 		case("/login.do"):
+			System.out.println("logindo 실행s");
 			command = new LoginCommand();
 			command.execute(request, response);
+			
 			String loginID = (String) session.getAttribute("loginID");
+			System.out.println("세션에 저장되어있는 ID :"+ loginID );
 			if (loginID != null) {
-				if (loginID.equals("admin")) {		//if "admin" is input as ID, move to admin's product list.
-					viewPage = "aProductList.do";
-				} else {							//if the input ID is customer's id, move to customer's product list.  	
-					viewPage = "productList.do";
+				if (loginID.equals("admin123")) {
+					viewPage = "adminMain.jsp";
+				} else {
+					viewPage = "main.jsp";
 				}
-				} else {							//if the login fails, then go back to login page. 	
-					viewPage = "login_view.jsp";
-				}
-				break;
-		case ("/signupStart.do"):					//go to signup page.
+			} else {
+				viewPage = "login_view.jsp";
+			}
+			break;
+		case ("/signupStart.do"):				
 				viewPage = "signup_view.jsp";
 				break;
-				//the process of making an account.
+				
 		case ("/signup.do"):
-//				System.out.println(session.getAttribute("ID"));
+
 				System.out.println(request.getParameter("id"));
 				System.out.println("signup do 를 실행합니다. ");
 				command = new SignupCommand();
@@ -99,7 +96,7 @@ public class FrontController extends HttpServlet {
 				response.sendRedirect("loginStart.do");
 				break;
 		
-		case ("/checkid.do"):						//checking for duplicates when signing up
+		case ("/checkid.do"):					
 				command = new IdCheckCommand();
 				command.execute(request, response);
 				viewPage = "signup_view.jsp";
