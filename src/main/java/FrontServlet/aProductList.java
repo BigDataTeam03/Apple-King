@@ -110,11 +110,11 @@ public class aProductList extends HttpServlet {
 				productdto.setProduct_name		 (rs.getString(	"product_name")); 		// 2
 				productdto.setProduct_qty		 (rs.getInt(	"product_qty")); 		// 3
 				productdto.setManufacture_date	 (rs.getString(	"manufacture_date")); 	// 4 
-				productdto.setWeigtht			 (rs.getInt(	"weigtht")); 			// 5
+				productdto.setWeight			 (rs.getInt(	"weight")); 			// 5
 				productdto.setSize  			 (rs.getString(	"size")); 				// 6
 				productdto.setDetail_image_name  (rs.getString(	"detail_image_name")); 	// 7 
 				productdto.setView_count  		 (rs.getInt(	"view_count")); 		// 8
-				productdto.setProduct_reg_dat 	 (rs.getString(	"product_reg_date")); 	// 9 
+				productdto.setProduct_reg_date 	 (rs.getString(	"product_reg_date")); 	// 9 
 				productdto.setKind  			 (rs.getString(	"kind")); 				// 10
 				productdto.setProduct_image_names(rs.getString(	"product_image_names"));// 11 
 				

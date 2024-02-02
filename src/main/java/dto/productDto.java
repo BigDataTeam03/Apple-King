@@ -3,38 +3,42 @@ package dto;
 public class productDto {
 
 	// Filed
-	String product_code;
-	String product_name;
-	int product_qty;
-	String origin;
-	String manufacture_date;
-	int weigtht;
-	String size;
-	String detail_image_name;
-	int view_count;
-	String product_reg_dat;
-	String kind;
-	String product_image_names;
+	String 	product_code;
+	String 	product_name;
+	int 	product_qty;
+	String 	origin;
+	String 	manufacture_date;
+	int 	weight;
+	String 	size;
+	String 	detail_image_name;
+	int 	view_count;
+	String 	product_reg_date;
+	String 	kind;
+	String 	product_image_names;
 
 	// Constructor
 	public productDto() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public productDto(String product_code, String product_name, int product_qty, String origin, String manufacture_date,
-			int weigtht, String size, String detail_image_name, int view_count, String product_reg_dat, String kind,
+	public productDto(
+			String product_code, String product_name, int product_qty,
+			String origin, String manufacture_date,
+			int weight, String size, String detail_image_name,
+			int view_count, String product_reg_date, String kind,
 			String product_image_names) {
 		super();
+		
 		this.product_code = product_code;
 		this.product_name = product_name;
 		this.product_qty = product_qty;
 		this.origin = origin;
 		this.manufacture_date = manufacture_date;
-		this.weigtht = weigtht;
+		this.weight = weight;
 		this.size = size;
 		this.detail_image_name = detail_image_name;
 		this.view_count = view_count;
-		this.product_reg_dat = product_reg_dat;
+		this.product_reg_date = product_reg_date;
 		this.kind = kind;
 		this.product_image_names = product_image_names;
 	}
@@ -79,12 +83,12 @@ public class productDto {
 		this.manufacture_date = manufacture_date;
 	}
 
-	public int getWeigtht() {
-		return weigtht;
+	public int getWeight() {
+		return weight;
 	}
 
-	public void setWeigtht(int weigtht) {
-		this.weigtht = weigtht;
+	public void setWeight(int weight) {
+		this.weight = weight;
 	}
 
 	public String getSize() {
@@ -111,12 +115,12 @@ public class productDto {
 		this.view_count = view_count;
 	}
 
-	public String getProduct_reg_dat() {
-		return product_reg_dat;
+	public String getProduct_reg_date() {
+		return product_reg_date;
 	}
 
-	public void setProduct_reg_dat(String product_reg_dat) {
-		this.product_reg_dat = product_reg_dat;
+	public void setProduct_reg_date(String product_reg_date) {
+		this.product_reg_date = product_reg_date;
 	}
 
 	public String getKind() {
@@ -134,6 +138,9 @@ public class productDto {
 	public void setProduct_image_names(String product_image_names) {
 		this.product_image_names = product_image_names;
 	}
+
+
+	
 
 	// Method
 }
