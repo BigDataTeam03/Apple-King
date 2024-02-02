@@ -33,6 +33,7 @@ public class Login_Dao {
 	
 	//checkID that is stored inside the database. 
 	public boolean checkLogin(String id, String pw) {
+		System.out.println("checklogin shilhang");
 		Connection conn = null;
 		PreparedStatement ps = null;	
 		ResultSet rs = null;
@@ -44,9 +45,13 @@ public class Login_Dao {
 			String where = " WHERE cust_id = '" + id +"' AND cust_pw = '" + pw +"'";
 			
 			ps = conn.prepareStatement(query+where);
+			
+			System.out.println("CheckLogin 쿼리문 : "+ps.toString());
+			
 			rs = ps.executeQuery();
-
+			
 			if(rs.next()) {
+				System.out.println("db에 존재하는 사용자입니다");
 				return true;
 			}
 			

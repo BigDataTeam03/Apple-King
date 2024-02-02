@@ -14,15 +14,13 @@
     div {
         margin-bottom: 10px;}
 </style>
-<% session.setAttribute("ID", "asdfasdf"); %>
-
 
 <script type="text/javascript">
     
-    	// 회원가입 유효성 검사.
-    	
-	    function validateForm() {
-	        let signupForm = document.signupForm;
+	    	// 회원가입 유효성 검사.
+	    	
+		    function validateForm() {
+		        let signupForm = document.signupForm;
 	        
 	        
 	     	// Validate ID
@@ -33,11 +31,25 @@
                 return false;
             }
             
-
             // Validate Password
             let pw = signupForm.pw.value.trim();
             if (pw === "") {
                 alert("비밀번호를 입력해주세요.");
+                signupForm.pw.focus();
+                return false;
+            }
+            
+            // Validate Passwordcheck
+            let pwcheck = signupForm.pwcheck.value.trim();
+            if (pw === "") {
+                alert("비밀번호 확인을 입력해주세요.");
+                signupForm.pw.focus();
+                return false;
+            }
+            
+            // Validate Passworderror
+            if (signupForm.pw.value != signupForm.pwcheck.value ) {
+                alert("입력하신 비밀번호가 일치하지 않습니다.");
                 signupForm.pw.focus();
                 return false;
             }
@@ -65,33 +77,32 @@
                 return false;
             }
             
-         // Validate address
+         	// Validate address
             let address = signupForm.address.value.trim()
             if (address === "") {
-                alert("주  입력해주세요.");
+                alert("주소를  입력해주세요.");
                 signupForm.tel.focus();
                 return false;
             }
             
-            
-            
+                    
             
 	    	// Validate ID (only alphanumeric, up to 10 characters)
-	        let idRegex = /^[a-zA-Z0-9]{1,10}$/;
-	        if (!idRegex.test(id)) {
-	            alert("아이디는 숫자와 영어로만 10자 이내로 입력해주세요.");
-	            signupForm.id.select();
-	            return false;
+	        let idRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{1,10}$/;
+			if (!idRegex.test(id)) {
+  		   		alert("아이디는 영어와 숫자를 조합하여 10자 이내로 입력해주세요.");
+    			form.id.focus();
+    			return ;
 	        }
 	
 	        // Validate Password (alphanumeric and special characters, up to 10 characters)
-	        let pwRegex = /^[a-zA-Z0-9!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]{1,10}$/;
-	        if (!pwRegex.test(pw)) {
-	            alert("비밀번호는 숫자, 영어, 특수문자로 10자 이내로 입력해주세요.");
-	            signupForm.pw.select();
-	            return false;
+	        let pwRegex = /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])[a-z\d!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]{1,10}$/;
+	  		 if (!pwRegex.test(pw)) {
+    	   		alert("비밀번호는 영어 소문자, 숫자, 특수문자를 모두 포함하여 10자 이내로 입력해주세요.");
+    	  		form.pw.focus();
+    	 		return ;	
 	        }
-	    
+	    	
 	        // Validate Name (only Korean, up to 5 characters)
 	        let nameRegex = /^[가-힣]{1,5}$/;
 	        if (!nameRegex.test(name)) {
@@ -109,7 +120,7 @@
             }
      
             
-            // Validate Tel (numeric 3 digits - numeric 3 or 4 digits - numeric 4 digits)
+            // Validate Email (numeric 3 digits - numeric 3 or 4 digits - numeric 4 digits)
             let emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
             if (!emailRegex.test(email)) {
@@ -118,43 +129,36 @@
                 return false;
             }
          
-         // Validate Address
-/*             let addressRegex = /^[a-zA-Z0-9\s,'-]+$/;
+         // Validate Address(no special characters, numbers, only korean , and space))
+         let addressRegex = /^[가-힣\s]+$/;
 
-            if (!addressRegex.test(address)) {
-                alert("주소를 올바른 형식으로 입력해주세요.");
-                signupForm.address.select();
-                return false;
-            } */
-	        //return true; // Form is valid
+			if (!addressRegex.test(address)) {
+			    alert("주소를 올바른 형식으로 (도/시) 입력해주세요.");
+			    signupForm.address.select();
+			    return false;
+			}
 	    	
+		
 	        signupForm.submit();
 	      
 	    }
 		/////-------------------------------------------------////
 	    // 아이디 중복체크
-/* 	    function checkDuplicateId() {
-	    	 let signupForm = document.signupForm;
-		        
+ 	  /*   function checkDuplicateId() {
+	    	 let signupForm = document.signupForm; */
+		 /*        
 	     	// Validate ID
             let id = form.id.value.trim();
             if (id === "") {
                 alert("아이디를 입력해주세요.");
                 signupForm.id.focus();
                 return false;
-            }
+            } */
 	    	
-	    	// Validate ID (only alphanumeric, up to 10 characters)
-	        let idRegex = /^[a-zA-Z0-9]{1,10}$/;
-	        if (!idRegex.test(id)) {
-	            alert("아이디는 숫자와 영어로만 10자 이내로 입력해주세요.");
-	            signupForm.id.select();
-	            return false;
-	        }
-	    	
+	   /*  	
 	    	window.location.href = "checkid.do?id="+id;
 	    	
-	    }	   */  
+	    }	   */   
 	 	
 	    // Server-side value passed to client-side JavaScript
 /*         let serverId = "${serverId}";
@@ -178,12 +182,18 @@
      	
          <div class="mb-3">
              <label for="id" class="form-label">아이디 :</label>
-             <input type="text" class="form-control" id="id" name="id" value="sumink411" required>
-             <a href="javascript:checkDuplicateId()" class="btn btn-outline-secondary">중복체크</a>
+             <input type="text" class="form-control" id="id" name="id" value="sumink411" 
+             		placeholder="아이디 중복체크를 이용하세요" required>
+            <!-- <a href="javascript:checkDuplicateId()" class="btn btn-outline-secondary">중복체크</a>  -->
+             <button type="button" id="idCheckBtn" class="btn btn-default">중복제크</button>
          </div>
          <div class="mb-3">
              <label for="pw" class="form-label">비밀번호 :</label>
              <input type="password" class="form-control" id="pw" name="pw" value="qwer!123" required>
+         </div>
+         <div class="mb-3">
+             <label for="pw" class="form-label">비밀번호 확인:</label>
+             <input type="password" class="form-control" id="pwcheck" name="pwcheck" value="qwer!123" required>
          </div>
          <div class="mb-3">
              <label for="name" class="form-label">이름 :</label>
