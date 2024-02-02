@@ -14,7 +14,10 @@
     div {
         margin-bottom: 10px;}
 </style>
-
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="signup.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="address.js"></script>
 <script type="text/javascript">
     
 	    	// 회원가입 유효성 검사.
@@ -218,7 +221,8 @@
          </div>
          <div class="mb-3">
              <label for="tel" class="form-label">주소 :</label>
-             <input type="text" class="form-control" id="address" name="address" value="경기도 하남시" required>
+             <input type="button" name="address" id="address" size="100px" onClick="addressForm()" >
+             <input type="text" class="form-control" id="1234" name="1234" value="경기도 하남시" required>
          </div>
          
          	<button type="button" onClick="validateForm()" class="btn btn-primary">회원가입</button>
