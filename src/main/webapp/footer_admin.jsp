@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>APPLE STORE 관리자 페이지 </title>
-	 	 <link rel="stylesheet" href="admin_footer.css" />
+	 	 <link rel="stylesheet" href="footer_admin.css" />
 	</head>
 	<body>
 	    <footer>

@@ -1,7 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file ='admin_top.jsp' %>
+<%@ include file ='top_admin.jsp' %>
 
 <%
 	// jsp 내장객체
@@ -17,7 +17,7 @@
         <style>
             body {
             text-align: center;
-            background-color: blanchedalmond; 
+            background-color: rgb(255, 255,200); 
         }
         table {
             margin: 0 auto;
@@ -53,15 +53,18 @@
 	</head>
 	<body>
 		
-		<!--상품평 전체 조회 및 검색 결과를 하단에 보여줌. -->
+		<!--상품평 전체 조회 및 검색 결과 -->
+		<p><strong><h2>상품 목록 </h2></strong> 
 		<div 	id = "result"></div> 
 		
 		<div>
-		<br>
-		<input 	type ="text" id ="name" placeholder ="상품 검색">
-		<button id ="queryButton">검색</button></div>
+			<br>
+			<input 	type ="text" id ="name" placeholder ="상품 검색">
+			<button id ="queryButton">검색</button>
+		</div>
+		<!--  -->
 		<hr>
-		<p><strong>상품 입력 수정</strong> 
+		<p><strong>선택 상품 수정</strong> 
 		<div>
 			<table border="1">
 			
@@ -127,10 +130,11 @@
 		
 		
 		<script src = "https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	    <script src = "adminUpdate.js"></script>
-	    
-	    
-	    <%@ include file ='admin_footer.jsp' %>
+	    <script src = "aProductUpdate.js"></script>
+   	    <footer>
+        	<p>&copy; 2024 Apple Store. All rights reserved.</p>
+    	</footer>
+	  <%--   <%@ include file ='footer_admin.jsp' %> --%>  
 
 	</body>
 </html>
