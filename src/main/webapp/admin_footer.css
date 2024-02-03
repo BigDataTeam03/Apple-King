@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+/* basic.css */
+
+/* 전체 페이지 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+}
+
+/* 헤더 스타일 */
+#header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+#header h1 {
+    margin: 0;
+}
+
+/* 내비게이션 스타일 */
+#index {
+    background-color: #eee;
+    padding: 10px;
+    text-align: center;
+}
+
+#index a {
+    text-decoration: none;
+    color: #333;
+    padding: 8px 15px;
+    margin: 0 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+#index a:hover {
+    background-color: #ccc;
+}

@@ -37,7 +37,8 @@ window.onload = function() {
 	});
 
 };
- 
+
+// 테이블 생성하는 함수
 function createTable(data) {
 	
 	//검색해온 데이터(dtos -> json -> Array  변환)
@@ -159,11 +160,16 @@ function handleClick(index){ //index : table cell number
 	.*/ 
 	
 }
+
+// 검색버튼을 눌렀을 때 실행되는 JQuery, document(jsp)가 로드되었을때(ready)-> function (){} 을 실행한다. 
 $(document).ready(function() {
-		/* 버튼 클릭시 AJAX 요청 */
+	
+		// document 내부에 #html 중 queryButton(검색) 이라는 id 가  click 될떄 실행하는 function(){}
 		$("#queryButton").click(function() {
-			/* 입력된 데이터 가져오기 */
+			
+			// 입력된 데이터 가져오기 
 			let name = $("#name").val()
+			
 			/* AJAX 요청 */
 			$.ajax({
 				//post 방식으로 보낸다
