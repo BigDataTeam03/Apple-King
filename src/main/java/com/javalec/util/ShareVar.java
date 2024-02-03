@@ -4,18 +4,21 @@ public class ShareVar {
 	
 
 	/*--------------------------------------
-	 * Description:
-	 * Author :
-	 * Date :
-	 * Warning :
-	 * Update :
-	 * 		Update 2024.02.02 by PDG, KBS
-	 * 			1. 
-	 * 			2.
+	 * Description : Share variables 
+	 * Author 	   :	 big 3
+	 * Date 	   : 2024.02.02
+	 * Warning 	   : 수정하면 슬랙에 공지해주세요.
+	 * Update------------------------------- 
+	 * <2024.02.03> by PDG
+	 *	1. appleStore -> apple_store ( mysql export error 해결)
+	 *	2.
 	 *-------------------------------------- 
 	 */
-
-	public static String url_mysql = "jdbc:mysql://192.168.50.24/appleStore?serverTimezone=UTC&characterEncoding=utf8&useSSL=false";
+	// 학원에서 사용하는 url 
+	//public static String url_mysql = "jdbc:mysql://192.168.50.24/appleStore?serverTimezone=UTC&characterEncoding=utf8&useSSL=false";
+	
+	// 개인 DB용 url 
+	public static String url_mysql = "jdbc:mysql://localhost/apple_store?serverTimezone=UTC&characterEncoding=utf8&useSSL=false";
 	public static String id_mysql = "root";
 	public static String pw_mysql = "qwer1234";
 	
