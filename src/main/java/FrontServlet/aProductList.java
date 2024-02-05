@@ -72,18 +72,18 @@ public class aProductList extends HttpServlet {
 		ArrayList<productDto> productdtoList = new ArrayList<productDto>();
 		
 		//product 테이블에 있는 모든 컬럼을 불러오는 쿼리문
-		String readQuery = "select *"
-				+ "product_code"
-				+ "product_name"
-				+ "product_qty"
-				+ "origin"
-				+ "manufacture_date"
-				+ "weigtht"
-				+ "size"
-				+ "detail_image_name"
-				+ "view_count"
-				+ "product_reg_date"
-				+ "kind"
+		String readQuery = "select * "
+				+ "product_code, "
+				+ "product_name, "
+				+ "product_qty, "
+				+ "origin, "
+				+ "manufacture_date, "
+				+ "weight, "
+				+ "size, "
+				+ "detail_image_name, "
+				+ "view_count, "
+				+ "product_reg_date, "
+				+ "kind, "
 				+ "product_image_names"
 				
 				//   product 에서 product name 을 검색하지만 처음에는 아무것도 안들어감으로 모두 조회함. 
