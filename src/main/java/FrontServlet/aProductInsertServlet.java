@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.javalec.util.ShareVar;
 
@@ -34,7 +35,26 @@ public class aProductInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		/*
+		--------------------------------------------------------------
+		* Description 	: Administrator product insert
+		* Author 		: PDG & KBS
+		* Date 			: 2024.02.05
+		* ---------------------------Update---------------------------		
+		 	<<2024.02.05>> by PDG &KBS
+			1. 삽입 기능 추가 
+		*
+		--------------------------------------------------------------
+		*/
+		
+		System.out.println(" Product INsert servlet 실행...");
+		
+		
+		HttpSession session = request.getSession();
+		
+		
+		
 		//js 에서 받은 값을 변수로 지정한다
 		String code = request.getParameter("code");
 		String name = request.getParameter("name");
@@ -48,8 +68,12 @@ public class aProductInsertServlet extends HttpServlet {
 		String regDate = request.getParameter("regDate");
 		String kind = request.getParameter("kind");
 		String productImage = request.getParameter("productImage");
+		String price = request.getParameter("price");
+		
 		//변수중에 한글이 포함됨으로 인코딩설정을 한다
 		response.setContentType("text/html;charset=UTF-8");
+		
+		System.out.println(" price : " +price );
 		
 		
 		PrintWriter out = response.getWriter(); // try 바깥에서 선언해라. 
@@ -61,10 +85,21 @@ public class aProductInsertServlet extends HttpServlet {
 			Connection conn_mysql = DriverManager.getConnection(ShareVar.url_mysql, ShareVar.id_mysql,ShareVar.pw_mysql);
 			//Statement stmt_mysql =conn_mysql.createStatement();
 			//인서트를 위한 쿼리문을 작성한다, 그 중에 date=(now) 가 있어 rs. 는 하나가 줄어든다
-			String query ="insert into product "
-					+ " (product_code,product_name,product_qty,origin,manufacture_date,weight,size,detail_image_name,"
-					+ "view_count,product_reg_date=now(),kind,product_image_names)"
-					+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
+			String query ="insert into product " 		//1
+					+ " (product_code,product_name," 	//2
+					+ "product_qty,"					//3
+					+ "origin,"							//4
+					+ "manufacture_date,"				//5
+					+ "weight,"							//6
+					+ "size,"							//7
+					+ "detail_image_name,"				//8
+					+ "view_count,"						//9
+					+ "product_reg_date,"				//10
+					+ "kind,"							//11
+					+ "product_image_names,"			//12
+					+ "price)"							//13
+							//1 2 3 4 5 6 7 8 9 10 	   11 12 13
+					+ "values(?,?,?,?,?,?,?,?,?,now(), ?, ?, ?)";
 					
 			//쿼리문을 실행할 변수를 지정한다
 			ps = conn_mysql.prepareStatement(query);
@@ -78,15 +113,18 @@ public class aProductInsertServlet extends HttpServlet {
 			ps.setString(7, size);
 			ps.setString(8, detailImage);
 			ps.setString(9, view);
+			// now 가 있던자리...
 			ps.setString(10, kind);
 			ps.setString(11, productImage);
+			ps.setString(12, price);
+			
 			
 			System.out.println("입력된 디비에 들어가는 쿼리" +ps.toString());
 			//입력된 값을 데이터베이스에 업데이트를 실행한다
 			ps.executeUpdate();
 			out.print("success");
 			
-
+			
 
 			
 			
@@ -95,6 +133,9 @@ public class aProductInsertServlet extends HttpServlet {
 			
 			out.print("failure");;
 		}
+		
+		// Thumnail
+		
 		
 		
 	}

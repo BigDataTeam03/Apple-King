@@ -1,19 +1,16 @@
 
-
-/*----------------------------------------------------------
- * Description: DB 에서 불러온 상품들을 조회하고 검색함.
+/* Description: DB 에서 불러온 상품들을 조회하고 검색함.
  * Author : PDG, KBS
  * Date : 2024.02.02
- * Warning : 
+ * Warning :
  * Update --------------------------------------------------
  * <<2024.02.02 by PDG, KBS>>
  *	1. 주석 달음.
- 	2. 상품 조회 및 수정이 가능하게 함. 
+ 	2. 상품 조회 및 수정이 가능하게 함.
  * <<2024.02.03 by PDG
- * 	1. 주석을 친절하게 바꿈. 
+ * 	1. 주석을 친절하게 바꿈.
  *----------------------------------------------------------
  */
-
 // 페이지 실행후 바로 상품 전체 조회
 window.onload = function() {
 	$.ajax({
@@ -35,19 +32,17 @@ window.onload = function() {
 			createTable(response);
 		},	
 	});
-
 };
-
 // 테이블 생성하는 함수
 function createTable(data) {
 	
 	//검색해온 데이터(dtos -> json -> Array  변환)
-	dataReal 	= Array.from(data) 
-	let table 	= 
+	dataReal 	= Array.from(data)
+	let table 	=
 	"<table border='1'>"
 	
 	// table 변수에 헤더 추가
-	table 		+= 
+	table 		+=
 		"<tr>"+
 		"<th>상품코드			</th>" + // col1
 		"<th>상품명 			</th>" + // col2
@@ -61,23 +56,25 @@ function createTable(data) {
 	    "<th>상품 등록일		</th>" + // col10
 	    "<th>품종				</th>" + // col11
 	    "<th>상품 섬네일 이미지	</th>" + // col12
+	    "<th>상품 가격	</th>" + // col12
 	    "</tr>"
-	    
+	   
 	// insert data rows
 	for(let i=0; i<data.length; i++)  {
 		table += "<tr>" +
 		"<td id='" + data[i].product_name + "'>"+data[i].product_code +"</td>" + 						// col1
-		"<td>" +"<a href='#' onclick='handleClick("+i+")'>" + data[i].product_name + "</a>"+ "</td>" +	// col2  
-		"<td>" + data[i].product_qty  			+ "</td>" + // col3 
-		"<td>" + data[i].origin 				+ "</td>" +	// col4 
-		"<td>" + data[i].manufacture_date  		+ "</td>" + // col5 
-		"<td>" + data[i].weigtht  				+ "</td>" + // col6 
-		"<td>" + data[i].size  					+ "</td>" + // col7 
-		"<td>" + data[i].detail_image_name  	+ "</td>" + // col8 
-		"<td>" + data[i].view_count  			+ "</td>" + // col9 
-		"<td>" + data[i].product_reg_dat 		+ "</td>" + // col10 
+		"<td>" +"<a href='#' onclick='handleClick("+i+")'>" + data[i].product_name + "</a>"+ "</td>" +	// col2
+		"<td>" + data[i].product_qty  			+ "</td>" + // col3
+		"<td>" + data[i].origin 				+ "</td>" +	// col4
+		"<td>" + data[i].manufacture_date  		+ "</td>" + // col5
+		"<td>" + data[i].weight  				+ "</td>" + // col6
+		"<td>" + data[i].size  					+ "</td>" + // col7
+		"<td>" + data[i].detail_image_name  	+ "</td>" + // col8
+		"<td>" + data[i].view_count  			+ "</td>" + // col9
+		"<td>" + data[i].product_reg_date 		+ "</td>" + // col10
 		"<td>" + data[i].kind  					+ "</td>" + // col11
 		"<td>" + data[i].product_image_names  	+ "</td>" + // col12
+		"<td>" + data[i].price  	            + "</td>" + // col13
 		"</tr>"
 	}
 	
@@ -87,23 +84,29 @@ function createTable(data) {
 	// html result <- table
 	$("#result").html(table);
 	
+	// html prouct count 컨텐츠에 총 상품 수량을 넣어줌. 
+	$("product_code").html(data.length +1)
+	
+	document.querySelector('#product_code').value = data.length +1
+	
+	$("#productCount").html(data.length +1)
 	// 데이터를 화면에 출력
     let dataOutput = "<ul>";
     for (let i = 0; i < data.length; i++) {
-        dataOutput += "<li>" + data[i].product_code + 
-        ", " + data[i].product_name + ", " + data[i].product_qty + 
-        ", " + data[i].origin + ", " + data[i].manufacture_date + 
-        ", " + data[i].weigtht +", " + data[i].size +
+        dataOutput += "<li>" + data[i].product_code +
+        ", " + data[i].product_name + ", " + data[i].product_qty +
+        ", " + data[i].origin + ", " + data[i].manufacture_date +
+        ", " + data[i].weight +", " + data[i].size +
         ", " + data[i].detail_image_name +", " + data[i].view_count +
-        ", " + data[i].product_reg_dat +", " + data[i].kind +
-        ", " + data[i].product_image_names +"</li>";
+        ", " + data[i].product_reg_date +", " + data[i].kind +
+        ", " + data[i].product_image_names +
+        ", " + data[i].price +"</li>";
     }
     dataOutput += "</ul>";
     $("#Print_code").html("");
 	
 //수정을 위해 상품 이름을 클릭하면 수정텍스트 창에 선택한 정보가 보여지게 하기위한 문	
 }
-
 // 테이블에서 클릭된 상품 정보를 가져오는 함수
 function handleClick(index){ //index : table cell number
 	
@@ -120,6 +123,7 @@ function handleClick(index){ //index : table cell number
 	let product_reg_date 		= document.getElementById("product_reg_date")
 	let kind 					= document.getElementById("kind")
 	let product_image_names 	= document.getElementById("product_image_names")
+	let price				 	= document.getElementById("price")
 	
 	//연결된 값을 데이터값에 집어넣기
 	product_code.value 			= dataReal[index].product_code
@@ -134,10 +138,11 @@ function handleClick(index){ //index : table cell number
 	product_reg_date.value 		= dataReal[index].product_reg_date
 	kind.value 					= dataReal[index].kind
 	product_image_names.value 	= dataReal[index].product_image_names
-	/* 
-		이해가 안갈것 같아서 설명합니다. 
+	price.value 	= dataReal[index].price
+	/*
+		이해가 안갈것 같아서 설명합니다.
 		data real 은 위에 함수에서 server 에서 받은 json 파일을 array 로 변환한 형태이다
-		그러므로 dataReal은 
+		그러므로 dataReal은
 		[
 			{product_code : 1,
 			 product_name : "가사과",
@@ -155,19 +160,18 @@ function handleClick(index){ //index : table cell number
 		이때 product_name.value = dataReal.product_name  의 의미는
 		product_name 은 현재 adminMain.jsp 에서id 가prodcut_name 인 input tag 를 가리킨다
 		그 인풋 태그의 값을 dataReal 의 첫번째 원소에 위치한 jason 에서 Key 가 prodcut_name 인 것의 value 를 가져와서
-		넣는 다는 뜻이다.    
+		넣는 다는 뜻이다.
 		
-	.*/ 
+	.*/
 	
 }
-
-// 검색버튼을 눌렀을 때 실행되는 JQuery, document(jsp)가 로드되었을때(ready)-> function (){} 을 실행한다. 
+// 검색버튼을 눌렀을 때 실행되는 JQuery, document(jsp)가 로드되었을때(ready)-> function (){} 을 실행한다.
 $(document).ready(function() {
 	
 		// document 내부에 #html 중 queryButton(검색) 이라는 id 가  click 될떄 실행하는 function(){}
 		$("#queryButton").click(function() {
 			
-			// 입력된 데이터 가져오기 
+			// 입력된 데이터 가져오기
 			let name = $("#name").val()
 			
 			/* AJAX 요청 */
@@ -204,6 +208,7 @@ $(document).ready(function() {
 			let regDate = $("#product_reg_date").val()
 			let kind = $("#kind").val()
 			let productImage = $("#product_image_names").val()
+			let price = $("#price").val()
 		
 			
 			/* AJAX 요청 */
@@ -222,7 +227,8 @@ $(document).ready(function() {
 					view : view,
 					regDate : regDate,
 					kind : kind,
-					productImage : productImage
+					productImage : productImage,
+					price : price
 										
 				},
 				success: function(response) {
@@ -247,9 +253,7 @@ $(document).ready(function() {
 				}
 			})
 		})
-
 })
-
 //상품 테이블 입력을 요청하는 메소드
 $(document).ready(function() {
 		/* 버튼 클릭시 AJAX 요청 */
@@ -267,6 +271,7 @@ $(document).ready(function() {
 			let regDate = $("#product_reg_date").val()
 			let kind = $("#kind").val()
 			let productImage = $("#product_image_names").val()
+			let price = $("#price").val()
 		
 			
 			/* AJAX 요청 */
@@ -285,7 +290,8 @@ $(document).ready(function() {
 					view : view,
 					regDate : regDate,
 					kind : kind,
-					productImage : productImage
+					productImage : productImage,
+					price : price
 										
 				},
 				success: function(response) {
@@ -298,18 +304,53 @@ $(document).ready(function() {
 							/* 서버에서 받은 응답 처리 */
 							createTable(response)//jason
 							//입력완료 후 입력란을 비우기
-							$("#product_code,#product_name,#product_qty,#origin, #manufacture_date,#weight,#size,#detail_image_name,#view_count, #product_reg_date,#kind,#product_image_names").val("")
+							$("#product_code,#product_name,#product_qty,#origin, #manufacture_date,#weight,#size,#detail_image_name,#view_count, #product_reg_date,#kind,#product_image_names,#price").val("")
 							
 						}
 					})
-					alert("수정 되었습니다")
+					alert("입력 되었습니다")
 					
 				},
 				error : function(xhr, ststus,error){
-					alert("수정 시 문제가 발생되었습니다."+ error)
+					alert("입력 시 문제가 발생되었습니다."+ error)
 				}
 			})
 		})
-
 })
-
+//상품 테이블 삭제를 요청하는 메소드
+$(document).ready(function() {
+		/* 버튼 클릭시 AJAX 요청 */
+		$("#deleteBtn").click(function() {
+		alert("삭제되었습니다.")
+			/* 입력된 데이터 가져오기 */
+			let code = $("#product_code").val()
+			//let name = $("#product_name").val()
+			alert("code : "+ code )
+			/* AJAX 요청 */
+			$.ajax({
+				type: "POST",
+				url: "aProductDeleteServlet",
+				data: {
+					//name : name,
+					code : code
+				},
+				success: function(response) {
+					/* 서버에서 받은 응답 처리 */
+					$.ajax({
+						type: "POST",
+						url: "aProductListServlet",
+						data: { name: "" },
+						success: function(response) {
+							/* 서버에서 받은 응답 처리 */
+							createTable(response)//jason
+						}
+					})
+					alert("삭제 되었습니다")
+					
+				},
+				error : function(xhr, ststus,error){
+					alert("삭제 시 문제가 발생되었습니다."+ error)
+				}
+			})
+		})
+})

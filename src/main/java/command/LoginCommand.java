@@ -27,8 +27,7 @@ public class LoginCommand implements Command {
 			System.out.println("checklogin에서 떨어진거잖아");
 			session.setAttribute("loginID", null);
 		}
-//			request.setAttribute("id", id);
-//			request.setAttribute("pw", pw);
+
 	}
 
 

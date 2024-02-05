@@ -15,6 +15,7 @@ public class productDto {
 	String 	product_reg_date;
 	String 	kind;
 	String 	product_image_names;
+	String price;
 
 	// Constructor
 	public productDto() {
@@ -26,7 +27,7 @@ public class productDto {
 			String origin, String manufacture_date,
 			int weight, String size, String detail_image_name,
 			int view_count, String product_reg_date, String kind,
-			String product_image_names) {
+			String product_image_names, String price) {
 		super();
 		
 		this.product_code = product_code;
@@ -41,6 +42,7 @@ public class productDto {
 		this.product_reg_date = product_reg_date;
 		this.kind = kind;
 		this.product_image_names = product_image_names;
+		this.price = price;
 	}
 
 	public String getProduct_code() {
@@ -137,6 +139,14 @@ public class productDto {
 
 	public void setProduct_image_names(String product_image_names) {
 		this.product_image_names = product_image_names;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
 	}
 
 
