@@ -18,8 +18,10 @@
 	* <<2024.02.04>> by PDG
 		1. css 좀 함.. footer, top 추가 하고 사과 색깔로 맞춤. 
 		2. 입력하다 수정하다 왔다 갔다 할수있게끔 어떻게 해야할까?
-	
-	
+	 <<2024.02.04>> by PDG &KBS
+		1. 삭제 기능 추가 
+		2. 입력 기능 추가 
+		3. undefined 고치기 
 	*
 	--------------------------------------------------------------
 	-->
@@ -68,8 +70,16 @@
 	</head>
 	<body>
 		
+		
+
+		
+		
+		
+		
 		<!--상품평 전체 조회 및 검색 결과 -->
 		<p><strong><h2>상품 목록 </h2></strong> 
+		
+		<div 	id = "productCount"></div> 
 		<div 	id = "result"></div> 
 		
 		<div>
@@ -85,7 +95,7 @@
 			
                 <tr>
                     <td>상품코드:</td>
-                    <td class="input-style"><input type="text" id="product_code" readonly="readonly" placeholder="수정불가"></td>
+                    <td class="input-style"><input type="text" id="product_code" readonly="readonly" placeholder="수정불가" ></td>
                 </tr>
                 <tr>
                     <td>상품명:</td>
@@ -130,6 +140,10 @@
                 <tr>
                     <td>섬네일 이미지:</td>
                     <td class="input-style"><input type="text" id="product_image_names" placeholder="이미지파일" value="asdf.png"></td>
+                </tr>
+                <tr>
+                    <td>상품 가격 : </td>
+                    <td class="input-style"><input type="text" id="price" placeholder="가격" value="15000"></td>
                 </tr>
             </table>
 		</div>

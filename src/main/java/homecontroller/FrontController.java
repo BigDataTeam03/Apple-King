@@ -117,8 +117,26 @@ public class FrontController extends HttpServlet {
 			viewPage = "signup_view.jsp";
 			break;
 
-			
+		case ("/aProductInsert.do"):
+			System.out.println("INsert do 를 실행합니다. ");
+			viewPage = "aProductInsert.jsp";
+			break;
 		//////////// Product Part///////////////
+
+		case("/aProductListUpdate.do"):
+			viewPage ="aProductListUpdate.jsp";
+			break;
+		case("/aCustomerListUpdate.do"):
+			viewPage ="aCustomerListUpdate.jsp";
+			break;
+		case("/aCustomerOrderList.do"):
+			viewPage ="aCustomerOrderList.jsp";
+			break;
+		case("/aGoHome.do"):
+			viewPage ="aGoHome.jsp";
+			break;
+
+			
 		
 	
 		}
