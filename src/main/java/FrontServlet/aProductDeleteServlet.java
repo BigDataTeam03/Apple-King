@@ -34,18 +34,30 @@ public class aProductDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
-		//js 에서 받은 값을 변수로 지정한다
-		//String name = request.getParameter("name");  
+		
+		/*
+		--------------------------------------------------------------
+		* Description 	: Administrator product delete 
+		* Author 		: PDG & KBS
+		* Date 			: 2024.02.05
+		* ---------------------------Update---------------------------		
+		 	<<2024.02.05>> by PDG &KBS
+			1. 삭제 기능 추가 
+		*
+		--------------------------------------------------------------
+		*/
+		
+		
 		String productCode = request.getParameter("code");
 		
+		System.out.println("삭제될 상품의 code  : "+ productCode);
 		//변수중에 한글이 포함됨으로 인코딩설정을 한다
 		response.setContentType("text/html;charset=UTF-8");
 				
 		PrintWriter out = response.getWriter(); // try 바깥에서 선언해라. 
-		 //? 를 사용해서 쿼리문을 사용하기 위해 프리페어를 사용한다
-		 PreparedStatement ps = null;
-	        ResultSet rs = null;
+		 
+		//? 를 사용해서 쿼리문을 사용하기 위해 프리페어를 사용한다
+			PreparedStatement ps = null;
 
 	        try {
 	            // 데이터베이스 연결
@@ -53,35 +65,21 @@ public class aProductDeleteServlet extends HttpServlet {
 	            Connection conn_mysql = DriverManager.getConnection(ShareVar.url_mysql, ShareVar.id_mysql, ShareVar.pw_mysql);
 
 	            // 상품 코드를 이용하여 상품의 Primary Key 값을 가져오는 쿼리
-	            String selectQuery = "SELECT product_code FROM product WHERE product_name = ?";
-	            ps = conn_mysql.prepareStatement(selectQuery);
+	            
+	            String deleteQuery = "DELETE FROM product WHERE product_code = ?";
+                ps = conn_mysql.prepareStatement(deleteQuery);
 	            ps.setString(1, productCode);
-
+	            
+	            ps.executeUpdate();
+	            
 	            // 쿼리 실행
-	             ps.executeQuery();
-
-	            if (rs.next()) {
-	                // Primary Key 값을 받아옴
-	                int primaryKey = rs.getInt("product_code");
-
-	                // 상품 및 Primary Key 삭제 쿼리 작성
-	                String deleteQuery = "DELETE FROM product WHERE product_code = ?";
-	                ps = conn_mysql.prepareStatement(deleteQuery);
-	                ps.setInt(1, primaryKey);
-
-	                // 쿼리 실행
-	                ps.executeUpdate();
-
-	            }
+	            
 
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	            out.print("failure");
 	        } finally {
-	            try {
-	                if (rs != null) {
-	                    rs.close();
-	                }
+	            try {       
 	                if (ps != null) {
 	                    ps.close();
 	                }

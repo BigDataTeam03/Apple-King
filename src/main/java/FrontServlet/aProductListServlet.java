@@ -65,7 +65,7 @@ public class aProductListServlet extends HttpServlet {
 		ArrayList<productDto> productdtoList = new ArrayList<productDto>();
 		
 		//product 테이블에 있는 모든 컬럼을 불러오는 쿼리문
-		String readQuery = "select "
+		String readQuery = "select " 
 				+ "product_code, "
 				+ "product_name, "
 				+ "product_qty, "
@@ -77,7 +77,8 @@ public class aProductListServlet extends HttpServlet {
 				+ "view_count, "
 				+ "product_reg_date, "
 				+ "kind, "
-				+ "product_image_names"
+				+ "product_image_names, "
+				+ "price"
 				
 				//   product 에서 product name 을 검색하지만 처음에는 아무것도 안들어감으로 모두 조회함. 
 				+ " from product where product_name like '%"+ product_name + "%'";
@@ -103,15 +104,16 @@ public class aProductListServlet extends HttpServlet {
 				productdto.setProduct_code		 (rs.getString(	"product_code")); 		// 1
 				productdto.setProduct_name		 (rs.getString(	"product_name")); 		// 2
 				productdto.setProduct_qty		 (rs.getInt(	"product_qty")); 		// 3
-				productdto.setManufacture_date	 (rs.getString(	"manufacture_date")); 	// 4 
-				productdto.setWeight			 (rs.getInt("weight")); 			// 5
-				productdto.setSize  			 (rs.getString(	"size")); 				// 6
-				productdto.setDetail_image_name  (rs.getString(	"detail_image_name")); 	// 7 
-				productdto.setView_count  		 (rs.getInt(	"view_count")); 		// 8
-				productdto.setProduct_reg_date 	 (rs.getString(	"product_reg_date")); 	// 9 
-				productdto.setKind  			 (rs.getString(	"kind")); 				// 10
-				productdto.setProduct_image_names(rs.getString(	"product_image_names"));// 11 
-				
+				productdto.setOrigin			 (rs.getString( "origin")); 			// 4
+				productdto.setManufacture_date	 (rs.getString(	"manufacture_date")); 	// 5 
+				productdto.setWeight			 (rs.getInt("weight")); 				// 6
+				productdto.setSize  			 (rs.getString(	"size")); 				// 7
+				productdto.setDetail_image_name  (rs.getString(	"detail_image_name")); 	// 8 
+				productdto.setView_count  		 (rs.getInt(	"view_count")); 		// 9
+				productdto.setProduct_reg_date 	 (rs.getString(	"product_reg_date")); 	// 10 
+				productdto.setKind  			 (rs.getString(	"kind")); 				// 11
+				productdto.setProduct_image_names(rs.getString(	"product_image_names"));// 12 
+				productdto.setPrice				 (rs.getString(	"price"));				// 13 
 				//검색된 내용을 productDto 에 추가
 				productdtoList.add(productdto);
 				totalProductNumber++;
@@ -124,11 +126,11 @@ public class aProductListServlet extends HttpServlet {
 			//Json 이 뭔지 한번 출력해봅시다. 
 //				System.out.println(new Gson().toJson(productdtoList));
 			out.flush();
-			// 어레이리스트 하나에 에스 코드 에스 디티로 싸여있겟지 이것이 대괄호에애스코드1 번 최문국 등으로 
-			// 키벨류값으로 리스트가 만들어진다. 그게 제이슨이다. 
-			System.out.println("실행 완료");
 			
 			
+			//입력시 코드를 생성하기위한 세션
+			session.setAttribute("totalProductNumber", totalProductNumber );
+			//System.out.println("총 상품 갯수" + session.getAttribute("totalProductNumber"));
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
