@@ -17,7 +17,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="signup.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="address.js"></script>
+<script src="address1.js"></script>
 <script type="text/javascript">
     
 	    	// 회원가입 유효성 검사.
@@ -76,7 +76,7 @@
             let email = signupForm.email.value.trim()+signupForm.domain.value.trim();
             if (email === "") {
                 alert("이메일을  입력해주세요.");
-                signupForm.tel.focus();
+                signupForm.email.focus();
                 return false;
             }
             
@@ -84,7 +84,7 @@
             let address = signupForm.address.value.trim()
             if (address === "") {
                 alert("주소를  입력해주세요.");
-                signupForm.tel.focus();
+                signupForm.address.focus();
                 return false;
             }
             
@@ -131,16 +131,6 @@
                 signupForm.email.select();
                 return false;
             }
-         
-         // Validate Address(no special characters, numbers, only korean , and space))
-         let addressRegex = /^[가-힣\s]+$/;
-
-			if (!addressRegex.test(address)) {
-			    alert("주소를 올바른 형식으로 (도/시) 입력해주세요.");
-			    signupForm.address.select();
-			    return false;
-			}
-	    	
 		
 	        signupForm.submit();
 	      
@@ -195,8 +185,9 @@
              <input type="password" class="form-control" id="pw" name="pw" value="qwer!123" required>
          </div>
          <div class="mb-3">
-             <label for="pw" class="form-label">비밀번호 확인:</label>
-             <input type="password" class="form-control" id="pwcheck" name="pwcheck" value="qwer!123" required>
+             <label for="confirmpw" class="form-label">비밀번호 확인:</label>
+             <input type="password" class="form-control" id="confirmpw" name="confirmpw" value="qwer!123" required>
+  			 <p id="passwordMessage"></p>           
          </div>
          <div class="mb-3">
              <label for="name" class="form-label">이름 :</label>
@@ -221,12 +212,28 @@
          </div>
          <div class="mb-3">
              <label for="tel" class="form-label">주소 :</label>
-             <input type="button" name="address" id="address" size="100px" onClick="addressForm()" >
-             <input type="text" class="form-control" id="1234" name="1234" value="경기도 하남시" required>
+             <input type="button" name="address" id="address" size="100px" onClick="addressForm()" value ="주소찾기" >
+             <input type="text" class="form-control" id="useraddress" name="useraddress" value="경기도 하남시" readonly="readonly" required>
          </div>
          
          	<button type="button" onClick="validateForm()" class="btn btn-primary">회원가입</button>
      </form>
 
+	 <!-- 비밀번호 일치여부를 실시간으로 확인해주는 ajax -->
+	 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+     <script>
+        $(document).ready(function(){
+            $('#confirmpw').on('input', function(){
+                var password = $('#pw').val();
+                var confirmPassword = $(this).val();
+
+                if(password === confirmPassword){
+                    $('#passwordMessage').html('비밀번호 일치').css('color', 'green');
+                } else {
+                    $('#passwordMessage').html('비밀번호 불일치').css('color', 'red');
+                }
+            });
+        });
+     </script>
 </body>
 </html>
