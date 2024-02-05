@@ -9,6 +9,21 @@
 	ServletContext context = getServletContext();
 	//String realfolder = context.getRealPath(savefolder);
 %>
+	<!--
+	--------------------------------------------------------------
+	* Description 	: Admin CRUD
+	* Author 		: PDG & KBS
+	* Date 			: 2024.02.02
+	* ---------------------------Update---------------------------		
+	* <<2024.02.04>> by PDG
+		1. css 좀 함.. footer, top 추가 하고 사과 색깔로 맞춤. 
+		2. 입력하다 수정하다 왔다 갔다 할수있게끔 어떻게 해야할까?
+	
+	
+	*
+	--------------------------------------------------------------
+	-->
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -64,66 +79,65 @@
 		</div>
 		<!--  -->
 		<hr>
-		<p><strong>선택 상품 수정</strong> 
+		<p><strong>새상품 등록  & 선택 상품 수정  </strong> 
 		<div>
 			<table border="1">
 			
                 <tr>
                     <td>상품코드:</td>
-                    <td class="input-style"><input type="text" id="product_code" readonly="readonly"></td>
+                    <td class="input-style"><input type="text" id="product_code" readonly="readonly" placeholder="수정불가"></td>
                 </tr>
                 <tr>
                     <td>상품명:</td>
-                    <td class="input-style"><input type="text" id="product_name"></td>
+                    <td class="input-style"><input type="text" id="product_name" placeholder="상품명을 입력하세요" value="다사과"></td>
                 </tr>
                 <tr>
                     <td>수량:</td>
-                    <td class="input-style"><input type="text" id="product_qty"></td>
+                    <td class="input-style"><input type="text" id="product_qty" placeholder="수량 입력" value="0"></td>
                 </tr>
                 <tr>
                     <td>원산지:</td>
-                    <td class="input-style"><input type="text" id="origin"></td>
+                    <td class="input-style"><input type="text" id="origin" placeholder="원산지" value="한국"></td>
                 </tr>
                 <tr>
                     <td>생산일:</td>
-                    <td class="input-style"><input type="text" id="manufacture_date"></td>
+                    <td class="input-style"><input type="text" id="manufacture_date" placeholder="생산일" value="2024-02-02"></td>
                 </tr>
                 <tr>
-                    <td>무게:</td>
-                    <td class="input-style"><input type="text" id="weight"></td>
+                    <td>무게(kg):</td>
+                    <td class="input-style"><input type="text" id="weight" placeholder="무게" value="15"></td>
                 </tr>
                 <tr>
                     <td>사이즈:</td>
-                    <td class="input-style"><input type="text" id="size"></td>
+                    <td class="input-style"><input type="text" id="size" placeholder="사이즈" value="대"></td>
                 </tr>
                 <tr>
                     <td>상세 이미지:</td>
-                    <td class="input-style"><input type="text" id="detail_image_name"></td>
+                    <td class="input-style"><input type="text" id="detail_image_name" placeholder="수정불가" value="asdf.png"></td>
                 </tr>
                 <tr>
                     <td>조회수:</td>
-                    <td class="input-style"><input type="text" id="view_count" readonly="readonly"></td>
+                    <td class="input-style"><input type="text" id="view_count" readonly="readonly" placeholder="0" value="0"></td>
                 </tr>
                 <tr>
                     <td>상품 등록일:</td>
-                    <td class="input-style"><input type="text" id="product_reg_date"></td>
+                    <td class="input-style"><input type="text" id="product_reg_date"  readonly="readonly" placeholder="등록일 (자동)"></td>
                 </tr>
                 <tr>
                     <td>품종:</td>
-                    <td class="input-style"><input type="text" id="kind"></td>
+                    <td class="input-style"><input type="text" id="kind" placeholder="품종" value="부사"></td>
                 </tr>
                 <tr>
                     <td>섬네일 이미지:</td>
-                    <td class="input-style"><input type="text" id="product_image_names"></td>
+                    <td class="input-style"><input type="text" id="product_image_names" placeholder="이미지파일" value="asdf.png"></td>
                 </tr>
             </table>
 		</div>
 		<br>
 		<!--  submit 을 누르면 s~ 어쩌구가 submit 되어 js 에서 받아줌.  -->
+		
+		<button type ="button" id = "insertBtn">등록</button>
 		<button type ="button" id = "updateBtn">수정</button>
-		
-		<button type ="button" id = "insertBtn">입력</button>
-		
 		<button type ="button" id = "deleteBtn">삭제</button>
 		
 		<div 	id = "Print_code"></div> <!--  // result 부분을 Js 가 만들어주는구나 --> 

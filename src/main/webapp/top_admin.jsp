@@ -13,8 +13,7 @@
 	
 	  </header>
 	<nav id="index">
-	  <a href="aProudctInsert.jsp">		상품등록</a> 				&nbsp;&nbsp;&nbsp;
-	  <a href="aProductListUpdate.jsp">	상품목록 조회/수정</a>	 	&nbsp;&nbsp;&nbsp;
+	  <a href="aProudctListUpdate.jsp">	상품 등록/조회/수정</a>	 	&nbsp;&nbsp;&nbsp;
 	  <a href="aCustomerListUpdate.jsp">회원 목록 조회/수정</a> 	&nbsp;&nbsp;&nbsp;
 	  <a href="aCustomerOrderList.jsp">	회원 매출 조회</a> 		&nbsp;&nbsp;&nbsp;
 	  <a href="aGoHome.jsp">			홈으로</a> 				&nbsp;&nbsp;&nbsp;
