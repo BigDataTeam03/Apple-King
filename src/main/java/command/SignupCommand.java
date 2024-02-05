@@ -19,7 +19,7 @@ public class SignupCommand implements Command {
 		String tel = (String)request.getParameter("tel");
 		String email = (String)request.getParameter("email");
 		String domain = (String)request.getParameter("domain");
-		String address = (String)request.getParameter("address");
+		String address = (String)request.getParameter("useraddress");
 		
 	
 		Signup_Dao dao = new Signup_Dao();
