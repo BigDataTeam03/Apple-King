@@ -21,7 +21,11 @@ function createCard(data) {
         	
             <div class="card">
             
-                <img src="${data[i].product_image_names}" class="card-img-top" alt="${data[i].product_name}">
+               <img src="image/${data[i].product_image_names}" > 
+                
+               
+              			
+                
                 <div class="card-body">
                     <h5 class="card-title">
                     
@@ -30,16 +34,18 @@ function createCard(data) {
                         <a href="productDetail.do?product_name=${data[i].product_name}&price=${data[i].price}
                         						  &origin=${data[i].origin}&size=${data[i].size}&weight=${data[i].weight}"> 
                         	${data[i].product_name}
-                   
-                     
-                        
+                      
                         	
                        	</a>
                     </h5>
-                    <p class="card-text">이미지: ${data[i].product_image_names}</p>
                     <p class="card-text">가격: ${data[i].price}</p>
                 </div>
             </div>
+            
+            
+            
+            
+            
         `;
         resultContainer.append(cardHtml);
     }

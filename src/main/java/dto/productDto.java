@@ -16,7 +16,7 @@ public class productDto {
 	String 	kind;					//11
 	String 	product_image_names;	//12
 	int 	price; 					//13
-	String 	rating; 					//14
+	String 	rating; 			    //14
 
 	// Constructor
 	public productDto() {
