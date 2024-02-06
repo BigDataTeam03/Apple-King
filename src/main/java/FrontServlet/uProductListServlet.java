@@ -89,6 +89,9 @@ public class uProductListServlet extends HttpServlet {
 			
 			productdto.setProduct_image_names	(rs.getString("product_image_names"));// 6 
 			
+			
+			System.out.println(rs.getString("product_image_names"));
+			
 			//검색된 내용을 productDto 에 추가
 			productdtoList.add(productdto);
 				
