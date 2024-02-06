@@ -5,6 +5,11 @@
 <!-- 이미지 업로드를 위한 멀티 파트 선언 -->
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
+
+<%@ page import="com.oreilly.servlet.MultipartRequest, 
+	com.oreilly.servlet.multipart.DefaultFileRenamePolicy,
+	java.util.*,
+	java.io.* " %>
 <!--
 --------------------------------------------------------------
 * Description 	: Admin CRUD jsp
@@ -26,7 +31,8 @@
 	1. 멀티 파트를 사용한 이미지 업로드기능 추가
 
 --------------------------------------------------------------
--->																									
+-->			
+																					
 <!DOCTYPE html>
 <html>
 
@@ -134,6 +140,7 @@
             <td class="input-style">
             <input type="file" name="file">
             </td>
+
         </tr>
         <tr>
             <td>가격 :</td>
@@ -142,8 +149,9 @@
     </table>
 </div>
 <br>
-<input type="button" id="insertBtn" value="입력" onclick="check()"></input>
 
+<input type="button" id="insertBtn" value="입력" onclick="check()"></input>
+</form>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/i18n/jquery-ui-i18n.min.js"></script>
@@ -204,7 +212,7 @@ $(function() {
         form.submit();
     }      
 </script>
-</form>
+
 </body>
 </html>
 
