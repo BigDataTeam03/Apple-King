@@ -32,17 +32,14 @@ public class FrontController extends HttpServlet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		actionDo(request, response);// actionDo method로 보냄
+		actionDo(request, response);
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -64,25 +61,31 @@ public class FrontController extends HttpServlet {
 		 * 		Update 2024.02.02 by PDG, KBS
 		 * 			1. 주석 달음. 
 		 * 			2.
+		 * 		Update 2024.02.06 by pdg
+		 * 			1. controller 오타 수정및 테스트코드 주석 수정. + 정리
+		 * 
 		 *-------------------------------------- 
 		 */
+		
+		// Request character encoding
 		request.setCharacterEncoding("utf-8");
 
-		// Make Session
+		// Session & Query String => URI => com 
 		HttpSession session = request.getSession();
-
 		Command command = null;
 		String viewPage = null;
-
 		String uri = request.getRequestURI();
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
-		// com = "/signup.do";
-		System.out.println("controlloe start");
+		
+		//Controller Start Test code
+		System.out.println(">> Controller start =>"+ com );
+		
 		switch (com) {
-
+		
+		//-------------- Customer Management Part (MVC) --------------
 		// Login Page
-		case ("/loginStart.do"): // this just shows the log in page.
+		case ("/loginStart.do"):
 			viewPage = "login_view.jsp";
 			break;
 
@@ -101,55 +104,73 @@ public class FrontController extends HttpServlet {
 				viewPage = "login_view.jsp";
 			}
 			break;
-		case ("/signupStart.do"): // go to signup page.
+			
+		// Sign Up page 
+		case ("/signupStart.do"): 
 			viewPage = "signup_view.jsp";
 			break;
-		// the process of making an account.
+			
+		// SignUp do
 		case ("/signup.do"):
-//				System.out.println(session.getAttribute("ID"));
-			System.out.println(request.getParameter("id"));
-			System.out.println("signup do 를 실행합니다. ");
+			
+			// test code
+			System.out.println(">> Rq_parameter_id = "+request.getParameter("id"));
+			System.out.println(">> " + com + "실행 ");
 			command = new SignupCommand();
 			command.execute(request, response);
 			response.sendRedirect("loginStart.do");
 			break;
-
+			
+		// ID overlap check
 		case ("/checkid.do"): // checking for duplicates when signing up
 			command = new IdCheckCommand();
 			command.execute(request, response);
 			viewPage = "signup_view.jsp";
 			break;
-
+			
+		//-------------- Product Part (MVC) --------------
+		// Product insert 
 		case ("/aProductInsert.do"):
-			System.out.println("INsert do 를 실행합니다. ");
+			
+			// test code
+			System.out.println(">> " + com + "실행 ");
 			viewPage = "aProductInsert.jsp";
-			break;
-		//////////// Product Part///////////////
+			break;	
+		
+		// Product Detail page
 		case ("/productDetail.do"): 
-			System.out.println("상세페이지를 실행합니다");
+			
+			// test code
+			System.out.println(">> " + com + "실행 ");
 			command = new productDetailCommand();
 			command.execute(request, response);
 			viewPage = "productDetail.jsp";
 			break;
-		
+			
+		//-------------- AJAX Part --------------
+		// product list update
 		case("/aProductListUpdate.do"):
 			viewPage ="aProductListUpdate.jsp";
 			break;
+			
+		// customer list 
 		case("/aCustomerList.do"):		
 			System.out.println("aCustmoerList.do 실행 ");
 			viewPage ="aCustomerList.jsp";
 			break;
+			
+		// order list 
 		case("/aCustomerOrderList.do"):
 			viewPage ="aCustomerOrderList.jsp";
 			break;
+			
+		// Go home of admin
 		case("/aGoHome.do"):
 			viewPage ="aGoHome.jsp";
 			break;
-
-			
-		
-	
 		}
+		
+		// Controller viewPage forward
 		if (viewPage != null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);

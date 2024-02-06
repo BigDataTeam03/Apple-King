@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+/* basic.css */
+
+/* 전체 페이지 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(188, 246, 141)    ;
+    margin: 0;
+    padding: 0;
+}
+
+/* 헤더 스타일 */
+#header {
+    background-color: rgb(145, 206, 179) ;/*사과색으로 변경 */
+    color: rgb(255, 120, 0);
+    padding: 20px;
+    text-align: center;
+}
+
+#header h1 {
+    margin: 0;
+}
+/* 내비게이션 스타일 */
+/* 내비게이션 스타일 */
+#index {
+    background-color: rgb(15, 206, 150); /* 사과색으로 변경 */
+    padding: 10px;
+    text-align: center;
+}
+
+#index a {
+    text-decoration: none;
+    color: #fff; /* 텍스트 색상을 흰색으로 변경 */
+    padding: 8px 15px;
+    margin: 0 5px;
+    border-radius: 5px;
+    background-color: rgb(15, 18, 20); 
+    transition: background-color 0.3s ease;
+}
+
+#index a:hover {
+    background-color: #ffa07a; /* 호버 상태일 때 조금 더 진한 색으로 변경 */
+}
+

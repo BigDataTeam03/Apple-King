@@ -82,12 +82,11 @@ public class uProductListServlet extends HttpServlet {
 			
 			productdto.setProduct_name		 	(rs.getString("product_name")); 	  // 1
 			productdto.setPrice		 			(rs.getInt("price")); 				  // 2
-			productdto.setOrigin	 			(rs.getString("origin")); 				  // 3
-			productdto.setSize	 				(rs.getString("size")); 				  // 4
+			productdto.setOrigin	 			(rs.getString("origin")); 			  // 3
+			productdto.setSize	 				(rs.getString("size")); 			  // 4
 			productdto.setWeight	 			(rs.getInt("weight")); 				  // 5
-			
-			
 			productdto.setProduct_image_names	(rs.getString("product_image_names"));// 6 
+			
 			
 			//검색된 내용을 productDto 에 추가
 			productdtoList.add(productdto);
