@@ -2,10 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ include file ='top_admin.jsp' %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<!-- 이미지 업로드를 위한 멀티 파트 선언 -->
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@page import="com.oreilly.servlet.MultipartRequest"%>
 <!--
 --------------------------------------------------------------
-* Description 	: Admin CRUD
+* Description 	: Admin CRUD jsp
+		Detail	:
+		    	1. 상품코드를 불러오기 위해 js 를 사용하고 입력시, 상품 총 갯수에 +1을 하여 상품코드 란에 ReadOnly 로 출력한다.
+    		  	2. 상품 입력시, 자바스크립트로 정규식을 시행후 문제없이 통과시 submit
+    		  	
 * Author 		: PDG & KBS
 * Date 			: 2024.02.05
 * ---------------------------Update---------------------------		
@@ -16,9 +22,9 @@
     1. 입력기능 추가
     2.  
     3.  
+<<2024.02.06>>by PDG
+	1. 멀티 파트를 사용한 이미지 업로드기능 추가
 
-    기능 설명 : 1. 상품코드를 불러오기 위해 js 를 사용하고 입력시, 상품 총 갯수에 +1을 하여 상품코드 란에 ReadOnly 로 출력한다.
-    		  2. 상품 입력시, 자바스크립트로 정규식을 시행후 문제없이 통과시 
 --------------------------------------------------------------
 -->																									
 <!DOCTYPE html>
@@ -26,6 +32,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <style>
         body {
             text-align: center;
@@ -71,8 +78,9 @@
 }
     </style>
 </head>
+
 <body>
-<form action="aProductListUpdate.do" method="post">     
+<form action="aProductListUpdate.do" method="post" enctype="multipart/form-data">     
 <div id="productCount"></div>
 <!--상품평 전체 조회 및 검색 결과 -->
 <p><strong><h2>상품 목록 </h2></strong>
@@ -123,7 +131,9 @@
         </tr>
         <tr>
             <td>섬네일 이미지:</td>
-            <td class="input-style"><input type="text" id="product_image_names" placeholder="이미지파일" value="asdf.png"></td>
+            <td class="input-style">
+            <input type="file" name="file">
+            </td>
         </tr>
         <tr>
             <td>가격 :</td>
@@ -132,17 +142,15 @@
     </table>
 </div>
 <br>
-<!--  submit 을 누르면 s~ 어쩌구가 submit 되어 js 에서 받아줌. 그 전에 정규표현식을 거치고 통과-->
 <input type="button" id="insertBtn" value="입력" onclick="check()"></input>
-<div id="Print_code"></div>
-<!--  // result 부분을 Js 가 만들어주는구나 -->
+
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/i18n/jquery-ui-i18n.min.js"></script>
+
 <footer>
     <p>&copy; 2024 Apple Store. All rights reserved.</p>
 </footer>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/i18n/jquery-ui-i18n.min.js"></script>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 
 <script>
@@ -192,6 +200,7 @@ $(function() {
                 }
             }
         }
+        
         form.submit();
     }      
 </script>
