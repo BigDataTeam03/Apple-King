@@ -9,10 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 import command.Command;
 import command.IdCheckCommand;
 import command.LoginCommand;
+
 import command.SignupCommand;
+import command.productDetailCommand;
 
 
 /**
@@ -122,7 +125,14 @@ public class FrontController extends HttpServlet {
 			viewPage = "aProductInsert.jsp";
 			break;
 		//////////// Product Part///////////////
-
+		case ("/productDetail.do"): 
+			System.out.println("상세페이지를 실행합니다");
+			command = new productDetailCommand();
+			command.execute(request, response);
+			viewPage = "productDetail.jsp";
+			break;
+	
+	
 		case("/aProductListUpdate.do"):
 			viewPage ="aProductListUpdate.jsp";
 			break;

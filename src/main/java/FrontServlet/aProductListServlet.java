@@ -113,7 +113,7 @@ public class aProductListServlet extends HttpServlet {
 				productdto.setProduct_reg_date 	 (rs.getString(	"product_reg_date")); 	// 10 
 				productdto.setKind  			 (rs.getString(	"kind")); 				// 11
 				productdto.setProduct_image_names(rs.getString(	"product_image_names"));// 12 
-				productdto.setPrice				 (rs.getString(	"price"));				// 13 
+				productdto.setPrice				 (rs.getInt(	"price"));				// 13 
 				//검색된 내용을 productDto 에 추가
 				productdtoList.add(productdto);
 				totalProductNumber++;
