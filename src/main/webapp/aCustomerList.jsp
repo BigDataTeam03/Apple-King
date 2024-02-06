@@ -20,7 +20,7 @@
 	-->
 
 
-
+<script src ="aCustomerList.js?ver=1"> </script>
 <head>
         <style>
             body {
@@ -57,16 +57,8 @@
         }
 
         </style>
-	
-	
-
-
 </head>
 <body>
-
-	
-		
-		
 		<!--상품평 전체 조회 및 검색 결과 -->
 		<p><strong><h2>고객 목록 </h2></strong> 
 				
@@ -77,11 +69,8 @@
 			<input 	type ="text" id ="name" placeholder ="상품 검색">
 			<button id ="queryButton">검색</button>
 		</div>
-	
-		
-		
-	
-
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js?ver=1"></script>
+		<script src = "https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 </body>
 </html>

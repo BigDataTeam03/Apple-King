@@ -1,18 +1,12 @@
-package FrontServlet;
+package command;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,30 +15,13 @@ import com.google.gson.Gson;
 import com.javalec.util.ShareVar;
 
 import dto.customerDto;
-import dto.productDto;
 
-/**
- * Servlet implementation class aCustomerListServlet
- */
-@WebServlet("/aCustomerListServlet")
-public class aCustomerListServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public aCustomerListServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+public class aCustomerListCommand implements Command {
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-					
-		
-		
+	@Override
+	public void execute(HttpServletRequest request, HttpServletResponse response) {
+
+
 		/*
 		--------------------------------------------------------------
 		* Description 	: 관리자가 보는 고객정보 리스트 출력
@@ -58,7 +35,7 @@ public class aCustomerListServlet extends HttpServlet {
 		--------------------------------------------------------------
 		*/
 		
-		System.out.println("aCustomerListServlet 시작.");
+		System.out.println("aCustomerListCommand  시작.");
 		
 		
 		response.setContentType("text/html;charset=UTF-8");  
@@ -94,11 +71,11 @@ public class aCustomerListServlet extends HttpServlet {
 				+ "reg_date, "
 				+ "cust_rank "				
 				//   Customer 에서 name 을 검색하지만 처음에는 아무것도 안들어감으로 모두 조회함. 
-				+ "from customer where name like '%"+ name + "%' and cust_id <> 'admin123'";
+				+ " from customer where name like '%"+ name + "%' and cust_id <> 'admin123'";
 		System.out.println("query 실행 전 내용 :"+ readQuery);
 	
 		//out.flush 를 사용하기위해 out 변수 지정
-		PrintWriter out = response.getWriter();
+		
 		
 		
 		
@@ -109,7 +86,6 @@ public class aCustomerListServlet extends HttpServlet {
 			
 			//select 쿼리문을 사욜하니 Statement 를 사용
 			Statement  stmt_mysql =conn_mysql.createStatement();
-			
 			
 			//결과를 담는 변수 설정
 			ResultSet rs = stmt_mysql.executeQuery(readQuery);
@@ -122,7 +98,7 @@ public class aCustomerListServlet extends HttpServlet {
 				customerdto.setTel(rs.getString("tel"));
 				customerdto.setEmail(rs.getString("email"));
 				customerdto.setReg_date(rs.getTimestamp("reg_date"));
-				customerdto.setRank(rs.getInt("rank"));
+				customerdto.setRank(rs.getInt("cust_rank"));
 				
 						
 				//검색된 내용을 productDto 에 추가
@@ -133,16 +109,24 @@ public class aCustomerListServlet extends HttpServlet {
 			}
 			System.out.println("Json전");
 			// Json 타입으로 변환하기 위한 Gson 선언
+			PrintWriter out = response.getWriter();
 			out.print(new Gson().toJson(customerdtoList));
 			
 			out.flush();
 			
 			
+			//총 고객 숫자를 표시하기 위해 세션에 저장
+//			session.setAttribute("totalProductNumber", totalCustomerNumber + 1);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
+		
+		
+		
 	
+		
+		
 		
 	
 

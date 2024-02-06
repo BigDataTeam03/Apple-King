@@ -10,13 +10,14 @@
  */
 // 페이지 실행후 바로 상품 전체 조회
 window.onload = function() {
+	alert("js 시작asd;lfkas;ldk ")
 	$.ajax({
 		
 		// post method server request
 		type: "POST",
 		
 		// target server page(Servlet) url
-		url: "aCustomerListServlet",
+		url: "aProductListServlet",
 		
 		// request data (JSON)
 		data: { name: "" },
@@ -26,15 +27,17 @@ window.onload = function() {
 		
 		// server response success  -> response(Json data)
 		success: function(response) {
+			alert("성공")
 			createTable(response);
-		},	
+		},error: function(xhr, status, error) {
+            alert("AJAX 요청 중 오류가 발생했습니다: " + error);
+        }
 	});
 };
 
-
 // 테이블 생성하는 함수
 function createTable(data) {
-	
+	alert("js creat tabel ")
 	//검색해온 데이터(dtos -> json -> Array  변환)
 	dataReal 	= Array.from(data)
 	let table 	=
@@ -53,8 +56,9 @@ function createTable(data) {
 	    "</th>" + "</tr>"
 	    
 
-// insert data rows
+	// insert data rows
 	for(let i=0; i<data.length; i++)  {
+		
 		table += "<tr>" +
 		"<td id='" + data[i].name + "'>"+data[i].cust_id +"</td>" + 						// col1
 		"<td>" +"<a href='#' onclick='handleClick("+i+")'>" + data[i].name + "</a>"+ "</td>" +	// col2
@@ -108,7 +112,7 @@ function handleClick(index){ //index : table cell number
 	cust_id.value 	    = dataReal[index].cust_id
 	name.value 			= dataReal[index].name
 	tel.value 			= dataReal[index].tel
-	email.value 		= dataReal[index].emial
+	email.value 		= dataReal[index].email
 	address.value 		= dataReal[index].address
 	reg_date.value 		= dataReal[index].reg_date
 	rank.value 			= dataReal[index].rank
