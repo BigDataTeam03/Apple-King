@@ -1,7 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file ='top_admin.jsp' %>
+<%@ include file ='/TOP/top_admin.jsp' %>
 
 <%
 	// jsp 내장객체
