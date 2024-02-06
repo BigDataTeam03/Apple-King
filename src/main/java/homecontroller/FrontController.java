@@ -131,13 +131,13 @@ public class FrontController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "productDetail.jsp";
 			break;
-	
-	
+		
 		case("/aProductListUpdate.do"):
 			viewPage ="aProductListUpdate.jsp";
 			break;
-		case("/aCustomerListUpdate.do"):
-			viewPage ="aCustomerListUpdate.jsp";
+		case("/aCustomerList.do"):		
+			System.out.println("aCustmoerList.do 실행 ");
+			viewPage ="aCustomerList.jsp";
 			break;
 		case("/aCustomerOrderList.do"):
 			viewPage ="aCustomerOrderList.jsp";

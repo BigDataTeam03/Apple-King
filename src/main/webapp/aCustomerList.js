@@ -27,14 +27,12 @@ window.onload = function() {
 		// server response success  -> response(Json data)
 		success: function(response) {
 			createTable(response);
-		},	
+		},
 	});
 };
 
-
 // 테이블 생성하는 함수
 function createTable(data) {
-	
 	//검색해온 데이터(dtos -> json -> Array  변환)
 	dataReal 	= Array.from(data)
 	let table 	=
@@ -53,16 +51,17 @@ function createTable(data) {
 	    "</th>" + "</tr>"
 	    
 
-// insert data rows
+	// insert data rows
 	for(let i=0; i<data.length; i++)  {
+		
 		table += "<tr>" +
 		"<td id='" + data[i].name + "'>"+data[i].cust_id +"</td>" + 						// col1
 		"<td>" +"<a href='#' onclick='handleClick("+i+")'>" + data[i].name + "</a>"+ "</td>" +	// col2
-		"<td>" + data[i].tel  			+ "</td>" + // col3
-		"<td>" + data[i].email 				+ "</td>" +	// col4
-		"<td>" + data[i].address  		+ "</td>" + // col5
+		"<td>" + data[i].tel  		          	+ "</td>" + // col3
+		"<td>" + data[i].email 				    + "</td>" +	// col4
+		"<td>" + data[i].address  		        + "</td>" + // col5
 		"<td>" + data[i].reg_date 				+ "</td>" + // col6
-		"<td>" + data[i].rank  					+ "</td>" + // col7
+		"<td>" + data[i].cust_rank  			+ "</td>" + // col7
 		"</tr>"
 	}
 	
@@ -108,7 +107,7 @@ function handleClick(index){ //index : table cell number
 	cust_id.value 	    = dataReal[index].cust_id
 	name.value 			= dataReal[index].name
 	tel.value 			= dataReal[index].tel
-	email.value 		= dataReal[index].emial
+	email.value 		= dataReal[index].email
 	address.value 		= dataReal[index].address
 	reg_date.value 		= dataReal[index].reg_date
 	rank.value 			= dataReal[index].rank
@@ -118,7 +117,7 @@ function handleClick(index){ //index : table cell number
 $(document).ready(function() {
 	
 		// document 내부에 #html 중 queryButton(검색) 이라는 id 가  click 될떄 실행하는 function(){}
-		$("#queryButton").click(function() {
+		$("#searchBtn").click(function() {
 			
 			// 입력된 데이터 가져오기
 			let name = $("#name").val()

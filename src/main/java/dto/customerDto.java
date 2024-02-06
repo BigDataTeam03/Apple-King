@@ -1,119 +1,123 @@
 package dto;
 
-import java.sql.Timestamp;
-
 public class customerDto {
-		//Filed
-	
-			String cust_id;
-			String cust_pw;
-			String name;
-			String tel;
-			String email;
-			String address;
-			int rank;
-			Timestamp reg_date;
-			Timestamp deact_date;
+	// Filed
 
-	
-			
-			
-			//Constructor
-			
-			public customerDto() {
-				// TODO Auto-generated constructor stub
-			}
+	String cust_id;
+	String cust_pw;
+	String name;
+	String tel;
+	String email;
+	String address;
+	int cust_rank;
+	String reg_date;
+	String deact_date;
 
-			public customerDto(String cust_id, String cust_pw, String name, String tel, String email, String address,
-					int rank, Timestamp reg_date, Timestamp deact_date) {
-				super();
-				this.cust_id = cust_id;
-				this.cust_pw = cust_pw;
-				this.name = name;
-				this.tel = tel;
-				this.email = email;
-				this.address = address;
-				this.rank = rank;
-				this.reg_date = reg_date;
-				this.deact_date = deact_date;
-			}
+	// Constructor
 
-			public String getCust_id() {
-				return cust_id;
-			}
+	public customerDto() {
+		// TODO Auto-generated constructor stub
+	}
 
-			public void setCust_id(String cust_id) {
-				this.cust_id = cust_id;
-			}
+	// 고객 리스트를 에 보이기위한 Dto 리스트
+	public customerDto(String cust_id, String name, String tel, String email, String address, int cust_rank,
+			String reg_date) {
+		super();
+		this.cust_id = cust_id;
+		this.name = name;
+		this.tel = tel;
+		this.email = email;
+		this.address = address;
+		this.cust_rank = cust_rank;
+		this.reg_date = reg_date;
+	}
 
-			public String getCust_pw() {
-				return cust_pw;
-			}
+	public customerDto(String cust_id, String cust_pw, String name, String tel, String email, String address,
+			int cust_rank, String reg_date, String deact_date) {
+		super();
+		this.cust_id = cust_id;
+		this.cust_pw = cust_pw;
+		this.name = name;
+		this.tel = tel;
+		this.email = email;
+		this.address = address;
+		this.cust_rank = cust_rank;
+		this.reg_date = reg_date;
+		this.deact_date = deact_date;
+	}
 
-			public void setCust_pw(String cust_pw) {
-				this.cust_pw = cust_pw;
-			}
+	public String getCust_id() {
+		return cust_id;
+	}
 
-			public String getName() {
-				return name;
-			}
+	public void setCust_id(String cust_id) {
+		this.cust_id = cust_id;
+	}
 
-			public void setName(String name) {
-				this.name = name;
-			}
+	public String getCust_pw() {
+		return cust_pw;
+	}
 
-			public String getTel() {
-				return tel;
-			}
+	public void setCust_pw(String cust_pw) {
+		this.cust_pw = cust_pw;
+	}
 
-			public void setTel(String tel) {
-				this.tel = tel;
-			}
+	public String getName() {
+		return name;
+	}
 
-			public String getEmail() {
-				return email;
-			}
+	public void setName(String name) {
+		this.name = name;
+	}
 
-			public void setEmail(String email) {
-				this.email = email;
-			}
+	public String getTel() {
+		return tel;
+	}
 
-			public String getAddress() {
-				return address;
-			}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 
-			public void setAddress(String address) {
-				this.address = address;
-			}
+	public String getEmail() {
+		return email;
+	}
 
-			public int getRank() {
-				return rank;
-			}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-			public void setRank(int rank) {
-				this.rank = rank;
-			}
+	public String getAddress() {
+		return address;
+	}
 
-			public Timestamp getReg_date() {
-				return reg_date;
-			}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-			public void setReg_date(Timestamp reg_date) {
-				this.reg_date = reg_date;
-			}
+	public int getCust_rank() {
+		return cust_rank;
+	}
 
-			public Timestamp getDeact_date() {
-				return deact_date;
-			}
+	public void setCust_rank(int cust_rank) {
+		this.cust_rank = cust_rank;
+	}
 
-			public void setDeact_date(Timestamp deact_date) {
-				this.deact_date = deact_date;
-			}
-			
-			
-			
+	public String getReg_date() {
+		return reg_date;
+	}
 
-		//Method
-		
-	
+	public void setReg_date(String reg_date) {
+		this.reg_date = reg_date;
+	}
+
+	public String getDeact_date() {
+		return deact_date;
+	}
+
+	public void setDeact_date(String deact_date) {
+		this.deact_date = deact_date;
+	}
+
+	// Method
+
 }
