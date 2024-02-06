@@ -2,21 +2,21 @@ package dto;
 
 public class productDto {
 
-	// Filed
-	String 	product_code;
-	String 	product_name;
-	int 	product_qty;
-	String 	origin;
-	String 	manufacture_date;
-	int 	weight;
-	String 	size;
-	String 	detail_image_name;
-	int 	view_count;
-	String 	product_reg_date;
-	String 	kind;
-	String 	product_image_names;
-	int price; 
-	String rating; 
+	// Field
+	String 	product_code;  			//1
+	String 	product_name;  			//2
+	int 	product_qty;			//3
+	String 	origin;					//4
+	String 	manufacture_date;		//5
+	int 	weight;					//6
+	String 	size;					//7
+	String 	detail_image_name;		//8
+	int 	view_count;				//9
+	String 	product_reg_date;		//10
+	String 	kind;					//11
+	String 	product_image_names;	//12
+	int 	price; 					//13
+	String 	rating; 					//14
 
 	// Constructor
 	public productDto() {
@@ -67,7 +67,6 @@ public class productDto {
 		this.size = size;
 		this.weight = weight;
 	}
-	
 
 	public String getProduct_code() {
 		return product_code;
@@ -165,12 +164,12 @@ public class productDto {
 		this.product_image_names = product_image_names;
 	}
 
-	public int getprice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setprice(int product_price) {
-		this.price = product_price;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 	public String getRating() {
@@ -180,6 +179,8 @@ public class productDto {
 	public void setRating(String rating) {
 		this.rating = rating;
 	}
+	
+
 	
 
 	
