@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file ='top_admin.jsp' %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,22 +56,43 @@
             text-align: left; /* 입력란 텍스트를 왼쪽으로 정렬 */
             float: left; /* 입력란을 왼쪽으로 부유(floating)시킵니다. */
         }
+         #sortOption {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-top: 160px;
+        margin-right: 280px;
+    }
 
         </style>
 </head>
 <body>
-		<!--상품평 전체 조회 및 검색 결과 -->
+
+		
 		<p><strong><h2>고객 목록 </h2></strong> 
-				
+		<!-- 전체 고객 정보 리스트 출력 -->
 		<div 	id = "custList"></div> 
 		
 		<div>
 			<br>
 			<input 	type ="text" id ="name" placeholder ="상품 검색">
-			<button id ="queryButton">검색</button>
+			<button id ="searchBtn">입력</button>
+			   <select id="sortOption">
+            		 <option value="date">가입일자순</option>
+           			 <option value="rank">등급순</option>
+               </select>
 		</div>
+		
+										
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js?ver=1"></script>
 		<script src = "https://code.jquery.com/jquery-3.6.4.min.js"></script>
+		
+		
+				
+ 		<footer>
+        	<p>&copy; 2024 Apple Store. All rights reserved.</p>
+    	</footer>
+			
 
 </body>
 </html>
