@@ -2,6 +2,7 @@ package homecontroller;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import command.Command;
 import command.IdCheckCommand;
@@ -132,9 +135,22 @@ public class FrontController extends HttpServlet {
 		// Product insert 
 		case ("/aProductInsert.do"):
 			
+          		ServletContext context = getServletContext();
+        		String realfolder = context.getRealPath("/image");
+			    System.out.print("image 가 들어갈 경로"+realfolder);
+				int sizeLimit = 100*1024*1024;		//100MB 제한
+				MultipartRequest multi = new MultipartRequest(			 //<< Multi Part parameters >>
+															request	  ,	 // request
+															realfolder,	 // image 가 저장될 application folder 
+			                                                sizeLimit ,	 // image size limit
+			                                                "UTF-8"   ,	 // image file name utf-8 
+                        	             new DefaultFileRenamePolicy()); // 중복시 (1). ...
+			
+
+			
 			// test code
 			System.out.println(">> " + com + "실행 ");
-			viewPage = "aProductInsert.jsp";
+			viewPage = "/ADMIN/aProductInsert.jsp";
 			break;	
 		
 		// Product Detail page
