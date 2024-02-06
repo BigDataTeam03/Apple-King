@@ -21,7 +21,6 @@
 	-->
 
 
-<script src ="aCustomerList.js?ver=1"> </script>
 <head>
         <style>
             body {
@@ -76,19 +75,19 @@
 		<div>
 			<br>
 			<input 	type ="text" id ="name" placeholder ="상품 검색">
-			<button id ="searchBtn">입력</button>
+			<button id ="searchBtn">검색</button>
+			
+		</div>
 			   <select id="sortOption">
             		 <option value="date">가입일자순</option>
            			 <option value="rank">등급순</option>
                </select>
-		</div>
-		
+			
 										
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js?ver=1"></script>
-		<script src = "https://code.jquery.com/jquery-3.6.4.min.js"></script>
-		
-		
-				
+		<script src = "https://code.jquery.com/jquery-3.6.4.min.js"></script>	
+		<script src ="aCustomerList.js?ver=1"> </script>
+	
  		<footer>
         	<p>&copy; 2024 Apple Store. All rights reserved.</p>
     	</footer>

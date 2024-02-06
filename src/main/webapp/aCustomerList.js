@@ -5,7 +5,8 @@
  * Update --------------------------------------------------
  * <<2024.02.06 by KBS>>
  *	1. 고객 테이블 출력
-    2. 
+    2. 고객 테이블 이름검색기능추가
+    3. 고객 테이블 정렬기능 추가
  *----------------------------------------------------------
  */
 // 페이지 실행후 바로 상품 전체 조회
@@ -100,7 +101,7 @@ function handleClick(index){ //index : table cell number
 	let email 			= document.getElementById("email")
 	let address 		= document.getElementById("address")
 	let reg_date 		= document.getElementById("reg_date")
-	let rank 			= document.getElementById("rank")
+	let cust_rank 			= document.getElementById("cust_rank")
 	
 	
 	//연결된 값을 데이터값에 집어넣기
@@ -110,33 +111,46 @@ function handleClick(index){ //index : table cell number
 	email.value 		= dataReal[index].email
 	address.value 		= dataReal[index].address
 	reg_date.value 		= dataReal[index].reg_date
-	rank.value 			= dataReal[index].rank
+	cust_rank.value 	= dataReal[index].cust_rank
 	}
 	
-	// 검색버튼을 눌렀을 때 실행되는 JQuery, document(jsp)가 로드되었을때(ready)-> function (){} 을 실행한다.
+	//정렬기능과 검색기능을 같이 서버에 보내야 검색후 정렬을 시행해도 검색이 유지된다
 $(document).ready(function() {
+    // 정렬 콤보박스 값 변경 이벤트 처리
+    $("#sortOption").change(function() {
+        // 선택된 정렬 옵션을 가져옴
+        let sortOption = $(this).val();
+        let name = $("#name").val(); // 현재 검색어 가져오기
+
+        // AJAX 요청
+        $.ajax({
+            type: "POST",
+            url: "aCustomerListServlet",
+            data: { name: name, sortOption: sortOption }, // 검색어와 정렬 옵션 함께 전송
+            dataType: "json",
+            success: function(response) {
+                // 서버에서 받은 응답 처리
+                createTable(response);
+            }
+        });
+    });
+
+    // 검색 버튼 클릭 이벤트 처리
+    $("#searchBtn").click(function() {
+        // 입력된 데이터 가져오기
+        let name = $("#name").val();
+
+        // AJAX 요청
+        $.ajax({
+            type: "POST",
+            url: "aCustomerListServlet",
+            data: { name: name },
+            success: function(response) {
+                // 서버에서 받은 응답 처리
+                createTable(response);
+            }
+        });
+    });
+});
 	
-		// document 내부에 #html 중 queryButton(검색) 이라는 id 가  click 될떄 실행하는 function(){}
-		$("#searchBtn").click(function() {
-			
-			// 입력된 데이터 가져오기
-			let name = $("#name").val()
-			
-			/* AJAX 요청 */
-			$.ajax({
-				//post 방식으로 보낸다
-				type: "POST",
-				//기능을 실행하는 Servlet 으로 보낸다
-				url: "aCustomerListServlet",
-				//name 값을 받아 name 으로 보낸다
-				data: {name : name},
-				//연결 성공시 테이블 목록도 바로 변경사항을 적용해야 하기위해 테이블을 다시 받아온다
-				success: function(response) {
-					/* 서버에서 받은 응답 처리 */
-					createTable(response)
-				}
-			})
-		})		
-	})
-	
-	
+		
