@@ -19,7 +19,7 @@
     <style>
         body {
             text-align: center;
-            background-color: rgb(255, 255, 200);
+            background-color: rgb(255, 255, 255);
             padding: 20px;
         }
 
@@ -109,7 +109,7 @@ input[type="number"]::-webkit-inner-spin-button:active{
             <div class="product-info">
                  
       
-	이미지: <%= request.getParameter("product_image_names") %><br>
+	
    	상품명: <%= request.getParameter("product_name") %><br>
     원산지: <%= request.getParameter("origin") %><br>
     별점: <%= request.getParameter("rating") %><br>

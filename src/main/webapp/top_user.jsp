@@ -3,13 +3,20 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	 <style>
+        /* Set the maximum width and height for the image */
+        img {
+            max-width: 300px; /* Adjust this value as needed */
+            max-height: 400px; /* Adjust this value as needed */
+        }
+    </style>
 		<meta charset="UTF-8">
-		<title>APPLE STORE</title>
+		<title>Apple King</title>
 	 	 <link rel="stylesheet" href="top_user.css" />
 	</head>
 	<body>
 	  <header id="header">
-	    <h1>Apple Store</h1>
+	    <h1><img src="image/logo.png"></h1>
 	
 	  </header>
 	<nav id="index">
@@ -20,5 +27,6 @@
 	  <a href="uProductList.jsp">			홈으로</a> 				&nbsp;&nbsp;&nbsp;
 	  <br>
 	</nav>
+
 	</body>
 </html>
