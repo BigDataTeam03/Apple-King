@@ -10,14 +10,13 @@
  */
 // 페이지 실행후 바로 상품 전체 조회
 window.onload = function() {
-	alert("js 시작asd;lfkas;ldk ")
 	$.ajax({
 		
 		// post method server request
 		type: "POST",
 		
 		// target server page(Servlet) url
-		url: "aProductListServlet",
+		url: "aCustomerListServlet",
 		
 		// request data (JSON)
 		data: { name: "" },
@@ -27,17 +26,13 @@ window.onload = function() {
 		
 		// server response success  -> response(Json data)
 		success: function(response) {
-			alert("성공")
 			createTable(response);
-		},error: function(xhr, status, error) {
-            alert("AJAX 요청 중 오류가 발생했습니다: " + error);
-        }
+		},
 	});
 };
 
 // 테이블 생성하는 함수
 function createTable(data) {
-	alert("js creat tabel ")
 	//검색해온 데이터(dtos -> json -> Array  변환)
 	dataReal 	= Array.from(data)
 	let table 	=
@@ -62,11 +57,11 @@ function createTable(data) {
 		table += "<tr>" +
 		"<td id='" + data[i].name + "'>"+data[i].cust_id +"</td>" + 						// col1
 		"<td>" +"<a href='#' onclick='handleClick("+i+")'>" + data[i].name + "</a>"+ "</td>" +	// col2
-		"<td>" + data[i].tel  			+ "</td>" + // col3
-		"<td>" + data[i].email 				+ "</td>" +	// col4
-		"<td>" + data[i].address  		+ "</td>" + // col5
+		"<td>" + data[i].tel  		          	+ "</td>" + // col3
+		"<td>" + data[i].email 				    + "</td>" +	// col4
+		"<td>" + data[i].address  		        + "</td>" + // col5
 		"<td>" + data[i].reg_date 				+ "</td>" + // col6
-		"<td>" + data[i].rank  					+ "</td>" + // col7
+		"<td>" + data[i].cust_rank  			+ "</td>" + // col7
 		"</tr>"
 	}
 	
@@ -122,7 +117,7 @@ function handleClick(index){ //index : table cell number
 $(document).ready(function() {
 	
 		// document 내부에 #html 중 queryButton(검색) 이라는 id 가  click 될떄 실행하는 function(){}
-		$("#queryButton").click(function() {
+		$("#searchBtn").click(function() {
 			
 			// 입력된 데이터 가져오기
 			let name = $("#name").val()

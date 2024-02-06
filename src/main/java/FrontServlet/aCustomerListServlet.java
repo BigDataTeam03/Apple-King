@@ -62,7 +62,7 @@ public class aCustomerListServlet extends HttpServlet {
 		
 		
 		response.setContentType("text/html;charset=UTF-8");  
-		HttpSession session = request.getSession();
+	//	HttpSession session = request.getSession();
 		//시작시 이름이 계속 널로표현되어 이 문장을 만들었음
 		String name = "";
 			if (request.getParameter("name") == null) {
@@ -85,17 +85,17 @@ public class aCustomerListServlet extends HttpServlet {
 		ArrayList<customerDto> customerdtoList = new ArrayList<customerDto>();
 		
 		//product 테이블에 있는 모든 컬럼을 불러오는 쿼리문
-		String readQuery = "select " 
-				+ "cust_id, "
-				+ "name, "
-				+ "tel, "
-				+ "email, "
-				+ "address, "
-				+ "reg_date, "
-				+ "cust_rank "				
+		String Query = "select " 
+				+ "cust_id, "		//1
+				+ "name, "			//2
+				+ "tel, "			//3
+				+ "email, "			//4
+				+ "address, "		//5
+				+ "cust_rank, "	 	//6				
+				+ "reg_date "		//7
 				//   Customer 에서 name 을 검색하지만 처음에는 아무것도 안들어감으로 모두 조회함. 
-				+ "from customer where name like '%"+ name + "%' and cust_id <> 'admin123'";
-		System.out.println("query 실행 전 내용 :"+ readQuery);
+				+ "from customer where name like '%"+ name + "%' and cust_id <> 'admin123' order by reg_date desc";
+		System.out.println("query 실행 전 내용 :"+ Query);
 	
 		//out.flush 를 사용하기위해 out 변수 지정
 		PrintWriter out = response.getWriter();
@@ -112,7 +112,7 @@ public class aCustomerListServlet extends HttpServlet {
 			
 			
 			//결과를 담는 변수 설정
-			ResultSet rs = stmt_mysql.executeQuery(readQuery);
+			ResultSet rs = stmt_mysql.executeQuery(Query);
 			while(rs.next()) {
 				
 				// productDto 선언
@@ -121,23 +121,27 @@ public class aCustomerListServlet extends HttpServlet {
 				customerdto.setName(rs.getString("name"));
 				customerdto.setTel(rs.getString("tel"));
 				customerdto.setEmail(rs.getString("email"));
-				customerdto.setReg_date(rs.getTimestamp("reg_date"));
-				customerdto.setRank(rs.getInt("rank"));
-				
-						
+				customerdto.setAddress(rs.getString("address"));
+				customerdto.setReg_date(rs.getString("reg_date"));
+				customerdto.setCust_rank(rs.getInt("cust_rank"));
+									
 				//검색된 내용을 productDto 에 추가
 				customerdtoList.add(customerdto);
 				//고객의 총 갯수를 알수있는 변수에 ++ 
 				//totalCustomerNumber++;
 				
+				System.out.println("쿼리문에 들어간 변수" + customerdto.getCust_rank());
 			}
 			System.out.println("Json전");
+			System.out.println("고객 쿼리문" + Query);
 			// Json 타입으로 변환하기 위한 Gson 선언
+			
+			
 			out.print(new Gson().toJson(customerdtoList));
 			
 			out.flush();
 			
-			
+			 
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
