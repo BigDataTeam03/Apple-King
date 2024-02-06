@@ -41,6 +41,9 @@
 </head>
 <body>
     <!-- 상품평 전체 조회 -->
+    
+    
+    <%=request.getParameter("product_name") %>
     <div class="container">
         
 
@@ -48,8 +51,15 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="uProduct.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+    
+    <script src="uProduct.js">
+   
+    
+    </script>
+    
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js?ver=1"></script>
 
     <script>
         

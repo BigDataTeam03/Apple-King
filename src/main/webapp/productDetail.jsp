@@ -8,7 +8,7 @@
     //String realfolder = context.getRealPath(savefolder);
 %>
 <!DOCTYPE html>
-<c:set var="dto" value="${detailSession }" />
+<c:set var="dto" value="${detailSession}" />
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -52,9 +52,23 @@
     <div class="container">
         <div class="product-details">
             <div class="product-image">
-                <img src="이미지URL" alt="상품 이미지">
+                <img src="${dto.detail_image_name}" alt="상품 이미지">
             </div>
-           <div class="product-info">
+            <div class="product-info">
                  
-            <input type = "text" name = "product_name" style="border: none; background-color: transparent; outline: none;" value="APPLE" readonly required>
-         </div>
+       
+	이미지: <%= request.getParameter("product_image_names") %><br>
+   	상품명: <%= request.getParameter("product_name") %><br>
+    원산지: <%= request.getParameter("origin") %><br>
+    별점: <%= request.getParameter("rating") %><br>
+    가격: <%= request.getParameter("price") %><br>
+    수량: <%= request.getParameter("size") %><br>
+    무게: <%= request.getParameter("weight") %><br>
+
+	
+	<form name="cartForm" action="cart.do">
+		<input type="submit" class="btn btn-primary" value="장바구니"></input>
+	</form>
+	<!-- <input type="submit" class="btn btn-primary" value="장바구니"></input> -->
+	<!-- <input type="submit" class="btn btn-primary" value="바로구매"></input>  -->
+</body>
