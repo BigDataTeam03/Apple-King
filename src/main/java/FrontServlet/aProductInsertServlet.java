@@ -6,7 +6,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.time.LocalTime;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.javalec.util.ShareVar;
+import com.javaproject.util.ParameterPrintOut;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
  * Servlet implementation class aProductInsertServlet
@@ -44,36 +49,55 @@ public class aProductInsertServlet extends HttpServlet {
 		* ---------------------------Update---------------------------		
 		 	<<2024.02.05>> by PDG &KBS
 			1. 삽입 기능 추가 
+			<<2024.02.06>> by PDG
+			1. 이 페이지는 필요가 없습니다. 왜냐하면 js 로 이미지를 로드하는게 빌어먹게 안됬기때문.!
 		*
 		--------------------------------------------------------------
 		*/
+		//image 등록 
+		ServletContext context = getServletContext();
+		String realfolder = context.getRealPath("/image");
+		System.out.print("image 가 들어갈 경로"+realfolder);
+		int sizeLimit = 100*1024*1024;	
+		MultipartRequest multi = new MultipartRequest(			 
+				//<< Multi Part parameters >>
+				request	  ,	 // request
+				realfolder,	 // image 가 저장될 application folder 
+	            sizeLimit ,	 // image size limit
+	            "UTF-8"   ,	 // image file name utf-8 
+				new DefaultFileRenamePolicy()); // 중복시 (1). ...
 		
+		
+		
+		// image 이외의 값들 등록
 		System.out.println(" Product INsert servlet 실행...");
 		
-		
 		HttpSession session = request.getSession();
-		
-		
-		
+		String time_now = LocalTime.now().toString();
 		//js 에서 받은 값을 변수로 지정한다
-		String code = request.getParameter("code");
-		String name = request.getParameter("name");
-		String qty = request.getParameter("qty");
-		String origin = request.getParameter("origin");
-		String manufacture = request.getParameter("manufacture");
-		String weight = request.getParameter("weight");
-		String size = request.getParameter("size");
-		String detailImage = request.getParameter("detailImage");
-		String view = request.getParameter("view");
-		String regDate = request.getParameter("regDate");
-		String kind = request.getParameter("kind");
-		String productImage = request.getParameter("productImage");
-		String price = request.getParameter("price");
+		String code 		= request.getParameter("product_code");
+		String name 		= request.getParameter("product_name");
+		String qty 			= request.getParameter("product_qty");
+		String origin 		= request.getParameter("origin");
+		String manufacture 	= (request.getParameter("manufacture_date")!= null) ? request.getParameter("manufacture"): "2024-02-02";
+		String weight 		= request.getParameter("weight");
+		String size 		= request.getParameter("size");
+		String detailImage 	= request.getParameter("detail_image_name");
+		String view 		= (request.getParameter("view")!= null) ? request.getParameter("view"): "0";
+		String regDate 		= (request.getParameter("product_reg_date")!= null) ? request.getParameter("regDate"): "now()";
+		String kind 		= request.getParameter("kind");
+		String productImage = (request.getParameter("productImage")!= null) ? request.getParameter("productImage"): "null.png";
+		String price 		= request.getParameter("price");
 		
 		//변수중에 한글이 포함됨으로 인코딩설정을 한다
 		response.setContentType("text/html;charset=UTF-8");
 		
 		System.out.println(" price : " +price );
+		// parameter  출력 확인
+		String[] parms = {code, name, qty, origin, manufacture, weight, size, detailImage, view, regDate, kind
+				, productImage, price};
+		ParameterPrintOut parmOut = new ParameterPrintOut();
+		parmOut.pp("js 에서 받는 변수 : ",parms);
 		
 		
 		PrintWriter out = response.getWriter(); // try 바깥에서 선언해라. 
@@ -89,7 +113,7 @@ public class aProductInsertServlet extends HttpServlet {
 					+ " (product_code,product_name," 	//2
 					+ "product_qty,"					//3
 					+ "origin,"							//4
-					+ "manufacture_date,"				//5
+					+ "manufacture_date,"				//5 -> null
 					+ "weight,"							//6
 					+ "size,"							//7
 					+ "detail_image_name,"				//8

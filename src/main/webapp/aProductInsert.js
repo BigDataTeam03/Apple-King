@@ -1,19 +1,16 @@
 
-/* Description: DB 에서 불러온 상품들을 조회하고 검색함.
+/* Description: DB 에 사진 을 포함하여 정보를 추가함. 
  * Author : PDG, KBS
- * Date : 2024.02.02
+ * Date : 2024.02.07
  * Warning :
  * Update --------------------------------------------------
- * <<2024.02.02 by PDG, KBS>>
- *	1. 주석 달음.
- 	2. 상품 조회 및 수정이 가능하게 함.
- * <<2024.02.03 by PDG
- * 	1. 주석을 친절하게 바꿈.
+
  *----------------------------------------------------------
  */
+
 // 페이지 실행후 바로 상품 전체 조회
 window.onload = function() {
-
+	alert("insert js 실행합니다. ")
 	$.ajax({
 		
 		// post method server request
@@ -167,75 +164,39 @@ function handleClick(index){ //index : table cell number
 	
 }
 
-	
-//상품 테이블 수정을 요청하는 메소드
+// 등록 버튼 클릭
 $(document).ready(function() {
-		/* 버튼 클릭시 AJAX 요청 */
-		$("#updateBtn").click(function() {
-			/* 입력된 데이터 가져오기 */
-			let code = $("#product_code").val()
-			let name = $("#product_name").val()
-			let qty = $("#product_qty").val()
-			let origin = $("#origin").val()
-			let manufacture = $("#manufacture_date").val()
-			let weight = $("#weight").val()
-			let size = $("#size").val()
-			let detailImage = $("#detail_image_name").val()
-			let view = $("#view_count").val()
-			let regDate = $("#product_reg_date").val()
-			let kind = $("#kind").val()
-			let productImage = $("#product_image_names").val()
-			let price = $("#price").val()
-		
+	
+		// 
+		$("#queryButton").click(function() {
+			
+			// 입력된 데이터 가져오기
+			let name = $("#name").val()
 			
 			/* AJAX 요청 */
 			$.ajax({
+				//post 방식으로 보낸다
 				type: "POST",
-				url: "aProductUpdateServlet",
-				data: {
-					code: code,
-					name: name,
-					qty: qty,
-					origin: origin,
-					manufacture: manufacture,
-					weight : weight,
-					size : size,
-					detailImage : detailImage,
-					view : view,
-					regDate : regDate,
-					kind : kind,
-					productImage : productImage,
-					price : price
-										
-				},
+				//기능을 실행하는 Servlet 으로 보낸다
+				url: "aProductListServlet",
+				//name 값을 받아 name 으로 보낸다
+				data: {name : name},
+				//연결 성공시 테이블 목록도 바로 변경사항을 적용해야 하기위해 테이블을 다시 받아온다
 				success: function(response) {
 					/* 서버에서 받은 응답 처리 */
-					$.ajax({
-						type: "POST",
-						url: "aProductListServlet",
-						data: { name: "" },
-						success: function(response) {
-							/* 서버에서 받은 응답 처리 */
-							createTable(response)//jason
-							//수정완료 후 입력란을 비우기
-							$("#product_code,#product_name,#product_qty,#origin, #manufacture_date,#weight,#size,#detail_image_name,#view_count, #product_reg_date,#kind,#product_image_names").val("")
-							
-						}
-					})
-					alert("수정 되었습니다")
-					
-				},
-				error : function(xhr, ststus,error){
-					alert("수정 시 문제가 발생되었습니다."+ error)
+					createTable(response)
 				}
 			})
-		})
-})
+		})		
+	})
+
 //상품 테이블 입력을 요청하는 메소드
 $(document).ready(function() {
 		/* 버튼 클릭시 AJAX 요청 */
 		$("#insertBtn").click(function() {
+			alert("입력버튼이 눌렸습니다.")
 			/* 입력된 데이터 가져오기 */
+			let form = document.insertForm
 			let code = $("#product_code").val()
 			let name = $("#product_name").val()
 			let qty = $("#product_qty").val()
@@ -272,20 +233,21 @@ $(document).ready(function() {
 										
 				},
 				success: function(response) {
+					alert("aProductInsert servlet 으로 넘어갔습니다. ")
 					/* 서버에서 받은 응답 처리 */
 					$.ajax({
 						type: "POST",
 						url: "aProductListServlet",
-						data: { name: "" },
+						data: { name:"" },
 						success: function(response) {
 							/* 서버에서 받은 응답 처리 */
-							createTable(response)//jason
+							
 							//입력완료 후 입력란을 비우기
 							$("#product_code,#product_name,#product_qty,#origin, #manufacture_date,#weight,#size,#detail_image_name,#view_count, #product_reg_date,#kind,#product_image_names,#price").val("")
-							
 						}
 					})
 					alert("입력 되었습니다")
+					form.submit();
 					
 				},
 				error : function(xhr, ststus,error){
@@ -293,128 +255,5 @@ $(document).ready(function() {
 				}
 			})
 		})
+		
 })
-//상품 테이블 삭제를 요청하는 메소드
-$(document).ready(function() {
-		/* 버튼 클릭시 AJAX 요청 */
-		$("#deleteBtn").click(function() {
-		alert("삭제되었습니다.")
-			/* 입력된 데이터 가져오기 */
-			let code = $("#product_code").val()
-			//let name = $("#product_name").val()
-			alert("code : "+ code )
-			/* AJAX 요청 */
-			$.ajax({
-				type: "POST",
-				url: "aProductDeleteServlet",
-				data: {
-					//name : name,
-					code : code
-				},
-				success: function(response) {
-					/* 서버에서 받은 응답 처리 */
-					$.ajax({
-						type: "POST",
-						url: "aProductListServlet",
-						data: { name: "" },
-						success: function(response) {
-							/* 서버에서 받은 응답 처리 */
-							createTable(response)//jason
-						}
-					})
-					alert("삭제 되었습니다")
-					
-				},
-				error : function(xhr, ststus,error){
-					alert("삭제 시 문제가 발생되었습니다."+ error)
-				}
-			})
-		})
-})
-      // 전체 검색 버튼 클릭 시 실행되는 함수
-    $("#ollBtn").click(function() {
-        // AJAX 요청을 통해 검색어를 서버에 전달하여 데이터 조회
-        $.ajax({
-            type: "POST",
-            url: "aProductListServlet",
-            data: { name: "" }, // 검색어 전달
-            success: function(response) {
-                // 서버에서 받은 응답 처리
-                createTable(response); // 검색 결과로 테이블 생성
-            }
-        });
-    });
-
-    // 검색 버튼 클릭 시 실행되는 함수
-    $("#queryButton").click(function() {
-        let name = $("#name").val(); // 검색어 가져오기
-
-        // AJAX 요청을 통해 검색어를 서버에 전달하여 데이터 조회
-        $.ajax({
-            type: "POST",
-            url: "aProductListServlet",
-            data: { name: name }, // 검색어 전달
-            success: function(response) {
-                // 서버에서 받은 응답 처리
-                createTable(response); // 검색 결과로 테이블 생성
-            }
-        });
-    });
-
-    // 상세 검색 버튼 클릭 시 실행되는 함수
-    $("#confirmBtn").click(function() {
-        let origin = $("input[name='origin']:checked").val(); // 원산지 선택 값 가져오기
-        let size = $("input[name='size']:checked").val(); // 사이즈 선택 값 가져오기
-        let kind = $("input[name='kind']:checked").val(); // 품종 선택 값 가져오기
-
-        // AJAX 요청을 통해 상세 검색 조건을 서버에 전달하여 데이터 조회
-        $.ajax({
-            type: "POST",
-            url: "aProductFindServlet",
-            data: { origin: origin,
-           			  size: size, 
-          		      kind: kind }, // 상세 검색 조건 전달
-            success: function(response) {
-                // 서버에서 받은 응답 처리
-                if (response.length === 0) {
-                    alert("조건에 해당하는 상품이 없습니다.");
-                $("input[name='origin']").prop("checked", false);
-                $("input[name='size']").prop("checked", false);
-                $("input[name='kind']").prop("checked", false);
-                } else {
-                    createTable(response); // 상세 검색 결과로 테이블 생성
-                $("input[name='origin']").prop("checked", false);
-                $("input[name='size']").prop("checked", false);
-                $("input[name='kind']").prop("checked", false);
-              
-                }
-                // 라디오 버튼 초기화
-            },
-            error: function(xhr, status, error) {
-                console.error("상품 검색 중 오류가 발생했습니다: " + error);
-            }
-        });
-    });
-
-    // 정렬 기능 변경 시 실행되는 함수
-    $("#Sorting").change(function() {
-        let selectedSorting = $("#Sorting").val(); // 선택된 정렬 방식 가져오기
-
-        // 현재 테이블에 표시된 데이터의 검색어 가져오기
-        let name = $("#name").val();
-
-        // AJAX 요청을 통해 선택된 정렬 방식을 서버에 전달하여 데이터 조회
-        $.ajax({
-            type: "POST",
-            url: "aProductListServlet",
-            data: { name: name, 
-           		 sorting: selectedSorting }, // 검색어와 정렬 방식 전달
-            success: function(response) {
-                // 서버에서 받은 응답 처리
-                createTable(response); // 정렬된 데이터로 테이블 생성
-            },
-            error: function(xhr, status, error) {
-                console.error("정렬 요청 중 오류가 발생했습니다: " + error);
-            }
-        });
-    });

@@ -7,7 +7,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Enumeration;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +19,8 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.javalec.util.ShareVar;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dto.productDto;
 
@@ -39,7 +43,7 @@ public class aProductListServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		
 		System.out.println("aProductListServlet 을 실행합니다.");
 		response.setContentType("text/html;charset=UTF-8");  
@@ -60,6 +64,53 @@ public class aProductListServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		
 		//out 을 사용하기위해 out 선언		
+		
+		String sorting = request.getParameter("sorting");
+		
+		if (sorting == null) {
+			sorting = "stokHigh";
+		}
+		//쿼리문 기본값 날짜
+		String orderby = "";
+		
+		//선택한 콤보박스값에 따라 정렬쿼리문 변경
+		//재고순
+		 if (sorting.equals("stokHigh")) 
+			 	orderby = " order by product_qty desc";
+	     if (sorting.equals("stokLow"))
+	    	 orderby = " order by product_qty asc";
+	    	 
+	    //생산일자순	 
+	     if (sorting.equals("makeHigh")) 
+			 	orderby = " order by manufacture_date desc";
+	     if (sorting.equals("makeLow"))
+	    	 orderby = " order by manufacture_date asc";
+	    	 
+	    //무게순	 
+	     if (sorting.equals("weightHigh")) 
+			 	orderby = " order by weight desc";
+	     if (sorting.equals("weightLow"))
+	    	 orderby = " order by weight asc";
+	    	 
+	    //조회수순	 
+	     if (sorting.equals("viewHigh")) 
+			 	orderby = " order by view_count desc";
+	     if (sorting.equals("viewLow"))
+	    	 orderby = " order by view_count asc";
+	    	 
+	    //등록일순	 
+	     if (sorting.equals("insertHigh")) 
+			 	orderby = " order by product_reg_date desc";
+	     if (sorting.equals("insertLow"))
+	    	 orderby = " order by product_reg_date asc";
+	    	 
+	    //가격순	 
+	     if (sorting.equals("priceHigh")) 
+			 	orderby = " order by price desc";
+	     if (sorting.equals("priceLow"))
+	    	 	orderby = " order by price asc";
+	     
+	      
 			
 		
 		ArrayList<productDto> productdtoList = new ArrayList<productDto>();
@@ -81,7 +132,7 @@ public class aProductListServlet extends HttpServlet {
 				+ "price"
 				
 				//   product 에서 product name 을 검색하지만 처음에는 아무것도 안들어감으로 모두 조회함. 
-				+ " from product where product_name like '%"+ product_name + "%'";
+				+ " from product where product_name like '%"+ product_name + "%'" + orderby;
 		System.out.println("query 실행 전 내용 :"+ readQuery);
 		PrintWriter out = response.getWriter();
 		
@@ -135,6 +186,7 @@ public class aProductListServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	}
+}
+
 
 
