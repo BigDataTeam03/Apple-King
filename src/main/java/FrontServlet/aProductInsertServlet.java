@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.javalec.util.ShareVar;
+import com.javaproject.util.ShareVar;
 
 /**
  * Servlet implementation class aProductInsertServlet
