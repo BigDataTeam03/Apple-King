@@ -21,16 +21,16 @@ import com.javalec.util.ShareVar;
 import dto.productDto;
 
 /**
- * Servlet implementation class aProductList2
+ * Servlet implementation class aProductFindServlet
  */
-@WebServlet("/aProductListServlet")
-public class aProductListServlet extends HttpServlet {
+@WebServlet("/aProductFindServlet")
+public class aProductFindServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public aProductListServlet() {
+    public aProductFindServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,19 +41,14 @@ public class aProductListServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		System.out.println("aProductListServlet 을 실행합니다.");
+		System.out.println("aProductFindServlet 을 실행합니다.");
 		response.setContentType("text/html;charset=UTF-8");  
 		HttpSession session = request.getSession();
 
-		String product_name = "";
-			if (request.getParameter("name") == null) {
-				product_name = "";					
-			}else {
-			    product_name = request.getParameter("name") ;
-			}
+		
 
 //		//상품 총 갯수를 나타내기 위한 변수지정
-		int totalProductNumber =0;
+		int totalSearchNumber =0;
 		
 		// ArrayList 에 담겨 있는 데이터를 JSON 으로 변경하여 송부
 		response.setContentType("application/json");
@@ -80,8 +75,10 @@ public class aProductListServlet extends HttpServlet {
 				+ "product_image_names, "
 				+ "price"
 				
-				//   product 에서 product name 을 검색하지만 처음에는 아무것도 안들어감으로 모두 조회함. 
-				+ " from product where product_name like '%"+ product_name + "%'";
+				+ " from product where ";
+			
+		if ( )
+		
 		System.out.println("query 실행 전 내용 :"+ readQuery);
 		PrintWriter out = response.getWriter();
 		
@@ -135,6 +132,8 @@ public class aProductListServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	}
+		
+		
+	
 
-
+}
