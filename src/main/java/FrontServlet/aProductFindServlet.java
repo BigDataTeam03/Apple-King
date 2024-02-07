@@ -49,14 +49,32 @@ public class aProductFindServlet extends HttpServlet {
 
 //		//상품 총 갯수를 나타내기 위한 변수지정
 		int totalSearchNumber =0;
-		
 		// ArrayList 에 담겨 있는 데이터를 JSON 으로 변경하여 송부
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		
 		//out 을 사용하기위해 out 선언		
+		String name = request.getParameter("name");
+		String origin = request.getParameter("origin");
+		String size = request.getParameter("size");
+		String kind = request.getParameter("kind");
+		String selected = "";
+			System.out.println("오리진" + origin);
+			// 선택된 라디오 버튼 값에 따라 쿼리 조건 설정
+			if (origin != null && !origin.isEmpty()) {
+			    selected += "origin = '" + origin + "' and ";
+			}
+			if (size != null && !size.isEmpty()) {
+			    selected += "size = '" + size + "' and ";
+			}
+			if (kind != null && !kind.isEmpty()) {
+			    selected += "kind = '" + kind + "' and ";
+			}		
 			
-		
+			    // AND로 연결된 조건들 중 마지막 AND 제거
+			    selected = selected.substring(0, selected.length() - 5);
+			
+
 		ArrayList<productDto> productdtoList = new ArrayList<productDto>();
 		
 		//product 테이블에 있는 모든 컬럼을 불러오는 쿼리문
@@ -75,9 +93,9 @@ public class aProductFindServlet extends HttpServlet {
 				+ "product_image_names, "
 				+ "price"
 				
-				+ " from product where ";
+				+ " from product where " 	+ selected;
 			
-		if ( )
+	
 		
 		System.out.println("query 실행 전 내용 :"+ readQuery);
 		PrintWriter out = response.getWriter();
@@ -113,21 +131,18 @@ public class aProductFindServlet extends HttpServlet {
 				productdto.setPrice				 (rs.getInt(	"price"));				// 13 
 				//검색된 내용을 productDto 에 추가
 				productdtoList.add(productdto);
-				totalProductNumber++;
+				totalSearchNumber++;
 				
 			}
 			System.out.println("Json전");
 			// Json 타입으로 변환하기 위한 Gson 선언
 			out.print(new Gson().toJson(productdtoList));
 			
-			//Json 이 뭔지 한번 출력해봅시다. 
-//				System.out.println(new Gson().toJson(productdtoList));
 			out.flush();
-			
+			System.out.println("실행ㄱ된 쿼리문" +readQuery.toString());
 			
 			//입력시 코드를 생성하기위한 세션
-			session.setAttribute("totalProductNumber", totalProductNumber );
-			//System.out.println("총 상품 갯수" + session.getAttribute("totalProductNumber"));
+			session.setAttribute("totalProductNumber", totalSearchNumber );
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

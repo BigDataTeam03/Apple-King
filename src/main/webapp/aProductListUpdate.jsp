@@ -79,49 +79,41 @@
 		<!--상품평 전체 조회 및 검색 결과 -->
 		<p><strong><h2>등록된 상품 목록 </h2></strong> 
 		
-		<div 	id = "productCount"></div> 
+	 	총 상품 갯수 :<div 	id = "productCount"></div>  
 		<div 	id = "result"></div> 
 		
 <div>
     <p><strong>원산지:</strong></p>
-    <input type="radio" id="korOrigin" name="origin" value="kor">
+    <input type="radio" id="korOrigin" name="origin" value="한국">
     <label for="korOrigin">한국</label>
-    <input type="radio" id="chiOrigin" name="origin" value="chi">
+    <input type="radio" id="chiOrigin" name="origin" value="중국">
     <label for="chiOrigin">중국</label>
-    <input type="radio" id="jpOrigin" name="origin" value="jp">
+    <input type="radio" id="jpOrigin" name="origin" value="일본">
     <label for="jpOrigin">일본</label>
-    <input type="radio" id="amOrigin" name="origin" value="am">
+    <input type="radio" id="amOrigin" name="origin" value="미국">
     <label for="amOrigin">미국</label>
 </div>
 <div>
     <p><strong>사이즈:</strong></p>
-    <input type="radio" id="lSize" name="size" value="l">
+    <input type="radio" id="lSize" name="size" value="대과">
     <label for="lSize">대과</label>
-    <input type="radio" id="mSize" name="size" value="m">
+    <input type="radio" id="mSize" name="size" value="중과">
     <label for="mSize">중과</label>
-    <input type="radio" id="sSize" name="size" value="s">
+    <input type="radio" id="sSize" name="size" value="소과">
     <label for="sSize">소과</label>
 </div>
 <div>
     <p><strong>품종:</strong></p>
-    <input type="radio" id="kind1" name="kind" value="kind1">
+    <input type="radio" id="kind1" name="kind" value="부사">
     <label for="kind1">부사</label>
-    <input type="radio" id="kind2" name="kind" value="kind2">
+    <input type="radio" id="kind2" name="kind" value="홍옥">
     <label for="kind2">홍옥</label>
-    <input type="radio" id="kind3" name="kind" value="kind3">
+    <input type="radio" id="kind3" name="kind" value="홍로">
     <label for="kind3">홍로</label>
-    <input type="radio" id="kind4" name="kind" value="kind4">
+    <input type="radio" id="kind4" name="kind" value="아리수">
     <label for="kind4">아리수</label>
 </div>
-<div>
-    <p><strong>가격대별:</strong></p>
-    <input type="radio" id="lowPrice" name="priceRange" value="low">
-    <label for="lowPrice">10000원 미만</label>
-    <input type="radio" id="mediumPrice" name="priceRange" value="medium">
-    <label for="mediumPrice">10000원 이상 50000원 미만</label>
-    <input type="radio" id="highPrice" name="priceRange" value="high">
-    <label for="highPrice">50000원 이상</label>
-</div>
+
 <!-- 확인 버튼 추가 -->
 <button type="button" id="confirmBtn" onclick="applyFilters()">확인</button>
 		

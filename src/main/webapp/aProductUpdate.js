@@ -365,39 +365,39 @@ $(document).ready(function() {
         let origin = $("input[name='origin']:checked").val();
         let size = $("input[name='size']:checked").val();
         let kind = $("input[name='kind']:checked").val();
-        let priceRange = $("input[name='priceRange']:checked").val();
+        
+
+  		// 하나 이상의 라디오 버튼이 선택되었는지 확인
+        if (!origin && !size && !kind) {
+            alert("라디오 버튼 중 하나 이상을 선택해주세요.");
+            return; // 선택되지 않았을 경우 함수 종료
+        }
 
         // AJAX 요청을 위한 데이터 객체 생성
         let requestData = {
             origin: origin,
             size: size,
             kind: kind,
-            priceRange: priceRange
         };
 
-        // AJAX 요청
+           // AJAX 요청
         $.ajax({
             type: "POST",
             url: "aProductFindServlet",
             data: requestData,
             success: function(response) {
-                /* 서버에서 받은 응답 처리 */
-                $.ajax({
-                    type: "POST",
-                    url: "aProductListServlet",
-                    data: { name: "" },
-                    success: function(response) {
-                        /* 서버에서 받은 응답 처리 */
-                        createTable(response); // JSON 데이터로 테이블 생성하는 함수
-                    }
-                });
-                alert("해당 상품을 찾았습니다.");
-
-                // 라디오 버튼 초기화
-                $("input[name='origin']").prop('checked', false);
-                $("input[name='size']").prop('checked', false);
-                $("input[name='kind']").prop('checked', false);
-                $("input[name='priceRange']").prop('checked', false);
+                // 서버 응답 처리
+                if (response.length === 0) {
+                    // 조건에 해당하는 상품이 없는 경우
+                    alert("조건에 해당하는 상품이 없습니다.");
+                    //라디오버튼 체크상태 풀기
+                     $("input[name='origin']").prop("checked", false);
+                    $("input[name='size']").prop("checked", false);
+                    $("input[name='kind']").prop("checked", false);
+                } else {
+                    // 조건에 해당하는 상품이 있는 경우
+                    createTable(response);
+                }
             },
             error: function(xhr, status, error) {
                 alert("상품을 찾는 도중 문제가 발생되었습니다." + error);
