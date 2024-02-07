@@ -84,6 +84,10 @@ public class FrontController extends HttpServlet {
 		//Controller Start Test code
 		System.out.println(">> Controller start =>"+ com );
 		
+		ServletContext context = getServletContext();
+		String realfolder = context.getRealPath("/");
+	    //System.out.print("viewPage webApp path : "+realfolder);
+		
 		switch (com) {
 		
 		//-------------- Customer Management Part (MVC) --------------
@@ -134,18 +138,7 @@ public class FrontController extends HttpServlet {
 		//-------------- Product Part (MVC) --------------
 		// Product insert 
 		case ("/aProductInsert.do"):
-			
-          		ServletContext context = getServletContext();
-        		String realfolder = context.getRealPath("/image");
-			    System.out.print("image 가 들어갈 경로"+realfolder);
-				int sizeLimit = 100*1024*1024;		//100MB 제한
-				MultipartRequest multi = new MultipartRequest(			 //<< Multi Part parameters >>
-															request	  ,	 // request
-															realfolder,	 // image 가 저장될 application folder 
-			                                                sizeLimit ,	 // image size limit
-			                                                "UTF-8"   ,	 // image file name utf-8 
-                        	             new DefaultFileRenamePolicy()); // 중복시 (1). ...
-			
+
 
 			
 			// test code
@@ -154,7 +147,7 @@ public class FrontController extends HttpServlet {
 			break;	
 		
 		// Product Detail page
-		case ("/productDetail.do"): 
+		case ("productDetail.do"): 
 			
 			// test code
 			System.out.println(">> " + com + "실행 ");
@@ -166,23 +159,23 @@ public class FrontController extends HttpServlet {
 		//-------------- AJAX Part --------------
 		// product list update
 		case("/aProductListUpdate.do"):
-			viewPage ="aProductListUpdate.jsp";
+			viewPage ="/ADMIN/aProductListUpdate.jsp";
 			break;
 			
 		// customer list 
 		case("/aCustomerList.do"):		
 			System.out.println("aCustmoerList.do 실행 ");
-			viewPage ="aCustomerList.jsp";
+			viewPage ="/ADMIN/aCustomerList.jsp";
 			break;
 			
 		// order list 
 		case("/aCustomerOrderList.do"):
-			viewPage ="aCustomerOrderList.jsp";
+			viewPage ="/ADMIN/aCustomerList.jsp";
 			break;
 			
 		// Go home of admin
 		case("/aGoHome.do"):
-			viewPage ="aGoHome.jsp";
+			viewPage ="/ADMIN/aProductListUpdate.jsp";
 			break;
 		}
 		
