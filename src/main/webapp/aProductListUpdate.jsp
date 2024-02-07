@@ -64,6 +64,12 @@
             text-align: left; /* 입력란 텍스트를 왼쪽으로 정렬 */
             float: left; /* 입력란을 왼쪽으로 부유(floating)시킵니다. */
         }
+         #Sorting {
+            position: absolute;
+           top: 150px; /* 콤보박스의 초기 위치를 지정합니다. */
+  		  
+  		  right: 80px;
+        }
 
         </style>
 	
@@ -81,6 +87,25 @@
 		
 	 	총 상품 갯수 :<div 	id = "productCount"></div>  
 		<div 	id = "result"></div> 
+		
+		
+		<div>
+			   <select id="Sorting">
+            		 <option value="stokHigh">재고 많은순</option>
+            		 <option value="stokLow">재고 적은순</option>
+            		 <option value="makeHigh">생산일자 최신순</option>
+           			 <option value="makeLow">생산일자 최고순</option>
+           			 <option value="weightHigh">무게 높은순</option>
+           			 <option value="weightLow">무게 낮은순</option>
+           			 <option value="viewHigh">조회수 높은순</option>
+           			 <option value="viewLow">조회수 낮은순</option>
+           			 <option value="insertHigh">등록일 최신순</option>
+           			 <option value="insertLow">등록일 최고순</option>
+           			 <option value="priceHigh">가격 높은순</option>
+           		     <option value="priceLow">가격 낮은순</option>
+           			 
+               </select>
+		</div>
 		
 <div>
     <p><strong>원산지:</strong></p>
@@ -125,6 +150,12 @@
 			<input 	type ="text" id ="name" placeholder ="상품 검색">
 			<button id ="queryButton">검색</button>
 		</div>
+		<div>
+			<br>
+			
+			<button id ="ollBtn">전체 목록 보기</button>
+		</div>
+		
 		<!--  -->
 		<hr>
 		<p><strong>선택 상품 수정  </strong> 

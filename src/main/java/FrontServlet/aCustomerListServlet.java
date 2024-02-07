@@ -66,16 +66,20 @@ public class aCustomerListServlet extends HttpServlet {
 		String sortOption = request.getParameter("sortOption");
 		//시작시 선택되지 않았으니 디폴트값으로 날짜정렬
 		if (sortOption == null) {
-		    sortOption = "date";
+		    sortOption = "dateNew";
 		}
 		//쿼리문 기본값 날짜
-		String orderby = "date";
+		String orderby = "dateNew";
 		
 		//선택한 콤보박스값에 따라 정렬쿼리문 변경
-		 if (sortOption.equals("rank")) 
+		 if (sortOption.equals("rankHigh")) 
 			 	orderby = "order by cust_rank desc";
-	     if (sortOption.equals("date"))
+	     if (sortOption.equals("dateNew"))
 	    	 	orderby = "order by reg_date desc";
+	     if (sortOption.equals("rankLow"))
+	    	 	orderby = "order by cust_rank asc";
+	     if (sortOption.equals("dateLate"))
+	    	 	orderby = "order by reg_date asc";
 	      
 		  //      	String orderby = " order by reg_date desc";
 	           

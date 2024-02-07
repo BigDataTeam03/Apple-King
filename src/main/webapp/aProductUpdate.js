@@ -165,31 +165,7 @@ function handleClick(index){ //index : table cell number
 	.*/
 	
 }
-// 검색버튼을 눌렀을 때 실행되는 JQuery, document(jsp)가 로드되었을때(ready)-> function (){} 을 실행한다.
-$(document).ready(function() {
-	
-		// document 내부에 #html 중 queryButton(검색) 이라는 id 가  click 될떄 실행하는 function(){}
-		$("#queryButton").click(function() {
-			
-			// 입력된 데이터 가져오기
-			let name = $("#name").val()
-			
-			/* AJAX 요청 */
-			$.ajax({
-				//post 방식으로 보낸다
-				type: "POST",
-				//기능을 실행하는 Servlet 으로 보낸다
-				url: "aProductListServlet",
-				//name 값을 받아 name 으로 보낸다
-				data: {name : name},
-				//연결 성공시 테이블 목록도 바로 변경사항을 적용해야 하기위해 테이블을 다시 받아온다
-				success: function(response) {
-					/* 서버에서 받은 응답 처리 */
-					createTable(response)
-				}
-			})
-		})		
-	})
+
 	
 //상품 테이블 수정을 요청하는 메소드
 $(document).ready(function() {
@@ -354,55 +330,90 @@ $(document).ready(function() {
 			})
 		})
 })
-
-
-$(document).ready(function() {
-    /* 버튼 클릭시 AJAX 요청 */
-    $("#confirmBtn").click(function() {
-        alert("확인버튼 클릭.");
-
-        // 원산지, 사이즈, 품종, 가격대별 라디오 버튼에서 선택된 값을 가져옴
-        let origin = $("input[name='origin']:checked").val();
-        let size = $("input[name='size']:checked").val();
-        let kind = $("input[name='kind']:checked").val();
-        
-
-  		// 하나 이상의 라디오 버튼이 선택되었는지 확인
-        if (!origin && !size && !kind) {
-            alert("라디오 버튼 중 하나 이상을 선택해주세요.");
-            return; // 선택되지 않았을 경우 함수 종료
-        }
-
-        // AJAX 요청을 위한 데이터 객체 생성
-        let requestData = {
-            origin: origin,
-            size: size,
-            kind: kind,
-        };
-
-           // AJAX 요청
+      // 전체 검색 버튼 클릭 시 실행되는 함수
+    $("#ollBtn").click(function() {
+        // AJAX 요청을 통해 검색어를 서버에 전달하여 데이터 조회
         $.ajax({
             type: "POST",
-            url: "aProductFindServlet",
-            data: requestData,
+            url: "aProductListServlet",
+            data: { name: "" }, // 검색어 전달
             success: function(response) {
-                // 서버 응답 처리
-                if (response.length === 0) {
-                    // 조건에 해당하는 상품이 없는 경우
-                    alert("조건에 해당하는 상품이 없습니다.");
-                    //라디오버튼 체크상태 풀기
-                     $("input[name='origin']").prop("checked", false);
-                    $("input[name='size']").prop("checked", false);
-                    $("input[name='kind']").prop("checked", false);
-                } else {
-                    // 조건에 해당하는 상품이 있는 경우
-                    createTable(response);
-                }
-            },
-            error: function(xhr, status, error) {
-                alert("상품을 찾는 도중 문제가 발생되었습니다." + error);
+                // 서버에서 받은 응답 처리
+                createTable(response); // 검색 결과로 테이블 생성
             }
         });
     });
-});
 
+    // 검색 버튼 클릭 시 실행되는 함수
+    $("#queryButton").click(function() {
+        let name = $("#name").val(); // 검색어 가져오기
+
+        // AJAX 요청을 통해 검색어를 서버에 전달하여 데이터 조회
+        $.ajax({
+            type: "POST",
+            url: "aProductListServlet",
+            data: { name: name }, // 검색어 전달
+            success: function(response) {
+                // 서버에서 받은 응답 처리
+                createTable(response); // 검색 결과로 테이블 생성
+            }
+        });
+    });
+
+    // 상세 검색 버튼 클릭 시 실행되는 함수
+    $("#confirmBtn").click(function() {
+        let origin = $("input[name='origin']:checked").val(); // 원산지 선택 값 가져오기
+        let size = $("input[name='size']:checked").val(); // 사이즈 선택 값 가져오기
+        let kind = $("input[name='kind']:checked").val(); // 품종 선택 값 가져오기
+
+        // AJAX 요청을 통해 상세 검색 조건을 서버에 전달하여 데이터 조회
+        $.ajax({
+            type: "POST",
+            url: "aProductFindServlet",
+            data: { origin: origin,
+           			  size: size, 
+          		      kind: kind }, // 상세 검색 조건 전달
+            success: function(response) {
+                // 서버에서 받은 응답 처리
+                if (response.length === 0) {
+                    alert("조건에 해당하는 상품이 없습니다.");
+                $("input[name='origin']").prop("checked", false);
+                $("input[name='size']").prop("checked", false);
+                $("input[name='kind']").prop("checked", false);
+                } else {
+                    createTable(response); // 상세 검색 결과로 테이블 생성
+                $("input[name='origin']").prop("checked", false);
+                $("input[name='size']").prop("checked", false);
+                $("input[name='kind']").prop("checked", false);
+              
+                }
+                // 라디오 버튼 초기화
+            },
+            error: function(xhr, status, error) {
+                console.error("상품 검색 중 오류가 발생했습니다: " + error);
+            }
+        });
+    });
+
+    // 정렬 기능 변경 시 실행되는 함수
+    $("#Sorting").change(function() {
+        let selectedSorting = $("#Sorting").val(); // 선택된 정렬 방식 가져오기
+
+        // 현재 테이블에 표시된 데이터의 검색어 가져오기
+        let name = $("#name").val();
+
+        // AJAX 요청을 통해 선택된 정렬 방식을 서버에 전달하여 데이터 조회
+        $.ajax({
+            type: "POST",
+            url: "aProductListServlet",
+            data: { name: name, 
+           		 sorting: selectedSorting }, // 검색어와 정렬 방식 전달
+            success: function(response) {
+                // 서버에서 받은 응답 처리
+                createTable(response); // 정렬된 데이터로 테이블 생성
+            },
+            error: function(xhr, status, error) {
+                console.error("정렬 요청 중 오류가 발생했습니다: " + error);
+            }
+        });
+    });
