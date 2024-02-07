@@ -5,6 +5,8 @@
 <!-- 이미지 업로드를 위한 멀티 파트 선언 -->
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
+
+
 <!--
 --------------------------------------------------------------
 * Description 	: Admin CRUD jsp
@@ -75,21 +77,21 @@
 
 .ui-datepicker-calendar td {
     background-color: #ffffff; /* 달력 내부의 날짜 셀 배경색을 흰색으로 설정 */
+    width: 40px;
 }
     </style>
 </head>
 
 <body>
 <form action="aProductListUpdate.do" method="post" enctype="multipart/form-data">     
-<div id="productCount"></div>
 <!--상품평 전체 조회 및 검색 결과 -->
-<p><strong><h2>상품 목록 </h2></strong>
+ <script src = "aProductUpdate.js"></script>
     <hr>
-<p><strong> 상품 입력</strong>
+<p><strong> 상품 등록</strong>
 <div>
     <table border="1">
         <tr>
-            <td>상품코드:</td>
+            <td>상품코드(자동):</td>
             <td class="input-style"><input type="text" id="product_code" placeholder="수정불가" readonly="readonly"></td>
         </tr>
         <tr>
@@ -107,7 +109,7 @@
         <tr>
   		  <td>생산일:</td>
   		  <td class="input-style">
-       		 <input type="text" id="manufacture_date" placeholder="생산일" value="2024-02-02">
+       		 <input type="text" id="manufacture_date" placeholder="생산일" value="">
     		</td>
 		</tr>
             <td>무게(kg):</td>
@@ -145,21 +147,26 @@
 <input type="button" id="insertBtn" value="입력" onclick="check()"></input>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/i18n/jquery-ui-i18n.min.js"></script>
-
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/i18n/jquery-ui-i18n.min.js"></script>
 <footer>
     <p>&copy; 2024 Apple Store. All rights reserved.</p>
 </footer>
 
-
+ <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/i18n/jquery-ui-i18n.min.js"></script>
 <script>
 $(function() {
     // 한국어로 지역화된 달력 적용
     $.datepicker.setDefaults($.datepicker.regional['ko']);
-    
+
     // 달력 적용할 input 엘리먼트에 대해 datepicker() 메서드 호출
-    $("#manufacture_date").datepicker();
+    $("#manufacture_date").datepicker({
+        dateFormat: 'yy-mm-dd', // 날짜 형식을 한국식으로 설정
+        changeMonth: true, // 월 변경 가능
+        changeYear: true // 년도 변경 가능
+    });
 });
     // 정규표현식을 위한 JS 추가
     function validateInput(element, pattern, errorMessage) {

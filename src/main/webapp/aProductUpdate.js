@@ -354,3 +354,55 @@ $(document).ready(function() {
 			})
 		})
 })
+
+
+$(document).ready(function() {
+    /* 버튼 클릭시 AJAX 요청 */
+    $("#confirmBtn").click(function() {
+        alert("확인버튼 클릭.");
+
+        // 원산지, 사이즈, 품종, 가격대별 라디오 버튼에서 선택된 값을 가져옴
+        let origin = $("input[name='origin']:checked").val();
+        let size = $("input[name='size']:checked").val();
+        let kind = $("input[name='kind']:checked").val();
+        let priceRange = $("input[name='priceRange']:checked").val();
+
+        // AJAX 요청을 위한 데이터 객체 생성
+        let requestData = {
+            origin: origin,
+            size: size,
+            kind: kind,
+            priceRange: priceRange
+        };
+
+        // AJAX 요청
+        $.ajax({
+            type: "POST",
+            url: "aProductFindServlet",
+            data: requestData,
+            success: function(response) {
+                /* 서버에서 받은 응답 처리 */
+                $.ajax({
+                    type: "POST",
+                    url: "aProductListServlet",
+                    data: { name: "" },
+                    success: function(response) {
+                        /* 서버에서 받은 응답 처리 */
+                        createTable(response); // JSON 데이터로 테이블 생성하는 함수
+                    }
+                });
+                alert("해당 상품을 찾았습니다.");
+
+                // 라디오 버튼 초기화
+                $("input[name='origin']").prop('checked', false);
+                $("input[name='size']").prop('checked', false);
+                $("input[name='kind']").prop('checked', false);
+                $("input[name='priceRange']").prop('checked', false);
+            },
+            error: function(xhr, status, error) {
+                alert("상품을 찾는 도중 문제가 발생되었습니다." + error);
+            }
+        });
+    });
+});
+
