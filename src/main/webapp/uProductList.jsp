@@ -32,6 +32,28 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        
+        .listPage{
+        	padding:10px;
+        	text-align: center; 
+        	list-style: none;       
+        }
+        .listPage li {
+        	background-color: #ffffffBD;
+        	padding:20px; 
+        	display: inline-block; 
+        	margin: 0 10px;
+        	cursor: pointer; 
+        
+        }
+        .listPage:active {
+			background-color: #B192EF;
+			color: #fff; 
+		}
+        
+        
+        
+        
     </style>
 </head>
 <body>
@@ -41,16 +63,23 @@
 	<button id ="searchButton">검색</button>
 
     <!-- 상품평 전체 조회 -->
-    
-  
+     
     <div class="container">
-        
-		<div id="result" class="row"></div>
+       <div id="result" class="row"></div>
     </div>
 
+ 	<div id="product-list"></div>
+ 	<div id="pagination"></div>
+
+   
+	
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="uProduct.js?var=1"></script>
+   
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js?ver=1"></script>
+   
+  
+   
    
 </body>
 </html>

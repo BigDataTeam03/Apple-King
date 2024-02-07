@@ -108,7 +108,7 @@ public class FrontController extends HttpServlet {
 			
 		// Sign Up page 
 		case ("/signupStart.do"): 
-			viewPage = "signup_view.jsp";
+			viewPage = "/USER/signup_view.jsp";
 			break;
 			
 		// SignUp do
@@ -128,6 +128,14 @@ public class FrontController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "signup_view.jsp";
 			break;
+			
+		// Go home of user
+		case("/cGohome.do"):
+			System.out.println(">> " + com + "실행 ");
+			viewPage ="uProductList.jsp";
+		break;
+		
+		
 			
 		//-------------- Product Part (MVC) --------------
 		// Product insert page from top button
@@ -178,7 +186,6 @@ public class FrontController extends HttpServlet {
 			viewPage ="aCustomerList.jsp";
 			break;
 		}
-		
 		// Controller viewPage forward
 		if (viewPage != null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
