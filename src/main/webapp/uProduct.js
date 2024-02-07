@@ -36,10 +36,10 @@ function createCard(data) {
 
 // 검색버튼을 눌렀을 때 실행되는 JQuery, document(jsp)가 로드되었을때(ready)-> function (){} 을 실행한다.
 $(document).ready(function() {
-	
+	alert ("실행됩니다")
 		// document 내부에 #html 중 queryButton(검색) 이라는 id 가  click 될떄 실행하는 function(){}
 		$("#searchButton").click(function() {
-			
+			alert ("검색실행")
 			// 입력된 데이터 가져오기
 			let name = $("#product_name").val()
 			
@@ -48,13 +48,14 @@ $(document).ready(function() {
 				//post 방식으로 보낸다
 				type: "POST",
 				//기능을 실행하는 Servlet 으로 보낸다
-				url: "uProductListServlet",
+				url: "uProductSearchServlet",
 				//name 값을 받아 name 으로 보낸다
 				data: {name : name},
 				//연결 성공시 테이블 목록도 바로 변경사항을 적용해야 하기위해 테이블을 다시 받아온다
 				success: function(response) {
 					/* 서버에서 받은 응답 처리 */
 					createCard(response)
+				alert("검색완료")
 				}
 			})
 		})		
