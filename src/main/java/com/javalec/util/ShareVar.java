@@ -1,4 +1,4 @@
-package com.javaproject.util;
+package com.javalec.util;
 
 public class ShareVar {
 	

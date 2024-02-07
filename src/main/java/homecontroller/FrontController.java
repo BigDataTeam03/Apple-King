@@ -2,7 +2,6 @@ package homecontroller;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,8 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import command.Command;
 import command.IdCheckCommand;
@@ -85,10 +82,6 @@ public class FrontController extends HttpServlet {
 		//Controller Start Test code
 		System.out.println(">> Controller start =>"+ com );
 		
-		ServletContext context = getServletContext();
-		String realfolder = context.getRealPath("/");
-	    //System.out.print("viewPage webApp path : "+realfolder);
-		
 		switch (com) {
 		
 		//-------------- Customer Management Part (MVC) --------------
@@ -139,18 +132,21 @@ public class FrontController extends HttpServlet {
 		//-------------- Product Part (MVC) --------------
 		// Product insert 
 		case ("/aProductInsert.do"):
-
-
 			
 			// test code
 		
 			System.out.println(">> " + com + "실행 ");
+
 			command = new aProductInsert();
-			viewPage = "/ADMIN/aProductInsert.jsp";
+			//viewPage = "/ADMIN/aProductInsert.jsp";
+
+			viewPage = "/aProductInsert.jsp";
+			System.out.println(viewPage);
+
 			break;	
 		
 		// Product Detail page
-		case ("productDetail.do"): 
+		case ("/productDetail.do"): 
 			
 			// test code
 			System.out.println(">> " + com + "실행 ");
@@ -162,23 +158,23 @@ public class FrontController extends HttpServlet {
 		//-------------- AJAX Part --------------
 		// product list update
 		case("/aProductListUpdate.do"):
-			viewPage ="/ADMIN/aProductListUpdate.jsp";
+			viewPage ="aProductListUpdate.jsp";
 			break;
 			
 		// customer list 
 		case("/aCustomerList.do"):		
 			System.out.println("aCustmoerList.do 실행 ");
-			viewPage ="/ADMIN/aCustomerList.jsp";
+			viewPage ="aCustomerList.jsp";
 			break;
 			
 		// order list 
 		case("/aCustomerOrderList.do"):
-			viewPage ="/ADMIN/aCustomerList.jsp";
+			viewPage ="aCustomerOrderList.jsp";
 			break;
 			
 		// Go home of admin
 		case("/aGoHome.do"):
-			viewPage ="/ADMIN/aProductListUpdate.jsp";
+			viewPage ="aGoHome.jsp";
 			break;
 		}
 		
