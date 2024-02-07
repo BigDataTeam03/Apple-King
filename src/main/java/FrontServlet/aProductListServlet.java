@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
-import com.javalec.util.ShareVar;
+import com.javaproject.util.ShareVar;
 
 import dto.productDto;
 
