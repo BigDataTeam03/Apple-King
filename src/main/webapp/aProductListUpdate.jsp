@@ -9,7 +9,22 @@
 	ServletContext context = getServletContext();
 	//String realfolder = context.getRealPath(savefolder);
 %>
-
+	<!--
+	--------------------------------------------------------------
+	* Description 	: Admin CRUD
+	* Author 		: PDG & KBS
+	* Date 			: 2024.02.02
+	* ---------------------------Update---------------------------		
+	* <<2024.02.04>> by PDG
+		1. css 좀 함.. footer, top 추가 하고 사과 색깔로 맞춤. 
+		2. 입력하다 수정하다 왔다 갔다 할수있게끔 어떻게 해야할까?
+	 <<2024.02.04>> by PDG &KBS
+		1. 삭제 기능 추가 
+		2. 입력 기능 추가 
+		3. undefined 고치기 
+	*
+	--------------------------------------------------------------
+	-->
 
 <!DOCTYPE html>
 <html>
