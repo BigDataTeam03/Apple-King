@@ -9,7 +9,22 @@
 	ServletContext context = getServletContext();
 	//String realfolder = context.getRealPath(savefolder);
 %>
-
+	<!--
+	--------------------------------------------------------------
+	* Description 	: Admin CRUD
+	* Author 		: PDG & KBS
+	* Date 			: 2024.02.02
+	* ---------------------------Update---------------------------		
+	* <<2024.02.04>> by PDG
+		1. css 좀 함.. footer, top 추가 하고 사과 색깔로 맞춤. 
+		2. 입력하다 수정하다 왔다 갔다 할수있게끔 어떻게 해야할까?
+	 <<2024.02.04>> by PDG &KBS
+		1. 삭제 기능 추가 
+		2. 입력 기능 추가 
+		3. undefined 고치기 
+	*
+	--------------------------------------------------------------
+	-->
 
 <!DOCTYPE html>
 <html>
@@ -62,10 +77,56 @@
 		
 		
 		<!--상품평 전체 조회 및 검색 결과 -->
-		<p><strong><h2>상품 목록 </h2></strong> 
+		<p><strong><h2>등록된 상품 목록 </h2></strong> 
 		
 		<div 	id = "productCount"></div> 
 		<div 	id = "result"></div> 
+		
+<div>
+    <p><strong>원산지:</strong></p>
+    <input type="radio" id="korOrigin" name="origin" value="kor">
+    <label for="korOrigin">한국</label>
+    <input type="radio" id="chiOrigin" name="origin" value="chi">
+    <label for="chiOrigin">중국</label>
+    <input type="radio" id="jpOrigin" name="origin" value="jp">
+    <label for="jpOrigin">일본</label>
+    <input type="radio" id="amOrigin" name="origin" value="am">
+    <label for="amOrigin">미국</label>
+</div>
+<div>
+    <p><strong>사이즈:</strong></p>
+    <input type="radio" id="lSize" name="size" value="l">
+    <label for="lSize">대과</label>
+    <input type="radio" id="mSize" name="size" value="m">
+    <label for="mSize">중과</label>
+    <input type="radio" id="sSize" name="size" value="s">
+    <label for="sSize">소과</label>
+</div>
+<div>
+    <p><strong>품종:</strong></p>
+    <input type="radio" id="kind1" name="kind" value="kind1">
+    <label for="kind1">부사</label>
+    <input type="radio" id="kind2" name="kind" value="kind2">
+    <label for="kind2">홍옥</label>
+    <input type="radio" id="kind3" name="kind" value="kind3">
+    <label for="kind3">홍로</label>
+    <input type="radio" id="kind4" name="kind" value="kind4">
+    <label for="kind4">아리수</label>
+</div>
+<div>
+    <p><strong>가격대별:</strong></p>
+    <input type="radio" id="lowPrice" name="priceRange" value="low">
+    <label for="lowPrice">10000원 미만</label>
+    <input type="radio" id="mediumPrice" name="priceRange" value="medium">
+    <label for="mediumPrice">10000원 이상 50000원 미만</label>
+    <input type="radio" id="highPrice" name="priceRange" value="high">
+    <label for="highPrice">50000원 이상</label>
+</div>
+<!-- 확인 버튼 추가 -->
+<button type="button" id="confirmBtn" onclick="applyFilters()">확인</button>
+		
+		
+		
 		
 		<div>
 			<br>
@@ -74,7 +135,7 @@
 		</div>
 		<!--  -->
 		<hr>
-		<p><strong>새상품 등록  & 선택 상품 수정  </strong> 
+		<p><strong>선택 상품 수정  </strong> 
 		<div>
 			<table border="1">
 			
@@ -87,7 +148,7 @@
                     <td class="input-style"><input type="text" id="product_name" placeholder="상품명을 입력하세요" value="다사과"></td>
                 </tr>
                 <tr>
-                    <td>수량:</td>
+                    <td>재고수량:</td>
                     <td class="input-style"><input type="text" id="product_qty" placeholder="수량 입력" value="0"></td>
                 </tr>
                 <tr>
@@ -134,8 +195,6 @@
 		</div>
 		<br>
 		<!--  submit 을 누르면 s~ 어쩌구가 submit 되어 js 에서 받아줌.  -->
-		
-		<button type ="button" id = "insertBtn">등록</button>
 		<button type ="button" id = "updateBtn">수정</button>
 		<button type ="button" id = "deleteBtn">삭제</button>
 		

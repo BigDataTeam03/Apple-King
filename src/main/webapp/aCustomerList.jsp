@@ -62,7 +62,7 @@
         margin-top: 160px;
         margin-right: 280px;
     }
-
+	
         </style>
 </head>
 <body>
@@ -78,10 +78,12 @@
 			<button id ="searchBtn">검색</button>
 			
 		</div>
+		<p>
 			   <select id="sortOption">
             		 <option value="date">가입일자순</option>
            			 <option value="rank">등급순</option>
                </select>
+		</p>
 			
 										
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js?ver=1"></script>
