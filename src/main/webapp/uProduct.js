@@ -1,32 +1,46 @@
+let currentPage = 1;
+const itemsPerPage = 6;
+
+// 페이지 로드 시 처음 페이지 로드
 window.onload = function () {
+    loadPage(currentPage);
+};
+
+// 페이지 로드 함수
+function loadPage(pageNumber) {
     $.ajax({
         type: "POST",
         url: "uProductListServlet",
         data: { name: "" },
         dataType: "json",
         success: function (response) {
-            createCard(response);
+            displayPagination(response.length);
+            displayProducts(response, pageNumber);
         },
     });
-};
+}
 
-function createCard(data) {
+// 상품 목록 출력 함수
+function displayProducts(data, pageNumber) {
     let resultContainer = $("#result");
-    //alert("나는 실행된다. ")
+    resultContainer.empty(); // 이전 내용 비우기
 
-    for (let i = 0; i < data.length; i++) {
-		
+    const startIndex = (pageNumber - 1) * itemsPerPage;
+    const endIndex = pageNumber * itemsPerPage;
+    const pageData = data.slice(startIndex, endIndex);
+
+    for (let i = 0; i < pageData.length; i++) {
         let cardHtml = `
            <div class="card">            
-               <img src="image/${data[i].product_image_names}" > 
+               <img src="image/${pageData[i].product_image_names}" > 
                 <div class="card-body">
                     <h5 class="card-title">
-                       <a href="productDetail.do?product_name=${data[i].product_name}&price=${data[i].price}
-                        		&origin=${data[i].origin}&size=${data[i].size}&weight=${data[i].weight}"> 
-                        	${data[i].product_name}
-                       	</a>
+                       <a href="productDetail.do?product_name=${pageData[i].product_name}&price=${pageData[i].price}
+                              &origin=${pageData[i].origin}&size=${pageData[i].size}&weight=${pageData[i].weight}"> 
+                           ${pageData[i].product_name}
+                          </a>
                     </h5>
-                    <p class="card-text">가격: ${data[i].price}</p>
+                    <p class="card-text">가격: ${pageData[i].price}</p>
                 </div>
             </div>
              `;
@@ -34,29 +48,77 @@ function createCard(data) {
     }
 }
 
-// 검색버튼을 눌렀을 때 실행되는 JQuery, document(jsp)가 로드되었을때(ready)-> function (){} 을 실행한다.
+// 페이지네이션 표시 함수
+function displayPagination(totalItems) {
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    let paginationContainer = $("#pagination");
+    paginationContainer.empty(); // 이전 내용 비우기
+
+    for (let i = 1; i <= totalPages; i++) {
+        let pageLink = `<button onclick="changePage(${i})">${i}</button>`;
+        paginationContainer.append(pageLink);
+    }
+}
+
+// 페이지 변경 함수
+function changePage(pageNumber) {
+    currentPage = pageNumber;
+    loadPage(currentPage);
+}
+
+//-------------------------------------------------------------------
+
+// 검색 버튼을 눌렀을 때 실행되는 JQuery 코드
 $(document).ready(function() {
-	alert ("실행됩니다")
-		// document 내부에 #html 중 queryButton(검색) 이라는 id 가  click 될떄 실행하는 function(){}
-		$("#searchButton").click(function() {
-			alert ("검색실행")
-			// 입력된 데이터 가져오기
-			let name = $("#product_name").val()
-			
-			/* AJAX 요청 */
-			$.ajax({
-				//post 방식으로 보낸다
-				type: "POST",
-				//기능을 실행하는 Servlet 으로 보낸다
-				url: "uProductSearchServlet",
-				//name 값을 받아 name 으로 보낸다
-				data: {name : name},
-				//연결 성공시 테이블 목록도 바로 변경사항을 적용해야 하기위해 테이블을 다시 받아온다
-				success: function(response) {
-					/* 서버에서 받은 응답 처리 */
-					createCard(response)
-				alert("검색완료")
-				}
-			})
-		})		
-	})
+    // document가 로드될 때 실행됨
+    alert("문서가 로드되었습니다.");
+    
+    // 검색 버튼에 대한 click 이벤트 핸들러 추가
+    $("#searchButton").click(function() {
+        // 검색어 가져오기
+        let name = $("#product_name").val();
+
+        // AJAX 요청
+        $.ajax({
+            type: "POST",
+            url: "uProductSearchServlet",
+            data: { name: name },
+            dataType: "json", // 서버에서 반환되는 데이터 유형을 JSON으로 기대합니다.
+            success: function(response) {
+                // 성공적으로 응답을 받으면 카드를 생성합니다.
+                createCard(response);
+                alert("검색이 완료되었습니다.");
+            },
+            error: function(xhr, status, error) {
+                // 에러 발생 시 메시지를 출력합니다.
+                console.error("AJAX 오류: " + status, error);
+                alert("검색 중 오류가 발생했습니다.");
+            }
+        });
+    });
+});
+
+// createCard 함수: 상품 데이터를 받아 카드를 생성합니다.
+function createCard(data) {
+    let resultContainer = $("#result");
+    
+    // 결과를 표시하기 전에 이전 결과를 지웁니다.
+    resultContainer.empty();
+
+    // 받은 데이터를 기반으로 각각의 상품에 대한 카드를 생성합니다.
+    for (let i = 0; i < data.length; i++) {
+        let cardHtml = `
+            <div class="card">            
+                <img src="image/${data[i].product_image_names}" > 
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="productDetail.do?product_name=${data[i].product_name}&price=${data[i].price}&origin=${data[i].origin}&size=${data[i].size}&weight=${data[i].weight}">${data[i].product_name}</a>
+                    </h5>
+                    <p class="card-text">가격: ${data[i].price}</p>
+                </div>
+            </div>
+        `;
+        resultContainer.append(cardHtml);
+    }
+}
+

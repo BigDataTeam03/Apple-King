@@ -24,9 +24,9 @@
 	  <a href="mypage.do">					마이페이지</a> 	&nbsp;&nbsp;&nbsp;
 	  <a href="loginStart.do">				로그인</a> 		&nbsp;&nbsp;&nbsp;
 	  <a href="signupStart.do">				회원가입</a> 		&nbsp;&nbsp;&nbsp;
-	  <a href="cGohome.do">			홈으로</a> 		&nbsp;&nbsp;&nbsp;
+	  <a href="cGohome.do">					홈으로</a> 		&nbsp;&nbsp;&nbsp;
 	  <br>
 	</nav>
 
-	</body>
+	</body>	
 </html>
