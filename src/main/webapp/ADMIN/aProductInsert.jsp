@@ -1,15 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file ='/TOP/top_admin.jsp' %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!-- 이미지 업로드를 위한 멀티 파트 선언 -->
-<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
-<%@page import="com.oreilly.servlet.MultipartRequest"%>
-
-<%@ page import="com.oreilly.servlet.MultipartRequest, 
-	com.oreilly.servlet.multipart.DefaultFileRenamePolicy,
-	java.util.*,
-	java.io.* " %>
 <!--
 --------------------------------------------------------------
 * Description 	: Admin CRUD jsp
@@ -32,6 +20,19 @@
 
 --------------------------------------------------------------
 -->			
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file ='/TOP/top_admin.jsp' %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!-- 이미지 업로드를 위한 멀티 파트 선언 -->
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@page import="com.oreilly.servlet.MultipartRequest"%>
+
+<%@ page import="com.oreilly.servlet.MultipartRequest, 
+	com.oreilly.servlet.multipart.DefaultFileRenamePolicy,
+	java.util.*,
+	java.io.* " %>
+
 																					
 <!DOCTYPE html>
 <html>
