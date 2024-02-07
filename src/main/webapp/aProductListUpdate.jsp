@@ -1,7 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file ='/TOP/top_admin.jsp' %>
+<%@ include file ='top_admin.jsp' %>
 
 <%
 	// jsp 내장객체
@@ -177,7 +177,7 @@
                 </tr>
                 <tr>
                     <td>상품 등록일:</td>
-                    <td class="input-style"><input type="text" id="product_reg_date"  readonly="readonly" placeholder="등록일 (자동)"></td>
+                    <td class="input-style"><input type="text" id="product_reg_date"  readonly="readonly" placeholder="등록일 (자동)" value = "2024-02-02"> </td>
                 </tr>
                 <tr>
                     <td>품종:</td>
@@ -196,7 +196,6 @@
 		<br>
 		<!--  submit 을 누르면 s~ 어쩌구가 submit 되어 js 에서 받아줌.  -->
 		<button type ="button" id = "updateBtn">수정</button>
-		<button type ="button" id = "deleteBtn">삭제</button>
 		
 		<div 	id = "Print_code"></div> <!--  // result 부분을 Js 가 만들어주는구나 --> 
 		

@@ -1,19 +1,16 @@
 
-/* Description: DB 에서 불러온 상품들을 조회하고 검색함.
+/* Description: DB 에 사진 을 포함하여 정보를 추가함. 
  * Author : PDG, KBS
- * Date : 2024.02.02
+ * Date : 2024.02.07
  * Warning :
  * Update --------------------------------------------------
- * <<2024.02.02 by PDG, KBS>>
- *	1. 주석 달음.
- 	2. 상품 조회 및 수정이 가능하게 함.
- * <<2024.02.03 by PDG
- * 	1. 주석을 친절하게 바꿈.
+
  *----------------------------------------------------------
  */
+
 // 페이지 실행후 바로 상품 전체 조회
 window.onload = function() {
-
+	alert("insert js 실행합니다. ")
 	$.ajax({
 		
 		// post method server request
@@ -166,10 +163,11 @@ function handleClick(index){ //index : table cell number
 	.*/
 	
 }
-// 검색버튼을 눌렀을 때 실행되는 JQuery, document(jsp)가 로드되었을때(ready)-> function (){} 을 실행한다.
+
+// 등록 버튼 클릭
 $(document).ready(function() {
 	
-		// document 내부에 #html 중 queryButton(검색) 이라는 id 가  click 될떄 실행하는 function(){}
+		// 
 		$("#queryButton").click(function() {
 			
 			// 입력된 데이터 가져오기
@@ -191,75 +189,14 @@ $(document).ready(function() {
 			})
 		})		
 	})
-	
-//상품 테이블 수정을 요청하는 메소드
-$(document).ready(function() {
-		/* 버튼 클릭시 AJAX 요청 */
-		$("#updateBtn").click(function() {
-			/* 입력된 데이터 가져오기 */
-			let code = $("#product_code").val()
-			let name = $("#product_name").val()
-			let qty = $("#product_qty").val()
-			let origin = $("#origin").val()
-			let manufacture = $("#manufacture_date").val()
-			let weight = $("#weight").val()
-			let size = $("#size").val()
-			let detailImage = $("#detail_image_name").val()
-			let view = $("#view_count").val()
-			let regDate = $("#product_reg_date").val()
-			let kind = $("#kind").val()
-			let productImage = $("#product_image_names").val()
-			let price = $("#price").val()
-		
-			
-			/* AJAX 요청 */
-			$.ajax({
-				type: "POST",
-				url: "aProductUpdateServlet",
-				data: {
-					code: code,
-					name: name,
-					qty: qty,
-					origin: origin,
-					manufacture: manufacture,
-					weight : weight,
-					size : size,
-					detailImage : detailImage,
-					view : view,
-					regDate : regDate,
-					kind : kind,
-					productImage : productImage,
-					price : price
-										
-				},
-				success: function(response) {
-					/* 서버에서 받은 응답 처리 */
-					$.ajax({
-						type: "POST",
-						url: "aProductListServlet",
-						data: { name: "" },
-						success: function(response) {
-							/* 서버에서 받은 응답 처리 */
-							createTable(response)//jason
-							//수정완료 후 입력란을 비우기
-							$("#product_code,#product_name,#product_qty,#origin, #manufacture_date,#weight,#size,#detail_image_name,#view_count, #product_reg_date,#kind,#product_image_names").val("")
-							
-						}
-					})
-					alert("수정 되었습니다")
-					
-				},
-				error : function(xhr, ststus,error){
-					alert("수정 시 문제가 발생되었습니다."+ error)
-				}
-			})
-		})
-})
+
 //상품 테이블 입력을 요청하는 메소드
 $(document).ready(function() {
 		/* 버튼 클릭시 AJAX 요청 */
 		$("#insertBtn").click(function() {
+			alert("입력버튼이 눌렸습니다.")
 			/* 입력된 데이터 가져오기 */
+			let form = document.insertForm
 			let code = $("#product_code").val()
 			let name = $("#product_name").val()
 			let qty = $("#product_qty").val()
@@ -296,20 +233,21 @@ $(document).ready(function() {
 										
 				},
 				success: function(response) {
+					alert("aProductInsert servlet 으로 넘어갔습니다. ")
 					/* 서버에서 받은 응답 처리 */
 					$.ajax({
 						type: "POST",
 						url: "aProductListServlet",
-						data: { name: "" },
+						data: { name:"" },
 						success: function(response) {
 							/* 서버에서 받은 응답 처리 */
-							createTable(response)//jason
+							
 							//입력완료 후 입력란을 비우기
 							$("#product_code,#product_name,#product_qty,#origin, #manufacture_date,#weight,#size,#detail_image_name,#view_count, #product_reg_date,#kind,#product_image_names,#price").val("")
-							
 						}
 					})
 					alert("입력 되었습니다")
+					form.submit();
 					
 				},
 				error : function(xhr, ststus,error){
@@ -317,93 +255,5 @@ $(document).ready(function() {
 				}
 			})
 		})
+		
 })
-//상품 테이블 삭제를 요청하는 메소드
-$(document).ready(function() {
-		/* 버튼 클릭시 AJAX 요청 */
-		$("#deleteBtn").click(function() {
-		alert("삭제되었습니다.")
-			/* 입력된 데이터 가져오기 */
-			let code = $("#product_code").val()
-			//let name = $("#product_name").val()
-			alert("code : "+ code )
-			/* AJAX 요청 */
-			$.ajax({
-				type: "POST",
-				url: "aProductDeleteServlet",
-				data: {
-					//name : name,
-					code : code
-				},
-				success: function(response) {
-					/* 서버에서 받은 응답 처리 */
-					$.ajax({
-						type: "POST",
-						url: "aProductListServlet",
-						data: { name: "" },
-						success: function(response) {
-							/* 서버에서 받은 응답 처리 */
-							createTable(response)//jason
-						}
-					})
-					alert("삭제 되었습니다")
-					
-				},
-				error : function(xhr, ststus,error){
-					alert("삭제 시 문제가 발생되었습니다."+ error)
-				}
-			})
-		})
-})
-
-
-$(document).ready(function() {
-    /* 버튼 클릭시 AJAX 요청 */
-    $("#confirmBtn").click(function() {
-        alert("확인버튼 클릭.");
-
-        // 원산지, 사이즈, 품종, 가격대별 라디오 버튼에서 선택된 값을 가져옴
-        let origin = $("input[name='origin']:checked").val();
-        let size = $("input[name='size']:checked").val();
-        let kind = $("input[name='kind']:checked").val();
-        let priceRange = $("input[name='priceRange']:checked").val();
-
-        // AJAX 요청을 위한 데이터 객체 생성
-        let requestData = {
-            origin: origin,
-            size: size,
-            kind: kind,
-            priceRange: priceRange
-        };
-
-        // AJAX 요청
-        $.ajax({
-            type: "POST",
-            url: "aProductFindServlet",
-            data: requestData,
-            success: function(response) {
-                /* 서버에서 받은 응답 처리 */
-                $.ajax({
-                    type: "POST",
-                    url: "aProductListServlet",
-                    data: { name: "" },
-                    success: function(response) {
-                        /* 서버에서 받은 응답 처리 */
-                        createTable(response); // JSON 데이터로 테이블 생성하는 함수
-                    }
-                });
-                alert("해당 상품을 찾았습니다.");
-
-                // 라디오 버튼 초기화
-                $("input[name='origin']").prop('checked', false);
-                $("input[name='size']").prop('checked', false);
-                $("input[name='kind']").prop('checked', false);
-                $("input[name='priceRange']").prop('checked', false);
-            },
-            error: function(xhr, status, error) {
-                alert("상품을 찾는 도중 문제가 발생되었습니다." + error);
-            }
-        });
-    });
-});
-

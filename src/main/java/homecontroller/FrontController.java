@@ -15,7 +15,7 @@ import command.IdCheckCommand;
 import command.LoginCommand;
 
 import command.SignupCommand;
-import command.aProductInsert;
+import command.aProductInsertCommand;
 import command.productDetailCommand;
 
 
@@ -130,20 +130,21 @@ public class FrontController extends HttpServlet {
 			break;
 			
 		//-------------- Product Part (MVC) --------------
-		// Product insert 
+		// Product insert page from top button
 		case ("/aProductInsert.do"):
-			
-			// test code
-		
-			System.out.println(">> " + com + "실행 ");
-
-			command = new aProductInsert();
-			//viewPage = "/ADMIN/aProductInsert.jsp";
-
 			viewPage = "/aProductInsert.jsp";
 			System.out.println(viewPage);
 
 			break;	
+		
+		// Product insert process (image MVC)
+		case("/aProductInsertProcess.do"):
+			// test code
+			System.out.println(">> " + com + "실행 ");
+			command = new aProductInsertCommand();
+			command.execute(request,response);
+			viewPage = "/aProductListUpdate.jsp";
+			break;
 		
 		// Product Detail page
 		case ("/productDetail.do"): 
@@ -160,7 +161,7 @@ public class FrontController extends HttpServlet {
 		case("/aProductListUpdate.do"):
 			viewPage ="aProductListUpdate.jsp";
 			break;
-			
+		
 		// customer list 
 		case("/aCustomerList.do"):		
 			System.out.println("aCustmoerList.do 실행 ");
@@ -174,7 +175,7 @@ public class FrontController extends HttpServlet {
 			
 		// Go home of admin
 		case("/aGoHome.do"):
-			viewPage ="aGoHome.jsp";
+			viewPage ="aCustomerList.jsp";
 			break;
 		}
 		
