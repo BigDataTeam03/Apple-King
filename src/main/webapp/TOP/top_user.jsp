@@ -20,11 +20,11 @@
 	
 	  </header>
 	<nav id="index">
-	  <a href="cart.jsp">					장바구니</a>	 	&nbsp;&nbsp;&nbsp;
-	  <a href="mypage.jsp">					마이페이지</a> 	&nbsp;&nbsp;&nbsp;
-	  <a href="login_view.jsp">				로그인</a> 		&nbsp;&nbsp;&nbsp;
-	  <a href="signup_view.jsp">			회원가입</a> 		&nbsp;&nbsp;&nbsp;
-	  <a href="uProductList.jsp">			홈으로</a> 				&nbsp;&nbsp;&nbsp;
+	  <a href="cart.do">					장바구니</a>	 	&nbsp;&nbsp;&nbsp;
+	  <a href="mypage.do">					마이페이지</a> 	&nbsp;&nbsp;&nbsp;
+	  <a href="loginStart.do">				로그인</a> 		&nbsp;&nbsp;&nbsp;
+	  <a href="signupStart.do">				회원가입</a> 		&nbsp;&nbsp;&nbsp;
+	  <a href="cGohome.do">			홈으로</a> 		&nbsp;&nbsp;&nbsp;
 	  <br>
 	</nav>
 
