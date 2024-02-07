@@ -18,6 +18,7 @@ import command.IdCheckCommand;
 import command.LoginCommand;
 
 import command.SignupCommand;
+import command.aProductInsert;
 import command.productDetailCommand;
 
 
@@ -142,7 +143,9 @@ public class FrontController extends HttpServlet {
 
 			
 			// test code
+		
 			System.out.println(">> " + com + "실행 ");
+			command = new aProductInsert();
 			viewPage = "/ADMIN/aProductInsert.jsp";
 			break;	
 		
