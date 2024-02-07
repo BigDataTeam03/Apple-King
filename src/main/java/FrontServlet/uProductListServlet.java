@@ -55,15 +55,7 @@ public class uProductListServlet extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		
-		// product_name 검색해서 결과 나오기 
-		
-		
-		
-		
-		
-		
-		
-		
+
 		// uProductList에서 productList로 넘어감 
 		ArrayList<productDto> productdtoList = new ArrayList<productDto>();
 		

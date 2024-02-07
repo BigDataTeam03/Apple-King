@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
-import com.javalec.util.ShareVar;
+import com.javaproject.util.ShareVar;
 
 import dto.productDto;
 
@@ -39,8 +40,9 @@ public class uProductSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		System.out.println("aProductSearchServlet 을 실행합니다.");
+	
+		
+		System.out.println("aProductListServlet 을 실행합니다.");
 		response.setContentType("text/html;charset=UTF-8");  
 		HttpSession session = request.getSession();
 
@@ -98,24 +100,24 @@ public class uProductSearchServlet extends HttpServlet {
 			ResultSet rs = stmt_mysql.executeQuery(readQuery);
 			while(rs.next()) {
 				
-			// productDto 선언
-			productDto productdto = new productDto();
-			productdto.setProduct_code		 (rs.getString(	"product_code")); 		// 1
-			productdto.setProduct_name		 (rs.getString(	"product_name")); 		// 2
-			productdto.setProduct_qty		 (rs.getInt(	"product_qty")); 		// 3
-			productdto.setOrigin			 (rs.getString( "origin")); 			// 4
-			productdto.setManufacture_date	 (rs.getString(	"manufacture_date")); 	// 5 
-			productdto.setWeight			 (rs.getInt("weight")); 				// 6
-			productdto.setSize  			 (rs.getString(	"size")); 				// 7
-			productdto.setDetail_image_name  (rs.getString(	"detail_image_name")); 	// 8 
-			productdto.setView_count  		 (rs.getInt(	"view_count")); 		// 9
-			productdto.setProduct_reg_date 	 (rs.getString(	"product_reg_date")); 	// 10 
-			productdto.setKind  			 (rs.getString(	"kind")); 				// 11
-			productdto.setProduct_image_names(rs.getString(	"product_image_names"));// 12 
-			productdto.setPrice				 (rs.getInt(	"price"));				// 13 
-			//검색된 내용을 productDto 에 추가
-			productdtoList.add(productdto);
-			totalProductNumber++;
+				// productDto 선언
+				productDto productdto = new productDto();
+				productdto.setProduct_code		 (rs.getString(	"product_code")); 		// 1
+				productdto.setProduct_name		 (rs.getString(	"product_name")); 		// 2
+				productdto.setProduct_qty		 (rs.getInt(	"product_qty")); 		// 3
+				productdto.setOrigin			 (rs.getString( "origin")); 			// 4
+				productdto.setManufacture_date	 (rs.getString(	"manufacture_date")); 	// 5 
+				productdto.setWeight			 (rs.getInt("weight")); 				// 6
+				productdto.setSize  			 (rs.getString(	"size")); 				// 7
+				productdto.setDetail_image_name  (rs.getString(	"detail_image_name")); 	// 8 
+				productdto.setView_count  		 (rs.getInt(	"view_count")); 		// 9
+				productdto.setProduct_reg_date 	 (rs.getString(	"product_reg_date")); 	// 10 
+				productdto.setKind  			 (rs.getString(	"kind")); 				// 11
+				productdto.setProduct_image_names(rs.getString(	"product_image_names"));// 12 
+				productdto.setPrice				 (rs.getInt(	"price"));				// 13 
+				//검색된 내용을 productDto 에 추가
+				productdtoList.add(productdto);
+				totalProductNumber++;
 				
 			}
 			System.out.println("Json전");
@@ -134,8 +136,8 @@ public class uProductSearchServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	
-
 	}
+
+
 
 
