@@ -11,7 +11,7 @@
         }
     </style>
 		<meta charset="UTF-8">
-		<title>Apple King</title>
+		<title>Apple King Main</title>
 	 	 <link rel="stylesheet" href="top_user.css" />
 	</head>
 	<body>
@@ -25,7 +25,7 @@
 	  <a href="loginStart.do">				로그인</a> 		&nbsp;&nbsp;&nbsp;
 	  <a href="signupStart.do">				회원가입</a> 		&nbsp;&nbsp;&nbsp;
 	  <a href="cGohome.do">					홈으로</a> 		&nbsp;&nbsp;&nbsp;
-	  <br>
+	  <br><br>
 	</nav>
 
 	</body>	

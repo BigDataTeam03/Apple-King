@@ -59,8 +59,14 @@
 <body>
 
 	<input type="text" placeholder="찾고싶은 상품을 입력하세요!" id ="product_name" size="70"></input>
-	
 	<button id ="searchButton">검색</button>
+			
+			   <select id="classifyOption">
+            		 <option value="highprice">높은가격순</option>
+           			 <option value="lowprice">낮은가격순</option>
+               </select>
+			
+	
 
     <!-- 상품평 전체 조회 -->
      
@@ -69,10 +75,11 @@
     </div>
 
  	<div id="product-list"></div>
+ 	
+ 	//
  	<div id="pagination"></div>
 
    
-	
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="uProduct.js?var=1"></script>
    

@@ -43,7 +43,26 @@ public class uProductListServlet extends HttpServlet {
 		
 		response.setContentType("text/html;charset=UTF-8");  
 		HttpSession session = request.getSession();
-
+		
+		
+		//검색기능을 위한 이름변수 지정
+			
+				//정렬옵션 가져오는 변수 
+				String classifyOption = request.getParameter("classifyOption");
+				//시작시 선택되지 않았으니 디폴트값으로 날짜정렬
+				if (classifyOption == null) {
+					classifyOption = "highprice";
+				}
+				//쿼리문 기본값 날짜
+				String orderby = "highprice";
+				
+				//선택한 콤보박스값에 따라 정렬쿼리문 변경
+				 if (classifyOption.equals("highprice")) 
+					 	orderby = " order by price desc";
+			     if (classifyOption.equals("lowprice"))
+			    	 	orderby = " order by price asc";
+		
+	
 		String product_name = "";
 			if (request.getParameter("name") == null) {
 				product_name = "";					
@@ -60,7 +79,7 @@ public class uProductListServlet extends HttpServlet {
 		ArrayList<productDto> productdtoList = new ArrayList<productDto>();
 		
 		//product 테이블에 있는 모든 컬럼을 불러오는 쿼리문
-		String select = "SELECT product_name, price, origin, size, weight, product_image_names FROM product";
+		String select = "SELECT product_name, price, origin, size, weight, product_image_names FROM product" + orderby; ;
 	
 		PrintWriter out = response.getWriter();
 		
