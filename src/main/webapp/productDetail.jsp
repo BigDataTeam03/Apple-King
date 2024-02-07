@@ -50,54 +50,7 @@
         
         
 
-input[type="number"] {
-    position: relative;
-    margin: 0 0 1rem;
-    border: 1px solid #BBB;
-    border-color: #BBB #ECECEC #ECECEC #BBB;
-    padding: .2rem;
-    max-width: 50px; /* 입력 필드의 최대 너비 설정 */
-}
 
-/* Spin Buttons modified */
-input[type="number"]::-webkit-outer-spin-button, 
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    background: #FFF url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAKUlEQVQYlWNgwAT/sYhhKPiPT+F/LJgEsHv37v+EMGkmkuImoh2NoQAANlcun/q4OoYAAAAASUVORK5CYII=) no-repeat center center;
-    width: 1em;
-    border-left: 1px solid #BBB;
-    opacity: .5; /* shows Spin Buttons per default (Chrome >= 39) */
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-}
-
-/* Override browser form filling */
-input:-webkit-autofill {
-    background: black;
-    color: red;
-}
-
-/* 숫자 입력값이 음수로 넘어가지 않도록 함 */
-input[type="number"] {
-    -moz-appearance: textfield;
-}
-
-/* 입력값이 50을 넘어가지 않도록 함 */
-input[type="number"]::-webkit-outer-spin-button, 
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-input[type="number"]::-webkit-inner-spin-button:hover,
-input[type="number"]::-webkit-inner-spin-button:active{
-    box-shadow: 0 0 2px #0CF;
-    opacity: .8;
-}
-
- 	
     </style>
 </head>
 <body>
@@ -107,21 +60,85 @@ input[type="number"]::-webkit-inner-spin-button:active{
                 <img src="image/${dto.detail_image_name}" alt="상품 이미지">
             </div>
             <div class="product-info">
+            
                  
       
 	
    	상품명: <%= request.getParameter("product_name") %><br>
     원산지: <%= request.getParameter("origin") %><br>
-    별점: <%= request.getParameter("rating") %><br>
-    가격: <%= request.getParameter("price") %><br>
-    크기: <%= request.getParameter("size") %><br>
-    무게: <%= request.getParameter("weight")  %>kg<br>
+    별점:  <%= request.getParameter("rating") %><br>
+    가격:  <%= request.getParameter("price") %><br>
+    크기:  <%= request.getParameter("size") %><br>
+    무게:  <%= request.getParameter("weight")  %>kg<br>
+    
+    <input type="number" id="spinner" min="1" max="50" >
+    
+    <!-- 상세페이지 탭 -->
+        < <div class="container">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="true">상세정보</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">상품평</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="questions-tab" data-bs-toggle="tab" data-bs-target="#questions" type="button" role="tab" aria-controls="questions" aria-selected="false">상품문의</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
+                <!-- 상세정보 내용 -->
+                <p>Welcome to GeeksforGeek.</p>
+            </div>
+            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                <!-- 상품평 내용 -->
+                <p>Hello Everyone.</p>
+            </div>
+            <div class="tab-pane fade" id="questions" role="tabpanel" aria-labelledby="questions-tab">
+                <!-- 상품문의 내용 -->
+                <p>Learn cool stuff.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.nav-link');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabContentId = this.getAttribute('aria-controls');
+                    const tabContent = document.getElementById(tabContentId);
+                    const activeTab = document.querySelector('.tab-pane.show.active');
+                    activeTab.classList.remove('active', 'show');
+                    tabContent.classList.add('active', 'show');
+                });
+            });
+        });
+    </script>
 	
-	<input type="number">
+	<script>
+		  	 document.addEventListener('DOMContentLoaded', function() {
+		     // input 요소 가져오기
+		     var input = document.getElementById('spinner');
+			
+		     // 입력 이벤트 리스너 추가
+		     input.addEventListener('input', function(event) {
+		     // 입력된 값에서 숫자 이외의 문자 제거
+		     var sanitizedValue = input.value.replace(/\D/g, '');
+		
+		     // 최소값과 최대값 사이의 값으로 제한
+		     sanitizedValue = Math.max(1, Math.min(50, sanitizedValue));
+		
+		     // 입력된 값을 제한된 값으로 설정
+		     input.value = sanitizedValue;
+    	});
+	});
+	</script>
+
 	
 	<form name="cartForm" action="cart.do">
 		<input type="submit" class="btn btn-primary" value="장바구니"></input>
 	</form>
-	<!-- <input type="submit" class="btn btn-primary" value="장바구니"></input> -->
-	<!-- <input type="submit" class="btn btn-primary" value="바로구매"></input>  -->
+	
 </body>

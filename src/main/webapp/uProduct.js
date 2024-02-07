@@ -70,8 +70,6 @@ function changePage(pageNumber) {
 
 // 검색 버튼을 눌렀을 때 실행되는 JQuery 코드
 $(document).ready(function() {
-    // document가 로드될 때 실행됨
-    alert("문서가 로드되었습니다.");
     
     // 검색 버튼에 대한 click 이벤트 핸들러 추가
     $("#searchButton").click(function() {
@@ -87,7 +85,7 @@ $(document).ready(function() {
             success: function(response) {
                 // 성공적으로 응답을 받으면 카드를 생성합니다.
                 createCard(response);
-                alert("검색이 완료되었습니다.");
+                
             },
             error: function(xhr, status, error) {
                 // 에러 발생 시 메시지를 출력합니다.
@@ -122,3 +120,68 @@ function createCard(data) {
     }
 }
 
+
+//-------------------------------------------------------------------
+
+	//정렬기능과 검색기능을 같이 서버에 보내야 검색후 정렬을 시행해도 검색이 유지된다
+$(document).ready(function() {
+    // 정렬 콤보박스 값 변경 이벤트 처리
+    $("#classifyOption").change(function() {
+        // 선택된 정렬 옵션을 가져옴
+        let classifyOption = $(this).val();
+        let name = $("#product_name").val(); // 현재 검색어 가져오기
+        
+       alert("정렬되었습니다")
+
+        // AJAX 요청
+        $.ajax({
+            type: "POST",
+            url: "uProductListServlet",
+            data: { name: name, classifyOption: classifyOption }, // 검색어와 정렬 옵션 함께 전송
+            dataType: "json",
+            success: function(response) {
+                // 서버에서 받은 응답 처리
+                createCard(response);
+                
+          
+            },
+            error: function(xhr, status, error) {
+                // 에러 발생 시 메시지를 출력합니다.
+                console.error("AJAX 오류: " + status, error);
+                alert("검색 중 오류가 발생했습니다.");
+            }
+            
+        });
+    });
+   
+  });
+   
+     
+// createCard 함수: 상품 데이터를 받아 카드를 생성합니다.
+function createCard(data) {
+    let resultContainer = $("#result");
+    
+    // 결과를 표시하기 전에 이전 결과를 지웁니다.
+    resultContainer.empty();
+
+    // 받은 데이터를 기반으로 각각의 상품에 대한 카드를 생성합니다.
+    for (let i = 0; i < data.length; i++) {
+        let cardHtml = `
+            <div class="card">            
+                <img src="image/${data[i].product_image_names}" > 
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="productDetail.do?product_name=${data[i].product_name}&price=${data[i].price}&origin=${data[i].origin}&size=${data[i].size}&weight=${data[i].weight}">${data[i].product_name}</a>
+                    </h5>
+                    <p class="card-text">가격: ${data[i].price}</p>
+                </div>
+            </div>
+        `;
+        resultContainer.append(cardHtml);
+    }
+}
+   
+    
+
+    
+    
