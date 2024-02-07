@@ -36,7 +36,7 @@
 </head>
 <body>
 
-	<input type="text" placeholder="찾고싶은 상품을 입력하세요!" size="70"></input>
+	<input type="text" placeholder="찾고싶은 상품을 입력하세요!" id ="product_name" size="70"></input>
 	
 	<button id ="searchButton">검색</button>
 
@@ -49,12 +49,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    
-     
-    
-    <script src="uProduct.js"></script>
-    
-    
+    <script src="uProduct.js?var=1"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js?ver=1"></script>
    
 </body>

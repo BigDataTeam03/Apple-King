@@ -21,7 +21,7 @@ public class Login_Dao {
 		// TODO Auto-generated constructor stub
 		try{
 			Context context = new InitialContext();
-			dataSource = (DataSource)context.lookup("java:comp/env/jdbc/appleStore"); 	//[java:comp/env]는 context.xml의 위치. [jdbc/shoes]	는 이름. 		
+			dataSource = (DataSource)context.lookup("java:comp/env/jdbc/apple_store"); 	//[java:comp/env]는 context.xml의 위치. [jdbc/shoes]	는 이름. 		
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -37,7 +37,7 @@ public class Login_Dao {
 		Connection conn = null;
 		PreparedStatement ps = null;	
 		ResultSet rs = null;
-		
+		System.out.println("checklogin?");
 		try {
 			conn = dataSource.getConnection();	// this makes connection to the db.  
 			
