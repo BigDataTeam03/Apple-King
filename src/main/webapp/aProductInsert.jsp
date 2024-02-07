@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file ='/TOP/top_admin.jsp' %>
+<%@ include file ='top_admin.jsp' %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!-- 이미지 업로드를 위한 멀티 파트 선언 -->
-<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
-<%@page import="com.oreilly.servlet.MultipartRequest"%>
 
 
 <!--
@@ -83,81 +80,89 @@
 </head>
 
 <body>
-<form action="aProductListUpdate.do" method="post" enctype="multipart/form-data">     
-<!--상품평 전체 조회 및 검색 결과 -->
  <script src = "aProductUpdate.js"></script>
-    <hr>
+<form  action="aProductInsertProcess.do" method="post" enctype="multipart/form-data">     
+<!--상품평 전체 조회 및 검색 결과 -->
+
+
+<hr>
 <p><strong> 상품 등록</strong>
 <div>
     <table border="1">
         <tr>
             <td>상품코드(자동):</td>
-            <td class="input-style"><input type="text" id="product_code" placeholder="수정불가" readonly="readonly"></td>
+            <td class="input-style"><input type="text" id="product_code" name="product_code" placeholder="수정불가" readonly="readonly"></td>
         </tr>
         <tr>
             <td>상품명:</td>
-            <td class="input-style"><input type="text" id="product_name" placeholder="상품명을 입력하세요" value="다사과"></td>
+            <td class="input-style"><input type="text" name="product_name" placeholder="상품명을 입력하세요" value="다사과"></td>
         </tr>
         <tr>
             <td>수량:</td>
-            <td class="input-style"><input type="text" id="product_qty" placeholder="수량 입력" value="0"></td>
+            <td class="input-style"><input type="text" name="product_qty" placeholder="수량 입력" value="0"></td>
         </tr>
         <tr>
             <td>원산지:</td>
-            <td class="input-style"><input type="text" id="origin" placeholder="원산지" value="한국"></td>
+            <td class="input-style"><input type="text" name="origin" placeholder="원산지" value="한국"></td>
         </tr>
         <tr>
   		  <td>생산일:</td>
-  		  <td class="input-style">
-       		 <input type="text" id="manufacture_date" placeholder="생산일" value="">
-    		</td>
+  		  <td class="input-style"><input type="text" name="manufacture_date" placeholder="생산일" value = "2024-02-02"></td>
+       		 
+    		
 		</tr>
             <td>무게(kg):</td>
-            <td class="input-style"><input type="text" id="weight" placeholder="무게" value="15"></td>
+            <td class="input-style"><input type="text" name="weight" placeholder="무게" value="15"></td>
         </tr>
         <tr>
             <td>사이즈:</td>
-            <td class="input-style"><input type="text" id="size" placeholder="사이즈" value="대"></td>
+            <td class="input-style"><input type="text" name="size" placeholder="사이즈" value="대"></td>
         </tr>
         <tr>
             <td>상세 이미지:</td>
-            <td class="input-style"><input type="text" id="detail_image_name" placeholder="수정불가" value="asdf.png"></td>
+            <td class="input-style"><input type="text" name="detail_image_name" placeholder="수정불가" value="asdf.png"></td>
         </tr>
         <tr>
             <td>상품 등록일:</td>
-            <td class="input-style"><input type="text" id="product_reg_date" readonly="readonly" placeholder="등록일 (자동)"></td>
+            <td class="input-style"><input type="text" name="product_reg_date" readonly="readonly" placeholder="등록일 (자동)" value = "2024-02-02"></td>
         </tr>
         <tr>
             <td>품종:</td>
-            <td class="input-style"><input type="text" id="kind" placeholder="품종" value="부사"></td>
+            <td class="input-style"><input type="text" name="kind" placeholder="품종" value="부사"></td>
         </tr>
         <tr>
             <td>섬네일 이미지:</td>
             <td class="input-style">
-            <input type="file" name="file">
+            <input type="file" name="file" value = "null.png">
             </td>
         </tr>
         <tr>
             <td>가격 :</td>
-            <td class="input-style"><input type="text" id="price" placeholder="가격" value="15000"></td>
+            <td class="input-style"><input type="text" name="price" placeholder="가격" value="15000"></td>
         </tr>
     </table>
 </div>
 <br>
-<input type="button" id="insertBtn" value="입력" onclick="check()"></input>
+<input type="submit" value ="등록" >
+</form>
+
+<!-- <div id = "scriptlet01"></div> 
+<div id="multipart" ></div> -->
+
+
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/i18n/jquery-ui-i18n.min.js"></script>
+<!-- <script src = "aProductInsert.js"></script> -->
+
 <footer>
-    <p>&copy; 2024 Apple Store. All rights reserved.</p>
+    <p>&copy; 2024 Apple King. All rights reserved.</p>
 </footer>
 
- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/i18n/jquery-ui-i18n.min.js"></script>
+
 <script>
 $(function() {
+	let form = document.insertForm
+	
     // 한국어로 지역화된 달력 적용
     $.datepicker.setDefaults($.datepicker.regional['ko']);
 
@@ -211,7 +216,7 @@ $(function() {
         form.submit();
     }      
 </script>
-</form>
+
 </body>
 </html>
 

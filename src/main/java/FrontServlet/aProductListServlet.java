@@ -7,7 +7,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Enumeration;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +19,8 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.javalec.util.ShareVar;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dto.productDto;
 
@@ -39,7 +43,7 @@ public class aProductListServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		
 		System.out.println("aProductListServlet 을 실행합니다.");
 		response.setContentType("text/html;charset=UTF-8");  
@@ -182,6 +186,7 @@ public class aProductListServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	}
+}
+
 
 

@@ -69,12 +69,9 @@ public class aProductDeleteServlet extends HttpServlet {
 	            String deleteQuery = "DELETE FROM product WHERE product_code = ?";
                 ps = conn_mysql.prepareStatement(deleteQuery);
 	            ps.setString(1, productCode);
-	            
 	            ps.executeUpdate();
-	            
 	            // 쿼리 실행
 	            
-
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	            out.print("failure");
