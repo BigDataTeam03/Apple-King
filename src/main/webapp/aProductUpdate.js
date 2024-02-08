@@ -300,7 +300,7 @@ $(document).ready(function() {
     });
 
     // 상세 검색 버튼 클릭 시 실행되는 함수
-    $("#confirmBtn").click(function() {
+    $("#confirmBtn").click(function() {	
         let origin = $("input[name='origin']:checked").val(); // 원산지 선택 값 가져오기
         let size = $("input[name='size']:checked").val(); // 사이즈 선택 값 가져오기
         let kind = $("input[name='kind']:checked").val(); // 품종 선택 값 가져오기
@@ -308,10 +308,11 @@ $(document).ready(function() {
         // AJAX 요청을 통해 상세 검색 조건을 서버에 전달하여 데이터 조회
         $.ajax({
             type: "POST",
-            url: "aProductFindServlet",
+            url: "aProductListServlet",
             data: { origin: origin,
            			  size: size, 
-          		      kind: kind }, // 상세 검색 조건 전달
+          		      kind: kind
+          		    }, // 상세 검색 조건 전달
             success: function(response) {
                 // 서버에서 받은 응답 처리
                 if (response.length === 0) {
