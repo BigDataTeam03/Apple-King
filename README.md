@@ -1,10 +1,10 @@
 # Description
-
+사과 유통 플랫폼 사이트 
 <h1>AppleKing</h1>
 <hr>
 ![logo](https://github.com/ForrestDPark/Project02_AppleStore_big3/assets/149550771/d98b02f4-22ed-4915-b5a0-fe22cdb95adf)
 <br>
-<< Designed by Diana>>
+
 
 <h1>개발배경</h1> : 
 <br>
