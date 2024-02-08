@@ -20,7 +20,7 @@ designed by Diana
 
 
 <h1>Project Management Tool </h1>
-<br> Asana : <a href ="https://app.asana.com/0/1206550553332943/1206550553332943"> bigData3HQ </a>
+<br> Asana : <a href ="https://app.asana.com/0/1206550553332943/1206550553332943" target="_blank"> bigData3HQ </a>
 
 <h1>Member Role<h1>
 <img width="500" alt="image" src="https://github.com/ForrestDPark/Project02_AppleStore_big3/assets/149550771/de8775b7-45af-4c67-8a61-ac89dc6ebdec">
