@@ -126,7 +126,8 @@ $(document).ready(function() {
         $.ajax({
             type: "POST",
             url: "aCustomerListServlet",
-            data: { name: name, sortOption: sortOption }, // 검색어와 정렬 옵션 함께 전송
+            data: { name: name, 
+              sortOption: sortOption }, // 검색어와 정렬 옵션 함께 전송
             dataType: "json",
             success: function(response) {
                 // 서버에서 받은 응답 처리
