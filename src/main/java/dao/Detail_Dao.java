@@ -64,10 +64,27 @@ public class Detail_Dao {
 				// 실행한 쿼리문을 resultset에 삽입
 				resultset = preparedStatement.executeQuery();
 				
+				while (resultset.next()) {
+				    // 데이터 불러오기
+				    String detailImageNames = resultset.getString("detail_image_name");
+				    
+				    // 쉼표로 구분된 파일 이름들을 배열로 분할
+				    String[] detailImageNameArray = detailImageNames.split(",");
+				    
+				    // 배열에서 첫 번째와 두 번째 파일 이름 추출
+				    String firstImageName = null;
+				    String secondImageName = null;
+				    if (detailImageNameArray.length >= 2) { // 적어도 두 개 이상의 파일 이름이 있다면
+				        firstImageName = detailImageNameArray[0].trim(); // 첫 번째 파일 이름 추출
+				        secondImageName = detailImageNameArray[1].trim(); // 두 번째 파일 이름 추출
+				    }
+				
+				
+				
 				if (resultset.next()) {
 				// 데이터 불러오기
 				
-				String pdetailimage = resultset.getString("detail_image_name");
+//				String pdetailimage = resultset.getString("detail_image_name");
 				String pname = resultset.getString("product_name"); // 칼럼 이름을 넣어야함
 				String porigin = resultset.getString("origin"); 
 				String prating = resultset.getString("rating");

@@ -69,38 +69,10 @@
     별점:  <%= request.getParameter("rating") %><br>
     가격:  <%= request.getParameter("price") %><br>
     크기:  <%= request.getParameter("size") %><br>
-    무게:  <%= request.getParameter("weight")  %>kg<br>
+    무게:  <%= request.getParameter("weight")  %>kg<br><br>
     
-    <input type="number" id="spinner" min="1" max="50" >
+    <input type="number" id="spinner" min="1" max="50" ><br><br>
     
-    <!-- 상세페이지 탭 -->
-        < <div class="container">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="true">상세정보</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">상품평</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="questions-tab" data-bs-toggle="tab" data-bs-target="#questions" type="button" role="tab" aria-controls="questions" aria-selected="false">상품문의</button>
-            </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
-                <!-- 상세정보 내용 -->
-                <p>Welcome to GeeksforGeek.</p>
-            </div>
-            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                <!-- 상품평 내용 -->
-                <p>Hello Everyone.</p>
-            </div>
-            <div class="tab-pane fade" id="questions" role="tabpanel" aria-labelledby="questions-tab">
-                <!-- 상품문의 내용 -->
-                <p>Learn cool stuff.</p>
-            </div>
-        </div>
-    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -138,7 +110,35 @@
 
 	
 	<form name="cartForm" action="cart.do">
-		<input type="submit" class="btn btn-primary" value="장바구니"></input>
-	</form>
+		<input type="submit" class="btn btn-primary" value="장바구니담기"></input>
+	</form><br><br>
 	
+    <!-- 상세페이지 탭 -->
+         <div class="container">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="true">상세정보</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">상품평</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="questions-tab" data-bs-toggle="tab" data-bs-target="#questions" type="button" role="tab" aria-controls="questions" aria-selected="false">상품문의</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
+                <!-- 상세정보 내용 -->
+                <p>Welcome to GeeksforGeek.</p>
+            </div>
+            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                <!-- 상품평 내용 -->
+                <p>Hello Everyone.</p>
+            </div>
+            <div class="tab-pane fade" id="questions" role="tabpanel" aria-labelledby="questions-tab">
+                <!-- 상품문의 내용 -->
+                <p>Learn cool stuff.</p>
+            </div>
+        </div>
+    </div>
 </body>
