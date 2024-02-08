@@ -70,39 +70,29 @@
   		  
   		  right: 80px;
         }
-
         </style>
-	
 	</head>
 	<body>
-		
-		
-
-		
-		
-		
-		
 		<!--상품평 전체 조회 및 검색 결과 -->
 		<p><strong><h2>등록된 상품 목록 </h2></strong> 
 		
 	 	총 상품 갯수 :<div 	id = "productCount"></div>  
 		<div 	id = "result"></div> 
-		
-		
 		<div>
+				<!--  정렬 콤보 박스  -->
 			   <select id="Sorting">
-            		 <option value="stokHigh">재고 많은순</option>
-            		 <option value="stokLow">재고 적은순</option>
-            		 <option value="makeHigh">생산일자 최신순</option>
-           			 <option value="makeLow">생산일자 최고순</option>
+            		 <option value="stokHigh">	재고 많은순</option>
+            		 <option value="stokLow"> 	재고 적은순</option>
+            		 <option value="makeHigh">	생산일자 최신순</option>
+           			 <option value="makeLow">	생산일자 오래된순</option>
            			 <option value="weightHigh">무게 높은순</option>
-           			 <option value="weightLow">무게 낮은순</option>
-           			 <option value="viewHigh">조회수 높은순</option>
-           			 <option value="viewLow">조회수 낮은순</option>
+           			 <option value="weightLow">	무게 낮은순</option>
+           			 <option value="viewHigh">	조회수 높은순</option>
+           			 <option value="viewLow">	조회수 낮은순</option>
            			 <option value="insertHigh">등록일 최신순</option>
-           			 <option value="insertLow">등록일 최고순</option>
-           			 <option value="priceHigh">가격 높은순</option>
-           		     <option value="priceLow">가격 낮은순</option>
+           			 <option value="insertLow">	등록일 오래된순</option>
+           			 <option value="priceHigh">	가격 높은순</option>
+           		     <option value="priceLow">	가격 낮은순</option>
            			 
                </select>
 		</div>
@@ -141,81 +131,76 @@
 
 <!-- 확인 버튼 추가 -->
 <button type="button" id="confirmBtn" onclick="applyFilters()">확인</button>
-		
-		
-		
-		
-		<div>
-			<br>
-			<input 	type ="text" id ="name" placeholder ="상품 검색">
-			<button id ="queryButton">검색</button>
-		</div>
-		<div>
-			<br>
-			
-			<button id ="ollBtn">전체 목록 보기</button>
-		</div>
-		
-		<!--  -->
-		<hr>
-		<p><strong>선택 상품 수정  </strong> 
-		<div>
-			<table border="1">
-			
-                <tr>
-                    <td>상품코드:</td>
-                    <td class="input-style"><input type="text" id="product_code" readonly="readonly" placeholder="수정불가" ></td>
-                </tr>
-                <tr>
-                    <td>상품명:</td>
-                    <td class="input-style"><input type="text" id="product_name" placeholder="상품명을 입력하세요" value="다사과"></td>
-                </tr>
-                <tr>
-                    <td>재고수량:</td>
-                    <td class="input-style"><input type="text" id="product_qty" placeholder="수량 입력" value="0"></td>
-                </tr>
-                <tr>
-                    <td>원산지:</td>
-                    <td class="input-style"><input type="text" id="origin" placeholder="원산지" value="한국"></td>
-                </tr>
-                <tr>
-                    <td>생산일:</td>
-                    <td class="input-style"><input type="text" id="manufacture_date" placeholder="생산일" value="2024-02-02"></td>
-                </tr>
-                <tr>
-                    <td>무게(kg):</td>
-                    <td class="input-style"><input type="text" id="weight" placeholder="무게" value="15"></td>
-                </tr>
-                <tr>
-                    <td>사이즈:</td>
-                    <td class="input-style"><input type="text" id="size" placeholder="사이즈" value="대"></td>
-                </tr>
-                <tr>
-                    <td>상세 이미지:</td>
-                    <td class="input-style"><input type="text" id="detail_image_name" placeholder="수정불가" value="asdf.png"></td>
-                </tr>
-                <tr>
-                    <td>조회수:</td>
-                    <td class="input-style"><input type="text" id="view_count" readonly="readonly" placeholder="0" value="0"></td>
-                </tr>
-                <tr>
-                    <td>상품 등록일:</td>
-                    <td class="input-style"><input type="text" id="product_reg_date"  readonly="readonly" placeholder="등록일 (자동)" value = "2024-02-02"> </td>
-                </tr>
-                <tr>
-                    <td>품종:</td>
-                    <td class="input-style"><input type="text" id="kind" placeholder="품종" value="부사"></td>
-                </tr>
-                <tr>
-                    <td>섬네일 이미지:</td>
-                    <td class="input-style"><input type="text" id="product_image_names" placeholder="이미지파일" value="asdf.png"></td>
-                </tr>
-                <tr>
-                    <td>상품 가격 : </td>
-                    <td class="input-style"><input type="text" id="price" placeholder="가격" value="15000"></td>
-                </tr>
-            </table>
-		</div>
+<div>
+	<br>
+	<input 	type ="text" id ="name" placeholder ="상품 검색">
+	<button id ="queryButton">검색</button>
+</div>
+<div>
+	<br>
+	<button id =allBtn">전체 목록 보기</button>
+</div>
+
+<!--  -->
+<hr>
+<p><strong>선택 상품 수정  </strong> 
+<div>
+	<table border="1">
+	
+              <tr>
+                  <td>상품코드:</td>
+                  <td class="input-style"><input type="text" id="product_code" readonly="readonly" placeholder="수정불가" ></td>
+              </tr>
+              <tr>
+                  <td>상품명:</td>
+                  <td class="input-style"><input type="text" id="product_name" placeholder="상품명을 입력하세요" value="다사과"></td>
+              </tr>
+              <tr>
+                  <td>재고수량:</td>
+                  <td class="input-style"><input type="text" id="product_qty" placeholder="수량 입력" value="0"></td>
+              </tr>
+              <tr>
+                  <td>원산지:</td>
+                  <td class="input-style"><input type="text" id="origin" placeholder="원산지" value="한국"></td>
+              </tr>
+              <tr>
+                  <td>생산일:</td>
+                  <td class="input-style"><input type="text" id="manufacture_date" placeholder="생산일" value="2024-02-02"></td>
+              </tr>
+              <tr>
+                  <td>무게(kg):</td>
+                  <td class="input-style"><input type="text" id="weight" placeholder="무게" value="15"></td>
+              </tr>
+              <tr>
+                  <td>사이즈:</td>
+                  <td class="input-style"><input type="text" id="size" placeholder="사이즈" value="대"></td>
+              </tr>
+              <tr>
+                  <td>상세 이미지:</td>
+                  <td class="input-style"><input type="text" id="detail_image_name" placeholder="수정불가" value="asdf.png"></td>
+              </tr>
+              <tr>
+                  <td>조회수:</td>
+                  <td class="input-style"><input type="text" id="view_count" readonly="readonly" placeholder="0" value="0"></td>
+              </tr>
+              <tr>
+                  <td>상품 등록일:</td>
+                  <td class="input-style"><input type="text" id="product_reg_date"  readonly="readonly" placeholder="등록일 (자동)" value = "2024-02-02"> </td>
+              </tr>
+              <tr>
+                  <td>품종:</td>
+                  <td class="input-style"><input type="text" id="kind" placeholder="품종" value="부사"></td>
+              </tr>
+              <tr>
+                  <td>섬네일 이미지:</td>
+                  <td class="input-style"><input type="text" id="product_image_names" placeholder="이미지파일" value="asdf.png"></td>
+              </tr>
+              <tr>
+                  <td>상품 가격 : </td>
+                  <td class="input-style"><input type="text" id="price" placeholder="가격" value="15000"></td>
+              </tr>
+          </table>
+</div>
 		<br>
 		<!--  submit 을 누르면 s~ 어쩌구가 submit 되어 js 에서 받아줌.  -->
 		<button type ="button" id = "updateBtn">수정</button>

@@ -50,6 +50,12 @@ public class aProductFindServlet extends HttpServlet {
 			1.상세 검색 요소들을 가져와서 상세검색 실행
 		*
 		--------------------------------------------------------------
+		알림. 
+		
+		서블릿을 하나로 합치는 시도중....
+		
+		
+		
 		*/
 		System.out.println("aProductFindServlet 을 실행합니다.");
 		response.setContentType("text/html;charset=UTF-8");  
@@ -64,7 +70,8 @@ public class aProductFindServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		
 		//out 을 사용하기위해 out 선언		
-		String name = request.getParameter("name");
+//		String sorting = request.getParameter("sorting");
+//		String name = request.getParameter("name");
 		String origin = request.getParameter("origin");
 		String size = request.getParameter("size");
 		String kind = request.getParameter("kind");

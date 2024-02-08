@@ -78,14 +78,20 @@ public class aProductListServlet extends HttpServlet {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		
-		//out 을 사용하기위해 out 선언		
-		
+		// AJAX 에서 가져온 값을 변수에 받아온다	
+		// 라디오 버튼으로 선택한 상세 검색 값
+		String origin = request.getParameter("origin");
+		String size = request.getParameter("size");
+		String kind = request.getParameter("kind");
+		String selected = "";
+			System.out.println("오리진" + origin);
+		// 콤보박스로 선택된 정렬값
 		String sorting = request.getParameter("sorting");
-		
+		//기본값은 재고순으로
 		if (sorting == null) {
 			sorting = "stokHigh";
 		}
-		//쿼리문 기본값 날짜
+		//쿼리문 기본값 		
 		String orderby = "";
 		
 		//선택한 콤보박스값에 따라 정렬쿼리문 변경
@@ -125,8 +131,35 @@ public class aProductListServlet extends HttpServlet {
 	     if (sorting.equals("priceLow"))
 	    	 	orderby = " order by price asc";
 	     
-	      
+	    
+	     // 선택된 라디오 버튼 값에 따라 쿼리 조건 설정
+//	     if (origin != null && !origin.isEmpty()) {
+//	         selected += " origin = '" + origin + "' and ";
+//	     }
+//	     if (size != null && !size.isEmpty()) {
+//	         selected += " size = '" + size + "' and ";
+//	     }
+//	     if (kind != null && !kind.isEmpty()) {
+//	         selected += " kind = '" + kind + "' and ";
+//	     }
+
+	     // and 로 연결된 조건들 중 마지막 and 제거
+//	     if (!selected.isEmpty() && selected.length() > 5) {
+//	         selected = selected.substring(0, selected.length() - 5);
+//	     }
 			
+	     
+	     if (origin != null && !origin.isEmpty()) {
+	         selected += " and origin = '" + origin +"'";
+	     }
+	     if (size != null && !size.isEmpty()) {
+	         selected += " and size = '" + size + "'";
+	     }
+	     if (kind != null && !kind.isEmpty()) {
+	         selected += " and kind = '" + kind + "'";
+	     }
+	     
+	     
 		
 		ArrayList<productDto> productdtoList = new ArrayList<productDto>();
 		
@@ -141,13 +174,13 @@ public class aProductListServlet extends HttpServlet {
 				+ "size, "
 				+ "detail_image_name, "
 				+ "view_count, "
-				+ "product_reg_date, "
+				+ "product_reg_date, "	
 				+ "kind, "
 				+ "product_image_names, "
 				+ "price"
 				
 				//   product 에서 product name 을 검색하지만 처음에는 아무것도 안들어감으로 모두 조회함. 
-				+ " from product where product_name like '%"+ product_name + "%'" + orderby;
+				+ " from product where product_name like '%"+ product_name + "%'" + selected + orderby;
 		System.out.println("query 실행 전 내용 :"+ readQuery);
 		PrintWriter out = response.getWriter();
 		
