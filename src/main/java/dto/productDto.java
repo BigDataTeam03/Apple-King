@@ -56,13 +56,12 @@ public class productDto {
 	}
 	
 	
-	public productDto(String detail_image_name, String product_name, String origin, String rating, int price,
+	public productDto(String detail_image_name, String product_name, String origin, int price,
 			String size, int weight) {
 		super();
 		this.detail_image_name = detail_image_name;
 		this.product_name = product_name;
 		this.origin = origin;
-		this.rating = rating;
 		this.price = price;
 		this.size = size;
 		this.weight = weight;

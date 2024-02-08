@@ -71,7 +71,7 @@
     <!-- 상품평 전체 조회 -->
      
     <div class="container">
-       <div id="result" class="row"></div>
+    <div id="result" class="row"></div>
     </div>
 
  	<div id="product-list"></div>

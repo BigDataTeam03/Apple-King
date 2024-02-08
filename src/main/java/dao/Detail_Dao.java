@@ -24,16 +24,18 @@ public class Detail_Dao {
 				e.printStackTrace();
 			}
 		}
-		
 		// Method
 		// detail_view에 들어갈 dto 만들기 (select)
-		public productDto Detail(String product_name,
+		public productDto Detail(
+				String product_name,
 				String price,
 				String origin,
-				String rating,
+//				String rating,
 				String size,
 				String weight) {
 		
+				System.out.println(">>Detail_Dao.detail 실행");
+			
 			productDto dto = null;
 			Connection connection = null;
 			PreparedStatement preparedStatement = null;
@@ -45,63 +47,40 @@ public class Detail_Dao {
 				
 				// 쿼리 작성
 				// 상품코드, 상품이름, 상품가격, 상품색깔, 상품설명, 상품이미지경로, 상품사이즈, 상품수량을 select
-				String select = "SELECT p.detail_image_name,"
-								+ " p.product_name,"
-								+ " p.origin,"
-								+ " r.rating,"
-								+ " p.price,"
-								+ " p.size, p.weight";
-				String from = " FROM product p, review r";
-				String where = " WHERE p.product_code = r.product_code";
+				String select = "select product_name, product_code, product_qty, origin, "
+								+ "weight, size, detail_image_name, "
+								+ "kind, price from product where product_name = '" + product_name + "'" ;
 				
-				// 작성한 쿼리를 데이터 connection을 사용하여 실행
-				preparedStatement = connection.prepareStatement(select + from + where);
-
+				// 작성한 쿼리를 데이터 connection 을 사용하여 실행
+				preparedStatement = connection.prepareStatement(select);
+		
 			
-				
-				System.out.println("상세페이지 실행");
+				System.out.println("쿼리문: " + select);
 				
 				// 실행한 쿼리문을 resultset에 삽입
 				resultset = preparedStatement.executeQuery();
 				
-				while (resultset.next()) {
-				    // 데이터 불러오기
-				    String detailImageNames = resultset.getString("detail_image_name");
-				    
-				    // 쉼표로 구분된 파일 이름들을 배열로 분할
-				    String[] detailImageNameArray = detailImageNames.split(",");
-				    
-				    // 배열에서 첫 번째와 두 번째 파일 이름 추출
-				    String firstImageName = null;
-				    String secondImageName = null;
-				    if (detailImageNameArray.length >= 2) { // 적어도 두 개 이상의 파일 이름이 있다면
-				        firstImageName = detailImageNameArray[0].trim(); // 첫 번째 파일 이름 추출
-				        secondImageName = detailImageNameArray[1].trim(); // 두 번째 파일 이름 추출
-				    }
-				
-				
-				
 				if (resultset.next()) {
 				// 데이터 불러오기
 				
-//				String pdetailimage = resultset.getString("detail_image_name");
-				String pname = resultset.getString("product_name"); // 칼럼 이름을 넣어야함
-				String porigin = resultset.getString("origin"); 
-				String prating = resultset.getString("rating");
-				int pprice = resultset.getInt("price");
-				String psize = resultset.getString("size");
-				int pweight = resultset.getInt("weight");
+				String pdetailimage = resultset.getString("detail_image_name");
+				String pname 		= resultset.getString("product_name"); // 칼럼 이름을 넣어야함
+				String porigin 		= resultset.getString("origin"); 
+//				String prating 		= resultset.getString("rating");
+				int pprice 			= resultset.getInt("price");
+				String psize 		= resultset.getString("size");
+				int pweight			= resultset.getInt("weight");
 				
 				
 				System.out.println(pname);
 				System.out.println(porigin);
-				System.out.println(prating);
+//				System.out.println(prating);
 				System.out.println(pprice);
 				System.out.println(psize);
 				System.out.println(pweight);
 				
 				// 불러온 데이터들을 dto 객체에 추가
-				dto = new productDto(pdetailimage, pname, porigin, prating, pprice, psize, pweight);
+				dto = new productDto(pdetailimage, pname, porigin, pprice, psize, pweight);
 			}
 
 				} catch (Exception e) {
