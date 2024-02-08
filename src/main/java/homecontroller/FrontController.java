@@ -16,6 +16,7 @@ import command.LoginCommand;
 
 import command.SignupCommand;
 import command.aProductInsertCommand;
+import command.cartCommand;
 import command.productDetailCommand;
 
 
@@ -99,7 +100,7 @@ public class FrontController extends HttpServlet {
 				if (loginID.equals("admin")) { // if "admin" is input as ID, move to admin's product list.
 					viewPage = "aProductList.do";
 				} else { // if the input ID is customer's id, move to customer's product list.
-					viewPage = "productList.do";
+					viewPage = "cGohome.do";
 				}
 			} else { // if the login fails, then go back to login page.
 				viewPage = "login_view.jsp";
@@ -163,6 +164,17 @@ public class FrontController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "productDetail.jsp";
 			break;
+			
+		//Cart Page
+		case ("/cart.do"): 
+			
+			// test code
+			System.out.println(">> " + com + "실행 ");
+			command = new cartCommand();
+			command.execute(request, response);
+			viewPage = "uCartList.jsp";
+			break;
+			
 			
 		//-------------- AJAX Part --------------
 		// product list update
