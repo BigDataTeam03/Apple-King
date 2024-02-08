@@ -43,7 +43,22 @@ public class aProductListServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		/*
+		--------------------------------------------------------------
+		* Description 	: 상품리스트를 출력하고 상품이름을 검색한다
+		* Author 		: KBS
+		* Date 			: 2024.02.06
+		* ---------------------------Update---------------------------		
+		 	<<2024.02.06>> by KBS
+			1. 리스트 출력 기능 추가
+			2. 주석 설명 추가 
+			3. 테이블 정렬기능을 쿼리문을 나누어서 시행
+		*
+		--------------------------------------------------------------
+		 	<<2024.02.07>> by KBS
+			1.사용자가 선택한 조건에 맞는 정렬기능 추가
+		*
+		*/
 		
 		System.out.println("aProductListServlet 을 실행합니다.");
 		response.setContentType("text/html;charset=UTF-8");  

@@ -40,7 +40,17 @@ public class aProductFindServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		/*
+		--------------------------------------------------------------
+		* Description 	: 상세검색 기능
+		* Author 		: KBS
+		* Date 			: 2024.02.06
+		* ---------------------------Update---------------------------		
+		 	<<2024.02.07>> by KBS
+			1.상세 검색 요소들을 가져와서 상세검색 실행
+		*
+		--------------------------------------------------------------
+		*/
 		System.out.println("aProductFindServlet 을 실행합니다.");
 		response.setContentType("text/html;charset=UTF-8");  
 		HttpSession session = request.getSession();
@@ -71,7 +81,7 @@ public class aProductFindServlet extends HttpServlet {
 			    selected += "kind = '" + kind + "' and ";
 			}		
 			
-			    // AND로 연결된 조건들 중 마지막 AND 제거
+			    // and 로 연결된 조건들 중 마지막 and 제거
 			    selected = selected.substring(0, selected.length() - 5);
 			
 
