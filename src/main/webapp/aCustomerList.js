@@ -135,7 +135,7 @@ $(document).ready(function() {
         });
     });
 
-    // 검색 버튼 클릭 이벤트 처리
+    // 검색 버튼 클릭 이벤트 처리	
     $("#searchBtn").click(function() {
         // 입력된 데이터 가져오기
         let name = $("#name").val();
