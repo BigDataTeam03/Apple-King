@@ -7,14 +7,14 @@
 designed by Diana 
 
 
-<h1>Team Introduction</h1> 
+<h1><strong>Team Introduction</strong></h1> 
 <br>
  Team Name    :  BigData3HQ <br>
  Team Memeber :
-   <br>1. 박동근  (Forrest, PM)
-   <br>2. 강범식  (KBS)
-   <br>3. 이서   (LS)
-   <br>4. 김수민  (Diana)
+   <br>&nbsp&nbsp1. 박동근  (Forrest, PM)
+   <br>&nbsp&nbsp2. 강범식  (KBS)
+   <br>&nbsp&nbsp3. 이서   (LS)
+   <br>&nbsp&nbsp4. 김수민  (Diana)
 
 # Project Timeframe
 <br>
