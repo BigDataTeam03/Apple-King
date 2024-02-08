@@ -76,7 +76,7 @@
 
  	<div id="product-list"></div>
  	
- 	//
+ 	
  	<div id="pagination"></div>
 
    
