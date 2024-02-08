@@ -35,6 +35,23 @@ public class aProductUpdateServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		/*
+		--------------------------------------------------------------
+		* Description 	: 상품 수정 기능
+		* Author 		: KBS & PDG
+		* Date 			: 2024.02.05
+		* ---------------------------Update---------------------------		
+		 	<<2024.02.05>> by KBS & PDG
+			1.사용자가 입력한 정보를 가져와서 업데이트 실행
+		*
+		--------------------------------------------------------------
+		*/
+		
+		
+		
+		
+		
 		//js 에서 받은 값을 변수로 지정한다
 		String code 		= request.getParameter("code");
 		String name 		= request.getParameter("name");
