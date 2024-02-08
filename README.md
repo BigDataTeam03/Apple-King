@@ -9,7 +9,14 @@ designed by Diana
 
 <h1>Team Introduction</h1> 
 <br>
-  <img width="500" alt="image" src="https://github.com/ForrestDPark/Project02_AppleStore_big3/assets/149550771/2651c108-a959-468c-929f-cf26c26dab94">
+ Team Name    :  BigData3HQ <br>
+ Team Memeber :
+   <br>1. 박동근  (Forrest, pdg)
+   <br>2. 강범식  (KBS)
+   <br>3. 이서   (LS)
+   <br>4. 김수민  (Diana)
+   
+ 
 
 
 <h1>Project Management Tool </h1>
