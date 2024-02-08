@@ -63,15 +63,14 @@
             
                  
       
-	
-   	상품명: <%= request.getParameter("product_name") %><br>
-    원산지: <%= request.getParameter("origin") %><br>
-    별점:  <%= request.getParameter("rating") %><br>
-    가격:  <%= request.getParameter("price") %><br>
-    크기:  <%= request.getParameter("size") %><br>
-    무게:  <%= request.getParameter("weight")  %>kg<br><br>
+   
     
-    <input type="number" id="spinner" min="1" max="50" ><br><br>
+   	상품명: <%= session.getAttribute("product_name") %><br>
+    원산지: <%= session.getAttribute("origin") %><br>
+    별점:  <%= session.getAttribute("rating") %><br>
+    가격:  <%= session.getAttribute("price") %><br>
+    크기:  <%= session.getAttribute("size") %><br>
+    무게:  <%= session.getAttribute("weight")  %>kg<br><br>
     
 
     <script>
@@ -107,9 +106,10 @@
     	});
 	});
 	</script>
-
+	
 	
 	<form name="cartForm" action="cart.do">
+		<input type="number" name="spinner" min="1" max="50" ><br><br>
 		<input type="submit" class="btn btn-primary" value="장바구니담기"></input>
 	</form><br><br>
 	

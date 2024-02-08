@@ -79,7 +79,7 @@ public class uProductListServlet extends HttpServlet {
 		ArrayList<productDto> productdtoList = new ArrayList<productDto>();
 		
 		//product 테이블에 있는 모든 컬럼을 불러오는 쿼리문
-		String select = "SELECT product_name, price, origin, size, weight, product_image_names FROM product" + orderby; ;
+		String select = "SELECT product_code, product_name, price, origin, size, weight, product_image_names FROM product" + orderby; ;
 	
 		PrintWriter out = response.getWriter();
 		
@@ -100,6 +100,7 @@ public class uProductListServlet extends HttpServlet {
 			// productDto 선언
 			productDto productdto = new productDto();
 			
+			productdto.setProduct_code		 	(rs.getString("product_code")); 	  // 1
 			productdto.setProduct_name		 	(rs.getString("product_name")); 	  // 1
 			productdto.setPrice		 			(rs.getInt("price")); 				  // 2
 			productdto.setOrigin	 			(rs.getString("origin")); 			  // 3
@@ -108,11 +109,19 @@ public class uProductListServlet extends HttpServlet {
 			productdto.setProduct_image_names	(rs.getString("product_image_names"));// 6 
 			
 			
+			
 			//검색된 내용을 productDto 에 추가
 			productdtoList.add(productdto);
 				
 			}
 			System.out.println("Json전");
+			System.out.println(" for문 돌려서 본 productdtolist");
+			for(int i =0; i<productdtoList.size();i++) {
+				System.out.println(productdtoList.get(i).getProduct_name());
+				
+			}
+			System.out.println("-------");
+			//System.out.println(new Gson().toJson(productdtoList));
 			// Json 타입으로 변환하기 위한 Gson 선언
 			out.print(new Gson().toJson(productdtoList));
 			

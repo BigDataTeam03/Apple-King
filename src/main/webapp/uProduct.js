@@ -1,3 +1,16 @@
+/* Description: user product list 조회  
+ * Author : DK
+ * Date : 2024.02.08
+ * Warning :
+ * Update --------------------------------------------------
+ * <<2024.02.08 by DK>>
+ *	1. 상품 목록 출력
+ *	1. 상품 상세 페이지로 택한 상품의 정보를 보냄
+ 
+  
+ *----------------------------------------------------------
+ */
+
 let currentPage = 1;
 const itemsPerPage = 6;
 
@@ -8,12 +21,14 @@ window.onload = function () {
 
 // 페이지 로드 함수
 function loadPage(pageNumber) {
+	//alert("1111")
     $.ajax({
         type: "POST",
         url: "uProductListServlet",
         data: { name: "" },
         dataType: "json",
         success: function (response) {
+			//alert(response[0].product_name)
             displayPagination(response.length);
             displayProducts(response, pageNumber);
         },
@@ -22,6 +37,7 @@ function loadPage(pageNumber) {
 
 // 상품 목록 출력 함수
 function displayProducts(data, pageNumber) {
+	//alert("2222")
     let resultContainer = $("#result");
     resultContainer.empty(); // 이전 내용 비우기
 
@@ -30,15 +46,13 @@ function displayProducts(data, pageNumber) {
     const pageData = data.slice(startIndex, endIndex);
 
     for (let i = 0; i < pageData.length; i++) {
+		//alert("상품코드:" +data[i].product_code + "상품이름 : "+data[i].product_name )
         let cardHtml = `
            <div class="card">            
                <img src="image/${pageData[i].product_image_names}" > 
                 <div class="card-body">
                     <h5 class="card-title">
-                       <a href="productDetail.do?product_name=${pageData[i].product_name}&price=${pageData[i].price}
-                              &origin=${pageData[i].origin}&size=${pageData[i].size}&weight=${pageData[i].weight}"> 
-                           ${pageData[i].product_name}
-                          </a>
+                       <a href="javascript:void(0);" onclick="saveProductInfo(${data[i].product_code},'${data[i].product_name}', ${data[i].price}, '${data[i].origin}', '${data[i].size}', ${data[i].weight})">${data[i].product_name}</a>
                     </h5>
                     <p class="card-text">가격: ${pageData[i].price}</p>
                 </div>
@@ -98,23 +112,27 @@ $(document).ready(function() {
 
 // createCard 함수: 상품 데이터를 받아 카드를 생성합니다.
 function createCard(data) {
+	//alert("creatCard 실")
+
     let resultContainer = $("#result");
     
     // 결과를 표시하기 전에 이전 결과를 지웁니다.
     resultContainer.empty();
 
     // 받은 데이터를 기반으로 각각의 상품에 대한 카드를 생성합니다.
-    for (let i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) { 
+		//alert(data[i].product_name)
         let cardHtml = `
             <div class="card">            
                 <img src="image/${data[i].product_image_names}" > 
                 <div class="card-body">
                     <h5 class="card-title">
-                        <a href="productDetail.do?product_name=${data[i].product_name}&price=${data[i].price}&origin=${data[i].origin}&size=${data[i].size}&weight=${data[i].weight}">${data[i].product_name}</a>
+                    	<a href="javascript:void(0);" onclick="saveProductInfo(${data[i].product_code},'${data[i].product_name}', ${data[i].price}, '${data[i].origin}', '${data[i].size}', ${data[i].weight})">${data[i].product_name}</a>
                     </h5>
                     <p class="card-text">가격: ${data[i].price}</p>
                 </div>
             </div>
+           
         `;
         resultContainer.append(cardHtml);
     }
@@ -141,7 +159,7 @@ $(document).ready(function() {
             dataType: "json",
             success: function(response) {
                 // 서버에서 받은 응답 처리
-                createCard(response);
+                displayProducts(data, pageNumber);
                 
           
             },
@@ -156,31 +174,30 @@ $(document).ready(function() {
    
   });
    
-     
-// createCard 함수: 상품 데이터를 받아 카드를 생성합니다.
-function createCard(data) {
-    let resultContainer = $("#result");
-    
-    // 결과를 표시하기 전에 이전 결과를 지웁니다.
-    resultContainer.empty();
 
-    // 받은 데이터를 기반으로 각각의 상품에 대한 카드를 생성합니다.
-    for (let i = 0; i < data.length; i++) {
-        let cardHtml = `
-            <div class="card">            
-                <img src="image/${data[i].product_image_names}" > 
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="productDetail.do?product_name=${data[i].product_name}&price=${data[i].price}&origin=${data[i].origin}&size=${data[i].size}&weight=${data[i].weight}">${data[i].product_name}</a>
-                    </h5>
-                    <p class="card-text">가격: ${data[i].price}</p>
-                </div>
-            </div>
-        `;
-        resultContainer.append(cardHtml);
-    }
+function saveProductInfo(productCode, productName, price, origin, size, weight) {
+	 alert(" saveProductInfo 실행 productname  :"+productName)
+    $.ajax({
+        type: "POST",
+        url: "saveProductInfoServlet",
+        data: {  productCode : productCode,
+        		 productName : productName,
+        		 price       : price,
+        		 origin      : origin,
+        		 size        : size,
+        		 weight      : weight },
+        success: function(response) {
+            // 세션에 저장이 완료되면 상세 페이지로 이동합니다.
+            alert("상품정보를 세션에 저장합니다")
+            window.location.href = "productDetail.do";
+        },
+        error: function(xhr, status, error) {
+            console.error("AJAX 오류: " + status, error);
+            alert("상품 정보를 저장하는 중 오류가 발생했습니다.");
+        }
+        
+    });
 }
-   
     
 
     
