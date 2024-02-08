@@ -231,69 +231,7 @@ $(document).ready(function() {
 			})
 		})
 })
-//상품 테이블 입력을 요청하는 메소드
-$(document).ready(function() {
-		/* 버튼 클릭시 AJAX 요청 */
-		$("#insertBtn").click(function() {
-			/* 입력된 데이터 가져오기 */
-			let code = $("#product_code").val()
-			let name = $("#product_name").val()
-			let qty = $("#product_qty").val()
-			let origin = $("#origin").val()
-			let manufacture = $("#manufacture_date").val()
-			let weight = $("#weight").val()
-			let size = $("#size").val()
-			let detailImage = $("#detail_image_name").val()
-			let view = $("#view_count").val()
-			let regDate = $("#product_reg_date").val()
-			let kind = $("#kind").val()
-			let productImage = $("#product_image_names").val()
-			let price = $("#price").val()
-		
-			
-			/* AJAX 요청 */
-			$.ajax({
-				type: "POST",
-				url: "aProductInsertServlet",
-				data: {
-					code: code,
-					name: name,
-					qty: qty,
-					origin: origin,
-					manufacture: manufacture,
-					weight : weight,
-					size : size,
-					detailImage : detailImage,
-					view : view,
-					regDate : regDate,
-					kind : kind,
-					productImage : productImage,
-					price : price
-										
-				},
-				success: function(response) {
-					/* 서버에서 받은 응답 처리 */
-					$.ajax({
-						type: "POST",
-						url: "aProductListServlet",
-						data: { name: "" },
-						success: function(response) {
-							/* 서버에서 받은 응답 처리 */
-							createTable(response)//jason
-							//입력완료 후 입력란을 비우기
-							$("#product_code,#product_name,#product_qty,#origin, #manufacture_date,#weight,#size,#detail_image_name,#view_count, #product_reg_date,#kind,#product_image_names,#price").val("")
-							
-						}
-					})
-					alert("입력 되었습니다")
-					
-				},
-				error : function(xhr, ststus,error){
-					alert("입력 시 문제가 발생되었습니다."+ error)
-				}
-			})
-		})
-})
+
 //상품 테이블 삭제를 요청하는 메소드
 $(document).ready(function() {
 		/* 버튼 클릭시 AJAX 요청 */
@@ -332,7 +270,7 @@ $(document).ready(function() {
 		})
 })
       // 전체 검색 버튼 클릭 시 실행되는 함수
-    $("#ollBtn").click(function() {
+    $("#allBtn").click(function() {
         // AJAX 요청을 통해 검색어를 서버에 전달하여 데이터 조회
         $.ajax({
             type: "POST",
