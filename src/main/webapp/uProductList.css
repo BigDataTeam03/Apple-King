@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+body {
+            text-align: center;
+            background-color: rgb(255, 255, 255);
+            padding: 20px;
+        }
+
+        .card {
+            width: 12rem;
+            margin: 20px;
+        }
+
+        .card-img-top {
+            width: 30%;
+            height: auto;
+        }
+
+        .card-body {
+            text-align: left;
+        }
+
+        .card-text {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .listPage{
+        	padding:10px;
+        	text-align: center; 
+        	list-style: none;       
+        }
+        .listPage li {
+        	background-color: #ffffffBD;
+        	padding:20px; 
+        	display: inline-block; 
+        	margin: 0 10px;
+        	cursor: pointer; 
+        
+        }
+        .listPage:active {
+			background-color: #B192EF;
+			color: #fff; 
+		}
+        
