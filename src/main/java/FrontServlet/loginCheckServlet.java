@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -49,12 +50,11 @@ public class loginCheckServlet extends HttpServlet {
 		String pw = (String)request.getParameter("userPW"); 
 
 		// id check
-		System.out.println("\t 1-1. Fetched id from loginview.jsp :" + id);
+		System.out.println("\t 1-1. Fetched id from loginview.jsp : " + id);
 		String idPwCheckQuery = "SELECT cust_id, cust_pw FROM customer "
-					 		  + " WHERE cust_id = '" + id +"' AND cust_pw = '" + pw +"'";
+					 		  + " WHERE cust_id = ? AND cust_pw =?";
 		boolean checkResult =false;
-		// Query check
-		System.out.println("\t 1-2. idPwCheckQuery 실행 :"+ idPwCheckQuery);
+
 		
 		// jsp printing 
 		PrintWriter out = response.getWriter();
@@ -62,33 +62,37 @@ public class loginCheckServlet extends HttpServlet {
 			// SQL 연결
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn_mysql = DriverManager.getConnection(ShareVar.url_mysql, ShareVar.id_mysql,ShareVar.pw_mysql);
+			PreparedStatement ps = conn_mysql.prepareStatement(idPwCheckQuery);
+		    ps.setString(1, id);
+		    ps.setString(2, pw);
+		    // Query check
+		    System.out.println("\t 1-2. idPwCheckQuery 실행 :"+ ps.toString());
+		    ResultSet rs = ps.executeQuery();
 			
-			//select 쿼리문을 사욜하니 Statement 를 사용
-			Statement  stmt_mysql =conn_mysql.createStatement();
-			
-			//결과를 담는 변수 설정
-			ResultSet rs = stmt_mysql.executeQuery(idPwCheckQuery);
 			if(rs.next()) {
 				System.out.println("\t 1-3. DB 에 존재하는 사용자입니다");
 				checkResult = true;
 			}
 			if(checkResult) { // check ->dB custmor 에 있을때
-				System.out.println("\t 1.4 Json전송");
+				System.out.println("\t 1.4 Json전송 ");
 				
 				// session 에 아이디 패스워드 저장
 				session.setAttribute("id",id);
 				session.setAttribute("pw",pw);
-				
+				//System.out.print("\t전송된 Json : ");
+				//System.out.println(new Gson().toJson(checkResult));
 				// Json 타입으로 변환하여 jsp 에 뿌림
 				out.print(new Gson().toJson(checkResult));
 				out.flush();
 			}else {
 				System.out.println("DB 에 문제가생겼습니다.");
 			}
-			
+		    ps.close(); // PreparedStatement 닫기
+		    conn_mysql.close(); // 연결 닫기
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+
 	
 	}
 }

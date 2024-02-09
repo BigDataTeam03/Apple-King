@@ -22,7 +22,7 @@ public class LoginCommand implements Command {
 	 */
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println(">> logiCommand 실행");
+		System.out.println(">> loginCommand 실행");
 
 		// Field 
 		

@@ -15,12 +15,12 @@
  */
 // 처음 화면 실행시 포커스가 아이디 입력란에 있도록. 
  window.onload = function() {
-            document.getElementById('id').focus(); // id 입력란에 포커스 설정
+            document.getElementById("id").focus(); // id 입력란에 포커스 설정
         };
 document.getElementById("id")
 	.addEventListener("keyup", function(e){
 		if (e.keyCode ===13){
-			document.getElementById("loginBtn").click();
+			//document.getElementById("loginBtn").click();
 		}
 	})
 //
@@ -50,7 +50,6 @@ function validateForm(userID,userPW) {
 	}else{
 		return false
 	}
-    //form.submit();
 }
 
 // 로그인 버튼 클릭
@@ -62,26 +61,9 @@ $(document).ready(function() {
 			let userPW = form.pw.value.trim();
 		
 		if(validateForm(userID,userPW)){
-			alert("loginCheckServlet 실행 ")
-	
+			alert("form.action 실행 ")
 			// DB servlet 으로 id, pw Json 으로 전송. 
-			$.ajax({
-				type: "POST",
-				url: "loginCheckServlet",
-				data: {
-						userID: userID,
-						userPW: userPW
-						},
-				
-				success: function(response) {
-					alert(" 환영합니다. ")
-					//window.location.href = "#"; 
-					//form.submit
-				}, // success
-				error : function(xhr, ststus,error){
-					alert("Id 와 비밀번호를 다시 확인하세요.")
-				}
-			}) // ajax
+			
 		} // if
 	})
 })

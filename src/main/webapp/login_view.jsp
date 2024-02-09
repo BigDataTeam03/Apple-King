@@ -29,7 +29,7 @@
 	  	<div>
 	    	<h1><img src="image/logo.png"></h1>
 	  	</div>
-    	<form name="loginForm" action="" method="post"> 
+    	<form name="loginForm" action="loginProcess.do" method="post"> 
         	<div>
             	<input type="text" 
                    size="25" 
