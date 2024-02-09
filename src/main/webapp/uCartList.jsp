@@ -12,7 +12,7 @@
 
 			<p><strong><h2>장바구니 목록 </h2></strong> 
 			
-	 	<div>총 상품 갯수 :<div id = "cartTot"></div>   </div>
+	 	<div>총 상품 종류 :<div id = "cartTot"></div>   </div>
 	 				<br>
 	 				<br>
 	 				
@@ -27,6 +27,9 @@
 	 <button id="cartAllSelectBtn">전체 선택</button>    
 	 <br>
 	 <button id ="cartDeleteBtn"> 삭제 </button>
+	 <br>
+	 총 가격 : <div id="totalPrice"></div>
+	 
 	 
 	  <form action="purchase.do" method="post">
 	  	<input type="submit" value="구매하기">

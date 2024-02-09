@@ -3,16 +3,19 @@
  * Date : 2024.02.08
  * Warning :
  * Update --------------------------------------------------
- * <<2024.02.08 by PDG, KBS>>
+ * <<2024.02.08 by KBS>>
  *	1. 주석 달음.
  	2. 아이디에 해당하는 카트 조회 
  	3. 카트 삭제기능 추가
  	4. 수량선택 가능
- 	5. 전체선택가능
- 	
- 	
- 
+ 	5. 전체선택가능 	
  *----------------------------------------------------------
+ 
+ * Update --------------------------------------------------
+ * <<2024.02.09 by KBS>>
+ *  1. 수량선택기능을 데이터베이스에 즉각반영시킴
+ *  2. 상품의 총 가격을 표시
+ * 
  */
 // 페이지 실행후 바로 장바구니 전체 조회
 window.onload = function() {
@@ -42,11 +45,10 @@ window.onload = function() {
 
 // 테이블 생성하는 함수
 function createTable(data) {
-	
-	//검색해온 데이터(dtos -> json -> Array  변환)
-	dataReal 	= Array.from(data)
-		
-	 let table =
+    //검색해온 데이터(dtos -> json -> Array  변환)
+    dataReal = Array.from(data)
+
+    let table =
         "<table border='1'>" +
         "<tr>" +
         "<th>상품명</th>" +
@@ -55,50 +57,91 @@ function createTable(data) {
          "<th>가격</th>" +
         "</tr>";
         
-	// insert data rows
-	for(let i=0; i<data.length; i++)  {
-		table += "<tr>" +
-		//"<td><a href='uProductList?product_name=" + data[i].product_name + "'>" + data[i].product_name + "</a></td>" + // col1
-		"<td>" +"<a href='backToProduct.do' onclick='handleClick("+i+")'>" + data[i].product_name + "</a>"+ "</td>" +	// col1
-		 "<td><input type='number' name='cartQty' value='" + data[i].cart_qty +  "' min='1'></td>" + // col2 (수량을 입력할 수 있는 input 태그)
-		"<td>" + data[i].product_image_names 				+ "</td>" +	// col3
-		"<td>" + data[i].price 				+ "</td>" +	// col4
-	    "<td><input type='checkbox' name='selectProduct' value='" + data[i].cart_code + "'></td>" + // 체크박스 열
-	"</tr>"
-	}
-	
-	// table end
-	table += "</table>"
-	
-	// html result <- table
-	$("#cartList").html(table);
-	
-	
-	// html prouct count 컨텐츠에 총 상품 수량을 넣어줌. 
-	document.querySelector('#cartTot').innerText = data.length;
-  
-  }
-  
-  
- 	 // 상품 수량을 선택할 수 있도록 설정
-    $("input[name='cartQty']").on("input", function() {
-        // 입력된 값이 숫자가 아니거나 0 이하이면 1로 설정
-        if (!(/^\d+$/.test($(this).val())) || parseInt($(this).val()) <= 0) {
-            $(this).val(1);
-            
-    // 선택된 상품의 카트 코드 가져오기
+    // insert data rows
+    for(let i=0; i<data.length; i++)  {
+        table += "<tr>" +
+            "<td>" + data[i].product_name + "</td>" + // col1
+            "<td>" +
+            "<button class='quantity-btn' onclick='decreaseQuantity(this)'>-</button>" + // "-" 버튼
+            "<input type='number' class='quantity-input' name='cartQty' value='" + data[i].cart_qty + "' min='1' readonly>" + // 수량을 입력할 수 있는 input 태그
+            "<button class='quantity-btn' onclick='increaseQuantity(this)'>+</button>" + // "+" 버튼
+            "</td>" + // col2
+            "<td>" + data[i].product_image_names + "</td>" + // col3
+            "<td>" + data[i].price + "</td>" + // col4
+            "<td><input type='checkbox' name='selectProduct' value='" + data[i].cart_code + "'></td>" + // 체크박스 열
+            "</tr>"
+    }
     
-    //	선택된 행을 가져온다					
-    var cartCode = $(this).closest("tr").find("input[name='selectProduct']").val();
-    // 선택된 수량 가져오기
-    var quantity = $(this).val();
+    // table end
+    table += "</table>"
+    
     	
-    	
-   		
-            
-            
+    
+    
+    // html result <- table
+    $("#cartList").html(table);
+    
+    
+    // html prouct count 컨텐츠에 총 상품 수량을 넣어줌. 
+    document.querySelector('#cartTot').innerText = data.length;
+    
+    
+    
+  
+}
+
+// "+" 버튼 클릭 시 수량 증가
+function increaseQuantity(button) {
+    var input = button.parentNode.querySelector('.quantity-input');
+    //변수지정
+    var currentValue = parseInt(input.value);
+    //input 에 +1 추가
+    input.value = currentValue + 1;
+    //수량체크 매소드로 보낸다
+    updateQuantity(input);
+}
+
+// "-" 버튼 클릭 시 수량 감소
+function decreaseQuantity(button) {
+    var input = button.parentNode.querySelector('.quantity-input');
+    //변수지정
+    var currentValue = parseInt(input.value);
+    //0일수는 없다
+    if (currentValue > 1) {
+		//input 에 -1 추가
+        input.value = currentValue - 1;
+        // 수량체크 메소드로 보낸다
+        updateQuantity(input);
+    }
+}
+
+// 수량 변경 시 서블릿에 전송하는 함수
+function updateQuantity(input) {
+    var cartCode = $(input).closest("tr").find("input[name='selectProduct']").val();
+    var quantity = $(input).val();
+    $.ajax({
+        type: "post",
+        url: "uCartQtyUpdateServlet", // 수량을 업데이트하는 서블릿으로 보냄
+        data: {
+            cartCode: cartCode,
+            quantity: quantity
+        },
+        success: function(response) {
+            //숫자만 바뀌는데 그 숫자는 사용자가 직접 바꾸는 작업이라
+       		//테이블을 다시 불러올 필요가 없다
+       	
+        },
+        error: function(xhr, status, error) {
+            // 에러 처리
+            console.error("선택하신 상품의 재고가 부족합니다:", error);
         }
     });
+}
+
+            
+            
+        
+   
 
 
  // 전체 선택 버튼 클릭 시 동작
