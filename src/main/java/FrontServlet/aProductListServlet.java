@@ -71,7 +71,7 @@ public class aProductListServlet extends HttpServlet {
 			    product_name = request.getParameter("name") ;
 			}
 
-//		//상품 총 갯수를 나타내기 위한 변수지정
+		//상품 총 갯수를 나타내기 위한 변수지정
 		int totalProductNumber =0;
 		
 		// ArrayList 에 담겨 있는 데이터를 JSON 으로 변경하여 송부
@@ -84,9 +84,13 @@ public class aProductListServlet extends HttpServlet {
 		String size = request.getParameter("size");
 		String kind = request.getParameter("kind");
 		String selected = "";
-			System.out.println("오리진" + origin);
+		
+		// 데이터 값 확인 
+		System.out.println(">> 원산지 :" + origin);
+		
 		// 콤보박스로 선택된 정렬값
 		String sorting = request.getParameter("sorting");
+		
 		//기본값은 재고순으로
 		if (sorting == null) {
 			sorting = "stokHigh";
