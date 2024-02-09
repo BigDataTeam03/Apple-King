@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 
 
 import command.Command;
-import command.IdCheckCommand;
 import command.LoginCommand;
 
 import command.SignupCommand;
@@ -127,13 +126,6 @@ public class FrontController extends HttpServlet {
 			command = new SignupCommand();
 			command.execute(request, response);
 			response.sendRedirect("loginStart.do");
-			break;
-			
-		// ID overlap check
-		case ("/checkid.do"): 
-			command = new IdCheckCommand();
-			command.execute(request, response);
-			viewPage = "signup_view.jsp";
 			break;
 			
 		// Go home of user

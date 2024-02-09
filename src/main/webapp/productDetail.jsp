@@ -8,6 +8,9 @@
     //String realfolder = context.getRealPath(savefolder);
 %>
 <!DOCTYPE html>
+
+
+
 <c:set var="dto" value="${detailSession}" />
 <html lang="en">
 <head>
