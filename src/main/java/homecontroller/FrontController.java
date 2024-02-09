@@ -82,29 +82,50 @@ public class FrontController extends HttpServlet {
 		String com = uri.substring(conPath.length());
 		
 		//Controller Start Test Code
-		System.out.println(">> Controller start =>"+ com );
+		System.out.println("---------------------------------------");
+		System.out.println(">> *****[[Controller STARTED]]*****");
 		
 		switch (com) {
 		
 		//-------------- Customer Management Part (MVC) --------------
 		// Login Page
 		case ("/loginStart.do"):
-			System.out.println(">> loginSart.do 실행");
+			System.out.println(">> 0-1.loginSart.do 실행");
 			viewPage = "login_view.jsp";
 			break;
-
+		
+		case("/loginProcess.do"):
+			System.out.println(">> 0-2.loginProcess	.do 실행");
+			String loginID = (String) session.getAttribute("id");
+			if (loginID != null) {	
+				
+				// if "admin" is input as ID, move to admin's product list.
+				if (loginID.equals("admin")) {
+					System.out.println(">> 관리자 페이지로 이동");
+					viewPage = "aGohome.do";
+				} else { // if the input ID is customer's id, move to customer's product list.
+					System.out.println(">> 사용자 페이지로 이동");
+					viewPage = "cGohome.do";
+				}
+			} else { // if the login fails, then go back to login page.
+				viewPage = "login_view.jsp";
+			}
+			break;
+			
 		// Login Action
 		case ("/login.do"):
-			System.out.println(">> login.do 실행");
-			command = new LoginCommand();
-			command.execute(request, response);
-			String loginID = (String) session.getAttribute("loginID");
+			System.out.println("  >> login.do 실행");
+			//command = new LoginCommand();
+			//command.execute(request, response);
+			loginID = (String) session.getAttribute("id");
 			if (loginID != null) {
 				
 				// if "admin" is input as ID, move to admin's product list.
-				if (loginID.equals("admin123")) { 
-					viewPage = "aProductList.do";
+				if (loginID.equals("admin")) {
+					System.out.println(">> 관리자 페이지로 이동");
+					viewPage = "aGohome.do";
 				} else { // if the input ID is customer's id, move to customer's product list.
+					System.out.println(">> 사용자 페이지로 이동");
 					viewPage = "cGohome.do";
 				}
 			} else { // if the login fails, then go back to login page.

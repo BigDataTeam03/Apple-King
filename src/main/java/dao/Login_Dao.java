@@ -33,11 +33,10 @@ public class Login_Dao {
 	
 	//checkID that is stored inside the database. 
 	public boolean checkLogin(String id, String pw) {
-		System.out.println("checklogin shilhang");
+		System.out.println(">> Login_dao 실행");
 		Connection conn = null;
 		PreparedStatement ps = null;	
 		ResultSet rs = null;
-		System.out.println("checklogin?");
 		try {
 			conn = dataSource.getConnection();	// this makes connection to the db.  
 			

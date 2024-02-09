@@ -56,16 +56,13 @@ function validateForm(userID,userPW) {
 // 로그인 버튼 클릭
 $(document).ready(function() {
 	
-	
 	$("#loginBtn").click(function() {
 			let form = document.loginForm
 			let userID = form.id.value.trim();
 			let userPW = form.pw.value.trim();
 		
 		if(validateForm(userID,userPW)){
-			alert("id, pw 를 비교합니다. ")
-			
-
+			alert("loginCheckServlet 실행 ")
 	
 			// DB servlet 으로 id, pw Json 으로 전송. 
 			$.ajax({
@@ -75,17 +72,17 @@ $(document).ready(function() {
 						userID: userID,
 						userPW: userPW
 						},
-				dataType: "json",
+				
 				success: function(response) {
 					alert(" 환영합니다. ")
+					//window.location.href = "#"; 
+					//form.submit
 				}, // success
 				error : function(xhr, ststus,error){
 					alert("Id 와 비밀번호를 다시 확인하세요.")
 				}
 			}) // ajax
 		} // if
-		
-		
 	})
 })
 
