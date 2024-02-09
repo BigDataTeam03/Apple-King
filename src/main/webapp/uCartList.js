@@ -26,7 +26,7 @@ window.onload = function() {
 		url: "uCartListServlet",
 		
 		// request data (JSON)
-		data: { cust_id: "sumin123" },
+		data: { cust_id: "sumin123" }, 
 		
 		// response data type -> JSON
 		dataType :"json",
