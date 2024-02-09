@@ -17,7 +17,8 @@
 	  <a href="aProductInsert.do">		상품 등록</a>	 		&nbsp;&nbsp;&nbsp;
 	  <a href="aCustomerList.do">		회원 목록 조회/수정</a> 	&nbsp;&nbsp;&nbsp;
 	  <a href="aCustomerOrderList.do">	회원 매출 조회</a> 		&nbsp;&nbsp;&nbsp;
-	  <a href="aGoHome.do">				홈으로</a> 			&nbsp;&nbsp;&nbsp;
+	  <a href="aGoHome.do">				관리자홈</a> 			&nbsp;&nbsp;&nbsp;
+	  <a href="cGoHome.do">				유저홈</a> 			&nbsp;&nbsp;&nbsp;
 	  <br>
 	</nav>
 	</body>

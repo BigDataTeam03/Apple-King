@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 
 
 import command.Command;
-import command.IdCheckCommand;
 import command.LoginCommand;
 
 import command.SignupCommand;
@@ -55,7 +54,7 @@ public class FrontController extends HttpServlet {
 	private void actionDo(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		/*--------------------------------------
-		 * Description: Apple store controller 
+		 * Description: Apple King Controller 
 		 * Author : PDG, KBS, LS, Diana
 		 * Date : 2024.02.02
 		 * Warning : 컨트롤러 수정시 슬랙에 변경(추가) 될 부분만 보내주시고 커밋은 제외 할것.
@@ -65,6 +64,8 @@ public class FrontController extends HttpServlet {
 		 * 			2.
 		 * 		Update 2024.02.06 by pdg
 		 * 			1. controller 오타 수정및 테스트코드 주석 수정. + 정리
+		 * 	 	Update 2024.02.09 by pdg
+		 * 			1. cGohome -> cGoHome 으로 바꿈. 
 		 * 
 		 *-------------------------------------- 
 		 */
@@ -80,26 +81,51 @@ public class FrontController extends HttpServlet {
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
 		
-		//Controller Start Test code
-		System.out.println(">> Controller start =>"+ com );
+		//Controller Start Test Code
+		System.out.println("---------------------------------------");
+		System.out.println(">> *****[[Controller STARTED]]*****");
 		
 		switch (com) {
 		
 		//-------------- Customer Management Part (MVC) --------------
 		// Login Page
 		case ("/loginStart.do"):
+			System.out.println(">> 0-1.loginSart.do 실행");
 			viewPage = "login_view.jsp";
 			break;
-
+		
+		case("/loginProcess.do"):
+			System.out.println(">> 0-2.loginProcess	.do 실행");
+			String loginID = (String) session.getAttribute("id");
+			if (loginID != null) {	
+				
+				// if "admin" is input as ID, move to admin's product list.
+				if (loginID.equals("admin")) {
+					System.out.println(">> 관리자 페이지로 이동");
+					viewPage = "aGohome.do";
+				} else { // if the input ID is customer's id, move to customer's product list.
+					System.out.println(">> 사용자 페이지로 이동");
+					viewPage = "cGohome.do";
+				}
+			} else { // if the login fails, then go back to login page.
+				viewPage = "login_view.jsp";
+			}
+			break;
+			
 		// Login Action
 		case ("/login.do"):
-			command = new LoginCommand();
-			command.execute(request, response);
-			String loginID = (String) session.getAttribute("loginID");
+			System.out.println("  >> login.do 실행");
+			//command = new LoginCommand();
+			//command.execute(request, response);
+			loginID = (String) session.getAttribute("id");
 			if (loginID != null) {
-				if (loginID.equals("admin")) { // if "admin" is input as ID, move to admin's product list.
-					viewPage = "aProductList.do";
+				
+				// if "admin" is input as ID, move to admin's product list.
+				if (loginID.equals("admin")) {
+					System.out.println(">> 관리자 페이지로 이동");
+					viewPage = "aGohome.do";
 				} else { // if the input ID is customer's id, move to customer's product list.
+					System.out.println(">> 사용자 페이지로 이동");
 					viewPage = "cGohome.do";
 				}
 			} else { // if the login fails, then go back to login page.
@@ -123,20 +149,11 @@ public class FrontController extends HttpServlet {
 			response.sendRedirect("loginStart.do");
 			break;
 			
-		// ID overlap check
-		case ("/checkid.do"): // checking for duplicates when signing up
-			command = new IdCheckCommand();
-			command.execute(request, response);
-			viewPage = "signup_view.jsp";
-			break;
-			
 		// Go home of user
-		case("/cGohome.do"):
+		case("/cGoHome.do"):
 			System.out.println(">> " + com + "실행 ");
 			viewPage ="uProductList.jsp";
 		break;
-		
-		
 			
 		//-------------- Product Part (MVC) --------------
 		// Product insert page from top button
