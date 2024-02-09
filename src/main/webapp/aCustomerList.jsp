@@ -70,7 +70,7 @@
 		
 		<p><strong><h2>고객 목록 </h2></strong> 
 		<!-- 전체 고객 정보 리스트 출력 -->
-		<div 	id = "custList"></div> 
+		<div id = "custList"></div> 
 		
 		<div>
 			<br>
