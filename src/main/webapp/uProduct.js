@@ -170,7 +170,7 @@ $(document).ready(function() {
   });
 
 function saveProductInfo(productCode, productName, price, origin, size, weight) {
-	 alert(" saveProductInfo 실행 productname  :"+productName)
+	 //alert(" saveProductInfo 실행 productname  :"+productName)
     $.ajax({
         type: "POST",
         url: "saveProductInfoServlet",
@@ -182,7 +182,7 @@ function saveProductInfo(productCode, productName, price, origin, size, weight) 
         		 weight      : weight },
         success: function(response) {
             // 세션에 저장이 완료되면 상세 페이지로 이동합니다.
-            alert("상품정보를 세션에 저장합니다")
+            //alert("상품정보를 세션에 저장합니다")
             window.location.href = "productDetail.do";
         },
         error: function(xhr, status, error) {
