@@ -31,23 +31,13 @@ public class FrontController extends HttpServlet {
 	 */
 	public FrontController() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		actionDo(request, response);
 	}
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		actionDo(request, response);
 	}
 
@@ -93,46 +83,34 @@ public class FrontController extends HttpServlet {
 			System.out.println(">> 0-1.loginSart.do 실행");
 			viewPage = "login_view.jsp";
 			break;
+
 		
 		case("/loginProcess.do"):
-			System.out.println(">> 0-2.loginProcess	.do 실행");
+			System.out.println(">> 0-2.loginProcess.do 실행");
+		
+			command = new LoginCommand();
+			command.execute(request, response);
 			String loginID = (String) session.getAttribute("id");
+			
 			if (loginID != null) {	
 				
 				// if "admin" is input as ID, move to admin's product list.
 				if (loginID.equals("admin")) {
 					System.out.println(">> 관리자 페이지로 이동");
-					viewPage = "aGohome.do";
+					viewPage = "aProductListUpdate.jsp";
 				} else { // if the input ID is customer's id, move to customer's product list.
 					System.out.println(">> 사용자 페이지로 이동");
-					viewPage = "cGohome.do";
+					viewPage = "cGohome.do";	
 				}
 			} else { // if the login fails, then go back to login page.
 				viewPage = "login_view.jsp";
-			}
-			break;
-			
-		// Login Action
-		case ("/login.do"):
-			System.out.println("  >> login.do 실행");
-			//command = new LoginCommand();
-			//command.execute(request, response);
-			loginID = (String) session.getAttribute("id");
-			if (loginID != null) {
 				
-				// if "admin" is input as ID, move to admin's product list.
-				if (loginID.equals("admin")) {
-					System.out.println(">> 관리자 페이지로 이동");
-					viewPage = "aGohome.do";
-				} else { // if the input ID is customer's id, move to customer's product list.
-					System.out.println(">> 사용자 페이지로 이동");
-					viewPage = "cGohome.do";
-				}
-			} else { // if the login fails, then go back to login page.
-				viewPage = "login_view.jsp";
 			}
+			System.out.println(" 다음 페이지로 선택은 곳은 "+viewPage);
+			//session.setAttribute("viewPage", viewPage);
 			break;
 			
+
 		// Sign Up page 
 		case ("/signupStart.do"): 
 			viewPage = "/USER/signup_view.jsp";
@@ -214,12 +192,24 @@ public class FrontController extends HttpServlet {
 		case("/aGoHome.do"):
 			viewPage ="aCustomerList.jsp";
 			break;
+		default:
+			break;
 		}
+		
 		// Controller viewPage forward
 		if (viewPage != null) {
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
+			
+		}else {
+			System.out.println("view page 가  "+ viewPage +" 입니다. ");
+
 		}
+
+	
+			
+		
 
 	}
 }

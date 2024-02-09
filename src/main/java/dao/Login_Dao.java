@@ -9,16 +9,10 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 public class Login_Dao {
-	
-	
 	//field
 	DataSource dataSource;
-	
-	
-	
 	//constructor
 	public Login_Dao() {
-		// TODO Auto-generated constructor stub
 		try{
 			Context context = new InitialContext();
 			dataSource = (DataSource)context.lookup("java:comp/env/jdbc/apple_store"); 	//[java:comp/env]는 context.xml의 위치. [jdbc/shoes]	는 이름. 		
@@ -26,10 +20,7 @@ public class Login_Dao {
 			e.printStackTrace();
 		}
 	}
-	
-
 	// Method
-	
 	
 	//checkID that is stored inside the database. 
 	public boolean checkLogin(String id, String pw) {
