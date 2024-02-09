@@ -62,6 +62,6 @@ public class Signup_Dao {
 			}
 		}
 
-	}// END
+	}
 
-}
+}// END

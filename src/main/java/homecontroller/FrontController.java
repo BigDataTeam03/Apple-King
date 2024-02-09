@@ -17,18 +17,9 @@ import command.SignupCommand;
 import command.aProductInsertCommand;
 import command.cartCommand;
 import command.productDetailCommand;
-
-
-/**
- * Servlet implementation class FrontController
- */
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public FrontController() {
 		super();
 	}
@@ -40,7 +31,6 @@ public class FrontController extends HttpServlet {
 			throws ServletException, IOException {
 		actionDo(request, response);
 	}
-
 	private void actionDo(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		/*--------------------------------------
@@ -56,7 +46,7 @@ public class FrontController extends HttpServlet {
 		 * 			1. controller 오타 수정및 테스트코드 주석 수정. + 정리
 		 * 	 	Update 2024.02.09 by pdg
 		 * 			1. cGohome -> cGoHome 으로 바꿈. 
-		 * 
+		 * 			2. 주석을 정리함.. signinup part, user, admin + admin(AJAX) part 로 나눔. 
 		 *-------------------------------------- 
 		 */
 		
@@ -74,42 +64,34 @@ public class FrontController extends HttpServlet {
 		//Controller Start Test Code
 		System.out.println("---------------------------------------");
 		System.out.println(">> *****[[Controller STARTED]]*****");
-		
 		switch (com) {
 		
-		//-------------- Customer Management Part (MVC) --------------
+		//--------------[ Customer Sign In & Sign Up Part (MVC) ]--------------
 		// Login Page
 		case ("/loginStart.do"):
 			System.out.println(">> 0-1.loginSart.do 실행");
 			viewPage = "login_view.jsp";
 			break;
-
-		
+		// Login Process Page
 		case("/loginProcess.do"):
 			System.out.println(">> 0-2.loginProcess.do 실행");
-		
 			command = new LoginCommand();
 			command.execute(request, response);
 			String loginID = (String) session.getAttribute("id");
-			
 			if (loginID != null) {	
-				
-				// if "admin" is input as ID, move to admin's product list.
 				if (loginID.equals("admin")) {
 					System.out.println(">> 관리자 페이지로 이동");
 					viewPage = "aProductListUpdate.jsp";
-				} else { // if the input ID is customer's id, move to customer's product list.
+				} else { 
 					System.out.println(">> 사용자 페이지로 이동");
 					viewPage = "cGohome.do";	
 				}
 			} else { // if the login fails, then go back to login page.
 				viewPage = "login_view.jsp";
-				
 			}
 			System.out.println(" 다음 페이지로 선택은 곳은 "+viewPage);
 			//session.setAttribute("viewPage", viewPage);
 			break;
-			
 
 		// Sign Up page 
 		case ("/signupStart.do"): 
@@ -127,18 +109,35 @@ public class FrontController extends HttpServlet {
 			response.sendRedirect("loginStart.do");
 			break;
 			
+		
+		//-------------- [ USER Part ] ----------------------------
 		// Go home of user
 		case("/cGoHome.do"):
 			System.out.println(">> " + com + "실행 ");
 			viewPage ="uProductList.jsp";
-		break;
+			break;
 			
-		//-------------- Product Part (MVC) --------------
-		// Product insert page from top button
-		case ("/aProductInsert.do"):
+		// Product Detail page
+		case ("/productDetail.do"): 
+			System.out.println(">> " + com + "실행 ");
+			command = new productDetailCommand();
+			command.execute(request, response);
+			viewPage = "uProductDetail.jsp";
+			break;
+			
+		//Cart Page
+		case ("/cartInsert.do"): 
+			System.out.println(">> " + com + "실행 ");
+			command = new cartCommand();
+			command.execute(request, response);
+			viewPage = "uCartList.jsp";
+			break;
+		//-------------- [Administrator Product Part (MVC)] ----
+		
+			// Product insert page from top button
+		case ("/aProductInsert.do"):	
 			viewPage = "/aProductInsert.jsp";
 			System.out.println(viewPage);
-
 			break;	
 		
 		// Product insert process (image MVC)
@@ -149,67 +148,38 @@ public class FrontController extends HttpServlet {
 			command.execute(request,response);
 			viewPage = "/aProductListUpdate.jsp";
 			break;
+		//-------------- [ AJAX Part(Administrator)] ------------
 		
-		// Product Detail page
-		case ("/productDetail.do"): 
-			
-			// test code
-			System.out.println(">> " + com + "실행 ");
-			command = new productDetailCommand();
-			command.execute(request, response);
-			viewPage = "productDetail.jsp";
-			break;
-			
-		//Cart Page
-		case ("/cart.do"): 
-			
-			// test code
-			System.out.println(">> " + com + "실행 ");
-			command = new cartCommand();
-			command.execute(request, response);
-			viewPage = "uCartList.jsp";
-			break;
-			
-			
-		//-------------- AJAX Part --------------
-		// product list update
-		case("/aProductListUpdate.do"):
+			// product list update
+		case("/aProductListUpdate.do"): 
 			viewPage ="aProductListUpdate.jsp";
 			break;
 		
 		// customer list 
 		case("/aCustomerList.do"):		
+			viewPage ="aCustomerList.jsp";	
 			System.out.println("aCustmoerList.do 실행 ");
-			viewPage ="aCustomerList.jsp";
 			break;
 			
 		// order list 
-		case("/aCustomerOrderList.do"):
+		case("/aCustomerOrderList.do"):	
 			viewPage ="aCustomerOrderList.jsp";
 			break;
 			
 		// Go home of admin
-		case("/aGoHome.do"):
+		case("/aGoHome.do"):			
 			viewPage ="aCustomerList.jsp";
 			break;
 		default:
 			break;
 		}
-		
+		//-------------- [ Switch END] -------------------------
 		// Controller viewPage forward
 		if (viewPage != null) {
-			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
-			
 		}else {
 			System.out.println("view page 가  "+ viewPage +" 입니다. ");
-
 		}
-
-	
-			
-		
-
-	}
-}
+	}// controller
+} //END
