@@ -55,7 +55,7 @@ public class FrontController extends HttpServlet {
 	private void actionDo(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		/*--------------------------------------
-		 * Description: Apple store controller 
+		 * Description: Apple King Controller 
 		 * Author : PDG, KBS, LS, Diana
 		 * Date : 2024.02.02
 		 * Warning : 컨트롤러 수정시 슬랙에 변경(추가) 될 부분만 보내주시고 커밋은 제외 할것.
@@ -65,6 +65,8 @@ public class FrontController extends HttpServlet {
 		 * 			2.
 		 * 		Update 2024.02.06 by pdg
 		 * 			1. controller 오타 수정및 테스트코드 주석 수정. + 정리
+		 * 	 	Update 2024.02.09 by pdg
+		 * 			1. cGohome -> cGoHome 으로 바꿈. 
 		 * 
 		 *-------------------------------------- 
 		 */
@@ -80,7 +82,7 @@ public class FrontController extends HttpServlet {
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
 		
-		//Controller Start Test code
+		//Controller Start Test Code
 		System.out.println(">> Controller start =>"+ com );
 		
 		switch (com) {
@@ -88,16 +90,20 @@ public class FrontController extends HttpServlet {
 		//-------------- Customer Management Part (MVC) --------------
 		// Login Page
 		case ("/loginStart.do"):
+			System.out.println(">> loginSart.do 실행");
 			viewPage = "login_view.jsp";
 			break;
 
 		// Login Action
 		case ("/login.do"):
+			System.out.println(">> login.do 실행");
 			command = new LoginCommand();
 			command.execute(request, response);
 			String loginID = (String) session.getAttribute("loginID");
 			if (loginID != null) {
-				if (loginID.equals("admin")) { // if "admin" is input as ID, move to admin's product list.
+				
+				// if "admin" is input as ID, move to admin's product list.
+				if (loginID.equals("admin123")) { 
 					viewPage = "aProductList.do";
 				} else { // if the input ID is customer's id, move to customer's product list.
 					viewPage = "cGohome.do";
@@ -124,19 +130,17 @@ public class FrontController extends HttpServlet {
 			break;
 			
 		// ID overlap check
-		case ("/checkid.do"): // checking for duplicates when signing up
+		case ("/checkid.do"): 
 			command = new IdCheckCommand();
 			command.execute(request, response);
 			viewPage = "signup_view.jsp";
 			break;
 			
 		// Go home of user
-		case("/cGohome.do"):
+		case("/cGoHome.do"):
 			System.out.println(">> " + com + "실행 ");
 			viewPage ="uProductList.jsp";
 		break;
-		
-		
 			
 		//-------------- Product Part (MVC) --------------
 		// Product insert page from top button

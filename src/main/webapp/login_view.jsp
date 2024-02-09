@@ -14,6 +14,32 @@
     div {
         margin-bottom: 10px;}
 </style>
+
+</head>
+<body>
+	<h3>로그인</h3>
+	<form name="loginForm" action="login.do" method="post"> 
+		<div>
+			아이디 :  	<input type="text" size ="20" 
+						class="form-control" 
+						id="id" 
+						name="id"
+						placeholder ="아이디를 입력하세요 "
+						required><br>
+						<button id="submit">Submit</button>
+			패스워드 :		<input type="password" size ="10" class="form-control" id="pw" name="pw" required><br>		
+		</div>
+		<input type="button" class="btn btn-primary" onclick="validateForm();" value="로그인"/>
+	</form>
+	<!-- 회원가입 페이지로 넘어가는 버튼 -->
+	<form name="signupForm" action="signupStart.do">
+		<input type="submit" class="btn btn-primary" value="회원가입"></input>
+	</form>
+	
+<!--  login 정규식  및 버튼 JS  -->
+		
+		<script src = "https://code.jquery.com/jquery-3.6.4.min.js"></script>
+		<script src = "login.js"></script>
 <script>
     // script start
     function validateForm() {
@@ -34,51 +60,8 @@
             form.pw.focus();
             return ;
         }
-
-        // Validate ID (only alphanumeric, up to 10 characters)
-        let idRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{1,10}$/;
-		if (!idRegex.test(id)) {
-  		    alert("아이디는 영어와 숫자를 조합하여 10자 이내로 입력해주세요.");
-    		form.id.focus();
-    		return ;
-        }
-
-        // Validate Password (alphanumeric and special characters, up to 10 characters)
-       let pwRegex = /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])[a-z\d!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]{1,10}$/;
-	   if (!pwRegex.test(pw)) {
-    	   alert("비밀번호는 영어 소문자, 숫자, 특수문자를 모두 포함하여 10자 이내로 입력해주세요.");
-    	   form.pw.focus();
-    	   return ;
-        }
-
         	form.submit();
     }
-    
-    
 </script>
-
-
-</head>
-<body>
-
-	<h3>로그인</h3>
-	
-	<form name="loginForm" action="login.do" method="post"> 
-	
-	<div>
-	아이디 : <input type="text" class="form-control" id="id" name="id" required><br>
-	패스워드 : <input type="password" class="form-control" id="pw" name="pw" required><br>		
-	</div>
-	
-	
-	
-	<input type="button" class="btn btn-primary" onclick="validateForm();" value="로그인"/>
-	</form>
-	<!-- 회원가입 페이지로 넘어가는 버튼 -->
-	<form name="signupForm" action="signupStart.do">
-		<input type="submit" class="btn btn-primary" value="회원가입"></input>
-	</form>
-    	
-    	
 </body>
 </html>

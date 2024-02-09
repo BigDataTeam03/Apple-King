@@ -7,30 +7,45 @@ import javax.servlet.http.HttpSession;
 import dao.Login_Dao;
 
 public class LoginCommand implements Command {
-
+	/*--------------------------------------
+	 * Description: Login Command 
+	 * Author : PDG,LS, Diana
+	 * Date : 2024.02.02
+	 * Update :
+	 * 		Update 2024.02.04 by LS, Diana
+	 * 			1. Dao 작성
+	 * 		Update 2024.02.09 by pdg
+	 * 			1. 주석 생성. 
+	 * 			
+	 * 
+	 *-------------------------------------- 
+	 */
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println(">> logiCommand 실행");
+
+		// Field 
 		
-		System.out.println(" Login command 실행 ");
-		String id = (String)request.getParameter("id");  //fetch id that is input by the user. 
-		String pw = (String)request.getParameter("pw");	 //fetch pw that is input by the user. 
-		HttpSession session = request.getSession();
+		// Session
+		HttpSession session = request.getSession();  
 		
+		// User Id , Password fetch from loginview.jsp
+		String id = (String)request.getParameter("id"); 
+		String pw = (String)request.getParameter("pw"); 
+		
+		// Login DAO => DB customer id  comparison
 		Login_Dao dao = new Login_Dao();
+		System.out.println(">> Fetched  id from loginview.jsp :" + id);
 		
-		System.out.println("login view 에서 가져온 id :" + id);
-		
-		if(dao.checkLogin(id, pw)) {					// If login is successful after going through Login_Dao, insert it into session. 
-			session.setAttribute("loginID", id);
-			session.setAttribute("loginPW", pw);
+		// If login is successful after going through Login_Dao, insert it into session.
+		if(dao.checkLogin(id, pw)) {					 
+			session.setAttribute("loginID", id); // loginID <-- id
+			session.setAttribute("loginPW", pw); // loginPW <-- pw
 		}else {
-			System.out.println("checklogin에서 떨어진거잖아");
+			System.out.println(">> login 실패 ");
 			session.setAttribute("loginID", null);
 		}
-
 	}
-
-
-	}
+}
 
 
