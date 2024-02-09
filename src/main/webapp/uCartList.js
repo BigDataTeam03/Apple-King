@@ -48,6 +48,8 @@ function createTable(data) {
     //검색해온 데이터(dtos -> json -> Array  변환)
     dataReal = Array.from(data)
 
+  $("#cartList").empty();
+  
     let table =
         "<table border='1'>" +
         "<tr>" +
@@ -57,6 +59,8 @@ function createTable(data) {
          "<th>가격</th>" +
         "</tr>";
         
+    //총 가격 변수지정
+  var totalPrice = 0;
     // insert data rows
     for(let i=0; i<data.length; i++)  {
         table += "<tr>" +
@@ -70,6 +74,10 @@ function createTable(data) {
             "<td>" + data[i].price + "</td>" + // col4
             "<td><input type='checkbox' name='selectProduct' value='" + data[i].cart_code + "'></td>" + // 체크박스 열
             "</tr>"
+            //상품의 가격을 수량만큼 곱한다
+             var productTotalPrice = data[i].price * data[i].cart_qty;
+    	    // 총 가격 합산
+             totalPrice += productTotalPrice;
     }
     
     // table end
@@ -84,6 +92,10 @@ function createTable(data) {
     
     // html prouct count 컨텐츠에 총 상품 수량을 넣어줌. 
     document.querySelector('#cartTot').innerText = data.length;
+    
+     // 총 가격 출력
+    document.querySelector('#totalPrice').innerText = totalPrice;
+    
     
     
     
@@ -121,15 +133,14 @@ function updateQuantity(input) {
     var quantity = $(input).val();
     $.ajax({
         type: "post",
-        url: "uCartQtyUpdateServlet", // 수량을 업데이트하는 서블릿으로 보냄
+        url: "uCartQtyUpdateServlet",
         data: {
             cartCode: cartCode,
             quantity: quantity
         },
         success: function(response) {
-            //숫자만 바뀌는데 그 숫자는 사용자가 직접 바꾸는 작업이라
-       		//테이블을 다시 불러올 필요가 없다
-       	
+            // 테이블 업데이트
+            createTable(response);
         },
         error: function(xhr, status, error) {
             // 에러 처리
