@@ -38,9 +38,10 @@ public class LoginCommand implements Command {
 		System.out.println(">> Fetched  id from loginview.jsp :" + id);
 		
 		// If login is successful after going through Login_Dao, insert it into session.
-		if(dao.checkLogin(id, pw)) {					 
-			session.setAttribute("loginID", id); // loginID <-- id
-			session.setAttribute("loginPW", pw); // loginPW <-- pw
+		if(dao.checkLogin(id, pw)[0].equals(id)) {				
+			System.out.println("loginId 와 loginPw 를 세션에 저장합니다. Id:"+id);
+			session.setAttribute("loginId", id); // loginID <-- id
+			session.setAttribute("loginPw", pw); // loginPW <-- pw
 		}else {
 			System.out.println(">> login 실패 ");
 			session.setAttribute("loginID", null);

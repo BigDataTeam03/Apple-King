@@ -22,21 +22,25 @@ public class Login_Dao {
 	}
 	// Method
 	//checkID that is stored inside the database. 
-	public boolean checkLogin(String id, String pw) {
+	public String[] checkLogin(String id, String pw) {
+		//return
+		String[] result = {"",""};
+		
 		System.out.println(">> Login_dao 실행");
 		Connection conn = null;
 		PreparedStatement ps = null;	
 		ResultSet rs = null;
 		try {
 			conn = dataSource.getConnection();	// this makes connection to the db.  
-			String query = "SELECT cust_id, cust_pw FROM customer ";
+			String select = "SELECT cust_id, cust_pw FROM customer ";
 			String where = " WHERE cust_id = '" + id +"' AND cust_pw = '" + pw +"'";
-			ps = conn.prepareStatement(query+where);
-			System.out.println("CheckLogin 쿼리문 : "+ps.toString());
+			ps = conn.prepareStatement(select+where);
+			System.out.println(">> CheckLogin Query : "+ps.toString().split(":")[1]);
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				System.out.println("db에 존재하는 사용자입니다");
-				return true;
+				System.out.println(">> DBcheck :존재하는 사용자입니다");
+				result[0]=id;
+				result[0]=pw;
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -49,7 +53,7 @@ public class Login_Dao {
 				e.printStackTrace();
 			}
 		}
-		return false;
+		return result;
 	}//checkID()
 	
 	
