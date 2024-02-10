@@ -1,27 +1,30 @@
+<%@ page import="com.javaproject.util.CookieManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
-<!--
---------------------------------------------------------------
-* Description 	: Login 화면
-		Detail	:
-    		  	
-* Author 		: PDG, LS, Diana
-* Date 			: 2024.02.05
-* ---------------------------Update---------------------------		
-* <<2024.02.09>> by PDG
-    1.  로고 디자인 너음. 
-    2. 가운데 정렬하고 css 파일 만듬. 
-    3. 버튼 클릭하지 않고 엔터만 처도 들어가게 만듬. 
-    4. MVC 가아니라 JS format 으로 다시세팅함. 
-    
-   <<2024.02.10>> by PDG
-    1. 공지사항 pop up
-    
---------------------------------------------------------------
--->		
+	
 	<%
-		String popupMode = "on"; // layer pop up 띄울지 여부
+		/*--------------------------------------------------------------
+		* Description 	: Login 화면
+				Detail	:
+		    		  	
+		* Author 		: PDG, LS, Diana
+		* Date 			: 2024.02.05
+		* ---------------------------Update---------------------------		
+		* <<2024.02.09>> by PDG
+		    1.  로고 디자인 너음. 
+		    2. 가운데 정렬하고 css 파일 만듬. 
+		    3. 버튼 클릭하지 않고 엔터만 처도 들어가게 만듬. 
+		    4. MVC 가아니라 JS format 으로 다시세팅함. 
+		    
+		   <<2024.02.10>> by PDG
+		    1. 공지사항 layer pop up 기능 추가함. 
+		    2. 쿠키를 이용한 로그인 방식으로 수정함. 
+		    
+		--------------------------------------------------------------*/
+		// Layer pop up 띄울지 여부
+		String popupMode = "on"; 
 		
 		// Cookie 설정
 		Cookie[] cookies = request.getCookies();
@@ -34,6 +37,12 @@
 				}//If end
 			}//For end
 		}//If end
+		
+		String loginId = CookieManager.readCookie(request,"loginId");
+		String cookieCheck = "";
+		if (!loginId.equals("")){
+			cookieCheck = "checked";
+		}//If end
 	%>
 <html lang="ko">
 <head>
@@ -44,7 +53,7 @@
     <style>
 		div#popup{
 			position : absolute; top:100px; left:50px; color:yellow;
-			width:400px ; height : 100px; background-color :gray;
+			width:400px ; height : 100px; background-color :#96c0bc;
 		}
 		div#popup>div{
 			position : relative; background-color : #ffffff; top: 0px;
@@ -56,6 +65,7 @@
 </head>
 <body>
 	<%
+		// POP UP 
 		if (popupMode.equals("on")){
 	%>
 			<!-- html region -->
@@ -77,16 +87,20 @@
 	  	<div>
 	    	<h1><img src="image/logo.png"></h1>
 	  	</div>
-    	<form name="loginForm" action="loginProcess.do" method="post"> 
+    	<form name="loginForm" action="IdSaveProcess.jsp" method="post"> 
         	<div>
         		<!--  ID 입력란 -->
             	<input type="text" 
                    size="25" 
                    class="form-control" 
                    id="id" 
-                   name="id"
+                   name="userId"
                    placeholder="아이디"
-                   required>
+                   value ="<%= loginId %>"
+                   required />
+                <input type="checkbox" 
+                	name ="save_check"
+                	value ="Y" <%=cookieCheck %> >아이디저장하기    
         	</div>
         	<div>
         		<!--  PW 입력란 -->
@@ -94,17 +108,28 @@
                    size="25"
                    class="form-control"
                    id="pw" 
-                   name="pw" 
+                   name="userPw" 
                    placeholder="비밀번호"
                    required>
         	</div>
         	<div>
             	<!-- 로그인  버튼 -->
-            	<button id="loginBtn">Log In</button>
+            	<input 
+	            	type ="submit" 
+	            	size ="40" 
+	            	id="loginBtn" 
+	            	value ="Log In"
+	            	style="width: 100%; background-color: #33CC33; color: white;
+            		  	   font-size: 18px;	">
+            	<div><br></div>
         	</div>
         	<div>
             	<!-- 회원가입 버튼 -->
-            	<button id="signupBtn">Sign Up</button>
+            	<button 
+            		id="signupBtn"
+            		style="width: 100%; background-color: #6633CC; color: white;
+            		font-size: 18px;"
+            	>Sign Up</button>
         	</div>
     	</form>
     </div>

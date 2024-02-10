@@ -30,8 +30,8 @@ $(document).ready(function() {
 			dataType: "text",
 			success: function(responseData){// 응답시 호출 
 				if(responseData !='') {
-					alert(responseData)
-					location.reload();// page 새로고침
+					//alert(responseData)
+					//location.reload();// page 새로고침
 					}
 			}//Success end
 		})//Ajax end
@@ -69,6 +69,7 @@ function validateForm(userID,userPW) {
 		resultPWchecked= true;
 	}
     if(resultIDchecked && resultPWchecked){
+		alert("login")
 		return true
 	}else{
 		return false
@@ -80,18 +81,20 @@ $(document).ready(function() {
 	
 	$("#loginBtn").click(function() {
 			let form = document.loginForm
-			let userID = form.id.value.trim();
-			let userPW = form.pw.value.trim();
+			let userId = form.id.value.trim();
+			let userPw = form.pw.value.trim();
 		
 		if(validateForm(userID,userPW)){
 			alert("validation ")
 			$.ajax({
-				url :"",
-				data:"",
+				url :"loginProcess.jsp",
+				data:{userId: userId,
+					  userPw: userPw},
 				type: "post",
 				dataType:"json",
 				success :function(){
 					alert("id 정보를 보냈습니다. ")	
+					location.href='cGoHome.do'
 				}//Success end
 			})//Ajax end
 		} // If end

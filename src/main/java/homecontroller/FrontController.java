@@ -72,6 +72,13 @@ public class FrontController extends HttpServlet {
 			System.out.println(">> 0-1.loginSart.do 실행");
 			viewPage = "login_view.jsp";
 			break;
+			
+				
+		case ("/IdSaveProcess.do"):
+			System.out.println(">> IdSaveProcess.do 실행");
+			viewPage = "IdSaveProcess.jsp";
+			break;
+		
 		// Login Process Page
 		case("/loginProcess.do"):
 			System.out.println(">> 0-2.loginProcess.do 실행");
