@@ -17,6 +17,8 @@ public class LoginCommand implements Command {
 	 * 		Update 2024.02.09 by pdg
 	 * 			1. 주석 생성. 
 	 * 			
+	 * 	<<2024.02.11>>
+	 * 		1. 일단 jsp <-> db 연동으로 체크 기능 실현되는지 알아보고 mvc 로 바꿀때 다시 사용하기 위해 주요기능 주석처리함. 
 	 * 
 	 *-------------------------------------- 
 	 */
@@ -38,14 +40,14 @@ public class LoginCommand implements Command {
 		System.out.println(">> Fetched  id from loginview.jsp :" + id);
 		
 		// If login is successful after going through Login_Dao, insert it into session.
-		if(dao.checkLogin(id, pw)[0].equals(id)) {				
-			System.out.println("loginId 와 loginPw 를 세션에 저장합니다. Id:"+id);
-			session.setAttribute("loginId", id); // loginID <-- id
-			session.setAttribute("loginPw", pw); // loginPW <-- pw
-		}else {
-			System.out.println(">> login 실패 ");
-			session.setAttribute("loginID", null);
-		}
+//		if(dao.checkLogin(id, pw)[0].equals(id)) {				
+//			System.out.println("loginId 와 loginPw 를 세션에 저장합니다. Id:"+id);
+//			session.setAttribute("loginId", id); // loginID <-- id
+//			session.setAttribute("loginPw", pw); // loginPW <-- pw
+//		}else {
+//			System.out.println(">> login 실패 ");
+//			session.setAttribute("loginID", null);
+//		}
 	}
 }
 

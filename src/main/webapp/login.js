@@ -14,6 +14,7 @@
  *	1. 로그인 버튼이아니라 엔터를 처도 로그인이 되게끔.
  * 	<<2024.02.10 by pdg>>
  *	1. 팝업창 닫기 버튼 추가 
+ 	2. login validation Form 수정
  *----------------------------------------------------------
  */
 // 팝업 닫기 버튼 
@@ -38,68 +39,11 @@ $(document).ready(function() {
     });//Click end
 });//Document end
 
-// 처음 화면 실행시 아이디 입력란 cursor focus. 
- window.onload = function() {
-            document.getElementById("id").focus(); // id 입력란에 포커스 설정
-        };
-document.getElementById("id")
-	.addEventListener("keyup", function(e){
-		if (e.keyCode ===13){
-			//document.getElementById("loginBtn").click();
-		}//If end
-	})//AddEvenetListener end
 
-//ID pw 입력란에 아무것도 안쳤을때 나오는 경고 + 내용 입력됨을 확인 -> true return  
-function validateForm(userID,userPW) {
-    let form = document.loginForm;
-	let resultIDchecked= false;
-	let resultPWchecked= false;
-    if (userID === "") {
-        alert("아이디를 입력해주세요.");
-        form.id.focus();
-        return false
-    }else{
-		resultIDchecked= true;
-	}
-    if (userPW === "") {
-        alert("비밀번호를 입력해주세요.");
-        form.pw.focus();
-        return false
-    }else{
-		resultPWchecked= true;
-	}
-    if(resultIDchecked && resultPWchecked){
-		alert("login")
-		return true
-	}else{
-		return false
-	}
-}
 
-// 로그인 버튼 클릭
-$(document).ready(function() {
-	
-	$("#loginBtn").click(function() {
-			let form = document.loginForm
-			let userId = form.id.value.trim();
-			let userPw = form.pw.value.trim();
-		
-		if(validateForm(userID,userPW)){
-			alert("validation ")
-			$.ajax({
-				url :"loginProcess.jsp",
-				data:{userId: userId,
-					  userPw: userPw},
-				type: "post",
-				dataType:"json",
-				success :function(){
-					alert("id 정보를 보냈습니다. ")	
-					location.href='cGoHome.do'
-				}//Success end
-			})//Ajax end
-		} // If end
-	})
-})
+
+
+
 
 
 
