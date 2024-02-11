@@ -6,7 +6,7 @@
 * Description 	: User Prodcut List 
 		Detail	: 상품 목록 조회 및 검색, 정렬 기능 
     		  	
-* Author 		: PDG, LS, Diana
+* Author 		: PDG
 * Date 			: 2024.02.05
 * ---------------------------Update---------------------------		
 * <<2024.02.09>> by PDG
