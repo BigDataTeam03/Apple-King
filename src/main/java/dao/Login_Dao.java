@@ -8,11 +8,16 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import dto.MemberDto;
+
+
+
 public class Login_Dao {
 	// Field
 	DataSource dataSource;
 	// Constructor
 	public Login_Dao() {
+		// Connection pool 을 사용하여 DB 연결함. 
 		try{
 			Context context = new InitialContext();
 			dataSource = (DataSource)context.lookup("java:comp/env/jdbc/apple_store"); 	
@@ -20,11 +25,12 @@ public class Login_Dao {
 			e.printStackTrace();
 		}
 	}
+	
 	// Method
 	//checkID that is stored inside the database. 
-	public String[] checkLogin(String id, String pw) {
-		//return
-		String[] result = {"",""};
+	public MemberDto checkLogin(String id, String pw) {
+		// Return value
+		MemberDto dto = new MemberDto();
 		
 		System.out.println(">> Login_dao 실행");
 		Connection conn = null;
@@ -32,15 +38,19 @@ public class Login_Dao {
 		ResultSet rs = null;
 		try {
 			conn = dataSource.getConnection();	// this makes connection to the db.  
-			String select = "SELECT cust_id, cust_pw FROM customer ";
+			String select = "SELECT cust_id, name, cust_rank FROM customer ";
 			String where = " WHERE cust_id = '" + id +"' AND cust_pw = '" + pw +"'";
 			ps = conn.prepareStatement(select+where);
 			System.out.println(">> CheckLogin Query : "+ps.toString().split(":")[1]);
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				System.out.println(">> DBcheck :존재하는 사용자입니다");
-				result[0]=id;
-				result[0]=pw;
+				dto.setCust_id(rs.getString(1));
+				dto.setName(rs.getString(2));
+				dto.setCust_rank(rs.getInt(3));
+			}else {
+				System.out.println(">> DBcheck :존재하지 않는 사용자 입니다.");
+				
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -52,8 +62,7 @@ public class Login_Dao {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}
-		return result;
+		}return dto;
 	}//checkID()
 	
 	

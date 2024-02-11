@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 import com.javalec.util.ShareVar;
 
-import dto.customerDto;
+import dto.MemberDto;
 import dto.productDto;
 
 /**
@@ -97,7 +97,7 @@ public class aCustomerListServlet extends HttpServlet {
 		System.out.println("js에서 가져온 name " + name);
 			
 			// select 문에 여러가지 정보를 담아야 하니 ArrayList 를 사용해서 리스트에 담는다
-		ArrayList<customerDto> customerdtoList = new ArrayList<customerDto>();
+		ArrayList<MemberDto> customerdtoList = new ArrayList<MemberDto>();
 		
 		//product 테이블에 있는 모든 컬럼을 불러오는 쿼리문
 		String Query = "select " 
@@ -111,7 +111,6 @@ public class aCustomerListServlet extends HttpServlet {
 				//   Customer 에서 name 을 검색하지만 처음에는 아무것도 안들어감으로 모두 조회함. 
 				+ "from customer where name like '%" + name + "%' and cust_id <> 'admin123'" +orderby;
 				//정렬에 따라 바뀐다		
-		
 		
 		System.out.println("query 실행 전 내용 :"+ Query);
 	
@@ -133,7 +132,7 @@ public class aCustomerListServlet extends HttpServlet {
 			while(rs.next()) {
 				
 				// productDto 선언
-				customerDto customerdto = new customerDto();
+				MemberDto customerdto = new MemberDto();
 				customerdto.setCust_id(rs.getString("cust_id"));
 				customerdto.setName(rs.getString("name"));
 				customerdto.setTel(rs.getString("tel"));

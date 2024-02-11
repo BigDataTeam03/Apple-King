@@ -22,8 +22,10 @@ public class CookieManager {
 	// Method
 	
 	// 명시한 이름, 값, 유지 기간 조건으로 새로운 쿠키를 생성. 
-	public static void makeCookie( HttpServletResponse response, String cName,
-			String cValue, int cTime) {
+	public static void makeCookie( HttpServletResponse response, 
+			String cName,
+			String cValue,
+			int cTime) {
 		
 		Cookie cookie = new Cookie(cName, cValue);
 		cookie.setPath("/");

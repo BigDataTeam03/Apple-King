@@ -1,6 +1,6 @@
 package dto;
 
-public class customerDto {
+public class MemberDto {
 	// Filed
 
 	String cust_id;
@@ -15,12 +15,12 @@ public class customerDto {
 
 	// Constructor
 
-	public customerDto() {
+	public MemberDto() {
 		// TODO Auto-generated constructor stub
 	}
 
 	// 고객 리스트를 에 보이기위한 Dto 리스트
-	public customerDto(String cust_id, String name, String tel, String email, String address, int cust_rank,
+	public MemberDto(String cust_id, String name, String tel, String email, String address, int cust_rank,
 			String reg_date) {
 		super();
 		this.cust_id = cust_id;
@@ -32,7 +32,7 @@ public class customerDto {
 		this.reg_date = reg_date;
 	}
 
-	public customerDto(String cust_id, String cust_pw, String name, String tel, String email, String address,
+	public MemberDto(String cust_id, String cust_pw, String name, String tel, String email, String address,
 			int cust_rank, String reg_date, String deact_date) {
 		super();
 		this.cust_id = cust_id;
