@@ -51,7 +51,6 @@
 		                        구매 수량 :<input type="number" name="cart_qty" min="1" max="50" value ="1"><br><br>
 		                        <input type="submit" class="btn btn-primary" value="장바구니담기"></input>
 		                    </form><br><br>
-		                    
 		                </div>
 		            </div>
 		        </div>

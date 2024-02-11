@@ -72,12 +72,19 @@ public class FrontController extends HttpServlet {
 			System.out.println(">> 0-1.loginSart.do 실행");
 			viewPage = "login_view.jsp";
 			break;
+			
+				
+		case ("/IdSaveProcess.do"):
+			System.out.println(">> IdSaveProcess.do 실행");
+			viewPage = "IdSaveProcess.jsp";
+			break;
+		
 		// Login Process Page
 		case("/loginProcess.do"):
 			System.out.println(">> 0-2.loginProcess.do 실행");
 			command = new LoginCommand();
 			command.execute(request, response);
-			String loginID = (String) session.getAttribute("id");
+			String loginID =  session.getAttribute("loginId").toString();
 			if (loginID != null) {	
 				if (loginID.equals("admin")) {
 					System.out.println(">> 관리자 페이지로 이동");
@@ -89,6 +96,7 @@ public class FrontController extends HttpServlet {
 			} else { // if the login fails, then go back to login page.
 				viewPage = "login_view.jsp";
 			}
+			System.out.println("loginID session 값 : "+loginID);
 			System.out.println(" 다음 페이지로 선택은 곳은 "+viewPage);
 			//session.setAttribute("viewPage", viewPage);
 			break;

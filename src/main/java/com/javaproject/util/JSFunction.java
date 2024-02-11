@@ -22,13 +22,13 @@ public class JSFunction {
 	
 		// 페이지를 넘길때 경고창을 띄욱 특정 페이지로 넘어가게 하는 함수
 		public static void alertLocation(String massage, String url, JspWriter out) {
-		
+			System.out.println(">> alertLocation 실행");
 			try{
 				String script =
 						" " // 삽입할 자바 스크립트 코드
 						+ "<script>"
 						+ "    alert('"+ massage+"');" 
-						+ "    location.href'"+ url+"';" // 지정된 페이지로 이동한다. 
+						+ "    location.href='"+ url+"';" // 지정된 페이지로 이동한다. 
 						+ "</script>";
 						
 				out.print(script);

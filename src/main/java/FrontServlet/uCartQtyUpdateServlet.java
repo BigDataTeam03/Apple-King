@@ -83,7 +83,7 @@ public class uCartQtyUpdateServlet extends HttpServlet {
 			ps.executeUpdate();
 			out.print("success");
 			
-			conn_mysql.close();
+			//conn_mysql.close();
  
 			
 			
