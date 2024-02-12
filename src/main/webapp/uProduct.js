@@ -17,55 +17,73 @@
  *	2. 상품 상세 페이지로 택한 상품의 정보를 보냄
  * << 2024.02.019 by pdg
  * 	1. 각 함수와 J 쿼리에대한 메타 주석을 달았음. 
+ * <<2024.02.11 by DK>>
+ *  1. 가격별 정렬 기능 추가. 
+ *  2. (CSS)가격'원',천단위 콤마, 볼드, 빨간색으로 표시. 
+ * 	3. 100g 당 몇원인지 추가. 
+ * 	4. 몇개씩 보기 기능 추가. 
  *----------------------------------------------------------------------------------*/
 let currentPage = 1;
-const itemsPerPage = 6;
+let itemsPerPage = 5; //'const'를 'let'으로 변경하여 재할당 가능하도록 수정
 
-// 페이지 로드 시 처음 페이지 로드
+// 페이지 로드 시 처음 페이지를 로드한다
 window.onload = function () {
     loadPage(currentPage);
 };
 
 // 페이지 로드 함수
 function loadPage(pageNumber) {
-	//alert("1111")
     $.ajax({
         type: "POST",
         url: "uProductListServlet",
         data: { name: "" },
         dataType: "json",
         success: function (response) {
-			//alert(response[0].product_name)
             displayPagination(response.length);
             displayProducts(response, pageNumber);
         },
     });
 }
 
-// 상품 목록 출력 함수
+
 function displayProducts(data, pageNumber) {
-	//alert("2222")
     let resultContainer = $("#result");
-    resultContainer.empty(); // 이전 내용 비우기
+    resultContainer.empty(); // Clear previous content
     const startIndex = (pageNumber - 1) * itemsPerPage;
     const endIndex = pageNumber * itemsPerPage;
     const pageData = data.slice(startIndex, endIndex);
     for (let i = 0; i < pageData.length; i++) {
-		//alert("상품코드:" +data[i].product_code + "상품이름 : "+data[i].product_name )
+        let priceWithCommas = numberWithCommas(pageData[i].price); // 가격에 콤마추가하기 
+
+        // 100g 당 몇원? 
+        let pricePer100g = (pageData[i].price / (pageData[i].weight * 100));
+
         let cardHtml = `
            <div class="card">            
                <img src="image/${pageData[i].product_image_names}" > 
                 <div class="card-body">
                     <h5 class="card-title">
-                       <a href="javascript:void(0);" onclick="saveProductInfo(${data[i].product_code},'${data[i].product_name}', ${data[i].price}, '${data[i].origin}', '${data[i].size}', ${data[i].weight})">${data[i].product_name}</a>
+                       <a href="javascript:void(0);" onclick="saveProductInfo(${data[i].product_code},'${data[i].product_name}', ${data[i].price}, '${data[i].origin}', '${data[i].size}', ${data[i].weight})" class="bold">${data[i].product_name}</a>
                     </h5>
-                    <p class="card-text">가격: ${pageData[i].price}</p>
+                    <p class="card-text">
+                        <span class="red-price bold">${priceWithCommas}원</span>
+                        <br>
+                        <span class="red-price">(100g당${pricePer100g.toFixed(0)}원)</span>
+                    </p>
                 </div>
             </div>
              `;
         resultContainer.append(cardHtml);
     }
 }
+
+
+
+// 천단위 콤마 추가 Function
+function numberWithCommas(price) {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 
 // 페이지네이션 표시 함수
 function displayPagination(totalItems) {
@@ -83,6 +101,13 @@ function changePage(pageNumber) {
     currentPage = pageNumber;
     loadPage(currentPage);
 }
+
+// 한 페이지 당 항목 수를 설정하는 함수
+function setItemsPerPage(value) {
+    itemsPerPage = parseInt(value); // 값(value)을 정수형으로 변환한다.
+    loadPage(currentPage); // 새로운 항목 수로 첫 번째 페이지를 다시 불러온다.
+}
+
 //-------------------------------------------------------------------
 // 검색 버튼을 눌렀을 때 실행되는 JQuery 코드
 $(document).ready(function() {
@@ -141,14 +166,12 @@ function createCard(data) {
 
 //-------------------------------------------------------------------
 
-	//정렬기능과 검색기능을 같이 서버에 보내야 검색후 정렬을 시행해도 검색이 유지된다
 $(document).ready(function() {
     // 정렬 콤보박스 값 변경 이벤트 처리
     $("#classifyOption").change(function() {
         // 선택된 정렬 옵션을 가져옴
         let classifyOption = $(this).val();
         let name = $("#product_name").val(); // 현재 검색어 가져오기
-       	alert("정렬되었습니다")
 
         // AJAX 요청
         $.ajax({
@@ -158,7 +181,8 @@ $(document).ready(function() {
             dataType: "json",
             success: function(response) {
                 // 서버에서 받은 응답 처리
-                displayProducts(data, pageNumber);
+                displayProducts(response, currentPage);
+                alert("정렬되었습니다");
             },
             error: function(xhr, status, error) {
                 // 에러 발생 시 메시지를 출력합니다.
@@ -167,7 +191,8 @@ $(document).ready(function() {
             }
         });
     });
-  });
+});
+
 
 function saveProductInfo(productCode, productName, price, origin, size, weight) {
 	 //alert(" saveProductInfo 실행 productname  :"+productName)
@@ -192,6 +217,5 @@ function saveProductInfo(productCode, productName, price, origin, size, weight) 
     });
 }
     
-
-    
+ 
     

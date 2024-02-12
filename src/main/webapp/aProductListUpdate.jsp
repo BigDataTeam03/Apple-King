@@ -22,7 +22,8 @@
 		1. 삭제 기능 추가 
 		2. 입력 기능 추가 
 		3. undefined 고치기 
-	*
+	* <<2024.02.12>> by KBS
+		1. 검색기능과 정렬기능 연동
 	--------------------------------------------------------------
 	-->
 
@@ -129,6 +130,7 @@
     <label for="kind4">아리수</label>
 </div>
 
+	<button id="clearRadioBtn">라디오버튼 초기화</button>
 <!-- 확인 버튼 추가 -->
 <button type="button" id="confirmBtn" onclick="applyFilters()">확인</button>
 <div>
