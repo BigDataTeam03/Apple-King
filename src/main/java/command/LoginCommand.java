@@ -20,6 +20,9 @@ public class LoginCommand implements Command {
 	 * 	<<2024.02.11>>
 	 * 		1. 일단 jsp <-> db 연동으로 체크 기능 실현되는지 알아보고 mvc 로 바꿀때 다시 사용하기 위해 주요기능 주석처리함. 
 	 * 
+	 * <<2024.02.11 
+	 * 		1. mvc 를 살려야하는데 귀찮다.. 그냥 이대로 쓰고 나중에 고치기로함. 
+	 * 
 	 *-------------------------------------- 
 	 */
 	@Override
@@ -32,12 +35,13 @@ public class LoginCommand implements Command {
 		HttpSession session = request.getSession();  
 		
 		// User Id , Password fetch from loginview.jsp
-		String id = (String)request.getParameter("id"); 
-		String pw = (String)request.getParameter("pw"); 
+		String id = (String)request.getParameter("userId"); 
+		String pw = (String)request.getParameter("userPw"); 
 		
 		// Login DAO => DB customer id  comparison
 		Login_Dao dao = new Login_Dao();
 		System.out.println(">> Fetched  id from loginview.jsp :" + id);
+		//dao.checkLogin(id, pw);
 		
 		// If login is successful after going through Login_Dao, insert it into session.
 //		if(dao.checkLogin(id, pw)[0].equals(id)) {				
