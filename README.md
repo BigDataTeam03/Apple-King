@@ -40,7 +40,7 @@ designed by Diana
 
 <h1>Project Management Tool </h1>
 <br> Asana : <a href ="https://app.asana.com/0/1206550553332943/1206550553332943" target="_blank"> bigData3HQ </a>
-<br> Jira : <a href = "https://pulpilisory.atlassian.net/jira/software/projects/MVC/boards/1/backlog?issueParent=10070&atlOrigin=eyJpIjoiZWIzNDA5Y2UxNDk1NGY0ZTkzYzgxMTdlZDU4ODQ2MjMiLCJwIjoiaiJ9" AppleKingWeb2.0</a>
+<br> Jira : <a href ="https://pulpilisory.atlassian.net/jira/software/projects/MVC/boards/1/backlog?issueParent=10070&atlOrigin=eyJpIjoiZWIzNDA5Y2UxNDk1NGY0ZTkzYzgxMTdlZDU4ODQ2MjMiLCJwIjoiaiJ9"> AppleKingWeb2.0</a>
  
 <h1>Member Role<h1>
 <img width="500" alt="image" src="https://github.com/ForrestDPark/Project02_AppleStore_big3/assets/149550771/de8775b7-45af-4c67-8a61-ac89dc6ebdec">
