@@ -103,6 +103,7 @@ public class FrontController extends HttpServlet {
 
 		// Sign Up page 
 		case ("/signupStart.do"): 
+			System.out.println(">>  sign up  view 실행 ");
 			viewPage = "/USER/signup_view.jsp";
 			break;
 			
@@ -117,6 +118,11 @@ public class FrontController extends HttpServlet {
 			response.sendRedirect("loginStart.do");
 			break;
 			
+		// log out do
+		case ("/logout.do"):
+			System.out.println(">> logout 됩니다.");
+			viewPage = "logout.jsp";
+			break;
 		
 		//-------------- [ USER Part ] ----------------------------
 		// Go home of user

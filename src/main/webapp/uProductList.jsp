@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file ="top_user.jsp" %>
+
 <!DOCTYPE html>
-<!--
+<%/*
 --------------------------------------------------------------
 * Description 	: User Prodcut List 
 		Detail	: 상품 목록 조회 및 검색, 정렬 기능 
@@ -14,8 +14,23 @@
     2.  CSS 추가. 사진 너무커서 줄임. 
     3. 정렬 전혀안됨. + 기본순정렬 = 이름순으로 정렬할것. 
     4. 상품 선택시 상품의 정보가 상세페이지로 이동하면서 세션에 저장되게 함. 
+  <<2024.02.11> by pdg
+	1. 기존의 꺽쇠 퍼센트를 엑션태그로 최대한 교체함. 
+	   	<jsp:include>,
+	   	<jsp:forward>, -> 다른 페이지로 요청을 넘김  
+	   	<jsp:useBean>, 
+	   	<jsp:setProperty>,
+	   	<jsp:getProperty>,
+	   	<jsp:param> -> 다른페이지로 매개변수 전달. 
+	   	지시어는 안에 표션식 불가능하지만 액션태그는 표현식 사용가능함. 
 --------------------------------------------------------------
--->		
+*/ %>
+<%-- <%@ include file ="top_user.jsp" %> --%>
+<% 
+	// top 
+	String topPath = "top_user.jsp";
+%>	
+<jsp:include page= "<%= topPath %>"/>
 <html>
 	<head>
 	    <meta charset="UTF-8">

@@ -1,18 +1,24 @@
 package dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-
 import dto.MemberDto;
 
-
-
 public class Login_Dao {
+	/*--------------------------------------
+	 * Description : Login Dai <<customer >>
+	 * Author 	   : pdg
+	 * Date 	   : 2024.02.11
+	 * Details		
+	 * Update------------------------------- 
+	 * <2024.02.11> by PDG
+	 *-------------------------------------- 
+	 */
+	
+	
 	// Field
 	DataSource dataSource;
 	// Constructor

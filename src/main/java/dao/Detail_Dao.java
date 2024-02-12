@@ -11,7 +11,15 @@ import javax.sql.DataSource;
 import dto.productDto;
 
 public class Detail_Dao {
-
+	/*--------------------------------------
+	 * Description : Product detail page DAO << product >>
+	 * Author 	   : pdg
+	 * Date 	   : 2024.02.11
+	 * Details		
+	 * Update------------------------------- 
+	 * <2024.02.11> by PDG
+	 *-------------------------------------- 
+	 */
 	// Field
 	DataSource dataSource;
 

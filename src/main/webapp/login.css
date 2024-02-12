@@ -15,13 +15,20 @@
 /************POPUP part *********************/
 
 div#popup{
-	position : absolute; top:100px; left:50px; color:yellow;
-	width:270px ; height : 100px; background-color :gray;
+	position : absolute; top:80px; left:1px; color:yellow;
+	width:200px ; height : 100px; background-color :gray;
 }
 div#popup>div{
 	position : relative; background-color : #ffffff; top: 0px;
-	border : 1px solid gray; padding: 10px; color: black;
-}	
+	padding: 0.2px; color: black;
+}
+
+ #checkpopup {
+    width: 100%;
+}	 
+form[name="popFrm"] {
+    width: 85%;
+}
 /********************************************/
 
 body {
@@ -35,10 +42,17 @@ body {
     padding: 0; 					/* 바디 패딩 초기화 */
 }
 
- .container {
-            text-align: center;
-           	margin-top : 1px
-        }
+.container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+.form-container {
+        text-align: center;
+        width: 300px; /* 폼의 너비를 조절할 수 있습니다. */
+    }
 h3 {
 	color: #333;
 }
@@ -51,7 +65,7 @@ form {
 	display: inline-block;
 	text-align: left;
 	background-color: #fff;
-	padding: 15px;
+	padding: 20px;
 	border-radius: 8px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 312px; /* 폼 너비 지정 */
