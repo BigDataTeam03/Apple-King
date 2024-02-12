@@ -5,12 +5,12 @@
  * Update --------------------------------------------------
  * <<2024.02.08 by KBS>>
  *	1. 주석 달음.
- 	2. 아이디에 해당하는 카트 조회 
- 	3. 카트 삭제기능 추가
- 	4. 수량선택 가능
- 	5. 전체선택가능 	
+ *	2. 아이디에 해당하는 카트 조회 
+ *	3. 카트 삭제기능 추가
+ *	4. 수량선택 가능
+ *	5. 전체선택가능 	
  *----------------------------------------------------------
- 
+ *
  * Update --------------------------------------------------
  * <<2024.02.09 by KBS>>
  *  1. 수량선택기능을 데이터베이스에 즉각반영시킴
@@ -19,7 +19,9 @@
  * <<2024.02.09 by pdg>
  *  1. cust id 를 세션값에서 받아오게끔 만듬. 
  *  
- * 
+ * <<2024.02.11 by KBS>
+ *  1. 수량 수정, 총 가격문제 해결
+ *  2  재고 초과시 메세지 출력 ( 추후 기능 추가 : 상품의 이름, 재고량 표시)
  */
 // 페이지 실행후 바로 장바구니 전체 조회
 window.onload = function() {
@@ -52,7 +54,7 @@ function createTable(data) {
     //검색해온 데이터(dtos -> json -> Array  변환)
     dataReal = Array.from(data)
 
-  $("#cartList").empty();
+  //$("#cartList").empty();
   
     let table =
         "<table border='1'>" +
@@ -70,10 +72,10 @@ function createTable(data) {
         table += "<tr>" +
             "<td>" + data[i].product_name + "</td>" + // col1
             "<td>" +
-            "<button class='quantity-btn' onclick='decreaseQuantity(this)'>-</button>" + // "-" 버튼
+            "<button  onclick='decreaseQuantity(this)'>-</button>" + // "-" 버튼
             "<input type='number' class='quantity-input' name='cartQty' value='" + data[i].cart_qty + "' min='1' readonly>" + // 수량을 입력할 수 있는 input 태그
-            "<button class='quantity-btn' onclick='increaseQuantity(this)'>+</button>" + // "+" 버튼
-            "</td>" + // col2
+            "<button  onclick='increaseQuantity(this)'>+</button>" + // "+" 버튼
+            "</td>" + 
             "<td>" + data[i].product_image_names + "</td>" + // col3
             "<td>" + data[i].price + "</td>" + // col4
             "<td><input type='checkbox' name='selectProduct' value='" + data[i].cart_code + "'></td>" + // 체크박스 열
@@ -142,21 +144,31 @@ function updateQuantity(input) {
             cartCode: cartCode,
             quantity: quantity
         },
-        success: function(response) {
-            // 테이블 업데이트
-            createTable(response);
+        success: function(response) {       
+            // 테이블 업데이트   
+             	$.ajax({
+						type: "POST",
+						//다시 테이블 조회
+						url: "uCartListServlet",
+						data: { cust_id: "sumin123" },
+						success: function(response) {
+							/* 서버에서 받은 응답 처리 */
+							createTable(response)//jason
+						}
+					})		       
         },
         error: function(xhr, status, error) {
             // 에러 처리
             console.error("선택하신 상품의 재고가 부족합니다:", error);
+        },   complete: function(response) {
+			// 서블릿에서 준 실패 프린트
+            if (response.responseText === "수량초과") {
+                alert("재고가 부족해요.");
+            }
         }
+        
     });
 }
-
-            
-            
-        
-   
 
 
  // 전체 선택 버튼 클릭 시 동작
@@ -216,6 +228,9 @@ $(document).ready(function() {
 				}
 			})
 		})
+		
+
+		
 })
 
 

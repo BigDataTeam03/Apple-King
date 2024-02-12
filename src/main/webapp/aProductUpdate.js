@@ -10,6 +10,8 @@
  * <<2024.02.03 by PDG
  * 	1. 주석을 친절하게 바꿈.
  *----------------------------------------------------------
+ <<2024.02.12 by KBS
+ * 	1. 정렬과 검색 연동 완료.
  */
 // 페이지 실행후 바로 상품 전체 조회
 window.onload = function() {
@@ -287,11 +289,24 @@ $(document).ready(function() {
     $("#queryButton").click(function() {
         let name = $("#name").val(); // 검색어 가져오기
 
+
+		//라디오버튼 밸류값 가져오기
+        let origin = $("input[name='origin']:checked").val(); // 원산지 선택 값 가져오기
+        let size = $("input[name='size']:checked").val(); // 사이즈 선택 값 가져오기
+        let kind = $("input[name='kind']:checked").val(); // 품종 선택 값 가져오기
+    
+      
+        // 정령 방식 밸류값 가져오기 
+        let selectedSorting = $("#Sorting").val(); // 선택된 정렬 방식
         // AJAX 요청을 통해 검색어를 서버에 전달하여 데이터 조회
         $.ajax({
             type: "POST",
             url: "aProductListServlet",
-            data: { name: name }, // 검색어 전달
+            data: { name: name,
+            		origin : origin,
+            		size : size,
+            		kind : kind,
+            		sorting : selectedSorting }, // 검색어 전달
             success: function(response) {
                 // 서버에서 받은 응답 처리
                 createTable(response); // 검색 결과로 테이블 생성
@@ -301,9 +316,15 @@ $(document).ready(function() {
 
     // 상세 검색 버튼 클릭 시 실행되는 함수
     $("#confirmBtn").click(function() {	
+		//라디오버튼 밸류값 가져오기
         let origin = $("input[name='origin']:checked").val(); // 원산지 선택 값 가져오기
         let size = $("input[name='size']:checked").val(); // 사이즈 선택 값 가져오기
         let kind = $("input[name='kind']:checked").val(); // 품종 선택 값 가져오기
+        // 이름 검색 밸류값 가져오기
+        let name = $("#name").val(); // 검색어 가져오기
+        // 정령 방식 밸류값 가져오기 
+        let selectedSorting = $("#Sorting").val(); // 선택된 정렬 방식 가져오기
+         
 
         // AJAX 요청을 통해 상세 검색 조건을 서버에 전달하여 데이터 조회
         $.ajax({
@@ -311,23 +332,22 @@ $(document).ready(function() {
             url: "aProductListServlet",
             data: { origin: origin,
            			  size: size, 
-          		      kind: kind
+          		      kind: kind,
+          		      name : name,
+          		      sorting : selectedSorting
           		    }, // 상세 검색 조건 전달
             success: function(response) {
                 // 서버에서 받은 응답 처리
+                // 받아온 값이 없을 때 (0) 라디오 버튼 초기화
                 if (response.length === 0) {
                     alert("조건에 해당하는 상품이 없습니다.");
                 $("input[name='origin']").prop("checked", false);
                 $("input[name='size']").prop("checked", false);
                 $("input[name='kind']").prop("checked", false);
                 } else {
-                    createTable(response); // 상세 검색 결과로 테이블 생성
-                $("input[name='origin']").prop("checked", false);
-                $("input[name='size']").prop("checked", false);
-                $("input[name='kind']").prop("checked", false);
-              
+                    createTable(response); // 상세 검색 결과로 테이블 생성           
                 }
-                // 라디오 버튼 초기화
+            
             },
             error: function(xhr, status, error) {
                 console.error("상품 검색 중 오류가 발생했습니다: " + error);
@@ -335,19 +355,44 @@ $(document).ready(function() {
         });
     });
 
+    // 라디오버튼 초기화 버튼을 눌렀을 시 실행되는 함수
+    $("#clearRadioBtn").click(function() {
+     			//라디오 버튼 초기화
+                $("input[name='origin']").prop("checked", false);
+                $("input[name='size']").prop("checked", false);
+                $("input[name='kind']").prop("checked", false);
+   
+    });
+           
+            
+          
+         
+        
+   
+
     // 정렬 기능 변경 시 실행되는 함수
     $("#Sorting").change(function() {
         let selectedSorting = $("#Sorting").val(); // 선택된 정렬 방식 가져오기
+        // 라디오 버튼으로 가져온 뱔류값
+        let origin = $("input[name='origin']:checked").val(); // 원산지 선택 값 가져오기
+        let size = $("input[name='size']:checked").val(); // 사이즈 선택 값 가져오기
+        let kind = $("input[name='kind']:checked").val(); // 품종 선택 값 가져오기
+        // 이름 검색 밸류값 가져오기
+        let name = $("#name").val(); // 검색어 가져오기
 
-        // 현재 테이블에 표시된 데이터의 검색어 가져오기
-        let name = $("#name").val();
 
         // AJAX 요청을 통해 선택된 정렬 방식을 서버에 전달하여 데이터 조회
         $.ajax({
             type: "POST",
             url: "aProductListServlet",
-            data: { name: name, 
-           		 sorting: selectedSorting }, // 검색어와 정렬 방식 전달
+            data: {  sorting : selectedSorting,
+             		 origin : origin,
+             		 size : size,
+             		 kind : kind,
+             		 name : name
+           		 
+           		 
+           		  }, // 검색어와 정렬 방식 전달
             success: function(response) {
                 // 서버에서 받은 응답 처리
                 createTable(response); // 정렬된 데이터로 테이블 생성

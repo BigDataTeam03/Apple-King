@@ -134,7 +134,7 @@ public class uCartListServlet extends HttpServlet {
 		
 				System.out.println("쿼리문 정상 작동!");
 			//입력시 코드를 생성하기위한 세션
-			session.setAttribute("totalProductNumber", cartTot );
+			session.setAttribute("cartTot", cartTot );
 			//System.out.println("총 상품 갯수" + session.getAttribute("totalProductNumber"));
 		}catch(Exception e) {
 			e.printStackTrace();
