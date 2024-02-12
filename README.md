@@ -6,11 +6,22 @@
 <br>
 # Project Description
 사과 유통 플랫폼 사이트 Apple King - harvest your happiness
+## 기본기능
+ - 회원 가입 및 로그인
+ - 상품 검색 조회
+ - 장바구니 기능
+ - 결제 기능
+## Advanced 기능
+ - 환불기능
+ - 댓글기능
+ - 문의 게시판 기능
+ - 별점 기능
+ - 포인트 기능   
 <h1>AppleKing Logo</h1>
 <hr>
-<img width ="200" alt ="logo" src="https://github.com/ForrestDPark/Project02_AppleStore_big3/assets/149550771/d98b02f4-22ed-4915-b5a0-fe22cdb95adf)">
+<img width ="300" alt ="logo" src="https://github.com/ForrestDPark/Project02_AppleStore_big3/assets/149550771/d98b02f4-22ed-4915-b5a0-fe22cdb95adf)">
 <br>
-designed by Diana 
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  - designed by Diana. 
 
 
 <h1><strong>Team Introduction</strong></h1> 
@@ -39,8 +50,12 @@ designed by Diana
 
 
 <h1>Project Management Tool </h1>
+
+<br> Jira : <a href ="https://pulpilisory.atlassian.net/jira/software/projects/MVC/boards/1/timeline?shared=&atlOrigin=eyJpIjoiZjZmYTM5MWI5Nzc4NGRlMzk3YzlmMjJhMDU1YmRkOTIiLCJwIjoiaiJ9"> AppleKingWeb2.0 TimeLine</a>
+
 <br> Asana : <a href ="https://app.asana.com/0/1206550553332943/1206550553332943" target="_blank"> bigData3HQ </a>
 
+ 
 <h1>Member Role<h1>
 <img width="500" alt="image" src="https://github.com/ForrestDPark/Project02_AppleStore_big3/assets/149550771/de8775b7-45af-4c67-8a61-ac89dc6ebdec">
 
