@@ -16,6 +16,8 @@ import command.LoginCommand;
 import command.SignupCommand;
 import command.aProductInsertCommand;
 import command.cartCommand;
+import command.myInfoCommand;
+import command.mypageCommand;
 import command.productDetailCommand;
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -123,6 +125,22 @@ public class FrontController extends HttpServlet {
 			System.out.println(">> logout 됩니다.");
 			viewPage = "logout.jsp";
 			break;
+			
+		//My Page (구매내역, 회원정보, 등급)
+				case ("/myPage.do"): 
+					System.out.println(">> " + com + "실행 ");
+					command = new mypageCommand();
+					command.execute(request, response);
+					viewPage = "myPage.jsp";
+					break;
+					
+		//My Info (회원정보 수정, 회원탈퇴) 	
+				case ("/myInfo.do"): 
+					System.out.println(">> " + com + "실행 ");
+					command = new myInfoCommand();
+					command.execute(request, response);
+					viewPage = "myInfo.jsp";
+					break;
 		
 		//-------------- [ USER Part ] ----------------------------
 		// Go home of user
@@ -187,6 +205,9 @@ public class FrontController extends HttpServlet {
 		default:
 			break;
 		}
+		
+		
+		
 		//-------------- [ Switch END] -------------------------
 		// Controller viewPage forward
 		if (viewPage != null) {
