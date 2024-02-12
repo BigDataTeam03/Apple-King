@@ -39,7 +39,7 @@
 		if ("admin".equals(user_id)){// admin 사용자 인증
 			if(save_check != null && save_check.equals("Y")){
 				// save check 되어있을 때 쿠키 저장 
-				CookieManager.makeCookie(response, "loginId", user_id, 60*60*3); // 3분동안 쿠키 가지고있음 
+				CookieManager.makeCookie(response, "loginId", user_id, 60*60*5); // 5분동안 쿠키 가지고있음 
 			} // If End 
 			else {
 				// save check 안되어있을 경우 쿠키 삭제함. 
@@ -51,14 +51,25 @@
 			session.setAttribute("USERRANK", memberDto.getCust_rank());
 			String user_name = memberDto.getName(); 
 			// 관리자 페이지로 이동
-			JSFunction.alertLocation("님 환영합니다","aGoHome.do",out);
+			JSFunction.alertLocation(user_name+"님 환영합니다","aGoHome.do",out);
 			
 		}//Admin 인증 end
 		
 		else{// 일반 유저 인증 
+			if(save_check != null && save_check.equals("Y")){
+				// save check 되어있을 때 쿠키 저장 
+				CookieManager.makeCookie(response, "loginId", user_id, 60*60*5); // 5분동안 쿠키 가지고있음 
+			} // If End 
+			else {
+				// save check 안되어있을 경우 쿠키 삭제함. 
+				CookieManager.deleteCookie(response,"loginId");
+			}
+			
+			
 			//세션에 아이디및 이름 저장
 			session.setAttribute("USERID", memberDto.getCust_id());
 			session.setAttribute("USERNAME", memberDto.getName());
+			session.setAttribute("USERRANK", memberDto.getCust_rank());
 			String user_name = memberDto.getName(); 
 			//response.sendRedirect("loginForm.jsp");
 			// 관리자 페이지로 이동

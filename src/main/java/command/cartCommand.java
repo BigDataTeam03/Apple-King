@@ -25,7 +25,7 @@ public class cartCommand implements Command {
 		
 		// 상품 코드, 사용자 Id, 상품 수량 getParameter 보내
 		String product_code = session.getAttribute("product_code").toString();
-		String cust_id = session.getAttribute("id").toString();
+		String cust_id = session.getAttribute("userId").toString();
 		int cart_qty = Integer.parseInt(request.getParameter("cart_qty"));
 		System.out.println("\t product 코드 세션 값: " + session.getAttribute("product_code"));
 		System.out.println("\t user id : "		+cust_id);
