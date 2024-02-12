@@ -10,7 +10,7 @@
 <hr>
 <img width ="300" alt ="logo" src="https://github.com/ForrestDPark/Project02_AppleStore_big3/assets/149550771/d98b02f4-22ed-4915-b5a0-fe22cdb95adf)">
 <br>
-                     - designed by Diana. 
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  - designed by Diana. 
 
 
 <h1><strong>Team Introduction</strong></h1> 
