@@ -39,6 +39,18 @@ $(document).ready(function() {
     });//Click end
 });//Document end
 
+$(document).ready(function(){
+	$('#signupBtn').click(function(){
+		alert("회원가입창으로 이동합니다. ")
+		location.href = "signup_view.jsp"
+		
+	})//Btn cliked end
+	
+})// Document ready end
+
+
+
+
 
 
 

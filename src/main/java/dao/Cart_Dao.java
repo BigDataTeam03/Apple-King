@@ -8,7 +8,15 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 public class Cart_Dao {
-	
+	/*--------------------------------------
+	 * Description : Sign Up DAO << product, customer, order >>
+	 * Author 	   : pdg
+	 * Date 	   : 2024.02.11
+	 * Details		
+	 * Update------------------------------- 
+	 * <2024.02.11> by PDG
+	 *-------------------------------------- 
+	 */
 	// Field
 	DataSource dataSource;
 	

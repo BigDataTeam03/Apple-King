@@ -22,9 +22,8 @@
 	<nav id="index">
 	  <a href="cart.do">					장바구니</a>	 	&nbsp;&nbsp;&nbsp;
 	  <a href="myPage.do">					마이페이지</a> 	&nbsp;&nbsp;&nbsp;
-	  <a href="loginStart.do">				로그인</a> 		&nbsp;&nbsp;&nbsp;
-	  <a href="signupStart.do">				회원가입</a> 		&nbsp;&nbsp;&nbsp;
 	  <a href="cGoHome.do">					홈으로</a> 		&nbsp;&nbsp;&nbsp;
+	  <a href="logout.do">					로그아웃</a> 		&nbsp;&nbsp;&nbsp;
 	  <br><br>
 	</nav>
 

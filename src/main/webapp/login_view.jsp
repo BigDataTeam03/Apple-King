@@ -13,7 +13,7 @@
 		* Date 			: 2024.02.05
 		* ---------------------------Update---------------------------		
 		* <<2024.02.09>> by PDG
-		    1.  로고 디자인 너음. 
+		    1. 로고 디자인 추가. 
 		    2. 가운데 정렬하고 css 파일 만듬. 
 		    3. 버튼 클릭하지 않고 엔터만 처도 들어가게 만듬. 
 		    4. MVC 가아니라 JS format 으로 다시세팅함. 
@@ -23,8 +23,10 @@
 		    2. 쿠키를 이용한 로그인 방식으로 수정함. 
 		    3. 세션을 활용한 로그인 기억 기능 추가
 		    
-		    <<2024.02.11>
+		    <<2024.02.11> by pdg
 		    1. 로그인 체크 디비연동하여 수정함. 
+		    2. 로그인 하면 top 에서 뭔가 사용자 정보를 보여주면 좋을거같은데?
+
 		--------------------------------------------------------------*/
 		// Layer pop up 띄울지 여부
 		String popupMode = "on"; 
@@ -55,9 +57,24 @@
     <link rel="stylesheet" href="login.css" />
     <style>
 		div#popup{
-			position : absolute; top:98px; left:50px; color:black;
-			width:400px ; height : 189px; background-color :#96c0bc;
+			position : absolute; top:20px; left:20px; color:black;
+			width:300px ; height : 189px; background-color :#96c0bc;
 		}
+/* 		div#checkpopup{
+			position : absolute; top:20px; left:20px; color:black;
+			width:300px ; height : 189px; background-color :#96c0bc;
+		} */
+		.container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+.form-container {
+        text-align: center;
+        width: 300px; /* 폼의 너비를 조절할 수 있습니다. */
+    }
     </style>
 </head>
 <body>
@@ -71,7 +88,7 @@
 				<p align ="center"> 안녕하세요 Apple king 입니다. <br>
 					설날을 맞아서 모든 사과 대특가 이벤트가 진행중입니다.!</p>
 				
-				<div align = "center">
+				<div id ="checkpopup" align = "left" >
 					<form name = "popFrm">
 						<input type="checkbox" id ="inactiveToday" value ="1" />
 							1분 동안 열지 않음. 
@@ -90,57 +107,71 @@
 	  	<div>
 	    	<h1><img src="image/logo.png"></h1>
 	  	</div>
-    	<form 	name="loginForm" 
-    			action="loginProcess.jsp" 
-    			method="post"
-    			onsubmit ="return validationForm(this);"> 
-        	<div>
-        		<!--  login error 메세지  -->
-        		<span style ="color: red; font-size: 0.9em;">
-				<%= request.getAttribute("LoginErrMsg") ==null?"": request.getAttribute("LoginErrMsg")%>
-				</span>		
-        		<!--  ID 입력란 -->
-            	<input type="text" 
-                   size="25" 
-                   class="form-control" 
-                   name="userId"
-                   placeholder="아이디"
-                   value ="<%= loginId %>"
-                   required />
-                <input type="checkbox" 
-                   name ="save_check"
-                   value ="Y" <%=cookieCheck %> >아이디저장하기    
-        	</div>
-        	<div>
-        		<!--  PW 입력란 -->
-            	<input 
-            	   type="password"
-                   size="25"
-                   class="form-control"
-                   name="userPw" 
-                   placeholder="비밀번호"
-                   required>
-        	</div>
-        	<div>
-            	<!-- 로그인  버튼 -->
-            	<input 
-	            	type ="submit" 
-	            	size ="40" 
-	            	id="loginBtn" 
-	            	value ="Log In"
-	            	style="width: 100%; background-color: #33CC33; color: white;
-            		  	   font-size: 18px;	">
-            	<div><br></div>
-        	</div>
-        	<div>
-            	<!-- 회원가입 버튼 -->
-            	<button 
-            		id="signupBtn"
-            		style="width: 100%; background-color: #6633CC; color: white;
-            		font-size: 18px;"
-            	>Sign Up</button>
-        	</div>
-    	</form>
+	  	<div class="form-container">
+	    	<form 	class ="form-container"
+	    			name="loginForm" 
+	    			action="loginProcess.jsp" 
+	    			method="post"
+	    			onsubmit ="return validationForm(this);"> 
+	        	<div>
+	        		<!--  login error 메세지  -->
+	        		<span style ="color: red; font-size: 0.9em;">
+					<%= request.getAttribute("LoginErrMsg") ==null?"": request.getAttribute("LoginErrMsg")%>
+					</span>		
+	        		<!--  ID 입력란 -->
+	            	<input type="text" 
+	                   size="25" 
+	                   class="form-control" 
+	                   name="userId"
+	                   placeholder="아이디"
+	                   value ="<%= loginId %>"
+	                   required />
+	                <input
+	                   style=" vertical-align: top;margin-right: 5px;"
+	                   type="checkbox" 
+	                   name ="save_check"
+	                   value ="Y" <%=cookieCheck %> >
+	                   <span style="vertical-align: top;
+	                   				margin-right: 173px;
+	                   				color: blue;">아이디저장하기</span>
+	                    
+	        	</div>
+	        	<div>
+	        		<!--  PW 입력란 -->
+	            	<input 
+	            	   type="password"
+	                   size="25"
+	                   class="form-control"
+	                   name="userPw" 
+	                   placeholder="비밀번호"
+	                   required>
+	        	</div>
+	        	<div>
+	            	<!-- 로그인  버튼 -->
+	            	<input 
+		            	type ="submit" 
+		            	size ="40" 
+		            	id="loginBtn" 
+		            	value ="Log In"
+		            	style="width: 100%; background-color: #33CC33; color: white;
+	            		  	   font-size: 18px;	">
+	            	<div><br></div>
+	        	</div>
+	    	</form>
+	    	<div>
+	    		<br>
+	    	</div>
+	    	<form class= "form-container">
+	    		<div>
+	            	<!-- 회원가입 버튼 -->
+	            	<button 
+	            		id="signupBtn"
+	            		style="width: 100%; background-color: #6633CC; color: white;
+	            		font-size: 18px;"
+	            	>회원가입</button>
+	       		</div>
+	       	</form>
+       	</div>
 	</div>
     <%
 	} else { // 로그인 된 상태

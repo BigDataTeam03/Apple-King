@@ -9,6 +9,15 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 public class Signup_Dao {
+	/*--------------------------------------
+	 * Description : Sign Up DAO << customer >>
+	 * Author 	   : pdg
+	 * Date 	   : 2024.02.11
+	 * Details		
+	 * Update------------------------------- 
+	 * <2024.02.11> by PDG
+	 *-------------------------------------- 
+	 */
 
 	// Field
 	DataSource dataSource;
