@@ -6,13 +6,17 @@
 <br>
 # Project Description
 사과 유통 플랫폼 사이트 Apple King - harvest your happiness
-- 기본기능
- -- 회원 가입 및 로그인
+## 기본기능
+ - 회원 가입 및 로그인
  - 상품 검색 조회
  - 장바구니 기능
  - 결제 기능
-- Advanced 기능
- -   
+## Advanced 기능
+ - 환불기능
+ - 댓글기능
+ - 문의 게시판 기능
+ - 별점 기능
+ - 포인트 기능   
 <h1>AppleKing Logo</h1>
 <hr>
 <img width ="300" alt ="logo" src="https://github.com/ForrestDPark/Project02_AppleStore_big3/assets/149550771/d98b02f4-22ed-4915-b5a0-fe22cdb95adf)">
