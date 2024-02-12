@@ -8,7 +8,7 @@
 사과 유통 플랫폼 사이트 Apple King - harvest your happiness
 <h1>AppleKing Logo</h1>
 <hr>
-<img width ="200" alt ="logo" src="https://github.com/ForrestDPark/Project02_AppleStore_big3/assets/149550771/d98b02f4-22ed-4915-b5a0-fe22cdb95adf)">
+<img width ="300" alt ="logo" src="https://github.com/ForrestDPark/Project02_AppleStore_big3/assets/149550771/d98b02f4-22ed-4915-b5a0-fe22cdb95adf)">
 <br>
 designed by Diana 
 
