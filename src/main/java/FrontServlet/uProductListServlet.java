@@ -26,28 +26,43 @@ public class uProductListServlet extends HttpServlet {
         super();
     }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("uProductListServlet 을 실행합니다.");
+		/*
+		--------------------------------------------------------------
+		* Description 	: 상품 목록 servlet 
+		* 		Detail  :   
+		* 					1. 상품을DB 에서 검색함 uProduct.jsㅅ에서 요청됨 ,   
+		* 					2. 검색 단어는uProductList.jsp 에서 변수가져옴
+		* 					3. 상품 정렬 기능 
+		* Author 		: DK, pdg
+		* Date 			: 2024.02.13
+		* ---------------------------Update---------------------------		
+		*<<2024.02.13>> by pdg,dk
+		*			1.상품 정렬기능 수정
+		*			2. 
+		--------------------------------------------------------------
+		*/
+		System.out.println(">> uProductListServlet 을 실행");
 		response.setContentType("text/html;charset=UTF-8");  
 		HttpSession session = request.getSession();
-		
-		//검색기능을 위한 이름변수 지정
 			
-				//정렬옵션 가져오는 변수 
-				String classifyOption = request.getParameter("classifyOption");
-				//시작시 선택되지 않았으니 디폴트값으로 날짜정렬
-				if (classifyOption == null) {
-					classifyOption = "highprice";
-				}
-				//쿼리문 기본값 날짜
-				String orderby = "highprice";
-				
-				//선택한 콤보박스값에 따라 정렬쿼리문 변경
-				 if (classifyOption.equals("highprice")) 
-					 	orderby = " order by price desc";
-			     if (classifyOption.equals("lowprice"))
-			    	 	orderby = " order by price asc";
+		// 정렬 옵션 가져오는 변수 -> 높은 가격순, 낮은가격순. 
+		String classifyOption = request.getParameter("classifyOption");
+		
+		// 시작시 classifyOption 이 선택되지 않았으니 디폴트값으로 highPrice 지정
+		if (classifyOption == null) {
+			classifyOption = "highprice";
+		}
+		// 쿼리문 기본값 highPrice
+		String orderby = "highprice";
+		
+		//선택한 옵션값에 따라 정렬쿼리문 변경
+		 if (classifyOption.equals("highprice")) 
+			 	orderby = " order by price desc";
+	     if (classifyOption.equals("lowprice"))
+	    	 	orderby = " order by price asc";
 	
 		String product_name = "";
+		
 			if (request.getParameter("name") == null) {
 				product_name = "";					
 			}else {
