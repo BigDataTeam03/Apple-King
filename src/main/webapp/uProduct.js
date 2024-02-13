@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------------
- *Description: user product list 조회  
+ * Description: user product list 조회  
  * Author : DK, PDG
  * Date : 2024.02.08
  * Detail :
@@ -22,6 +22,9 @@
  *  2. (CSS)가격'원',천단위 콤마, 볼드, 빨간색으로 표시. 
  * 	3. 100g 당 몇원인지 추가. 
  * 	4. 몇개씩 보기 기능 추가. 
+ * <<2024.02.13 by pdg , dk>>
+ *  1. 검색후 정렬 버튼 누르면 검색결과가 사라지는문제 해결함.JS 하나에서 끝
+ * 
  *----------------------------------------------------------------------------------*/
 let currentPage = 1;
 let itemsPerPage = 5; //'const'를 'let'으로 변경하여 재할당 가능하도록 수정
@@ -132,66 +135,10 @@ $(document).ready(function() {
                 // 에러 발생 시 메시지를 출력합니다.
                 console.error("AJAX 오류: " + status, error);
                 alert("검색 중 오류가 발생했습니다.");
-            }
-        });
-    });
-});
-
-// createCard 함수: 상품 데이터를 받아 카드를 생성합니다.
-function createCard(data) {
-	
-	//alert("creatCard 실")
-    let resultContainer = $("#result");
-    
-    // 결과를 표시하기 전에 이전 결과를 지웁니다.
-    resultContainer.empty();
-
-    // 받은 데이터를 기반으로 각각의 상품에 대한 카드를 생성합니다.
-    for (let i = 0; i < data.length; i++) { 
-		//alert(data[i].product_name)
-        let cardHtml = `
-            <div class="card">            
-                <img src="image/${data[i].product_image_names}" > 
-                <div class="card-body">
-                    <h5 class="card-title">
-                    	<a href="javascript:void(0);" onclick="saveProductInfo(${data[i].product_code},'${data[i].product_name}', ${data[i].price}, '${data[i].origin}', '${data[i].size}', ${data[i].weight})">${data[i].product_name}</a>
-                    </h5>
-                    <p class="card-text">가격: ${data[i].price}</p>
-                </div>
-            </div>
-        `;
-        resultContainer.append(cardHtml);
-    }
-}
-
-//-------------------------------------------------------------------
-
-$(document).ready(function() {
-    // 정렬 콤보박스 값 변경 이벤트 처리
-    $("#classifyOption").change(function() {
-        // 선택된 정렬 옵션을 가져옴
-        let classifyOption = $(this).val();
-        let name = $("#product_name").val(); // 현재 검색어 가져오기
-
-        // AJAX 요청
-        $.ajax({
-            type: "POST",
-            url: "uProductListServlet",
-            data: { name: name, classifyOption: classifyOption }, // 검색어와 정렬 옵션 함께 전송
-            dataType: "json",
-            success: function(response) {
-                // 서버에서 받은 응답 처리
-                displayProducts(response, currentPage);
-                alert("정렬되었습니다");
-            },
-            error: function(xhr, status, error) {
-                // 에러 발생 시 메시지를 출력합니다.
-                console.error("AJAX 오류: " + status, error);
-                alert("검색 중 오류가 발생했습니다.");
-            }
-        });
-    });
-});
+            }// Error end 
+        });// Ajax end 
+    });// Search btn clik end
+});// Document read end
 
 
 function saveProductInfo(productCode, productName, price, origin, size, weight) {
@@ -216,6 +163,55 @@ function saveProductInfo(productCode, productName, price, origin, size, weight) 
         }
     });
 }
-    
+//---------------------------------------------------
+//검색 기능과 정렬 기능을 동시에 사용하는 function
+$(document).ready(function() {
+	  // 검색 버튼에 대한 click 이벤트 핸들러 추가
+    $("#searchButton").click(function() {
+	 // 검색어 가져오기
+        let searchContent  = $("#searchContent").val();
+        let classifyOption = $("#classifyOption").val();
+
+        // AJAX 요청
+        $.ajax({
+            type: "POST",
+            url: "uProductSearchServlet",
+            data: { searchContent: searchContent,
+			 		classifyOption: classifyOption},
+            dataType: "json", // 서버에서 반환되는 데이터 유형을 JSON으로 기대합니다.
+            success: function(response) {
+                // 성공적으로 응답을 받으면 카드를 생성합니다.
+                displayProducts(response, currentPage);
+            },
+            error: function(xhr, status, error) {
+                // 에러 발생 시 메시지를 출력합니다.
+                console.error("AJAX 오류: " + status, error);
+                alert("검색 중 오류가 발생했습니다.");
+            }// Error end 
+        });// Ajax end 
+    });// Search btn clik end	
+	// 정렬 값 변경 이벤트 처리
+	$("#classifyOption").change(function() {
+		let classifyOption = $("#classifyOption").val();
+		let searchContent = $("#searchContent").val();
+		// AJAX 요청
+		$.ajax({
+			type: "POST",
+			url: "uProductSearchServlet",
+			data: { 
+				searchContent: searchContent,
+			 	classifyOption: classifyOption }, // 검색어와 정렬 옵션 함께 전송
+			dataType: "json",
+			success: function(response) {
+				displayProducts(response, currentPage);
+				
+				
+				// 서버로부터 받은 데이터를 사용하여 화면을 갱신하거나 다른 동작을 수행
+			} // success function end
+		}); // ajax end
+	}); // classifyOption change event end
+}); // document ready function end
+
+   
  
     
