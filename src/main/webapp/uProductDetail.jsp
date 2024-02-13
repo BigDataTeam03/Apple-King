@@ -82,7 +82,7 @@
             </div>
             <div class="tab-pane fade" id="questions" role="tabpanel" aria-labelledby="questions-tab">
                 <!-- 상품문의 내용 -->
-                <p>Learn cool stuff.</p>
+               	<jsp:include page="aProductDetailQuestions.jsp"/>
             </div>
         </div>
     </div>

@@ -89,8 +89,12 @@
         <button id="openModalBtn">문의 작성</button>
         
         <!-- 문의 내용을 보여주는 영역 -->
-        <div id="questions">
-            <!-- 여기에 각 문의 내용과 답변이 나타날 것입니다. -->
+        <div id="questions	">
+        
+        
+        
+        
+            <!-- 여기에 각 문의 내용과 답변이 있음 -->
         </div>
     </div>
      
@@ -104,7 +108,7 @@
             <span class="close">&times;</span>
             <h3>문의 작성</h3>
             <form id="questionForm">
-                <label for="name">상품 이름: <%=session.getAttribute("product_name") %></label>                        
+                <label for="name">상품 이름: <%=session.getAttribute("product_name") %></label>      <br>                   
                 <label for="question">문의 내용:</label><br>
                 <textarea id="question" name="question" rows="4" required></textarea><br>
                 <input type="submit" value="작성">

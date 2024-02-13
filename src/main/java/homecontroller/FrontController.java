@@ -130,7 +130,13 @@ public class FrontController extends HttpServlet {
 			
 		//-------------- [ AJAX Part or Just ViewPage] ------------
 		// Go home of user (AJAX)
-		case("/cGoHome.do"):  			justGoPage(com,"uProductList.jsp", 	 	request, response);break;	
+		case("/cGoHome.do"):  
+			
+			//String request_id = (String)request.getAttribute("userId");
+			//String userId =  (String) session.getAttribute("userId");
+			//System.out.println("세션 에 저장된 아이디 : "+userId);
+			//request.setAttribute("userId", userId);
+			justGoPage(com,"uProductList.jsp", 	 	request, response);break;	
 		
 		// log out do
 		case ("/logout.do"):			justGoPage(com,"logout.jsp", 	 		request, response);break;

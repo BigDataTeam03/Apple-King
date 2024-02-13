@@ -42,14 +42,17 @@
 				CookieManager.makeCookie(response, "loginId", user_id, 60*60*5); // 5분동안 쿠키 가지고있음 
 			} // If End 
 			else {
-				// save check 안되어있을 경우 쿠키 삭제함. 
+				// save check 안되어있을 경우 쿠키 삭제함. ß
 				CookieManager.deleteCookie(response,"loginId");
 			}
 			//세션에 관리자 아이디및 이름 rank 저장
 			session.setAttribute("USERID", memberDto.getCust_id());
 			session.setAttribute("USERNAME", memberDto.getName());
 			session.setAttribute("USERRANK", memberDto.getCust_rank());
+			session.setAttribute("userId", memberDto.getCust_id());
+			
 			String user_name = memberDto.getName(); 
+			
 			// 관리자 페이지로 이동
 			JSFunction.alertLocation(user_name+"님 환영합니다","aGoHome.do",out);
 			
@@ -64,16 +67,21 @@
 				// save check 안되어있을 경우 쿠키 삭제함. 
 				CookieManager.deleteCookie(response,"loginId");
 			}
-			
+			 
 			
 			//세션에 아이디및 이름 저장
 			session.setAttribute("USERID", memberDto.getCust_id());
 			session.setAttribute("USERNAME", memberDto.getName());
 			session.setAttribute("USERRANK", memberDto.getCust_rank());
 			String user_name = memberDto.getName(); 
+			String user_Id= memberDto.getCust_id(); 
 			//response.sendRedirect("loginForm.jsp");
 			// 관리자 페이지로 이동
-			JSFunction.alertLocation(user_name+"님 환영합니다","cGoHome.do",out);
+			//JSFunction.alertLocation(user_Id+"님 환영합니다","cGoHome.do",out);
+			request.setAttribute("userId", user_Id);
+			session.setAttribute("userId", user_id);
+			request.getRequestDispatcher("cGoHome.do").forward(request,response);
+			//request.getRequestDispatcher("uCartList.do").forward(request,response);
 		}
 	}// if end
 	else{

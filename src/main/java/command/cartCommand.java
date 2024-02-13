@@ -27,10 +27,10 @@ public class cartCommand implements Command {
 		String product_code = session.getAttribute("product_code").toString();
 		String cust_id = session.getAttribute("userId").toString();
 		int cart_qty = Integer.parseInt(request.getParameter("cart_qty"));
-		System.out.println("\t product 코드 세션 값: " + session.getAttribute("product_code"));
-		System.out.println("\t user id : "		+cust_id);
-		System.out.println("\t product code : "+product_code);
-		System.out.println("\t cart qty :" 	+ request.getParameter("cart_qty"));
+		System.out.println("\t product 코드 세션 값asdasd: " + session.getAttribute("product_code"));
+		System.out.println("user id : "		+ session.getAttribute("userId"));
+		System.out.println(" product code : "+session.getAttribute("product_code"));
+		System.out.println(" cart qty :" 	+ request.getParameter("cart_qty"));
 		
 		Cart_Dao cartInsertDao = new Cart_Dao();
 		

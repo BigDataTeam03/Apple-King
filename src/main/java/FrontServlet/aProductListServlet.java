@@ -135,24 +135,8 @@ public class aProductListServlet extends HttpServlet {
 	     if (sorting.equals("priceLow"))
 	    	 	orderby = " order by price asc";
 	     
-	    
-	     // 선택된 라디오 버튼 값에 따라 쿼리 조건 설정
-//	     if (origin != null && !origin.isEmpty()) {
-//	         selected += " origin = '" + origin + "' and ";
-//	     }
-//	     if (size != null && !size.isEmpty()) {
-//	         selected += " size = '" + size + "' and ";
-//	     }
-//	     if (kind != null && !kind.isEmpty()) {
-//	         selected += " kind = '" + kind + "' and ";
-//	     }
 
-	     // and 로 연결된 조건들 중 마지막 and 제거
-//	     if (!selected.isEmpty() && selected.length() > 5) {
-//	         selected = selected.substring(0, selected.length() - 5);
-//	     }
-			
-	     
+	     // 상세검색
 	     if (origin != null && !origin.isEmpty()) {
 	         selected += " and origin = '" + origin +"'";
 	     }

@@ -34,8 +34,8 @@ public class purchaseCommand implements Command {
 		*/
 		
 		HttpSession session = request.getSession();
-	    String cust_id = (String)session.getAttribute("user_Id");
-	    
+	     String cust_id = session.getAttribute("userId").toString();
+	    System.out.println(" 세션으로 받은 아이디" + cust_id );
 	    
 	    
 							
@@ -46,18 +46,7 @@ public class purchaseCommand implements Command {
 			dao.purchaseInfo(cust_id);
 			
 			request.setAttribute("purchaseInfo", purchaseInfo);
-//			
-//			 RequestDispatcher dispatcher = request.getRequestDispatcher("purchasePage.jsp");
-//		        try {
-//					dispatcher.forward(request, response);
-//				} catch (ServletException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-		
+
 		
 	}
 
