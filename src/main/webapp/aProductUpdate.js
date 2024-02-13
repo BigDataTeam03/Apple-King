@@ -390,8 +390,7 @@ $(document).ready(function() {
              		 size : size,
              		 kind : kind,
              		 name : name
-           		 
-           		 
+           		            		 
            		  }, // 검색어와 정렬 방식 전달
             success: function(response) {
                 // 서버에서 받은 응답 처리
