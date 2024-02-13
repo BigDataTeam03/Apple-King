@@ -41,18 +41,47 @@ public class uProductSearchServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		
-		System.out.println("aProductListServlet 을 실행합니다.");
+		System.out.println(">> uProductSearchServlet 을 실행합니다.");
 		response.setContentType("text/html;charset=UTF-8");  
 		HttpSession session = request.getSession();
-
-		String product_name = "";
-			if (request.getParameter("name") == null) {
-				product_name = "";					
+		
+		// 정렬 옵션 가져오는 변수 -> 높은 가격순, 낮은가격순. 
+		String classifyOption = request.getParameter("classifyOption");
+		String searchContent = request.getParameter("searchContent");
+		
+		System.out.println(">> classifyOption 값 :"+classifyOption);
+		
+		// 시작시 classifyOption 이 선택되지 않았으니 디폴트값으로 highPrice 지정
+		if (classifyOption == null) {
+			classifyOption = "highprice";
+		}
+		// 쿼리문 기본값 highPrice
+		String orderby = "";
+		
+		//선택한 옵션값에 따라 정렬쿼리문 변경
+		 if (classifyOption.equals("highprice")) 
+			 
+			 	orderby = " order by price desc";
+		 
+	     if (classifyOption.equals("lowprice"))
+	    	 
+	    	 	orderby = " order by price asc";
+	     
+	     
+	    
+	     
+		
+			if (request.getParameter("searchContent") == null) {
+				searchContent = "";
+			System.out.println(">> searchContent가 널입니다. ");
 			}else {
-			    product_name = request.getParameter("name") ;
+				searchContent = request.getParameter("searchContent") ;
+				System.out.println(">> searchContent가 . "+searchContent+" 입니다. ");
 			}
-
-//		//상품 총 갯수를 나타내기 위한 변수지정
+		System.out.println(">> order by 변수 값 :" + orderby);
+		System.out.println(">> searchcontent 값 :" +searchContent);
+		
+		//상품 총 갯수를 나타내기 위한 변수지정
 		int totalProductNumber =0;
 		
 		// ArrayList 에 담겨 있는 데이터를 JSON 으로 변경하여 송부
@@ -81,7 +110,7 @@ public class uProductSearchServlet extends HttpServlet {
 				+ "price"
 				
 				//   product 에서 product name 을 검색하지만 처음에는 아무것도 안들어감으로 모두 조회함. 
-				+ " from product where product_name like '%"+ product_name + "%'";
+				+ " from product where product_name like '%"+ searchContent + "%'" + orderby;
 		System.out.println("query 실행 전 내용 :"+ readQuery);
 		PrintWriter out = response.getWriter();
 		
@@ -106,7 +135,7 @@ public class uProductSearchServlet extends HttpServlet {
 				productdto.setProduct_qty		 (rs.getInt(	"product_qty")); 		// 3
 				productdto.setOrigin			 (rs.getString( "origin")); 			// 4
 				productdto.setManufacture_date	 (rs.getString(	"manufacture_date")); 	// 5 
-				productdto.setWeight			 (rs.getInt("weight")); 				// 6
+				productdto.setWeight			 (rs.getInt(	"weight")); 				// 6
 				productdto.setSize  			 (rs.getString(	"size")); 				// 7
 				productdto.setDetail_image_name  (rs.getString(	"detail_image_name")); 	// 8 
 				productdto.setView_count  		 (rs.getInt(	"view_count")); 		// 9
