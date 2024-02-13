@@ -84,6 +84,7 @@ function createTable(data) {
              var productTotalPrice = data[i].price * data[i].cart_qty;
     	    // 총 가격 합산
              totalPrice += productTotalPrice;
+               
     }
     
     // table end

@@ -63,6 +63,10 @@ public class uCartListServlet extends HttpServlet {
 		//테스트용 값
 		String	cust_id	= request.getParameter("cust_id");		
 		System.out.println("고객 아이디" + cust_id);
+		
+		
+		// 아이디값 받아서 구매 할 때 사용
+		session.setAttribute("cust_id", cust_id);
 
 //		//상품 총 갯수를 나타내기 위한 변수지정
 		int cartTot =0;
@@ -123,6 +127,8 @@ public class uCartListServlet extends HttpServlet {
 				cartDtos.add(cartDto);
 				cartTot++;
 				
+				
+				session.setAttribute("product_code", rs.getString("product_code"));
 			}
 			System.out.println("Json전");
 			// Json 타입으로 변환하기 위한 Gson 선언
@@ -134,7 +140,7 @@ public class uCartListServlet extends HttpServlet {
 		
 				System.out.println("쿼리문 정상 작동!");
 			//입력시 코드를 생성하기위한 세션
-			session.setAttribute("cartTot", cartTot );
+			//session.setAttribute("cartTot", cartTot );
 			//System.out.println("총 상품 갯수" + session.getAttribute("totalProductNumber"));
 		}catch(Exception e) {
 			e.printStackTrace();
