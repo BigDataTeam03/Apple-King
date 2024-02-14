@@ -25,8 +25,7 @@
  */
 // 페이지 실행후 바로 장바구니 전체 조회
 window.onload = function() {
-		let idsession =  '<%= session.getAttribute("userId") %>';
-	 		alert(" 카트로 가져온 유저아이디" + idsession)
+	
 	$.ajax({
 		
 		// post method server request
@@ -36,7 +35,7 @@ window.onload = function() {
 		url: "uCartListServlet",
 		
 		// request data (JSON)
-		data: { cust_id:  idsession}, 
+		data: { cust_id: "sumin123" }, 
 		
 		// response data type -> JSON
 		dataType :"json",
@@ -85,7 +84,6 @@ function createTable(data) {
              var productTotalPrice = data[i].price * data[i].cart_qty;
     	    // 총 가격 합산
              totalPrice += productTotalPrice;
-               
     }
     
     // table end
@@ -147,14 +145,12 @@ function updateQuantity(input) {
             quantity: quantity
         },
         success: function(response) {       
-		let idsession =  '<%= session.getAttribute("userId") %>';
-			alert("세션 으로받은 아이디" + idsession)
             // 테이블 업데이트   
              	$.ajax({
 						type: "POST",
 						//다시 테이블 조회
 						url: "uCartListServlet",
-						data: { cust_id: idsession },
+						data: { cust_id: "sumin123" },
 						success: function(response) {
 							/* 서버에서 받은 응답 처리 */
 							createTable(response)//jason
@@ -213,13 +209,12 @@ $(document).ready(function() {
 				},			
 				traditional: true,
 				success: function(response) {
-					let idsession =  '<%= session.getAttribute("userId") %>';
 					/* 서버에서 받은 응답 처리 */
 					$.ajax({
 						type: "POST",
 						//다시 테이블 조회
 						url: "uCartListServlet",
-						data: { cust_id: idsession },
+						data: { cust_id: "sumin123" },
 						success: function(response) {
 							/* 서버에서 받은 응답 처리 */
 							createTable(response)//jason

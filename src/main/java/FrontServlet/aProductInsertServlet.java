@@ -149,7 +149,7 @@ public class aProductInsertServlet extends HttpServlet {
 			out.print("success");
 			
 			
-			
+
 			
 			
 		}catch(Exception e) {

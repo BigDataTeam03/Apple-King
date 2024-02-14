@@ -61,12 +61,8 @@ public class uCartListServlet extends HttpServlet {
 		//실제는 세션으로 받아서 이걸 사용한다
 	//	String cust_id = (String) session.getAttribute("cust_id");
 		//테스트용 값
-		String	cust_id	= (String) session.getAttribute("userId");
+		String	cust_id	= request.getParameter("cust_id");		
 		System.out.println("고객 아이디" + cust_id);
-		
-		
-//		// 아이디값 받아서 구매 할 때 사용
-//		session.setAttribute("cust_id", cust_id);
 
 //		//상품 총 갯수를 나타내기 위한 변수지정
 		int cartTot =0;
@@ -74,7 +70,8 @@ public class uCartListServlet extends HttpServlet {
 		// ArrayList 에 담겨 있는 데이터를 JSON 으로 변경하여 송부
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-					
+			
+		
 		ArrayList<cartDto> cartDtos = new ArrayList<cartDto>();
 		
 		//카트 테이블은 카트 아이디, 고객 아이디, 상품 아이디, 카트 수량만 존재한다
@@ -83,7 +80,7 @@ public class uCartListServlet extends HttpServlet {
 							//카트 테이블에 존재하는 컬럼
 							" select cart.cart_code, cart.cust_id, cart.product_code, cart_qty,"
 							//상품목록에서 가져오는 정보
-					     	+ " product.product_name, product.price, product.product_image_names, product.product_qty "
+					     	+ " product.product_name, product.price, product_image_names "
 					     	//선택한 테이블
 							+ "from cart "
 					     	// 선택한 상품 을 조회하기 위한 조인문
@@ -122,12 +119,10 @@ public class uCartListServlet extends HttpServlet {
 				cartDto.setProduct_name(rs.getString("product_name"));
 	            cartDto.setPrice(rs.getInt("price"));
 	            cartDto.setProduct_image_names(rs.getString("product_image_names"));
-	            cartDto.setProduct_qty(rs.getString("product_qty"));
 				//검색된 내용을 cartDto 에 추가
 				cartDtos.add(cartDto);
 				cartTot++;
-				session.setAttribute("product_qty", rs.getString("product_qty"));
-				session.setAttribute("product_code", rs.getString("product_code"));
+				
 			}
 			System.out.println("Json전");
 			// Json 타입으로 변환하기 위한 Gson 선언
@@ -139,7 +134,7 @@ public class uCartListServlet extends HttpServlet {
 		
 				System.out.println("쿼리문 정상 작동!");
 			//입력시 코드를 생성하기위한 세션
-			//session.setAttribute("cartTot", cartTot );
+			session.setAttribute("cartTot", cartTot );
 			//System.out.println("총 상품 갯수" + session.getAttribute("totalProductNumber"));
 		}catch(Exception e) {
 			e.printStackTrace();

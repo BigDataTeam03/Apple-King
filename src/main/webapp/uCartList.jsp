@@ -33,7 +33,7 @@
         <br><br>
         총 가격: <span id="totalPrice"></span>
         <br><br>
-        <form action="purchase.do" method="post" >
+        <form action="purchase.do" method="post">
             <input type="submit" value="구매하기">
         </form>
     </div>

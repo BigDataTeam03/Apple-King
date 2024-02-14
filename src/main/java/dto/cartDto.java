@@ -13,10 +13,6 @@ public class cartDto {
 	String product_name;
 	int price;
 	String product_image_names;
-	String product_qty;
-	
-	//고객 테이블에 있는 컬럼
-	int cust_point;
 
 	// Constructor
 
@@ -25,7 +21,7 @@ public class cartDto {
 	}
 
 	public cartDto(String cart_code, String cust_id, String product_code, String cart_qty, String product_name,
-			int price, String product_image_names, int cust_point, String product_qty) {
+			int price, String product_image_names) {
 		super();
 		this.cart_code = cart_code;
 		this.cust_id = cust_id;
@@ -34,14 +30,7 @@ public class cartDto {
 		this.product_name = product_name;
 		this.price = price;
 		this.product_image_names = product_image_names;
-		this.cust_point = cust_point;
-		this.product_qty = product_qty;
 	}
-	
-	
-	
-	
-	
 
 	public String getCart_code() {
 		return cart_code;
@@ -97,22 +86,6 @@ public class cartDto {
 
 	public void setProduct_image_names(String product_image_names) {
 		this.product_image_names = product_image_names;
-	}
-
-	public int getCust_point() {
-		return cust_point;
-	}
-
-	public void setCust_point(int cust_point) {
-		this.cust_point = cust_point;
-	}
-
-	public String getProduct_qty() {
-		return product_qty;
-	}
-
-	public void setProduct_qty(String product_qty) {
-		this.product_qty = product_qty;
 	}
 
 	// Method

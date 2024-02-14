@@ -19,7 +19,6 @@ import command.cartCommand;
 import command.myInfoCommand;
 import command.mypageCommand;
 import command.productDetailCommand;
-import command.purchaseCommand;
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -112,14 +111,6 @@ public class FrontController extends HttpServlet {
 			command = new cartCommand();
 			executeCommand(com,command,request,response,"uCartList.jsp");
 			break;
-			
-		case("/purchase.do"):
-			command = new purchaseCommand();
-		System.out.println("커맨드로 이동" + command);
-			executeCommand(com, command, request, response, "purchase.jsp");
-			break;
-			
-			
 		//-------------- [Administrator (MVC)] ----
 		
 		// Product insert process (image MVC)
@@ -130,13 +121,7 @@ public class FrontController extends HttpServlet {
 			
 		//-------------- [ AJAX Part or Just ViewPage] ------------
 		// Go home of user (AJAX)
-		case("/cGoHome.do"):  
-			
-			//String request_id = (String)request.getAttribute("userId");
-			//String userId =  (String) session.getAttribute("userId");
-			//System.out.println("세션 에 저장된 아이디 : "+userId);
-			//request.setAttribute("userId", userId);
-			justGoPage(com,"uProductList.jsp", 	 	request, response);break;	
+		case("/cGoHome.do"):  			justGoPage(com,"uProductList.jsp", 	 	request, response);break;	
 		
 		// log out do
 		case ("/logout.do"):			justGoPage(com,"logout.jsp", 	 		request, response);break;
