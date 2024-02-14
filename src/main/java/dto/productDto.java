@@ -1,5 +1,7 @@
 package dto;
 
+import java.util.ArrayList;
+
 public class productDto {
 
 	// Field
@@ -17,7 +19,9 @@ public class productDto {
 	String 	product_image_names;	//12
 	int 	price; 					//13
 	String 	rating; 			    //14
-
+	//detailimagename 배열 선언
+	ArrayList<String> detailImageNames;
+	
 	// Constructor
 	public productDto() {
 		// TODO Auto-generated constructor stub
@@ -43,6 +47,9 @@ public class productDto {
 		this.product_reg_date = product_reg_date;
 		this.kind = kind;
 		this.product_image_names = product_image_names;
+		// detailimagename 배열 
+		this.detailImageNames = new ArrayList<>();
+        this.detailImageNames.add(detail_image_name);
 	}
 
 	
@@ -179,6 +186,14 @@ public class productDto {
 		this.rating = rating;
 	}
 	
+	// detailimage 배열 getter & setter
+	public ArrayList<String> getDetailImageNames() {
+        return detailImageNames;
+    }
+
+    public void setDetailImageNames(ArrayList<String> detailImageNames) {
+        this.detailImageNames = detailImageNames;
+    }
 
 	
 
