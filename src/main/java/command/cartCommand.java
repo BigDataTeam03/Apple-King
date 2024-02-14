@@ -33,6 +33,7 @@ public class cartCommand implements Command {
 		String product_code = session.getAttribute("product_code").toString();
 		String cust_id = session.getAttribute("userId").toString();
 		int cart_qty = Integer.parseInt(request.getParameter("cart_qty"));
+		
 
 		// 장바구니 채크와 인서트기능의 다오
 		Cart_Dao cartInsertDao = new Cart_Dao();

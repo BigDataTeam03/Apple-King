@@ -40,7 +40,7 @@ public class CartUpdate_Dao {
 	        try {
 	            conn = dataSource.getConnection();
 	            // 로그인 한 고객이 보유한 장바구니의 상품에 수량을 업데이트한다
-	            String updateQuery = "update cart set cart_qty = ? where cust_id = ? and product_code = ?";
+	            String updateQuery = "update cart set cart_qty = cart_qty + ? where cust_id = ? and product_code = ?";
 	            ps = conn.prepareStatement(updateQuery);
 	            ps.setInt(1, cart_qty);
 	            ps.setString(2, cust_id);

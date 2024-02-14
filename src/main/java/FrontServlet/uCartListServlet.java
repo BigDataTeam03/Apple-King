@@ -61,7 +61,8 @@ public class uCartListServlet extends HttpServlet {
 		//실제는 세션으로 받아서 이걸 사용한다
 	//	String cust_id = (String) session.getAttribute("cust_id");
 		//테스트용 값
-		String	cust_id	= request.getParameter("cust_id");		
+		String cust_id = (String)session.getAttribute("userId");
+		//String	cust_id	= request.getParameter("cust_id");		
 		System.out.println("고객 아이디" + cust_id);
 
 //		//상품 총 갯수를 나타내기 위한 변수지정

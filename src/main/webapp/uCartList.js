@@ -35,7 +35,7 @@ window.onload = function() {
 		url: "uCartListServlet",
 		
 		// request data (JSON)
-		data: { cust_id: "sumin123" }, 
+		//data: { cust_id: "sum" }, 
 		
 		// response data type -> JSON
 		dataType :"json",
@@ -144,13 +144,19 @@ function updateQuantity(input) {
             cartCode: cartCode,
             quantity: quantity
         },
-        success: function(response) {       
+        success: function(aa) {  
+	
+			if(aa == "수량초과") {
+				alert(" 재고부족")
+			}
+			
+			     
             // 테이블 업데이트   
              	$.ajax({
 						type: "POST",
 						//다시 테이블 조회
 						url: "uCartListServlet",
-						data: { cust_id: "sumin123" },
+						//data: { cust_id: "sumin123" },
 						success: function(response) {
 							/* 서버에서 받은 응답 처리 */
 							createTable(response)//jason
@@ -158,6 +164,7 @@ function updateQuantity(input) {
 					})		       
         },
         error: function(xhr, status, error) {
+			alert("선택하신 상품의 재고가 부족합니다")
             // 에러 처리
             console.error("선택하신 상품의 재고가 부족합니다:", error);
         },   complete: function(response) {
@@ -214,7 +221,7 @@ $(document).ready(function() {
 						type: "POST",
 						//다시 테이블 조회
 						url: "uCartListServlet",
-						data: { cust_id: "sumin123" },
+						//data: { cust_id: "sumin123" },
 						success: function(response) {
 							/* 서버에서 받은 응답 처리 */
 							createTable(response)//jason

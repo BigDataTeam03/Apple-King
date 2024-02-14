@@ -31,6 +31,8 @@
 	<body>
 	<%
 	String price = session.getAttribute("price").toString();
+	String product_qty = session.getAttribute("product_qty").toString();
+	
 	
 	%>
     	<div class="container">
@@ -53,7 +55,7 @@
 		                    
 		                    <form name="cartForm" action="cartInsert.do" method ="post">
 		                        구매 수량 :<input type="number" name="cart_qty" min="1" value ="1"><br><br>
-		                        <input type="button" class="btn btn-primary" value="장바구니담기" onclick="qtyCheck()"></input>
+		                        <input type="button" class="btn btn-primary" value="장바구니담기" onclick="qtyCheck(this.form)"></input>
 		                    </form><br><br>
 		                </div>
 		            </div>
@@ -65,7 +67,8 @@
 	<br>
 	<div>
 	<!--  문의 게시판 출력 -->
-	 <jsp:include page="aProductDetailQuestions.jsp"/>
+	<%--  <jsp:include page="aProductDetailQuestions.jsp"/>
+	 //236 --%>
 	</div>
     <!-- 상세페이지 탭 -->
         <div class="container">
@@ -91,8 +94,7 @@
             </div>
             <div class="tab-pane fade" id="questions" role="tabpanel" aria-labelledby="questions-tab">
                 <!-- 상품문의 내용 -->
-                
-           
+                       
             </div>
         </div>
     </div>
@@ -111,7 +113,7 @@
             });
         });
     </script>
-	
+	   
 	<script>
 		  	 document.addEventListener('DOMContentLoaded', function() {
 		     // input 요소 가져오기
@@ -133,11 +135,13 @@
 	<script>
 	// 카트에 넣기 전, 선택한 수량을 가져와서 재고와 비교 후 가능,불가능 여부 체크
 	function qtyCheck(form) {
+	//let form = document.cartForm
     // 선택한 상품의 수량 가져오기
         var quantity = parseInt(form.elements["cart_qty"].value);
         // 상품의 재고 수량 가져오기
-        var stock = parseInt("${sessionScope.product_qty}");
+        var stock = parseInt("${product_qty}");
 
+    			alert("상품재고 " + stock)
         // 수량이 재고보다 큰지 확인
         if (quantity > stock) {
             alert("재고가  선택하신 상품보다 부족합니다.");
