@@ -36,6 +36,8 @@
         <form action="purchase.do" method="post">
             <input type="submit" value="구매하기">
         </form>
+      	<a href="cGoHome.do">상품목록으로 가기</a>
+       
     </div>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="uCartList.js"></script>
