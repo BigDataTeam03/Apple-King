@@ -18,7 +18,7 @@ public class ShareVar {
 //	public static String url_mysql = "jdbc:mysql://192.168.50.4/apple_store?serverTimezone=UTC&characterEncoding=utf8&useSSL=false";
 	
 	// 개인 DB용 url 
-	public static String url_mysql = "jdbc:mysql://localhost/apple_store?serverTimezone=UTC&characterEncoding=utf8&useSSL=false";
+	public static String url_mysql = "jdbc:mysql://192.168.50.5:3306/apple_store?serverTimezone=UTC&characterEncoding=utf8&useSSL=false";
 	public static String id_mysql = "root";
 	public static String pw_mysql = "qwer1234";
 	

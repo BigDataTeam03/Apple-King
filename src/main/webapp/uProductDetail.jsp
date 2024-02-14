@@ -56,8 +56,12 @@
 		        </div>
 		    </div>
 		</div>
-	
-	
+	<br>
+	<br>
+	<br>
+	<div>
+	 <jsp:include page="aProductDetailQuestions.jsp"/>
+	</div>
     <!-- 상세페이지 탭 -->
         <div class="container">
 	        <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -82,7 +86,7 @@
             </div>
             <div class="tab-pane fade" id="questions" role="tabpanel" aria-labelledby="questions-tab">
                 <!-- 상품문의 내용 -->
-                <p>Learn cool stuff.</p>
+                
             </div>
         </div>
     </div>

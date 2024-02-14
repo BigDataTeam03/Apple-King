@@ -111,6 +111,8 @@ public class FrontController extends HttpServlet {
 			command = new cartCommand();
 			executeCommand(com,command,request,response,"uCartList.jsp");
 			break;
+	
+			
 		//-------------- [Administrator (MVC)] ----
 		
 		// Product insert process (image MVC)
@@ -149,6 +151,8 @@ public class FrontController extends HttpServlet {
 		
 		// order list  (AJAX)
 		case("/aCustomerOrderList.do"):	justGoPage(com,"aCustomerOrderList.jsp",request, response);break;	
+		//  top 을 누르면 나오는 장바구니 리스트
+		case("/uCartList.do"):			justGoPage(com,"uCartList.jsp",			request, response);break;	
 		
 		
 		default:break;

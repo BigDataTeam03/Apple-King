@@ -35,7 +35,7 @@
         padding: 10px;
     }
     .question h3 {
-        margin-top: 0;
+	        margin-top: 0;
     }
     .question p {
         margin-bottom: 5px;
@@ -89,9 +89,7 @@
         <button id="openModalBtn">문의 작성</button>
         
         <!-- 문의 내용을 보여주는 영역 -->
-        <div id="questions">
-            <!-- 여기에 각 문의 내용과 답변이 나타날 것입니다. -->
-        </div>
+        <div id="questions"></div>
     </div>
      
     <!-- 모달 -->

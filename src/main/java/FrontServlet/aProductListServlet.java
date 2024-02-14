@@ -135,24 +135,7 @@ public class aProductListServlet extends HttpServlet {
 	     if (sorting.equals("priceLow"))
 	    	 	orderby = " order by price asc";
 	     
-	    
-	     // 선택된 라디오 버튼 값에 따라 쿼리 조건 설정
-//	     if (origin != null && !origin.isEmpty()) {
-//	         selected += " origin = '" + origin + "' and ";
-//	     }
-//	     if (size != null && !size.isEmpty()) {
-//	         selected += " size = '" + size + "' and ";
-//	     }
-//	     if (kind != null && !kind.isEmpty()) {
-//	         selected += " kind = '" + kind + "' and ";
-//	     }
-
-	     // and 로 연결된 조건들 중 마지막 and 제거
-//	     if (!selected.isEmpty() && selected.length() > 5) {
-//	         selected = selected.substring(0, selected.length() - 5);
-//	     }
-			
-	     
+	     // 라디오 버튼으로 선택하는 상세 검색 기능
 	     if (origin != null && !origin.isEmpty()) {
 	         selected += " and origin = '" + origin +"'";
 	     }
@@ -204,6 +187,7 @@ public class aProductListServlet extends HttpServlet {
 				
 				// productDto 선언
 				productDto productdto = new productDto();
+				//테이블에 모든 요소 불러오기
 				productdto.setProduct_code		 (rs.getString(	"product_code")); 		// 1
 				productdto.setProduct_name		 (rs.getString(	"product_name")); 		// 2
 				productdto.setProduct_qty		 (rs.getInt(	"product_qty")); 		// 3
