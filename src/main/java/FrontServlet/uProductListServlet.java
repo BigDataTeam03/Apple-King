@@ -79,8 +79,9 @@ public class uProductListServlet extends HttpServlet {
 						+ " price, origin,"  	//3
 						+ " size,"  			//4
 						+ " weight,"  			//5
-						+ " product_image_names"//6
-						+ " FROM product" + orderby; ;
+						+ " product_image_names,"//6
+						+ " detail_image_name"//7 ,detailimagenames 추가
+						+ " FROM product" + orderby; 
 		PrintWriter out = response.getWriter();
 		try {
 			// SQL 연결
@@ -93,12 +94,13 @@ public class uProductListServlet extends HttpServlet {
 			while(rs.next()) {
 				productDto productdto = new productDto();
 				productdto.setProduct_code		 	(rs.getString("product_code")); 	  // 1
-				productdto.setProduct_name		 	(rs.getString("product_name")); 	  // 1
-				productdto.setPrice		 			(rs.getInt("price")); 				  // 2
-				productdto.setOrigin	 			(rs.getString("origin")); 			  // 3
-				productdto.setSize	 				(rs.getString("size")); 			  // 4
-				productdto.setWeight	 			(rs.getInt("weight")); 				  // 5
-				productdto.setProduct_image_names	(rs.getString("product_image_names"));// 6 
+				productdto.setProduct_name		 	(rs.getString("product_name")); 	  // 2
+				productdto.setPrice		 			(rs.getInt("price")); 				  // 3
+				productdto.setOrigin	 			(rs.getString("origin")); 			  // 4
+				productdto.setSize	 				(rs.getString("size")); 			  // 5
+				productdto.setWeight	 			(rs.getInt("weight")); 				  // 6
+				productdto.setProduct_image_names	(rs.getString("product_image_names"));// 7 
+				productdto.setDetail_image_name		(rs.getString("detail_image_name"));// 8, detailimagenames 추가
 				productdtoList.add(productdto);
 			}
 			System.out.println("Json전");

@@ -19,6 +19,9 @@ public class productDetailCommand implements Command {
 //					System.out.println("product name 이 널입니다. ");
 //				}
 //		
+		
+				// product_name을 세션에서 가져옵니다.
+		 		String productName = (String) session.getAttribute("product_name");
 				//String product_name = session.getAttribute("product_name").toString();
 				//System.out.println(product_name + "입니다");
 				String price 		= session.getAttribute("price").toString();
@@ -46,10 +49,10 @@ public class productDetailCommand implements Command {
 				System.out.println("------------------------");
 				
 				// dao와 dto 준비
-				String product_name = "바사과";
+//				String product_name = "";
 				Detail_Dao dao = new Detail_Dao();
-				System.out.println("상세페이지" + product_name);
-				productDto dto = dao.Detail(product_name,price,origin,size,weight);
+				System.out.println("상세페이지" + productName);
+				productDto dto = dao.Detail(productName);
 			
 				request.setAttribute("Detail", dto);
 	

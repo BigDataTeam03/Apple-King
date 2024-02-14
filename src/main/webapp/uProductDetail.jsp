@@ -2,6 +2,7 @@
 <%@ include file ='top_user.jsp' %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <!--
 --------------------------------------------------------------
@@ -37,8 +38,11 @@
 		        <div class="col-md-6"> <!-- 가운데 정렬을 위해 너비를 조정 -->
 		            <div class="product-details">
 		                <div class="product-image">
-		                    <img src="image/${dto.detail_image_name}" alt="상품 이미지">
-		                </div>
+		                  <c:set var="detailImageNames" value="${dto.detail_image_name}" />
+								 <c:forTokens items="${detailImageNames}" delims="," var="imageName">
+                        				<img src="image/${imageName}" alt="상품 이미지">
+                    			 </c:forTokens>
+							</div>
 		                
 		                <div class="product-info">
 		                    상품명: <%= session.getAttribute("product_name") %><br>
