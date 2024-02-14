@@ -77,7 +77,7 @@ public class aProductInsertCommand implements Command {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				Connection conn_mysql = DriverManager.getConnection(ShareVar.url_mysql, ShareVar.id_mysql,
 						ShareVar.pw_mysql);
-				String query = "insert into product " // 1
+				String query = "insert into product2 " // 1
 						+ "(product_code,product_name," // 2
 						+ "product_qty," // 3
 						+ "origin," // 4

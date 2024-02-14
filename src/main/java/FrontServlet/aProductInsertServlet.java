@@ -124,7 +124,6 @@ public class aProductInsertServlet extends HttpServlet {
 					+ "price)"							//13
 							//1 2 3 4 5 6 7 8 9 10 	   11 12 13
 					+ "values(?,?,?,?,?,?,?,?,?,now(), ?, ?, ?)";
-					
 			//쿼리문을 실행할 변수를 지정한다
 			ps = conn_mysql.prepareStatement(query);
 			//지정해준 변수에 입력된 값을 넣는다
