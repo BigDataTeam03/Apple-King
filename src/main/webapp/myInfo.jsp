@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,36 +25,72 @@
        <div class="col-md-3">
         <h3 class="text-center mb-4">회원정보</h3>
 
-        <form>
+       <form>
             <div class="form-group">
                 <label for="name">성명 :</label>
-                <input type="text" class="form-control short-text-input" id="name" name="name">
+                <% 
+                    ArrayList<MemberDto> userInfo = (ArrayList<MemberDto>) session.getAttribute("userInfo");
+                    if (userInfo != null && !userInfo.isEmpty()) {
+                        for (MemberDto member : userInfo) {
+                            out.println("<input type='text' class='form-control short-text-input' id='name' name='name' value='" + member.getName() + "'>");
+                        }
+                    }
+                %>
             </div>
             <div class="form-group">
                 <label for="cust_id">아이디 :</label>
-                <input type="text" class="form-control short-text-input" id="cust_id" name="cust_id" readonly>
+                <% 
+                    if (userInfo != null && !userInfo.isEmpty()) {
+                        for (MemberDto member : userInfo) {
+                            out.println("<input type='text' class='form-control short-text-input' id='cust_id' name='cust_id' value='" + member.getCust_id() + "' readonly>");
+                        }
+                    }
+                %>
             </div>
             <div class="form-group">
                 <label for="cust_pw">비밀번호 :</label>
-                <input type="text" class="form-control short-text-input" id="cust_pw" name="cust_pw">
+                <% 
+                    if (userInfo != null && !userInfo.isEmpty()) {
+                        for (MemberDto member : userInfo) {
+                            out.println("<input type='text' class='form-control short-text-input' id='cust_pw' name='cust_pw' value='" + member.getCust_pw() + "'>");
+                        }
+                    }
+                %>
             </div>
             <div class="form-group">
                 <label for="email">이메일 :</label>
-                <input type="text" class="form-control short-text-input" id="email" name="email">
+                <% 
+                    if (userInfo != null && !userInfo.isEmpty()) {
+                        for (MemberDto member : userInfo) {
+                            out.println("<input type='text' class='form-control short-text-input' id='email' name='email' value='" + member.getEmail() + "'>");
+                        }
+                    }
+                %>
             </div>
             <div class="form-group">
                 <label for="tel">전화번호 :</label>
-                <input type="text" class="form-control short-text-input" id="tel" name="tel">
+                <% 
+                    if (userInfo != null && !userInfo.isEmpty()) {
+                        for (MemberDto member : userInfo) {
+                            out.println("<input type='text' class='form-control short-text-input' id='tel' name='tel' value='" + member.getTel() + "'>");
+                        }
+                    }
+                %>
             </div>
             <div class="form-group">
                 <label for="address">주소 :</label>
-                <div class="input-group">
-                <input type="text" class="form-control short-text-input" id="useraddress" name="useraddress">
+                <% 
+                    if (userInfo != null && !userInfo.isEmpty()) {
+                        for (MemberDto member : userInfo) {
+                            out.println("<input type='text' class='form-control short-text-input' id='useraddress' name='useraddress' value='" + member.getAddress() + "'>");
+                        }
+                    }
+                %>
                 <div class="input-group-append">
-            	<button type="button" class="btn btn-primary" id="editaddress" onClick="addressForm()">수정하기</button>
+            	    <button type="button" class="btn btn-primary" id="editaddress" onClick="addressForm()">수정하기</button>
         		</div>
-        		</div>
-            </div>
+            </div> 
+          
         	*수정 후 완료 버튼을 누르세요!<br><br> 
 
             <div class="text-center">
@@ -75,4 +113,3 @@
 
 </body>
 </html>
-

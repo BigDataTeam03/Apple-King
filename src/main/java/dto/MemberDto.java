@@ -46,6 +46,16 @@ public class MemberDto {
 		this.deact_date = deact_date;
 	}
 
+	public MemberDto(String name, String cust_id, String cust_pw, String email, String tel, String address) {
+		super();
+		this.name = name;
+		this.cust_id = cust_id;
+		this.cust_pw = cust_pw;
+		this.email = email;
+		this.tel = tel;
+		this.address = address;
+	}
+
 	public String getCust_id() {
 		return cust_id;
 	}
