@@ -26,75 +26,79 @@ import dto.productDto;
 @WebServlet("/uProductSearchServlet")
 public class uProductSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public uProductSearchServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		
 		System.out.println(">> uProductSearchServlet 을 실행합니다.");
-		response.setContentType("text/html;charset=UTF-8");  
+		/*
+		--------------------------------------------------------------
+		* Description 	: 상품 목록, 검색, 정렬 서블릿. 
+		* 		Detail  :   
+		* 					1. 상품을DB 에서 검색함 uProduct.jsㅅ에서 요청됨 ,   
+		* 					2. 검색 단어는uProductList.jsp 에서 변수가져옴
+		* 					3. 상품 정렬 기능 
+		* 
+		*  js 에서 가져오는 파라미터 들
+		*  		classifyOption,searchContent,startIndex,endIndex
+		* Author 		: DK, pdg
+		* Date 			: 2024.02.13
+		* ---------------------------Update---------------------------		
+		*<<2024.02.13>> by pdg,dk
+		*			1.상품 정렬기능 수정
+		*			2. 페이징을 위해서 uProduct.js 에서 startIndex, endIndex 를 가져옴
+		--------------------------------------------------------------
+		*/
+		// Field 
+		String 	classifyOption 	= request.getParameter("classifyOption");
+		String 	searchContent 	= request.getParameter("searchContent");
+		
+		
+		int pageSize =10;
+		if (request.getParameter("pageSize") != null) {
+			pageSize = Integer.parseInt(request.getParameter("pageSize"));	
+		}
+		
+		int startIndex =0; 
+		if(request.getParameter("startIndex") != null ) {
+			startIndex = Integer.parseInt(request.getParameter("startIndex"));
+		}
+		
+		System.out.println(">>pageSize : "+pageSize);
+		System.out.println(">>startIndex : "+startIndex);
+		// ArrayList 에 담겨 있는 데이터를 JSON 으로 변경하여 송부
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		
+		//session 
 		HttpSession session = request.getSession();
 		
-		// 정렬 옵션 가져오는 변수 -> 높은 가격순, 낮은가격순. 
-		String classifyOption = request.getParameter("classifyOption");
-		String searchContent = request.getParameter("searchContent");
-		
-		System.out.println(">> classifyOption 값 :"+classifyOption);
-		
-		// 시작시 classifyOption 이 선택되지 않았으니 디폴트값으로 highPrice 지정
+		// 시작시 classifyOption -> highPrice
 		if (classifyOption == null) {
 			classifyOption = "highprice";
 		}
 		// 쿼리문 기본값 highPrice
 		String orderby = "";
 		
-		//선택한 옵션값에 따라 정렬쿼리문 변경
-		 if (classifyOption.equals("highprice")) 
-			 
-			 	orderby = " order by price desc";
-		 
-	     if (classifyOption.equals("lowprice"))
-	    	 
-	    	 	orderby = " order by price asc";
-	     
-	     
+		// 선택한 옵션값에 따라 정렬쿼리문 변경
+		if (classifyOption.equals("highprice")) orderby = " order by price desc";
+	    if (classifyOption.equals("lowprice" )) orderby = " order by price asc";
+	    if (classifyOption.equals("product_code" )) orderby = " order by product_code asc";
 	    
-	     
+	    // 검색버튼 눌렀을때 검색내용 저장 
+		if (request.getParameter("searchContent") == null) {
+			searchContent = "";
+		}else {
+			searchContent = request.getParameter("searchContent") ;
+		}
 		
-			if (request.getParameter("searchContent") == null) {
-				searchContent = "";
-			System.out.println(">> searchContent가 널입니다. ");
-			}else {
-				searchContent = request.getParameter("searchContent") ;
-				System.out.println(">> searchContent가 . "+searchContent+" 입니다. ");
-			}
-		System.out.println(">> order by 변수 값 :" + orderby);
-		System.out.println(">> searchcontent 값 :" +searchContent);
-		
-		//상품 총 갯수를 나타내기 위한 변수지정
+		// 상품 총 갯수를 나타내기 위한 변수지정
 		int totalProductNumber =0;
 		
-		// ArrayList 에 담겨 있는 데이터를 JSON 으로 변경하여 송부
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		
-		//out 을 사용하기위해 out 선언		
-			
-		
+		// 쿼리를 실행 결과 담을 객체 생성.
 		ArrayList<productDto> productdtoList = new ArrayList<productDto>();
-		
-		//product 테이블에 있는 모든 컬럼을 불러오는 쿼리문
-		String readQuery = "select " 
+				
+		String query = "select " 
 				+ "product_code, "
 				+ "product_name, "
 				+ "product_qty, "
@@ -110,8 +114,12 @@ public class uProductSearchServlet extends HttpServlet {
 				+ "price"
 				
 				//   product 에서 product name 을 검색하지만 처음에는 아무것도 안들어감으로 모두 조회함. 
-				+ " from product where product_name like '%"+ searchContent + "%'" + orderby;
-		System.out.println("query 실행 전 내용 :"+ readQuery);
+				+ " from product2 where product_name like '%"
+				+ searchContent + "%'" 
+				+ orderby
+				+ " limit "+ pageSize + " offset "+startIndex
+				;
+		System.out.println("query 실행 전 내용 :"+ query);
 		PrintWriter out = response.getWriter();
 		
 		// 상품 총수량 정보 
@@ -125,7 +133,7 @@ public class uProductSearchServlet extends HttpServlet {
 			Statement  stmt_mysql =conn_mysql.createStatement();
 			
 			//결과를 담는 변수 설정
-			ResultSet rs = stmt_mysql.executeQuery(readQuery);
+			ResultSet rs = stmt_mysql.executeQuery(query);
 			while(rs.next()) {
 				
 				// productDto 선언

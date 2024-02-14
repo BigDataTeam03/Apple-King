@@ -29,6 +29,7 @@ public class saveProductInfoServlet extends HttpServlet {
 	        String origin 		= request.getParameter("origin");
 	        String size 		= request.getParameter("size");
 	        String weight		= request.getParameter("weight");	
+	        String product_qty		= request.getParameter("product_qty");	
 	        
 	        // 세션을 가져옴. 세션이 없으면 새로 생성함
 	        HttpSession session = request.getSession(true);
@@ -40,6 +41,7 @@ public class saveProductInfoServlet extends HttpServlet {
 	        session.setAttribute("origin"	, origin);
 	        session.setAttribute("size"		, size);
 	        session.setAttribute("weight"	, weight);
+	        session.setAttribute("product_qty"	, product_qty);
 
 	        // 클라이언트에게 성공적인 응답을 반환
 	        response.setContentType("text/plain");
