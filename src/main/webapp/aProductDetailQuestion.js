@@ -13,6 +13,103 @@
    
    
    
+   
+   // 페이지 실행후 바로 상품 전체 조회
+window.onload = function() {
+	alert(" 문의 테이블 생성 ")
+	
+	$.ajax({
+		
+		// post method server request
+		type: "POST",
+		
+		// target server page(Servlet) url
+		url: "uProductquestionListServlet",
+		
+		// request data (JSON)
+		//data: { product_code: '<%=session.getAttribute("product_code")%>' },
+		
+		// response data type -> JSON
+		dataType :"json",
+		
+		// server response success  -> response(Json data)
+		success: function(response) {
+			createTable(response);
+		},	
+	});
+};
+// 테이블 생성하는 함수
+function createTable(data) {
+    //검색해온 데이터(dtos -> json -> Array  변환)
+    dataReal = Array.from(data)
+
+  //$("#cartList").empty();
+  
+    let table =
+        "<table border='1'>" +
+        "<tr>" +
+        "<th>작성자</th>" +
+        "<th>내용      </th>" +
+        "<th>날짜</th>" +       
+        "</tr>";
+        
+ 
+    // insert data rows
+    for(let i=0; i<data.length; i++)  {
+        table += "<tr>" +
+            "<td>" + data[i].cust_id + "</td>" + // col1 
+            "<td>" + data[i].inquire_content + "</td>" + // col2
+            "<td>" + data[i].inquire_date + "</td>" + // col3
+            "<td>" + data[i].answer_content + "</td>" + // col4
+            "</tr>"         
+    }
+    
+    // table end
+    table += "</table>"
+
+    // html result <- table
+    $("#questions").html(table);
+  
+}
+
+
+   $(document).ready(function() {
+    $('#questionForm').submit(function(e) {
+        // 폼 기본 제출 동작 막기
+       e.preventDefault();
+
+        // 폼 데이터 가져오기
+	
+		//let id = $("#userId").val()
+		let question = $("#question").val()
+		
+        // AJAX 요청 보내기
+        $.ajax({
+            type: 'POST',
+            url: 'aProductQuestionInsertSurvlet', // 서블릿의 URL
+            data: { 
+            		question : question    },
+            success: function(response) {
+		
+                // 성공 시 모달 닫기
+                createTable(response)
+                closeModal();
+               
+            },
+            error: function(xhr, status, error) {
+                // 실패 시 에러 처리
+                console.error(xhr.responseText);
+            }
+        });
+    });
+});
+
+function closeModal() {
+    var modal = document.getElementById("insertQuestion");
+    modal.style.display = "none";
+}
+
+   
     // 문의 작성 버튼 클릭 시 모달 열기
     // 모달에 해당된 작성 폼을 변수에 집어넣는다
     var modal = document.getElementById("insertQuestion");
