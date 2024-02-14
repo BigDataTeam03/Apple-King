@@ -40,21 +40,94 @@
     		  	 %>
 <html>
 	<head>
-		<style> 
-		.red-price {
-	    color: red;
-	}
-		.bold {
-    	font-weight: bold;
-	}	
-		.card-container {
-	    display: grid;
-	    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-	    gap: 20px;
-	    justify-items: center;
-	}
-		
-		</style>		
+<style>
+        /* 공통 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 검색창 스타일 */
+        #searchContent {
+            padding: 5px;
+            width: 300px;
+            margin-right: 10px;
+        }
+
+        #searchButton {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* 가격 정렬 셀렉트 박스 스타일 */
+        #classifyOption {
+            padding: 5px;
+        }
+
+        /* 상품 카드 스타일 */
+        .card {
+            width: 200px;
+            height: 300px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .card-body {
+            padding: 10px;
+        }
+
+        .card-title a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .red-price {
+            color: red;
+            font-weight: bold;
+        }
+	    /* 추가한 CSS 스타일 */
+	    .blue-price {
+	        color: blue; /* 파란색으로 설정 */
+	        font-size: 14px; /* 글씨 크기를 작게 조절 */
+	    }
+        /* 카드 그리드 스타일 */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* 페이지 컨트롤 스타일 */
+        #page_control {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #page_control a {
+            padding: 5px 10px;
+            margin-right: 5px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>		
 	    <meta charset="UTF-8">
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	    <link rel="stylesheet" href="uProductList.css" />
@@ -63,10 +136,10 @@
 		ProductDao pdao =new ProductDao();
 		int pcnt = pdao.productCount();
 		// paging  process 
-		int pageSize = 5;
+		int pageSize = 8;
 		// Curren page information 
 	 	String pageNum = request.getParameter("pageNum");
-		out.print(pageNum);
+		//out.print(pageNum);
 		if(pageNum == null){
 			pageNum ="1";
 		}
@@ -107,9 +180,9 @@
 								<p class="card-text">
 		                        <span class="red-price bold">
 		                         <fmt:formatNumber value="${item.price }"  pattern="0,000"/> 원<br />
+		                      <%--    100g당 <fmt:formatNumber value="${item.price /(item.weight *100)}" /> 원 --%>
 		                        </span>
-		                        <br>
-		                         <span class="red-price">100g당 <fmt:formatNumber value="${item.price /(item.weight *100)}" /> 원<br />
+		                         <span class="blue-price">100g당 <fmt:formatNumber value="${item.price /(item.weight *100)}" /> 원<br />
 		                        </span>
 		                    </p>
 							</div>
