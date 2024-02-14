@@ -63,8 +63,9 @@ public class uCartQtyUpdateServlet extends HttpServlet {
 		String cartCode 	= request.getParameter("cartCode");
 		String quantity 	= request.getParameter("quantity");
 		// 상품 테이블에 존재하는 재고 값을 세션으로 받아야함
-		String	product_qty	= (String)session.getAttribute("product_qty");
+		//String	product_qty	= (String)session.getAttribute("product_qty");
 		//String product_qty = (String)session.getAttribute("product_qty");
+		String product_qty = "5";
 		
 		System.out.println(" 상품 코드와 수량 그리고 재고량" + cartCode + quantity + product_qty);
 		//변수중에 한글이 포함됨으로 인코딩설정을 한다

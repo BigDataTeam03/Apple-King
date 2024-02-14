@@ -52,8 +52,8 @@
 		                    무게:  <%= session.getAttribute("weight") %>kg<br><br>
 		                    
 		                    <form name="cartForm" action="cartInsert.do" method ="post">
-		                        구매 수량 :<input type="number" name="cart_qty" min="1" max="50" value ="1"><br><br>
-		                        <input type="submit" class="btn btn-primary" value="장바구니담기"></input>
+		                        구매 수량 :<input type="number" name="cart_qty" min="1" value ="1"><br><br>
+		                        <input type="button" class="btn btn-primary" value="장바구니담기" onclick="qtyCheck()"></input>
 		                    </form><br><br>
 		                </div>
 		            </div>
@@ -64,6 +64,7 @@
 	<br>
 	<br>
 	<div>
+	<!--  문의 게시판 출력 -->
 	 <jsp:include page="aProductDetailQuestions.jsp"/>
 	</div>
     <!-- 상세페이지 탭 -->
@@ -91,6 +92,7 @@
             <div class="tab-pane fade" id="questions" role="tabpanel" aria-labelledby="questions-tab">
                 <!-- 상품문의 내용 -->
                 
+           
             </div>
         </div>
     </div>
@@ -128,4 +130,23 @@
     	});
 	});
 	</script>
+	<script>
+	// 카트에 넣기 전, 선택한 수량을 가져와서 재고와 비교 후 가능,불가능 여부 체크
+	function qtyCheck(form) {
+    // 선택한 상품의 수량 가져오기
+        var quantity = parseInt(form.elements["cart_qty"].value);
+        // 상품의 재고 수량 가져오기
+        var stock = parseInt("${sessionScope.product_qty}");
+
+        // 수량이 재고보다 큰지 확인
+        if (quantity > stock) {
+            alert("재고가  선택하신 상품보다 부족합니다.");
+        } else {
+            form.submit();
+        }
+    }
+
+</script>	
+	
+	
 </body>

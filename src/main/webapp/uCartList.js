@@ -73,10 +73,10 @@ function createTable(data) {
             "<td>" + data[i].product_name + "</td>" + // col1
             "<td>" +
             "<button  onclick='decreaseQuantity(this)'>-</button>" + // "-" 버튼
-            "<input type='number' class='quantity-input' name='cartQty' value='" + data[i].cart_qty + "' min='1' readonly>" + // 수량을 입력할 수 있는 input 태그
+            "<input type='text' class='quantity-input' name='cartQty' value='" + data[i].cart_qty + "' min='1' readonly>" + // 수량을 입력할 수 있는 input 태그
             "<button  onclick='increaseQuantity(this)'>+</button>" + // "+" 버튼
             "</td>" + 
-            "<td>" + data[i].product_image_names + "</td>" + // col3
+            "<td>" + "<img src='image/" + data[i].product_image_names + "'>" + "</td>" + // col3
             "<td>" + data[i].price + "</td>" + // col4
             "<td><input type='checkbox' name='selectProduct' value='" + data[i].cart_code + "'></td>" + // 체크박스 열
             "</tr>"
@@ -100,7 +100,7 @@ function createTable(data) {
     document.querySelector('#cartTot').innerText = data.length;
     
      // 총 가격 출력
-    document.querySelector('#totalPrice').innerText = totalPrice;
+    document.querySelector('#totalPrice').innerText = totalPrice.toLocaleString();
     
     
     
