@@ -20,8 +20,8 @@
     <div class="col-md-7"> 
       <div class="card">
         <div class="card-body text-center">
-           <h4>안녕하세요, 회원님!</h4><br>
-           <h5>등급: <input type="text" id="rank" name="rank" readonly style="border: none; background-color: transparent;"></h5><br>
+           <h4>안녕하세요,<%=session.getAttribute("userId")%></h4><br>
+           <h5>등급: <%=session.getAttribute("userRank") %></h5><br>
           <button type="button" class="btn btn-outline-success btn-lg btn-block" onclick="redirectToMyInfo()">내 정보</button>
          <button type="button" class="btn btn-outline-info btn-lg btn-block" onclick="redirectToMyOrder()">주문 내역</button>
         </div>
