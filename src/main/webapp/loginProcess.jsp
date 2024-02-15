@@ -1,3 +1,4 @@
+<%@page import="com.javaproject.util.JSFunction_servlet"%>
 <%@page import="dto.MemberDto"%>
 <%@page import="dao.Login_Dao"%>
 <%@ page import="com.javaproject.util.JSFunction"%>
@@ -6,13 +7,17 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <% 
-
+	JSFunction.alertMessage(">>loginporcess 실행(in loginProcess.jsp) ",out);
 	
 	/*--------------------------------------------------------------
 	* Description 	: Login 아이디를 저장하는 +db 조회와 아이디 비교jsp
 			Detail	:
 	    		  	1.JSFunction 을 사용하여 페이지 이동 및 back
 	    		  	2. Cookiemanager 사용 
+	    		  	3. Get parameters
+	    		  		- userId
+	    		  		- userPw
+	    		  		- save_check
 	* Author 		: PDG
 	* Date 			: 2024.02.10
 	* ---------------------------Update---------------------------		
@@ -50,8 +55,11 @@
 			//session.setAttribute("USERNAME", memberDto.getName());
 			//session.setAttribute("USERRANK", memberDto.getCust_rank());
 			String user_name = memberDto.getName(); 
+			
 			// 관리자 페이지로 이동
-			JSFunction.alertLocation(user_name+"님 환영합니다","aGoHome.do",out);
+			JSFunction.alertMessage(user_name+"님 환영합니다",out);
+			request.getRequestDispatcher("aGoHome.do").forward(request,response);
+			
 			
 		}//Admin 인증 end
 		 
@@ -72,9 +80,8 @@
 			session.setAttribute("userRank", memberDto.getCust_rank());
 			String user_name = memberDto.getName(); 
 			//response.sendRedirect("loginForm.jsp");
-			// 관리자 페이지로 이동
-			JSFunction.alertLocation(user_name+"님 환영합니다","cGoHome.do",out);
-			request.getRequestDispatcher("uProductList.jsp").forward(request,response);
+			// 일반유저 메인 화면으로 이동
+			request.getRequestDispatcher("cGoHome.do").forward(request,response);
 		}
 	}// if end
 	else{

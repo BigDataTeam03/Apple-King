@@ -63,8 +63,9 @@ public class uCartQtyUpdateServlet extends HttpServlet {
 		String cartCode 	= request.getParameter("cartCode");
 		String quantity 	= request.getParameter("quantity");
 		// 상품 테이블에 존재하는 재고 값을 세션으로 받아야함
-		String	product_qty	= (String)session.getAttribute("product_qty");
+		//String	product_qty	= (String)session.getAttribute("product_qty");
 		//String product_qty = (String)session.getAttribute("product_qty");
+		String product_qty = (String)session.getAttribute("product_qty");
 		
 		System.out.println(" 상품 코드와 수량 그리고 재고량" + cartCode + quantity + product_qty);
 		//변수중에 한글이 포함됨으로 인코딩설정을 한다
@@ -76,7 +77,7 @@ public class uCartQtyUpdateServlet extends HttpServlet {
 		PreparedStatement ps = null;
 		//		사용자가 수정한 수량이         해당 상품의 재고보다 작을 때 
 		//System.out.println("비교문 츨력" + ( Integer.parseInt(quantity) < Integer.parseInt(product_qty)));
-   if (Integer.parseInt(quantity) < Integer.parseInt(product_qty)) {
+   if (Integer.parseInt(quantity) <= Integer.parseInt(product_qty)) {
 		try {
 			//js는 서버를 모르기 때문에 데이터베이스 커넥션을 지정해줘야한다
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -95,9 +96,9 @@ public class uCartQtyUpdateServlet extends HttpServlet {
 			System.out.println("수정된 디비에 들어가는 쿼리" +ps.toString());
 			//입력된 값을 데이터베이스에 업데이트를 실행한다
 			ps.executeUpdate();
-			out.print("success");
+//			out.print(quantity);
 	
- 
+		
 			out.print("success");
 			
 		}catch(Exception e) {

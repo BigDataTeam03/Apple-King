@@ -7,7 +7,10 @@
 	<%
 		/*--------------------------------------------------------------
 		* Description 	: Login 화면
-				Detail	:
+				Detail	: Client view page
+					1. form action -> 
+					2. cookieName
+					3. validationForm <function script> 
 		    		  	
 		* Author 		: PDG, LS, Diana
 		* Date 			: 2024.02.05
@@ -34,7 +37,6 @@
 		    
 		    <<2024.02.12>>by pdg
 		    1. 구글 아이디로 로그인하는 기능
-		    
 
 		--------------------------------------------------------------*/
 		// Layer pop up 띄울지 여부
