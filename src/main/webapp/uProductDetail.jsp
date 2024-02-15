@@ -17,11 +17,11 @@
 		 3. 카트로 넘어가기 전에 디비에 저장되게끔 하는 기능 추가. 
 * <<2024.02.14>> by LS
 		 1. 상품 목록에 있는 상품명을 클릭했을 때 db에 있는 다중 detailimagename 불러오기
-		 
 --------------------------------------------------------------
 */ %>
-<!--  -->
+<!--producrtDetailCommand 에서 세션에 저장한 상품 상세 정보 dto  -->
 <c:set var="dto" value="${detailSession}" />
+
 <html lang="en">
 	<head>
 	    <meta charset="UTF-8">
@@ -32,12 +32,7 @@
 	    <link rel = "stylesheet" href ="uProductDetail.css">
 	</head>
 	<body>
-	<%
-	String price = session.getAttribute("price").toString();
-	String product_qty = session.getAttribute("product_qty").toString();
-	
-	
-	%>
+		<input type= "hidden" id ="product_qty" value ="${product_qty}" />
     	<div class="container">
 		    <div class="row justify-content-center"> <!-- 가운데 정렬을 위한 클래스 추가 -->
 		        <div class="col-md-6"> <!-- 가운데 정렬을 위해 너비를 조정 -->
@@ -57,8 +52,9 @@
 		                    무게:  <%= session.getAttribute("weight") %>kg<br><br>
 		                    
 		                    <form name="cartForm" action="cartInsert.do" method ="post">
-		                        구매 수량 :<input type="number" name="cart_qty" min="1" value ="1"><br><br>
-		                        <input type="button" class="btn btn-primary" value="장바구니담기" onclick="qtyCheck(this.form)"></input>
+		                    	
+		                        구매 수량 :<input type="number" id ="cart_qty"  name="cart_qty" min="1" max ="${product_qty }" value ="1"><br><br>
+		                        		 <input type="button" class="btn btn-primary" value="장바구니담기" onclick="qtyCheck(this.form)"></input>
 		                    </form><br><br>
 		                </div>
 		            </div>
@@ -77,64 +73,64 @@
         <div class="container">
 	        <ul class="nav nav-tabs" id="myTab" role="tablist">
 	            <li class="nav-item" role="presentation">
-	                <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="true">상세정보</button>
+	                <button class="nav-link active" 
+	                		id="details-tab" 
+	                		data-bs-toggle="tab" 
+	                		data-bs-target="#details" 
+	                		type="button" 
+	                		role="tab" 
+	                		aria-controls="상세정보" 
+	                		aria-selected="true">상세정보</button>
 	            </li>
 	            <li class="nav-item" role="presentation">
-	                <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">상품평</button>
+	                <button class="nav-link" 
+	                		id="reviews-tab" 
+	                		data-bs-toggle="tab" 
+	                		data-bs-target="#reviews" 
+	                		type="button" 
+	                		role="tab" 
+	                		aria-controls="상품평" 
+	                		aria-selected="false">상품평</button>
 	            </li>
 	            <li class="nav-item" role="presentation">
-	                <button class="nav-link" id="questions-tab" data-bs-toggle="tab" data-bs-target="#questions" type="button" role="tab" aria-controls="questions" aria-selected="false">상품문의</button>
+	                <button class = "nav-link" 
+	                		id="questions-tab" 
+	                		data-bs-toggle="tab" 
+	                		data-bs-target="#questions" 
+	                		type="button" 
+	                		role="tab" 
+	                		aria-controls="상품문의" 
+	                		aria-selected="false">상품문의</button>
 	            </li>
 	        </ul>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
-                <!-- 상세정보 내용 -->
-                <p>Welcome to GeeksforGeek.</p>
-            </div>
-            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                <!-- 상품평 내용 -->
-                <p>Hello Everyone.</p>
-            </div>
-            <div class="tab-pane fade" id="questions" role="tabpanel" aria-labelledby="questions-tab">
-                <!-- 상품문의 내용 -->
-                       
-            </div>
-        </div>
-    </div>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const tabs = document.querySelectorAll('.nav-link');
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    const tabContentId = this.getAttribute('aria-controls');
-                    const tabContent = document.getElementById(tabContentId);
-                    const activeTab = document.querySelector('.tab-pane.show.active');
-                    activeTab.classList.remove('active', 'show');
-                    tabContent.classList.add('active', 'show');
-                });
-            });
-        });
-    </script>
-	   
-	<script>
-		  	 document.addEventListener('DOMContentLoaded', function() {
-		     // input 요소 가져오기
-		     var input = document.getElementById('spinner');
-			
-		     // 입력 이벤트 리스너 추가
-		     input.addEventListener('input', function(event) {
-		     // 입력된 값에서 숫자 이외의 문자 제거
-		     var sanitizedValue = input.value.replace(/\D/g, '');
-		
-		     // 최소값과 최대값 사이의 값으로 제한
-		     sanitizedValue = Math.max(1, Math.min(50, sanitizedValue));
-		
-		     // 입력된 값을 제한된 값으로 설정
-		     input.value = sanitizedValue;
-    	});
-	});
-	</script>
+	        <div class="tab-content" id="myTabContent">
+	            <div class="tab-pane fade show active" 
+	            	 id="상세정보" 
+	            	 role="tabpanel" 
+	            	 aria-labelledby="details-tab">
+	                <!-- 상세정보 내용 -->
+	                <p>Welcome to GeeksforGeek.</p>
+	            </div>
+	            <div class="tab-pane fade" 
+	            	 id="상품평" 
+	            	 role="tabpanel" 
+	            	 aria-labelledby="reviews-tab">
+	                <!-- 상품평 내용 -->
+	                <p>Hello Everyone.</p>
+	            </div>
+	            <div class="tab-pane fade" 
+	            	 id="상품문의" 
+	            	 role="tabpanel" 
+	            	 aria-labelledby="questions-tab">
+	                <!-- 상품문의 내용 -->
+        	        <p>수민씨는 집에가고싶다.</p>
+	                
+	            </div>
+	        </div>
+    	</div>
+   	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="uProductDetail.js?var=1"></script>
+  
 	<script>
 	// 카트에 넣기 전, 선택한 수량을 가져와서 재고와 비교 후 가능,불가능 여부 체크
 	function qtyCheck(form) {
