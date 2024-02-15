@@ -2,7 +2,7 @@
 body {
             text-align: center;
             background-color: rgb(255, 255, 255);
-            padding: 20px;
+            padding: 500px;
         }
 
         .container {
@@ -16,7 +16,7 @@ body {
 
         .product-image {
             flex: 1;
-            margin-right: 20px;
+            margin-right: 10px;
         }
 
         .product-image img {
@@ -28,4 +28,9 @@ body {
             flex: 2;
             text-align: left;
         }
-        
+    
+
+	    .logo-img {
+            max-height: 100px; 
+	    }
+	
