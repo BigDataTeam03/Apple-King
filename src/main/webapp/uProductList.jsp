@@ -175,7 +175,15 @@
 	 	 				<img src="image/${item.detail_image_name}">
 							<div class="card-body">
 								<h5 class="card-title">
-									<a href="javascript:void(0);" onclick="saveProductInfo(${item.product_code},'${item.product_name}', ${item.price}, '${item.origin}', '${item.size}', ${item.weight})" class="bold">${item.product_name}</a>
+									<a href="javascript:void(0);" onclick="saveProductInfo(${item.product_code},
+									'${item.product_name}',
+									 ${item.price},
+									'${item.origin}',
+									'${item.size}',
+									 ${item.weight},
+									 ${item.product_qty}
+									    
+									    )" class="bold">${item.product_name}</a>
 								</h5>
 								<p class="card-text">
 		                        <span class="red-price bold">

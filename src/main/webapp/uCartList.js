@@ -35,7 +35,7 @@ window.onload = function() {
 		url: "uCartListServlet",
 		
 		// request data (JSON)
-		data: { cust_id: "sumin123" }, 
+		//data: { cust_id: "sum" }, 
 		
 		// response data type -> JSON
 		dataType :"json",
@@ -73,10 +73,10 @@ function createTable(data) {
             "<td>" + data[i].product_name + "</td>" + // col1
             "<td>" +
             "<button  onclick='decreaseQuantity(this)'>-</button>" + // "-" 버튼
-            "<input type='number' class='quantity-input' name='cartQty' value='" + data[i].cart_qty + "' min='1' readonly>" + // 수량을 입력할 수 있는 input 태그
+            "<input type='text' class='quantity-input' name='cartQty' value='" + data[i].cart_qty + "' min='1' readonly>" + // 수량을 입력할 수 있는 input 태그
             "<button  onclick='increaseQuantity(this)'>+</button>" + // "+" 버튼
             "</td>" + 
-            "<td>" + data[i].product_image_names + "</td>" + // col3
+            "<td>" + "<img src='image/" + data[i].product_image_names + "'>" + "</td>" + // col3
             "<td>" + data[i].price + "</td>" + // col4
             "<td><input type='checkbox' name='selectProduct' value='" + data[i].cart_code + "'></td>" + // 체크박스 열
             "</tr>"
@@ -100,7 +100,7 @@ function createTable(data) {
     document.querySelector('#cartTot').innerText = data.length;
     
      // 총 가격 출력
-    document.querySelector('#totalPrice').innerText = totalPrice;
+    document.querySelector('#totalPrice').innerText = totalPrice.toLocaleString();
     
     
     
@@ -144,13 +144,19 @@ function updateQuantity(input) {
             cartCode: cartCode,
             quantity: quantity
         },
-        success: function(response) {       
+        success: function(aa) {  
+	
+			if(aa == "수량초과") {
+				alert(" 재고부족")
+			}
+			
+			     
             // 테이블 업데이트   
              	$.ajax({
 						type: "POST",
 						//다시 테이블 조회
 						url: "uCartListServlet",
-						data: { cust_id: "sumin123" },
+						//data: { cust_id: "sumin123" },
 						success: function(response) {
 							/* 서버에서 받은 응답 처리 */
 							createTable(response)//jason
@@ -158,6 +164,7 @@ function updateQuantity(input) {
 					})		       
         },
         error: function(xhr, status, error) {
+			alert("선택하신 상품의 재고가 부족합니다")
             // 에러 처리
             console.error("선택하신 상품의 재고가 부족합니다:", error);
         },   complete: function(response) {
@@ -214,7 +221,7 @@ $(document).ready(function() {
 						type: "POST",
 						//다시 테이블 조회
 						url: "uCartListServlet",
-						data: { cust_id: "sumin123" },
+						//data: { cust_id: "sumin123" },
 						success: function(response) {
 							/* 서버에서 받은 응답 처리 */
 							createTable(response)//jason

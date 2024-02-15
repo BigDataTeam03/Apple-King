@@ -25,7 +25,7 @@ function numberWithCommas(price) {
 }
 
 
-function saveProductInfo(productCode, productName, price, origin, size, weight) {
+function saveProductInfo(productCode, productName, price, origin, size, weight, product_qty) {
 	
 	alert(" saveProductInfo 실행 productname  :"+productName)
     $.ajax({
@@ -36,7 +36,9 @@ function saveProductInfo(productCode, productName, price, origin, size, weight) 
         		 price       : price,
         		 origin      : origin,
         		 size        : size,
-        		 weight      : weight },
+        		 weight      : weight,
+        		 product_qty : product_qty
+        		  },
         success: function(response) {
             // 세션에 저장이 완료되면 상세 페이지로 이동합니다.
             //alert("상품정보를 세션에 저장합니다")

@@ -22,32 +22,63 @@
 --------------------------------------------------------------
 -->	
 <style>
-    /* CSS 스타일링 */
+     /* CSS 스타일링 */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 0;
+    }
     .container {
         max-width: 800px;
-        margin: 0 auto;
+        margin: 20px auto;
         padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        margin-top: 0;
+        font-size: 24px;
+        color: #333;
+    }
+    #openModalBtn {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #openModalBtn:hover {
+        background-color: #0056b3;
+    }
+    #questions {
+        margin-top: 20px;
     }
     .question {
-        border: 1px solid #ccc;
+        background-color: #fff;
+        border: 1px solid #ddd;
         border-radius: 5px;
+        padding: 20px;
         margin-bottom: 20px;
-        padding: 10px;
     }
     .question h3 {
-	        margin-top: 0;
+        margin-top: 0;
+        font-size: 18px;
+        color: #333;
     }
     .question p {
-        margin-bottom: 5px;
+        margin: 5px 0;
+        color: #666;
     }
     .question .answer {
-        background-color: #f2f2f2;
+        background-color: #f7f7f7;
         padding: 10px;
         border-radius: 5px;
+        margin-top: 10px;
     }
-    
-    .modal {   
-   /* 모달의 초기값은 안보이는 상태로    */
+    .modal {
         display: none;
         position: fixed;
         z-index: 1000;
@@ -56,7 +87,7 @@
         width: 100%;
         height: 100%;
         overflow: auto;
-        background-color: rgba(0,0,0,0.5); /* 어두운 배경 */
+        background-color: rgba(0, 0, 0, 0.5);
     }
     .modal-content {
         background-color: #fefefe;
@@ -65,7 +96,7 @@
         border: 1px solid #888;
         width: 80%;
         border-radius: 5px;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
     .close {
         color: #aaa;
@@ -78,6 +109,28 @@
         color: black;
         text-decoration: none;
         cursor: pointer;
+    }
+    .modal-content form label {
+        display: block;
+        margin-bottom: 10px;
+        color: #333;
+    }
+    .modal-content form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        resize: vertical;
+    }
+    .modal-content form input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .modal-content form input[type="submit"]:hover {
+        background-color: #0056b3;
     }
 </style>
 </head>
