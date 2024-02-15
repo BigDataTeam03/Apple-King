@@ -12,11 +12,7 @@
 	* Description 	: User Prodcut List 
 			Detail	: 상품 목록 조회 및 검색, 정렬 기능 
 	    		  	 button id  : 1. searchButton -> 상품 검색 수행. (product_name  JS 에서 사용)
-	    		  	 
-	    		  	몇개씩 보기 기능 -> id : itemsPerPageSelect
-	    		  	 
-	    		  	 
-	    		  	 
+	    		  	 몇개씩 보기 기능 -> id : itemsPerPageSelect
 	    		  	 가격순 정렬 값 JS 로 보내고 서블릿에서도 getParm 으로 받아 씀."classifyOption"
 	* Author 		: PDG
 	* Date 			: 2024.02.05
@@ -134,7 +130,16 @@
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	    <link rel="stylesheet" href="uProductList.css" />
 	</head>
-	<%
+	
+	
+	<body>
+	
+
+		
+	    
+		<input type="text" placeholder="찾고싶은 상품을 입력하세요!" id ="searchContent" size="50" ></input>
+		<button id ="searchButton">검색</button>
+		<%
 	
 	 	String userId = (String) session.getAttribute("userId"); // login id session 저장 .
 	 	String userName = (String )session.getAttribute("userName");
@@ -153,12 +158,14 @@
 		// First row number calc
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage-1)*pageSize +1;
-		List<productDto> productList = pdao.getProductList(startRow, pageSize);
+		String searchContent = request.getParameter("searchContent");
+		//String classifyOption = request.getParameter("classifyOption");
+		
+		List<productDto> productList = pdao.getProductList(startRow, pageSize,searchContent);
 	%>
-	<body>
+		
 		<input type="hidden" id ="userName" value ="<%= userName%>"/> 
-		<input type="text" placeholder="찾고싶은 상품을 입력하세요!" id ="searchContent" size="50" ></input>
-		<button id ="searchButton">검색</button>
+		<input type="hidden" id ="currentPage" value ="<%= pageNum%>"/> 
 		
 		<!-- 가격순으로 정렬 -->
 	   	<select id="classifyOption">
@@ -173,9 +180,6 @@
 		  <option value="8">8개씩 보기</option>
 		  <option value="10">10개씩 보기</option>
 		</select>
-	
-		
-	   
 	    <!-- 상품 전체 조회 -->
 	    	<div class="card-container">
 			 	<c:forEach var="item" items="<%=productList%>">

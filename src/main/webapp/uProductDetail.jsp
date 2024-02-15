@@ -53,8 +53,12 @@
 		                    
 		                    <form name="cartForm" action="cartInsert.do" method ="post">
 		                    	
-		                        구매 수량 :<input type="number" id ="cart_qty"  name="cart_qty" min="1" max ="${product_qty }" value ="1"><br><br>
-		                        		 <input type="button" class="btn btn-primary" value="장바구니담기" onclick="qtyCheck(this.form)"></input>
+	                        구매 수량 :<input type="number" id ="cart_qty"  name="cart_qty" min="1" max ="${product_qty }" value ="1"><br><br>
+	                        		 <input type="button" 
+	                        		 	    id = "cart_button"
+	                        		 	    class="btn btn-primary" 
+	                        		        value="장바구니담기" 
+	                        		        onclick="qtyCheck(this.form)"></input>
 		                    </form><br><br>
 		                </div>
 		            </div>
@@ -131,7 +135,7 @@
    	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="uProductDetail.js?var=1"></script>
   
-	<script>
+ 	<script>
 	// 카트에 넣기 전, 선택한 수량을 가져와서 재고와 비교 후 가능,불가능 여부 체크
 	function qtyCheck(form) {
 	//let form = document.cartForm
@@ -148,8 +152,6 @@
             form.submit();
         }
     }
-
-</script>	
-	
+	</script>		
 	
 </body>
