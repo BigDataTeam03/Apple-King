@@ -2,9 +2,9 @@
 <%@page import="java.util.List"%>
 <%@page import="dao.ProductDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file ="top_user.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <!DOCTYPE html>
 <%/*
@@ -40,93 +40,105 @@
     		  	 %>
 <html>
 	<head>
-<style>
-        /* 공통 스타일 */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+	
+		.navbar {
+	  display: flex;
+	  justify-content: space-between;
+	  align-items: center;
+	}
 
-        /* 검색창 스타일 */
-        #searchContent {
-            padding: 5px;
-            width: 300px;
-            margin-right: 10px;
-        }
-
-        #searchButton {
-            padding: 5px 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        /* 가격 정렬 셀렉트 박스 스타일 */
-        #classifyOption {
-            padding: 5px;
-        }
-
-        /* 상품 카드 스타일 */
-        .card {
-            width: 200px;
-            height: 300px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .card img {
-            width: 100%;
-            height: auto;
-        }
-
-        .card-body {
-            padding: 10px;
-        }
-
-        .card-title a {
-            color: #333;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        .red-price {
-            color: red;
-            font-weight: bold;
-        }
-	    /* 추가한 CSS 스타일 */
-	    .blue-price {
-	        color: blue; /* 파란색으로 설정 */
-	        font-size: 14px; /* 글씨 크기를 작게 조절 */
-	    }
-        /* 카드 그리드 스타일 */
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        /* 페이지 컨트롤 스타일 */
-        #page_control {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        #page_control a {
-            padding: 5px 10px;
-            margin-right: 5px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
+	    .logo-img {
+      max-height: 100px; 
+	}
+	
+	/* 검색창 스타일 */
+	#searchContent {
+	    padding: 5px;
+	    width: 300px;
+	    margin-right: 1px;
+	    margin-top: 150px;
+	}
+	
+	#searchButton {
+	    padding: 5px 10px;
+	    background-color: #007bff;
+	    color: white;
+	    border: none;
+	    cursor: pointer;
+	    margin-top: 150px;
+	}
+	
+	/* 가격 정렬 셀렉트 박스 스타일 */
+	#classifyOption, #itemsPerPageSelect {
+	    padding: 1px;
+	    width: 100px; /* Adjust the width as needed */
+	    margin-top: 100px;
+	}
+	
+	/* 상품 카드 스타일 */
+	.card {
+	    width: 200px;
+	    height: 300px;
+	    border: 1px solid #ddd;
+	    border-radius: 5px;
+	    margin: 10px;
+	    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	    overflow: hidden;
+	}
+	
+	.card img {
+	    width: 100%;
+	    height: auto;
+	}
+	
+	.card-body {
+	    padding: 100px;
+	}
+	
+	.card-title a {
+	    color: #333;
+	    text-decoration: none;
+	    font-weight: bold;
+	    font-size: 40px;
+	}
+	
+	.red-price {
+	    color: red;
+	    font-weight: bold;
+	}
+	/* 추가한 CSS 스타일 */
+	.blue-price {
+	    color: blue; /* 파란색으로 설정 */
+	    font-size: 14px; /* 글씨 크기를 작게 조절 */
+	}
+	/* 카드 그리드 스타일 */
+	.card-container {
+	    display: flex;
+	    flex-wrap: wrap;
+	    justify-content: center;
+	    margin-top: 40px; /* Adjust margin-top to move search content lower on the page */
+	    margin-bottom: 20px;
+	}
+	
+	#page_control a {
+	    padding: 5px 10px;
+	    margin-right: 5px;
+	    background-color: #007bff;
+	    color: white;
+	    text-decoration: none;
+	    border-radius: 5px;
+	}
+	
+	.card-title a {
+	    color: #333;
+	    text-decoration: none;
+	    font-weight: bold;
+	    font-size: 18px; 
+	}
+	
+	        
     </style>		
 	    <meta charset="UTF-8">
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -149,14 +161,38 @@
 		List<productDto> productList = pdao.getProductList(startRow, pageSize);
 	%>
 	<body>
-		<input type="text" placeholder="찾고싶은 상품을 입력하세요!" id ="searchContent" size="50" ></input>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="cGoHome.do">
+            <img src="image/logo.png" class="logo-img">
+        </a>
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="uCartList.do">장바구니</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="myPage.do">마이페이지</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.do">로그아웃</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+	</nav>
+	
+		<input type="text" placeholder="찾고싶은 상품을 입력하세요!" id ="searchContent"  ></input>
 		<button id ="searchButton">검색</button>
 		
 		<!-- 가격순으로 정렬 -->
 	   	<select id="classifyOption">
 		 	<option value="highprice">높은가격순</option>
 		 	<option value="lowprice">낮은가격순</option>
-		 	<option value="product_code">상품코드</option>
 	    </select>
 	    
 	    <!-- 몇개씩 보기 기능 추가 (아이템 추가할경우 수정하기) -->
@@ -179,11 +215,9 @@
 								</h5>
 								<p class="card-text">
 		                        <span class="red-price bold">
-		                         <fmt:formatNumber value="${item.price }"  pattern="0,000"/> 원<br />
-		                      <%--    100g당 <fmt:formatNumber value="${item.price /(item.weight *100)}" /> 원 --%>
+		                         <fmt:formatNumber value="${item.price}"  pattern="0,000"/> 원<br />
 		                        </span>
-		                         <span class="blue-price">100g당 <fmt:formatNumber value="${item.price /(item.weight *100)}" /> 원<br />
-		                        </span>
+		                         <span class="blue-price">100g당 <fmt:formatNumber value="${Math.ceil(item.price /(item.weight *100))}" />원<br /></span>
 		                    </p>
 							</div>
 	 					</div>
