@@ -4,7 +4,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
-<!--
+<%/*
 --------------------------------------------------------------
 * Description 	: User product detail page
 *  Detail		: 상품 상세 정보 페이지
@@ -15,9 +15,12 @@
 *		 1. 주석 정리
 		 2. 가격 -> 컴마로 바꾸어줌 JSTL 사용 
 		 3. 카트로 넘어가기 전에 디비에 저장되게끔 하는 기능 추가. 
+* <<2024.02.14>> by LS
+		 1. 상품 목록에 있는 상품명을 클릭했을 때 db에 있는 다중 detailimagename 불러오기
 		 
 --------------------------------------------------------------
--->	
+*/ %>
+<!--  -->
 <c:set var="dto" value="${detailSession}" />
 <html lang="en">
 	<head>
