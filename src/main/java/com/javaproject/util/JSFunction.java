@@ -13,22 +13,16 @@ public class JSFunction {
 		 *	2. alertBack     : 경고ㅊ아 메세지 알림 이후 이전 페이지로 넘가는 함수
 		 *-------------------------------------- 
 		 */
-		
 		// Field
-	
 		// Constructor
-	
 		// Method 
-	
-		// 페이지를 넘길때 경고창을 띄욱 특정 페이지로 넘어가게 하는 함수
-		public static void alertLocation(String massage, String url, JspWriter out) {
-			System.out.println(">> alertLocation 실행");
+		public static void alertMessage(String message, JspWriter out) {
+			System.out.println(">> alertLocation 실행 :"+ message);
 			try{
 				String script =
 						" " // 삽입할 자바 스크립트 코드
 						+ "<script>"
-						+ "    alert('"+ massage+"');" 
-						+ "    location.href='"+ url+"';" // 지정된 페이지로 이동한다. 
+						+ "    alert('"+ message+"');" 
 						+ "</script>";
 						
 				out.print(script);
@@ -36,14 +30,31 @@ public class JSFunction {
 				e.printStackTrace();
 			}
 		}
-		
-		// 메세지 알림창을 띄운 후 이전 페이지로 돌아갑니다. 
-		public static void alertBack(String massage, JspWriter out) {
+	
+		// 페이지를 넘길때 경고창을 띄욱 특정 페이지로 넘어가게 하는 함수
+		public static void alertLocation(String message, String url, JspWriter out) {
+			System.out.println(">> alertLocation 실행: "+ message);
 			try{
 				String script =
 						" " // 삽입할 자바 스크립트 코드
 						+ "<script>"
-						+ "    alert('"+ massage+"');"
+						+ "    alert('"+ message+"');" 
+						+ "    location.href='"+ url+"';" // 지정된 페이지로 이동한다. 
+						+ "</script>";
+						
+				out.print(script);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}// alertLocation
+		
+		// 메세지 알림창을 띄운 후 이전 페이지로 돌아갑니다. 
+		public static void alertBack(String message, JspWriter out) {
+			try{
+				String script =
+						" " // 삽입할 자바 스크립트 코드
+						+ "<script>"
+						+ "    alert('"+ message+"');"
 						+ "    history.back();"         // 전페이지로 돌아간다. 
 						+ "</script>";
 						

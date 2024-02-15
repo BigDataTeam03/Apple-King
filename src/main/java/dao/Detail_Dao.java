@@ -14,11 +14,14 @@ import dto.productDto;
 public class Detail_Dao {
 	/*--------------------------------------
 	 * Description : Product detail page DAO << product >>
-	 * Author 	   : pdg
+	 * Author 	   : pdg, LS
 	 * Date 	   : 2024.02.11
 	 * Details		
 	 * Update------------------------------- 
 	 * <2024.02.11> by PDG
+	 *  
+	 *  <2024.02.15> by LS
+	 *  1. detailimagename list 처리 
 	 *-------------------------------------- 
 	 */
 	// Field
@@ -38,6 +41,8 @@ public class Detail_Dao {
 	// detail_view에 들어갈 dto 만들기 (select)
 	public productDto Detail(String product_name) {
 		System.out.println(">>Detail_Dao.detail 실행");
+		
+		// return 변수 생성
 		productDto dto = null;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -61,27 +66,17 @@ public class Detail_Dao {
 			// 실행한 쿼리문을 resultset에 삽입
 			resultset = preparedStatement.executeQuery();
 			
-			 // 결과 처리
-			ArrayList<String> detailImageNames = new ArrayList<>(); // detail_image_name을 담을 ArrayList
+			// detail_image_name을 ArrayList에 담을 변수 생성
+			ArrayList<String> detailImageNames = new ArrayList<>(); 
 			
 			while (resultset.next()) {
-				
-				// 데이터 불러오기
 				String pdetailimage = resultset.getString("detail_image_name");
-				String pname = resultset.getString("product_name"); // 칼럼 이름을 넣어야함
-				String porigin = resultset.getString("origin");
-//				String prating 		= resultset.getString("rating");
-				int pprice = resultset.getInt("price");
-				String psize = resultset.getString("size");
-				int pweight = resultset.getInt("weight");
+				String pname 		= resultset.getString("product_name"); 
+				String porigin 		= resultset.getString("origin");
+				int    pprice		= resultset.getInt	 ("price");
+				String psize 		= resultset.getString("size");
+				int    pweight 		= resultset.getInt	 ("weight");
 				
-				System.out.println(pname);
-				System.out.println(porigin);
-//				System.out.println(prating);
-				System.out.println(pprice);
-				System.out.println(psize);
-				System.out.println(pweight);
-
 				// 불러온 데이터들을 dto 객체에 추가
 				dto = new productDto(pdetailimage, pname, porigin, pprice, psize, pweight);
 				
@@ -89,12 +84,6 @@ public class Detail_Dao {
                 detailImageNames.add(pdetailimage);
             }
 
-			// 만약에 쿼리 결과가 없을 경우를 위해 dto가 null인 경우에만 객체 생성 및 초기화
-            if(dto == null){
-               
-            dto.setDetailImageNames(detailImageNames);
-            }
-            	
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally { // 데이터 정리하는 용도로 쓰임 (만든 순서 거꾸로 정리해야함)

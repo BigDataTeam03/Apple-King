@@ -23,24 +23,14 @@ import com.javalec.util.ShareVar;
 import dto.MemberDto;
 import dto.productDto;
 
-/**
- * Servlet implementation class aCustomerListServlet
- */
 @WebServlet("/aCustomerListServlet")
 public class aCustomerListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public aCustomerListServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		/*
 		--------------------------------------------------------------

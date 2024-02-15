@@ -35,6 +35,8 @@
 	  <<2024.02.14>> by DK , pdg
 	  	1.paging 기능 (for each 문으로 페이지 링크버튼 추가)
 	  	2. paging 기능 완성 및 가격 포맷 jstl 로 수정
+	  <<2024.02.15> by pdg
+	  	1. 로그인 후에 들어올때 userId session 값을 사용해서 alert 띄워주는 기능 추가
 	--------------------------------------------------------------
 	*/
     		  	 %>
@@ -133,6 +135,11 @@
 	    <link rel="stylesheet" href="uProductList.css" />
 	</head>
 	<%
+	
+	 	String userId = (String) session.getAttribute("userId"); // login id session 저장 .
+	 	String userName = (String )session.getAttribute("userName");
+		
+	 	//상품목록 출력을 위해 dao 에 바로 접근함. 
 		ProductDao pdao =new ProductDao();
 		int pcnt = pdao.productCount();
 		// paging  process 
@@ -149,6 +156,7 @@
 		List<productDto> productList = pdao.getProductList(startRow, pageSize);
 	%>
 	<body>
+		<input type="hidden" id ="userName" value ="<%= userName%>"/> 
 		<input type="text" placeholder="찾고싶은 상품을 입력하세요!" id ="searchContent" size="50" ></input>
 		<button id ="searchButton">검색</button>
 		
