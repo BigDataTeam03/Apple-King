@@ -47,12 +47,14 @@ public class uProductSearchServlet extends HttpServlet {
 		*<<2024.02.13>> by pdg,dk
 		*			1.상품 정렬기능 수정
 		*			2. 페이징을 위해서 uProduct.js 에서 startIndex, endIndex 를 가져옴
+		*
+		*<<2024.02.15>> by pdg
+		*			1. 페이징 기능을 jsp ->  검색결과에대한 페이징 기능이 구현 변.
 		--------------------------------------------------------------
 		*/
 		// Field 
 		String 	classifyOption 	= request.getParameter("classifyOption");
 		String 	searchContent 	= request.getParameter("searchContent");
-		
 		
 		int pageSize =10;
 		if (request.getParameter("pageSize") != null) {
@@ -114,10 +116,12 @@ public class uProductSearchServlet extends HttpServlet {
 				+ "price"
 				
 				//   product 에서 product name 을 검색하지만 처음에는 아무것도 안들어감으로 모두 조회함. 
-				+ " from product2 where product_name like '%"
+				+ " from product where product_name like '%"
 				+ searchContent + "%'" 
 				+ orderby
 				+ " limit "+ pageSize + " offset "+startIndex
+				
+				
 				;
 		System.out.println("query 실행 전 내용 :"+ query);
 		PrintWriter out = response.getWriter();

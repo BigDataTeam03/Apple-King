@@ -74,7 +74,7 @@ public class ProductDao {
 		}
 		return productCount;
 	}
-	public List getProductList(int startRow, int pageSize) {
+	public List getProductList(int startRow, int pageSize, String searchContent) {
 		// retrun value 
 		List<productDto> productList = new ArrayList<productDto>();
 		System.out.println(">> ProductDao.getProductList 실행");
@@ -84,13 +84,15 @@ public class ProductDao {
 		try {
 			connection = dataSource.getConnection();
 			
-			String Query = "select * from product order by product_code desc ,price asc limit ?,? ";
+			String Query = "select * from product "
+					+ "where product_name like '%"+ searchContent + "%'"
+					+ " order by product_code desc ,price asc limit ?,? ";
+			
 			
 			ps =connection.prepareStatement(Query);
-			
 			ps.setInt(1, startRow -1); // 시작 행 -1  ( 시작 row index 변호 ) 
 			ps.setInt(2, pageSize) ; // 페이지 크기 (한번에 출력되는 수)
-			
+			System.out.println(">> Query : "+ps.toString());
 			rs  = ps.executeQuery();
 			while  (rs.next()){
 				productDto pdto  =new productDto();

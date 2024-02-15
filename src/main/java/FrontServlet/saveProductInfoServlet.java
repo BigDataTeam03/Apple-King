@@ -1,6 +1,9 @@
 package FrontServlet;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,14 +17,13 @@ public class saveProductInfoServlet extends HttpServlet {
         super();
     }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
 		   /*--------------------------------------------------------------
+		    * Description   : 상품 목록에서 상품을클릭한 순간 클릭한 상품에 대한 정보를 세션에 모두 저장하는 서블릿 
 			* Author 		: pdg
 			* Date 			: 2024.02.08
 			* ---------------------------Update---------------------------		
 			*
 			--------------------------------------------------------------*/
-				
 			System.out.println(">> saveproductinfoServlet을 실행");
 		 	String product_code = request.getParameter("productCode");
 		 	String product_name = request.getParameter("productName");

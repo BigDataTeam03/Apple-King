@@ -8,6 +8,10 @@
  * Date : 2024.02.15
  * 
  * Update --------------------------------------------------------------------------
+ * 
+ * <<2024.02.15>> by pdg, ls
+ *  1. 상품상세 탭 기능 분해및 수정, 디비 결과에 맞추어서 기능 추가. 
+ * 	2.장바구니 담기를 클릭했을때 세션에 productSelectedCheck 에 true 가 저장되도록 하는 기능 
  *----------------------------------------------------------------------------------*/
  // 탭 노드리스트에 탭을 클릭했을 때 그 탭의 내용을 show active해주는 기
  // html document 가 클라이언트의 브라우저에 로딩 된후( DOMcontentLoaded) 이벤트를 처리하는 이벤트핸들러(function))
@@ -48,15 +52,13 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
      // input 요소 가져오기
      
-		 var input = document.getElementById('cart_qty');
-   	
-   	
+	 var input = document.getElementById('cart_qty');
+	 let cart_button = document.getElementById('cart_button');
 	
      // 입력 이벤트 리스너 추가
      input.addEventListener('input', function() {	
 		 let input_val = $("#cart_qty").val()
 		 let product_qty = $('#product_qty').val()
-		 
 		 if (parseInt(input_val) >= parseInt(product_qty)){
 			 alert(" 재고가 부족합니다. ")
 		 }
@@ -70,4 +72,39 @@ document.addEventListener('DOMContentLoaded', function() {
 	     // 입력된 값을 제한된 값으로 설정
 	     input.value = sanitizedValue;
 	 });//input.addEventListener end
+	 
+	 // 장바구니 버튼 눌렀을때 리스터 
+	cart_button.addEventListener('click', function(){
+		productSelectedCheck = true // 장바구니에 한번 insert 되는 순간  True 값이 저장 
+		$.ajax({
+			type : 'post',
+			url:"checkedProductsServlet",
+			data: {
+					productName: productName,
+					productSelectedCheck : productSelectedCheck
+			},
+			success: function(response) { 
+				// session  저장이 완료됨
+				alert(productName+"에대한 재실행 여부 가 세션 정보에 저장됨 ")
+				}
+			
+		})// Ajax end
+	})// Cart btn event end
+	 
+	 
 });//document.addEventListener end
+
+// 장바구니 담기를 클릭했을때 세션에 productSelectedCheck 에 true 가 저장되도록 하는 기능 
+document.addEventListener('DOMContentLoaded', function(){
+
+
+})
+
+// 카트에 넣기 전, 선택한 수량을 가져와서 재고와 비교 후 가능,불가능 여부 체크
+function qtyCheck(form) {
+
+}
+
+
+
+
