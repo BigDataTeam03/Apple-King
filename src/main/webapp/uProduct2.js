@@ -25,7 +25,7 @@
 window.onload = function () {
 	let name = $("#userName").val()
 	//let userName =  document.getElementById("userName").value()
-	alert(name+"님 환영합니다. ")
+	//alert(name+"님 환영합니다. ")
 }// window onload end
 
 // 천단위 콤마 추가 Function
