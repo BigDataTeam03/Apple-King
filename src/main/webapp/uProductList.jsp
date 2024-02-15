@@ -228,18 +228,18 @@
 	 				// Previous button gen
 	 			    if(startPage>pageBlock){
 	 			%>
-		 				<a href ="uProductList.jsp?pageNum=<%=startPage-pageBlock %>">Prev</a>
+		 				<a href ="cGoHome.do?pageNum=<%=startPage-pageBlock %>">Prev</a>
 	 			<%  }//if end %>
 	 		
 		 		<%  // Page button gen 
 		 			for(int i= startPage; i<=endPage; i++){ %>
-		 			<a href="uProductList.jsp?pageNum=<%=i %>"><%=i %></a>
+		 			<a href="cGoHome.do?pageNum=<%=i %>"><%=i %></a>
 		 		<%  } // for end%>
 		 		<%
 		 			// next button gen
 		 			if(endPage<pageCount){
 		 				%>
-		 				<a href ="uProductList.jsp?pageNum=<%=startPage+pageBlock %>">Next</a>
+		 				<a href ="cGoHome.do?pageNum=<%=startPage+pageBlock %>">Next</a>
 		 				<%
 		 			}
 		 		%>

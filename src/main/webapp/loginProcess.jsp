@@ -7,7 +7,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <% 
-	JSFunction.alertMessage(">>loginporcess 실행(in loginProcess.jsp) ",out);
+	//JSFunction.alertMessage(">>loginporcess 실행(in loginProcess.jsp) ",out);
 	
 	/*--------------------------------------------------------------
 	* Description 	: Login 아이디를 저장하는 +db 조회와 아이디 비교jsp
@@ -50,19 +50,15 @@
 				// save check 안되어있을 경우 쿠키 삭제함. 
 				CookieManager.deleteCookie(response,"loginId");
 			}
-			//세션에 관리자 아이디및 이름 rank 저장
-			//session.setAttribute("USERID", memberDto.getCust_id());
-			//session.setAttribute("USERNAME", memberDto.getName());
-			//session.setAttribute("USERRANK", memberDto.getCust_rank());
 			String user_name = memberDto.getName(); 
 			
 			// 관리자 페이지로 이동
-			JSFunction.alertMessage(user_name+"님 환영합니다",out);
 			request.getRequestDispatcher("aGoHome.do").forward(request,response);
 			
 			
 		}//Admin 인증 end
 		 
+		
 		else{// 일반 유저 인증 
 			if(save_check != null && save_check.equals("Y")){
 				// save check 되어있을 때 쿠키 저장 
