@@ -17,6 +17,9 @@
 		 3. 카트로 넘어가기 전에 디비에 저장되게끔 하는 기능 추가. 
 * <<2024.02.14>> by LS
 		 1. 상품 목록에 있는 상품명을 클릭했을 때 db에 있는 다중 detailimagename 불러오기
+		 
+  <<2024.02.14>> by KBS
+		 1. 세션으로 상품의 재고를 받아 선택한 수량과 비교해서 재고보다 많이 추가할수 없게 막아둠
 --------------------------------------------------------------
 */ %>
 <!--producrtDetailCommand 에서 세션에 저장한 상품 상세 정보 dto  -->
@@ -29,7 +32,7 @@
 	    <title>상품 상세 페이지</title>
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
-	    <link rel = "stylesheet" href ="uProductDetail.css">
+	   <!--  <link rel = "stylesheet" href ="uProductDetail.css"> -->
 	</head>
 	<body>
 		<input type= "hidden" id ="product_qty" value ="${product_qty}" />
@@ -70,8 +73,8 @@
 	<br>
 	<div>
 	<!--  문의 게시판 출력 -->
-	<%--  <jsp:include page="aProductDetailQuestions.jsp"/>
-	 //236 --%>
+	 <jsp:include page="aProductDetailQuestions.jsp"/>
+	 <!-- 236 --> 
 	</div>
     <!-- 상세페이지 탭 -->
         <div class="container">

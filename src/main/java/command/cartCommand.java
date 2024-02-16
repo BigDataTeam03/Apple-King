@@ -36,7 +36,7 @@ public class cartCommand implements Command {
 		
 		
 		//상품에 대한 장바구니가 처음실행된것인지 세션값으로 확인 
-		String productSelectedCheck =(String) session.getAttribute("productSelectedCheck");
+		//String productSelectedCheck =(String) session.getAttribute("productSelectedCheck");
 		
 		// 상품 코드, 사용자 Id, 상품 수량 getParameter 보내
 		String product_code = session.getAttribute("product_code").toString();

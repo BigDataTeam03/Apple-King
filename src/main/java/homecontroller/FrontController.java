@@ -152,7 +152,10 @@ public class FrontController extends HttpServlet {
 		// order list  (AJAX)
 		case("/aCustomerOrderList.do"):	justGoPage(com,"aCustomerOrderList.jsp",request, response);break;	
 		//  top 을 누르면 나오는 장바구니 리스트
-		case("/uCartList.do"):			justGoPage(com,"uCartList.jsp",			request, response);break;	
+		case("/uCartList.do"):			justGoPage(com,"uCartList.jsp",			request, response);break;
+		// 어드민 페이지에서 top 을 누르면 나오는 문의 내역 리스트
+		case("/aProductQuestionList.do"): justGoPage(com,"aProductQuestionAnswer.jsp",			request, response);break;	
+		
 		
 		
 		default:break;
