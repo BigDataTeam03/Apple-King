@@ -24,24 +24,20 @@ import dto.InquireDto;
  * Servlet implementation class uProductquestionListServlet
  */
 @WebServlet("/uProductquestionListServlet")
-public class uProductquestionListServlet extends HttpServlet {
+public class uProductQuestionListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public uProductquestionListServlet() {
+    public uProductQuestionListServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
 		//--------------------------------------------------------------
 		//* Description 	: 사용자가 보는 상품문의 리스트
 		//*  Detail		: 문의 리스트를출력
@@ -53,9 +49,6 @@ public class uProductquestionListServlet extends HttpServlet {
 		//       2. 리스트 불러오고 Json 으로 보내기
 		//         
 		//--------------------------------------------------------------
-		
-		
-		
 		HttpSession session =request.getSession();
 		response.setContentType("text/html;charset=UTF-8");  
 
@@ -63,10 +56,6 @@ public class uProductquestionListServlet extends HttpServlet {
 		//String product_code = request.getParameter("product_code");
 		String product_code = (String) session.getAttribute("product_code");
 		//System.out.println(" 세션으로 가져온 상품 코드" + product_code);
-		
-	
-		
-		
 		// ArrayList 에 담겨 있는 데이터를 JSON 으로 변경하여 송부
 		response.setContentType("application/json");
 		// 가져오는 정보에 한글이 포함됨으로 인코딩 설정
@@ -83,9 +72,6 @@ public class uProductquestionListServlet extends HttpServlet {
 	
 		//out.flush 를 사용하기위해 out 변수 지정
 		PrintWriter out = response.getWriter();
-		
-		
-		
 		try {
 			// SQL 연결
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -106,28 +92,12 @@ public class uProductquestionListServlet extends HttpServlet {
                 
                 inquiredto.add(dto);
             }
-
             out.print(new Gson().toJson(inquiredto));
             out.flush();
-			
 		    rs.close();
             conn_mysql.close();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
-
 }

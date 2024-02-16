@@ -1,6 +1,8 @@
 package command;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,40 +36,60 @@ public class cartCommand implements Command {
 		HttpSession session = request.getSession();
 		System.out.println(">> cartCommand 실행");
 		
-		
-		//상품에 대한 장바구니가 처음실행된것인지 세션값으로 확인 
-		String productSelectedCheck =(String) session.getAttribute("productSelectedCheck");
-		
 		// 상품 코드, 사용자 Id, 상품 수량 getParameter 보내
-		String product_code = session.getAttribute("product_code").toString();
-		String cust_id = session.getAttribute("userId").toString();
-		int cart_qty = Integer.parseInt(request.getParameter("cart_qty"));
+		String product_code  = session.getAttribute("product_code").toString();
+		String cust_id 		 = session.getAttribute("userId").toString();
+		int    cart_qty		 = Integer.parseInt(request.getParameter("cart_qty"));
+		String product_name  = (String)session.getAttribute("product_name"); 
 		
-
+		// "productChkMap" 속성이 세션에 없는 경우를 처리하는 부분
+		Object chkObject = session.getAttribute("productChkMap");
+		
+		if (chkObject == null || !(chkObject instanceof Map)) {
+		    // "productChkMap" 속성이 세션에 없거나 올바른 형식이 아닌 경우
+		    Map<String, Boolean> chkmap = new HashMap<>(); // 새로운 맵을 생성하여 할당
+		    
+		    chkmap.put(product_name, true);
+		    session.setAttribute("productChkMap", chkmap); // 세션에 맵을 저장
+		    // product 선택여부
+			Boolean chkProduct = chkmap.get(product_name);
+			if (chkProduct == null) {
+			    chkProduct = false;
+			    System.out.println(">> chkProduct : null ->false");
+			}else {
+				if(chkProduct) {// 상품디테일에서 선택되어 넘어왔을때 chkProduct 는 true?-> 장바구니에서 쿼리실행
+					CartQuery(cust_id, product_code, cart_qty);
+					chkmap.put(product_name, true);
+					session.setAttribute("productChkMap", chkmap); // 세션에 맵을 저장
+					System.out.println(">> Insert query 실행 =>세션에 저장 된  값 :" +chkmap.get(product_name).toString());
+				}else { // 이미 세션에 값이 이미 true 일경우에는 장바구니 추가, 수정 쿼리를 진행하지 않음. 
+					System.out.println("이미 한번 선택된 상품입니다. ");
+				}
+			}
+		} 
+			
+			
+		
+    }// execute end
+	
+	// 특정고객이 선택한 상품의 코드와 장바구니 넣을 상품의 수량을 받아서 쿼리를 작성하게 하는 메서드
+	public void CartQuery(String cust_id, String product_code, int cart_qty) {
 		// 장바구니 채크와 인서트기능의 다오
 		Cart_Dao cartInsertDao = new Cart_Dao();
+		
 		// 장바구니에 담긴 상품의 수량을 업데이트하는 다오
 		CartUpdate_Dao updao = new CartUpdate_Dao();
 		
 		// 재고를 체크하는 메소드에 보내서 채크를 실행한다
 		boolean  check = cartInsertDao.checkItem(cust_id, product_code);
-		
-		
-		
-		
-		
-		
-		
 		if (check == true) {
-            // 이미 해당 상품이 장바구니에 있는 경우, 수량만 업데이트
-
+            
+			// 이미 해당 상품이 장바구니에 있는 경우, 수량만 업데이트
             updao.updateCartQty(cust_id, product_code, cart_qty);
         } else {
-            // 장바구니에 해당 상품이 없는 경우, 새로운 상품으로 추가
+            
+        	// 장바구니에 해당 상품이 없는 경우, 새로운 상품으로 추가
             cartInsertDao.insertCart(cust_id, product_code, cart_qty);
-        }
-	
-    }
-		
-
+        }//else end
+	}// CartQuery
 }// END

@@ -14,28 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.javalec.util.ShareVar;
-
-/**
- * Servlet implementation class aProductUpdateServlet
- */
 @WebServlet("/aProductUpdateServlet")
 public class aProductUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public aProductUpdateServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
 		/*
 		--------------------------------------------------------------
 		* Description 	: 상품 수정 기능
@@ -47,11 +32,6 @@ public class aProductUpdateServlet extends HttpServlet {
 		*
 		--------------------------------------------------------------
 		*/
-		
-		
-		
-		
-		
 		//js 에서 받은 값을 변수로 지정한다
 		String code 		= request.getParameter("code");
 		String name 		= request.getParameter("name");

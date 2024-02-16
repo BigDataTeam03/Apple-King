@@ -66,7 +66,7 @@ $(document).ready(function() {
 	
 	  // 검색 버튼에 대한 click 이벤트 핸들러 추가
     $("#searchButton").click(function() {
-		alert(" 검색벅튼 누름. ")
+		//alert(" 검색벅튼 누름. ")
 	    // 검색어 가져오기
         let searchContent  = $("#searchContent").val()
         let classifyOption = $("#classifyOption").val()

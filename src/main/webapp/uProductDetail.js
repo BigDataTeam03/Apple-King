@@ -73,8 +73,17 @@ document.addEventListener('DOMContentLoaded', function() {
 	     input.value = sanitizedValue;
 	 });//input.addEventListener end
 	 
-	 // 장바구니 버튼 눌렀을때 리스터 
+	
+});//document.addEventListener end
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+ // 장바구니 버튼 눌렀을때 리스너
 	cart_button.addEventListener('click', function(){
+		alert("장바구니 버튼 click 됨 ")
+		
+		form = document.cartForm
 		productSelectedCheck = true // 장바구니에 한번 insert 되는 순간  True 값이 저장 
 		$.ajax({
 			type : 'post',
@@ -86,25 +95,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			success: function(response) { 
 				// session  저장이 완료됨
 				alert(productName+"에대한 재실행 여부 가 세션 정보에 저장됨 ")
+				form.submit();
+				
 				}
-			
 		})// Ajax end
 	})// Cart btn event end
-	 
-	 
 });//document.addEventListener end
-
-// 장바구니 담기를 클릭했을때 세션에 productSelectedCheck 에 true 가 저장되도록 하는 기능 
-document.addEventListener('DOMContentLoaded', function(){
-
-
-})
-
-// 카트에 넣기 전, 선택한 수량을 가져와서 재고와 비교 후 가능,불가능 여부 체크
-function qtyCheck(form) {
-
-}
-
-
-
-
