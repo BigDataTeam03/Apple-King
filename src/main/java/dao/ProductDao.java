@@ -83,6 +83,9 @@ public class ProductDao {
 		ResultSet rs =null;
 		try {
 			connection = dataSource.getConnection();
+			if(searchContent ==null) {
+				searchContent="";
+			}
 			
 			String Query = "select * from product "
 					+ "where product_name like '%"+ searchContent + "%'"

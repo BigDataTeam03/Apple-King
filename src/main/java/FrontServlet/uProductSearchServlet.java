@@ -160,7 +160,7 @@ public class uProductSearchServlet extends HttpServlet {
 				totalProductNumber++;
 				
 			}
-			System.out.println("Json전");
+			System.out.println(">> Json product 출력");
 			// Json 타입으로 변환하기 위한 Gson 선언
 			out.print(new Gson().toJson(productdtoList));
 			

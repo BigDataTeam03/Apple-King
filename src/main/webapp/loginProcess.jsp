@@ -28,6 +28,8 @@
 		1. db 에서 아이디 정보 불러와서 패스워드 체크 구현
 		2. 향후 MVC 로 바꿀 예정
 	    
+	* << 2024.02.16>>by pdg , diana
+		1. name 도 세션에 저장하게 수정
 	--------------------------------------------------------------*/
 	// loginForm 에서 전송함  form value get.
 	String user_id = request.getParameter("userId");

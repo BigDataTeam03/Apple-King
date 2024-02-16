@@ -17,9 +17,6 @@
 		 3. 카트로 넘어가기 전에 디비에 저장되게끔 하는 기능 추가. 
 * <<2024.02.14>> by LS
 		 1. 상품 목록에 있는 상품명을 클릭했을 때 db에 있는 다중 detailimagename 불러오기
-		 
-  <<2024.02.14>> by KBS
-		 1. 세션으로 상품의 재고를 받아 선택한 수량과 비교해서 재고보다 많이 추가할수 없게 막아둠
 --------------------------------------------------------------
 */ %>
 <!--producrtDetailCommand 에서 세션에 저장한 상품 상세 정보 dto  -->
@@ -32,7 +29,7 @@
 	    <title>상품 상세 페이지</title>
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
-	   <!--  <link rel = "stylesheet" href ="uProductDetail.css"> -->
+	    <!-- <link rel = "stylesheet" href ="uProductDetail.css"> -->
 	</head>
 	<body>
 		<input type= "hidden" id ="product_qty" value ="${product_qty}" />
@@ -46,7 +43,6 @@
                         				<img src="image/${imageName}" alt="상품 이미지">
                     			 </c:forTokens>
 							</div>
-		                
 		                <div class="product-info">
 		                    상품명: <%= session.getAttribute("product_name") %><br>
 		                    원산지: <%= session.getAttribute("origin") %><br>
@@ -57,11 +53,11 @@
 		                    <form name="cartForm" action="cartInsert.do" method ="post">
 		                    	
 	                        구매 수량 :<input type="number" id ="cart_qty"  name="cart_qty" min="1" max ="${product_qty }" value ="1"><br><br>
-	                        		 <input type="button" 
+	                        		 <input type="submit" 
 	                        		 	    id = "cart_button"
 	                        		 	    class="btn btn-primary" 
-	                        		        value="장바구니담기" 
-	                        		        onclick="qtyCheck(this.form)"></input>
+	                        		        value="장바구니담기" />
+	                        		        <!-- onclick="qtyCheck(this.form)" -->
 		                    </form><br><br>
 		                </div>
 		            </div>
@@ -73,8 +69,8 @@
 	<br>
 	<div>
 	<!--  문의 게시판 출력 -->
-	 <jsp:include page="aProductDetailQuestions.jsp"/>
-	 <!-- 236 --> 
+  <jsp:include page="aProductDetailQuestions.jsp"/>
+	 
 	</div>
     <!-- 상세페이지 탭 -->
         <div class="container">
@@ -138,7 +134,7 @@
    	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="uProductDetail.js?var=1"></script>
   
- 	<script>
+<!--  	<script>
 	// 카트에 넣기 전, 선택한 수량을 가져와서 재고와 비교 후 가능,불가능 여부 체크
 	function qtyCheck(form) {
 	//let form = document.cartForm
@@ -152,9 +148,9 @@
         if (quantity > stock) {
             alert("재고가  선택하신 상품보다 부족합니다.");
         } else {
-            form.submit();
+            //form.submit();
         }
     }
-	</script>		
+	</script>	 -->	
 	
 </body>
