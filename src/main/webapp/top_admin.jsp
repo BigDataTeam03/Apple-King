@@ -19,6 +19,7 @@
 	  <a href="aCustomerOrderList.do">	회원 매출 조회</a> 		&nbsp;&nbsp;&nbsp;
 	  <a href="aGoHome.do">				관리자홈</a> 			&nbsp;&nbsp;&nbsp;
 	  <a href="cGoHome.do">				유저홈</a> 			&nbsp;&nbsp;&nbsp;
+	  <a href="aProductQuestionList.do">문의 내역</a> 			&nbsp;&nbsp;&nbsp;
 	  <br>
 	</nav>
 	</body>

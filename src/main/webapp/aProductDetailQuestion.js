@@ -43,8 +43,15 @@ function createTable(data) {
     //검색해온 데이터(dtos -> json -> Array  변환)
     dataReal = Array.from(data)
 
-  //$("#cartList").empty();
   
+
+    if (dataReal.length == 0) {
+        $("#questions").html("<p>등록된 문의가 없습니다.</p>");
+        return;
+    }
+
+  
+  //$("#cartList").empty();
     let table =
         "<table border='1'>" +
         "<tr>" +
@@ -64,12 +71,15 @@ function createTable(data) {
             "</tr>"         
     }
     
+    
+    // 만약 데이터가 비어 있다면, 특정 메시지를 표시하고 함수 종료
     // table end
     table += "</table>"
 
     // html result <- table
+   if ( dataReal.length > 0) {
     $("#questions").html(table);
-  
+  }
 }
 
 
