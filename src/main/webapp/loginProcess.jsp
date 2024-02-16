@@ -1,4 +1,4 @@
-<%@page import="com.javaproject.util.JSFunction_servlet"%>
+<%@ page import="com.javaproject.util.JSFunction_servlet"%>
 <%@page import="dto.MemberDto"%>
 <%@page import="dao.Login_Dao"%>
 <%@ page import="com.javaproject.util.JSFunction"%>

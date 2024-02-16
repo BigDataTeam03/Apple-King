@@ -36,6 +36,7 @@
         background-color: #fff;
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ccc; /* 테두리 스타일 및 색상 */
     }
     h2 {
         margin-top: 0;
@@ -132,6 +133,25 @@
     .modal-content form input[type="submit"]:hover {
         background-color: #0056b3;
     }
+    
+       table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+  
 </style>
 </head>
 <body>
