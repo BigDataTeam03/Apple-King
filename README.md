@@ -7,10 +7,10 @@
 # Project Description
 사과 유통 플랫폼 사이트 Apple King - harvest your happiness
 ## 기본기능
--[x] 회원 가입 및 로그인
--[x] 상품 검색 조회
- - [x]장바구니 기능
- - [ ]결제 기능
+- [ ] 회원 가입 및 로그인
+- [ ] 상품 검색 조회
+- [ ] 장바구니 기능
+- [ ] 결제 기능
 ## Advanced 기능
  - [ ]환불기능
  - [ ]댓글기능
