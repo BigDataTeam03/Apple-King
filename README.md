@@ -67,7 +67,7 @@
 - <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 - <img src="https://img.shields.io/badge/git-4469A1?style=for-the-badge&logo=git&logoColor=white">
 - <img src="https://img.shields.io/badge/slack-4479A1?style=for-the-badge&logo=slack&logoColor=white">
-- <img src="https://img.shields.io/badge/Jira-4479B1?style=for-the-badge&logo=Jira&logoColor=white">
+- <img src="https://img.shields.io/badge/Jira-6554c0?style=for-the-badge&logo=Jira&logoColor=white">
 
 
 
