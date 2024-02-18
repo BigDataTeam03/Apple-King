@@ -37,9 +37,6 @@
 
 <br> Jira : <a href ="https://pulpilisory.atlassian.net/jira/software/projects/MVC/boards/1/timeline?shared=&atlOrigin=eyJpIjoiZjZmYTM5MWI5Nzc4NGRlMzk3YzlmMjJhMDU1YmRkOTIiLCJwIjoiaiJ9"> AppleKingWeb2.0 TimeLine</a>
 
-<br> Asana : <a href ="https://app.asana.com/0/1206550553332943/1206550553332943" target="_blank"> bigData3HQ </a>
-
- 
 <h1>Member Role<h1>
 <img width="500" alt="image" src="https://github.com/ForrestDPark/Project02_AppleStore_big3/assets/149550771/de8775b7-45af-4c67-8a61-ac89dc6ebdec">
 
