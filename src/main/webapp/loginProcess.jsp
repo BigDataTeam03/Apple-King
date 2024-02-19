@@ -30,6 +30,9 @@
 	    
 	* << 2024.02.16>>by pdg , diana
 		1. name 도 세션에 저장하게 수정
+		
+	* << 2024.02.18>>by diana
+		1. register date 도 세션에 저장하게 수정
 	--------------------------------------------------------------*/
 	// loginForm 에서 전송함  form value get.
 	String user_id = request.getParameter("userId");
@@ -76,6 +79,7 @@
 			session.setAttribute("userId", memberDto.getCust_id());
 			session.setAttribute("userName", memberDto.getName());
 			session.setAttribute("userRank", memberDto.getCust_rank());
+			session.setAttribute("regDate", memberDto.getReg_date());
 			String user_name = memberDto.getName(); 
 			//response.sendRedirect("loginForm.jsp");
 			// 일반유저 메인 화면으로 이동
