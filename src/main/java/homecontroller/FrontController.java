@@ -19,6 +19,7 @@ import command.cartCommand;
 import command.myInfoCommand;
 import command.mypageCommand;
 import command.productDetailCommand;
+import command.purchaseCommand;
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -110,6 +111,12 @@ public class FrontController extends HttpServlet {
 		case ("/cartInsert.do"): 
 			command = new cartCommand();
 			executeCommand(com,command,request,response,"uCartList.jsp");
+			break;
+			
+		//Purchase Page
+		case ("/purchase.do"): 
+			command = new purchaseCommand();
+			executeCommand(com,command,request,response,"purchase.jsp");
 			break;
 	
 			
