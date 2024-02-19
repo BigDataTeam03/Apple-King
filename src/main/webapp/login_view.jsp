@@ -33,29 +33,29 @@
 	    2. 아무것도 없는 입력란으로 로그인 버튼 눌렀을 때 validation 하는 기능 
 	    3. 회원 가입 버튼 누르면 페이지가 안뜨는 문제 해결 
 	    
-	    <<2024.02.12>>by pdg
-	    1. 구글 아이디로 로그인하는 기능
+	    <<2024.02.19>> by pdg 
+	    1. 로그인  첫번에만 환영합니다 메세지가 나오도록 => 쿠키 이용.
 
 	--------------------------------------------------------------*/
 		// Layer pop up 띄울지 여부
-		String popupMode = "on"; 
+		String popupMode = "on"; // 
 		
 		// Cookie 설정
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null){
 			for (Cookie c : cookies){
-				String cookieName = c.getName();
-				String cookieValue = c.getValue();
-				if (cookieName.equals("PopupClose")){
-					popupMode = cookieValue; // popup mode 갱신
+				String cookieName = c.getName(); 		// 1. 쿠키 이름 가져오기 
+				String cookieValue = c.getValue();		// 2. 쿠키 값 가져오기
+				if (cookieName.equals("PopupClose")){ 	// 3. 오늘하루 안보기가 변수 확인 
+					popupMode = cookieValue; 			// 4. popup mode 가 on 일경우 Popup 이 켜짐
 				}//If end
 			}//For end
 		}//If end
 		
-		String loginId = CookieManager.readCookie(request,"loginId");
+		String loginId = CookieManager.readCookie(request,"loginId"); // loginId 라는 쿠키를 불러
 		String cookieCheck = "";
-		if (!loginId.equals("")){
-			cookieCheck = "checked";
+		if (!loginId.equals("")){ //loginId 가 있을경우
+			cookieCheck = "checked"; //checked 
 		}//If end
 	%>
 <html lang="ko">
@@ -69,38 +69,33 @@
 			position : absolute; top:20px; left:20px; color:black;
 			width:300px ; height : 189px; background-color :#96c0bc;
 		}
-/* 		div#checkpopup{
-			position : absolute; top:20px; left:20px; color:black;
-			width:300px ; height : 189px; background-color :#96c0bc;
-		} */
 		.container {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
     }
-
-.form-container {
+		.form-container {
         text-align: center;
-        width: 300px; /* 폼의 너비를 조절할 수 있습니다. */
+        width: 300px; /* 폼 너비를 조절*/
     }
     </style>
 </head>
 <body>
 	<%
-		// 1. POP UP 
-		if (popupMode.equals("on")){
+		// 1. POP UP 창에 대한 코드 
+		if (popupMode.equals("on")){ // pop up 창을 켜야할경우 (on) popup 동작
 	%>
 			<!-- html region -->
 			<div id ="popup">
 				<h2 align ="center">공지사항  </h2>
 				<p align ="center"> 안녕하세요 Apple king 입니다. <br>
-					설날을 맞아서 모든 사과 대특가 이벤트가 진행중입니다.!</p>
+					새해를 맞아 모든 고객에게 사과나무를 심어드립니다.</p>
 				
 				<div id ="checkpopup" align = "left" >
 					<form name = "popFrm">
 						<input type="checkbox" id ="inactiveToday" value ="1" />
-							1분 동안 열지 않음. 
+							하루(1분) 동안 열지 않음. 
 						<input type = "button" value = "닫기" id = "closeBtn"/>
 					</form>
 				</div>
@@ -110,13 +105,14 @@
 	%>
 	<% 
 	// 2. login 상태 확인  
-	if (session.getAttribute("userId")==null){
+	if (session.getAttribute("userId") == null){ // 처음에 loginId session 에 값이 없을 경우!
 	%>
 	<div class= "container">
 	  	<div>
 	    	<h1><img src="image/logo.png"></h1>
 	  	</div>
 	  	<div class="form-container">
+	  		<%//-----------------------Form Action(validationForm =>LoginProcess.jsp) --------- //%>
 	    	<form 	class ="form-container"
 	    			name="loginForm" 
 	    			action="loginProcess.jsp" 
@@ -185,10 +181,12 @@
        	</div>
 	</div>
     <%
-	} else { // 로그인 된 상태
+	} else { // loginId session 에 값이 있는경우 ( 이미 로그인되어있다. )
     %>
-    	<%=session.getAttribute("userId")%> 회원님, 로그인 하셨습니다.<br/>
+    	<%=session.getAttribute("userId")%> 님 로그인된 상태입니다.<br/>
     	<a href= "Logout.jsp">[로그아웃]</a>
+    	<a href= "cGoHome.do">[메인으로 가기]</a>
+    	
 	<%
 	}
 	%>
