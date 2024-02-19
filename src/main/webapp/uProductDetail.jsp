@@ -29,8 +29,8 @@
 	    <title>상품 상세 페이지</title>
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
-	    <link rel = "stylesheet" href ="uProductDetail.css">
-	</head>
+<!-- <link rel = "stylesheet" href ="uProductDetail.css">
+	</head> -->	    
 	<body>
 		<input type= "hidden" id ="product_qty" value ="${product_qty}" />
     	<div class="container">
@@ -59,6 +59,14 @@
 	                        		 	    class="btn btn-primary" 
 	                        		        value="장바구니담기" 
 	                        		        onclick="qtyCheck(this.form)"></input>
+		                    </form><br><br>
+		                    
+		                     <form name="purchaseForm" action="purchase.do" method ="post">
+	                        		 <input type="button" 
+	                        		 	    id = "purchase_button"
+	                        		 	    class="btn btn-primary" 
+	                        		        value="바로결제하기" 
+	                        		        onclick="directPayment(this.form)"></input>
 		                    </form><br><br>
 		                </div>
 		            </div>
@@ -151,6 +159,12 @@
         } else {
             form.submit();
         }
+    }
+	</script>
+	<script>
+	function directPayment() {
+        // 바로 결제하기 폼 처리
+        document.purchaseForm.submit();
     }
 	</script>		
 	
