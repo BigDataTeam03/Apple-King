@@ -62,8 +62,11 @@
 	                        		 	    id = "cart_button"
 	                        		 	    class="btn btn-primary" 
 	                        		        value="장바구니담기" />
-	                        		        
 		                    </form><br><br>
+		                    <form action="purchase.do" method="post">
+		                    		 <input type="submit" 
+	                        		        value="바로결제" />
+		                    </form>
 		                </div>
 		            </div>
 		        </div>

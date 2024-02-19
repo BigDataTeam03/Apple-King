@@ -24,13 +24,13 @@ import dto.InquireDto;
  * Servlet implementation class uProductquestionListServlet
  */
 @WebServlet("/uProductquestionListServlet")
-public class uProductQuestionListServlet extends HttpServlet {
+public class uProductquestionListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public uProductQuestionListServlet() {
+    public uProductquestionListServlet() {
         super();
     }
 

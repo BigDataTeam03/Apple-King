@@ -9,7 +9,7 @@ window.onload = function() {
 		url: "purchaseServlet",
 		
 		// request data (JSON)
-		data: { cust_id: "sum" }, 
+		//data: { cust_id: "s" }, 
 		
 		// response data type -> JSON
 		dataType :"json",
