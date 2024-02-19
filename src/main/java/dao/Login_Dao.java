@@ -44,7 +44,7 @@ public class Login_Dao {
 		ResultSet rs = null;
 		try {
 			conn = dataSource.getConnection();	// this makes connection to the db.  
-			String select = "SELECT cust_id, name, cust_rank FROM customer ";
+			String select = "SELECT cust_id, name, cust_rank, reg_date FROM customer ";
 			String where = " WHERE cust_id = '" + id +"' AND cust_pw = '" + pw +"'";
 			ps = conn.prepareStatement(select+where);
 			System.out.println(">> CheckLogin Query : "+ps.toString().split(":")[1]);
@@ -54,6 +54,7 @@ public class Login_Dao {
 				dto.setCust_id(rs.getString(1));
 				dto.setName(rs.getString(2));
 				dto.setCust_rank(rs.getInt(3));
+				dto.setReg_date(rs.getString(4));
 			}else {
 				System.out.println(">> DBcheck :존재하지 않는 사용자 입니다.");
 				

@@ -27,17 +27,17 @@
 	* <<2024.02.11>> by pdg
 		1. db 에서 아이디 정보 불러와서 패스워드 체크 구현
 		2. 향후 MVC 로 바꿀 예정
+	    
 	* << 2024.02.16>>by pdg , diana
 		1. name 도 세션에 저장하게 수정
-	* <<2024.02.19>> by pdg 
-		1. 처음 로그인 했는지 체크하는 세션 추가  => first_check 값이 true 인 경우에만 환영합니다 메세지 띄움
 		
+	* << 2024.02.18>>by diana
+		1. register date 도 세션에 저장하게 수정
 	--------------------------------------------------------------*/
 	// loginForm 에서 전송함  form value get.
 	String user_id = request.getParameter("userId");
 	String user_pw = request.getParameter("userPw");
 	String save_check = request.getParameter("save_check");
-	String first_check = request.getParameter("first_check");// first_check 를 불러옴. 
 	
 	// DB -> controller -> command 로 변경 필요
 	Login_Dao dao =new Login_Dao();
@@ -48,8 +48,8 @@
 		// login 성공 
 		if ("admin".equals(user_id)){// admin 사용자 인증
 			if(save_check != null && save_check.equals("Y")){
-				// save check 되어있을 때 loginId 쿠키를 저장 
-				CookieManager.makeCookie(response, "loginId", user_id, 60*60*1); // 5분동안 loginId 쿠키 가지고있음 
+				// save check 되어있을 때 쿠키 저장 
+				CookieManager.makeCookie(response, "loginId", user_id, 60*60*5); // 5분동안 쿠키 가지고있음 
 			} // If End 
 			else {
 				// save check 안되어있을 경우 쿠키 삭제함. 
@@ -79,6 +79,7 @@
 			session.setAttribute("userId", memberDto.getCust_id());
 			session.setAttribute("userName", memberDto.getName());
 			session.setAttribute("userRank", memberDto.getCust_rank());
+			session.setAttribute("regDate", memberDto.getReg_date());
 			String user_name = memberDto.getName(); 
 			//response.sendRedirect("loginForm.jsp");
 			// 일반유저 메인 화면으로 이동
