@@ -25,17 +25,14 @@
 <html lang="en">
 	<head>
 	    <meta charset="UTF-8">
-	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	    <title>상품 상세 페이지</title>
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
-	    <!-- <link rel = "stylesheet" href ="uProductDetail.css"> -->
+	    <link rel = "stylesheet" href ="proDetailStyle.css"> 
 	</head>
 	<body>
 		<input type= "hidden" id ="product_qty" value ="${product_qty}" />
-    	<div class="container">
+    	<div class="detailContainer">
 		    <div class="row justify-content-center"> <!-- 가운데 정렬을 위한 클래스 추가 -->
-		        <div class="col-md-6"> <!-- 가운데 정렬을 위해 너비를 조정 -->
+		        <div class="col-md-7"> <!-- 가운데 정렬을 위해 너비를 조정 -->
 		            <div class="product-details">
 		                <div class="product-image">
 		                  <c:set var="detailImageNames" value="${dto.detail_image_name}" />
@@ -44,20 +41,28 @@
                     			 </c:forTokens>
 							</div>
 		                <div class="product-info">
-		                    상품명: <%= session.getAttribute("product_name") %><br>
+		                	<span style="font-weight: bold; font-size: 35px;">
+   								  <%= session.getAttribute("product_name") %>
+							</span><br>
 		                    원산지: <%= session.getAttribute("origin") %><br>
-		                    가격:  <fmt:formatNumber value="${price}" type="number" pattern="###,###"/> 원<br>
+		                    <span style="font-weight: bold; font-size: 25px; color: red;">
+		                        <fmt:formatNumber value="${price}" type="number" pattern="###,###"/>원
+		                    </span>
+	                        <span style="color: red;">(100g당 <fmt:formatNumber value="${dto.price /(dto.weight *100)}" pattern= "#" />원)<br /></span>
+	                        <span style="font-weight: bold;">
 		                    크기:  <%= session.getAttribute("size") %><br>
-		                    무게:  <%= session.getAttribute("weight") %>kg<br><br>
+		                    무게:  <%= session.getAttribute("weight") %>kg<br><br><br>
+		                    </span>
 		                    
 		                    <form name="cartForm" action="cartInsert.do" method ="post">
-		                    	
-	                        구매 수량 :<input type="number" id ="cart_qty"  name="cart_qty" min="1" max ="${product_qty }" value ="1"><br><br>
+		                    <span style="font-weight: bold;">	
+	                        구매 수량 :<input type="number" id ="cart_qty"  name="cart_qty" min="1" max ="${product_qty }" value ="1" style="margin-left: 10px"><br><br>
+	                        </span>
 	                        		 <input type="submit" 
 	                        		 	    id = "cart_button"
 	                        		 	    class="btn btn-primary" 
 	                        		        value="장바구니담기" />
-	                        		        <!-- onclick="qtyCheck(this.form)" -->
+	                        		        
 		                    </form><br><br>
 		                </div>
 		            </div>
