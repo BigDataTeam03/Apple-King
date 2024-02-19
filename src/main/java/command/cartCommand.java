@@ -39,7 +39,15 @@ public class cartCommand implements Command {
 		// 상품 코드, 사용자 Id, 상품 수량 getParameter 보내
 		String product_code  = session.getAttribute("product_code").toString();
 		String cust_id 		 = session.getAttribute("userId").toString();
-		int    cart_qty		 = Integer.parseInt(request.getParameter("cart_qty"));
+		String cart_qty_str = request.getParameter("cart_qty");
+		int    cart_qty	= 0;
+		if(cart_qty_str == null) {
+			cart_qty_str = "0";
+		}else {
+			    cart_qty		 = Integer.parseInt(request.getParameter("cart_qty"));
+		}
+		
+		
 		String product_name  = (String)session.getAttribute("product_name"); 
 		
 		// "productChkMap" 속성이 세션에 없는 경우를 처리하는 부분
