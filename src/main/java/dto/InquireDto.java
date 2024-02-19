@@ -13,7 +13,7 @@ public class InquireDto {
 	String inquire_date;
 	String inquire_content;
 	String answer_content;
-	
+	String product_name;
 	
 	
 	public InquireDto() {
@@ -24,7 +24,7 @@ public class InquireDto {
 	
 	
 	public InquireDto(int inquire_code, String cust_id, String product_code, String inquire_date,
-			String inquire_content, String answer_content) {
+			String inquire_content, String answer_content, String product_name) {
 		super();
 		this.inquire_code = inquire_code;
 		this.cust_id = cust_id;
@@ -32,6 +32,7 @@ public class InquireDto {
 		this.inquire_date = inquire_date;
 		this.inquire_content = inquire_content;
 		this.answer_content = answer_content;
+		this.product_name = product_name;
 	}
 
 
@@ -116,6 +117,20 @@ public class InquireDto {
 
 	public void setAnswer_content(String answer_content) {
 		this.answer_content = answer_content;
+	}
+
+
+
+
+	public String getProduct_name() {
+		return product_name;
+	}
+
+
+
+
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
 	}
 	
 
