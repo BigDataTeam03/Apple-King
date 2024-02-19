@@ -27,9 +27,9 @@ public class purchaseCommand implements Command {
 		System.out.println(">> purchaseCommand 실행");	
 		
 		// 상품 코드, 사용자 Id, 상품 수량 getParameter 로 받음. 
-		String product_code = (String)session.getAttribute ("product_code"); //<- saveProductInfoServlet
-		String cust_id 		= (String) session.getAttribute("userId");
-		String product_qty_str  = (String)session.getAttribute("product_qty");
+		String product_code 	= (String)session.getAttribute ("product_code"); //<- saveProductInfoServlet
+		String cust_id 			= (String) session.getAttribute("userId");
+		String product_qty_str  = (String)session.getAttribute ("product_qty"); // 선택한 상품의 총수량. 
 		int product_qty = 0;
 		if (product_qty_str != null) {
 			product_qty= Integer.parseInt(product_qty_str);

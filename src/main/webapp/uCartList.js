@@ -209,7 +209,7 @@ $(document).ready(function() {
 			$.ajax({
 				type: "POST",
 				//삭제 기능이 있는 서블렛으로 보낸다
-				url: "uCartDeleteServlet",
+				url: "uCartDeleteServlet", 
 				data: {
 					//카트 코드만 보내면 전부 사라진다
 					code : selected
@@ -232,13 +232,49 @@ $(document).ready(function() {
 				},
 				error : function(xhr, ststus,error){
 					alert("삭제 시 문제가 발생되었습니다."+ error)
-				}
-			})
-		})
-		
+				}//ERROR END
+			})//AJAX END
+		})//CLICKED END
+})//DOCUMENT READY END
 
+
+//선택된 상품 배열 -> uCartInsertServlet
+$(document).ready(function() {
+	/* 버튼 클릭시 AJAX 요청 */
+	$("#purchaseBtn").click(function() {
+		alert(" asdf")
+		let selected = [];
+		// 체크된 상품의 상품코드를 배열에 추가. 
+  	  	$("input[name='selectProduct']:checked").each(function() {
+			alert("seleced product : "+$(this).val())
+   	    	selected.push($(this).val());
+   		});
+   	    alert("구할 물건품목" +selected)
 		
-})
+		// 만약 선택된 상품이 없다면 알림을 표시하고 함수 종료
+   	 	if (selected.length === 0) {
+        	alert("삭제할 상품을 선택하세요.");
+        return;
+    	}// IF END
+    	
+		$.ajax({
+			type: "POST",
+			url: "purchaseServlet", 
+			data: {
+				cartCheckList : selected
+			
+			},			
+			traditional: true, // list array 있을경우 필수
+			success: function() {
+				alert("구매되었습니다")
+			},
+			error : function(error){
+				alert("구매 시 문제가 발생되었습니다."+ error)
+			}//ERROR END
+		})//AJAX END
+	})//CLICKED END
+})//DOCUMENT READY END
+
 
 
 
