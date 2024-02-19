@@ -22,11 +22,27 @@
     <h1>주문/결제</h1>
     <hr>
     
-    <h2>구매자 정보</h2>
-        <br>
+    <h2>구매자 정보</h2><br>
         
-    <h2>결제 정보</h2>
-        <br>
+        <table border="1">
+    <tr>
+        <th>이름</th>
+        <th>이메일</th>
+        <th>전화번호</th>
+    </tr>
+        	</table>
+    <c:forEach items= "${lists}" var="aaa">
+		<tr>			 		 
+	 	 	<th>${aaa.name}</th>			
+	 	 	<th>${aaa.tel}</th>			
+	 	 	<th>${aaa.email}</th>			
+		</tr>					
+	</c:forEach>
+        	
+    <h2>결제 정보</h2><br>
+        <table>
+        
+        </table>
         
         	
   		<form action="purchasecomplete.do" method="post">

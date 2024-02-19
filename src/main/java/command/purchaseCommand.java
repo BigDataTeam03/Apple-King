@@ -1,11 +1,17 @@
 package command;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.Cart_Dao;
 import dao.Purchase_Dao;
+import dao.purchaseCustInfo;
+import dao.purchaseProductInfo;
+import dto.MemberDto;
+import dto.productDto;
 
 public class purchaseCommand implements Command {
 
@@ -26,7 +32,17 @@ public class purchaseCommand implements Command {
 		String product_code = session.getAttribute("product_code").toString();
 		String cust_id = session.getAttribute("userId").toString();
 		
-		Purchase_Dao purchaseDao = new Purchase_Dao();
+		purchaseCustInfo purchaseCustInfo = new purchaseCustInfo();
+		ArrayList<MemberDto> custinfo = purchaseCustInfo.lists(cust_id);
+		
+		session.setAttribute("lists", custinfo);
+		//String a = (String) session.getAttribute("lists");
+		//System.out.println("고객정보"+ a);
+		purchaseProductInfo purchaseProductInfo = new purchaseProductInfo();
+		ArrayList<productDto> pdto = purchaseProductInfo.list(product_code);
+		
+		request.setAttribute("productlnfo", pdto);
+		
 	}
 
 }// END
