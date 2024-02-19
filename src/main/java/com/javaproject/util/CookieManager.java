@@ -10,7 +10,7 @@ public class CookieManager {
 	 * Author 	   : pdg
 	 * Date 	   : 2024.02.10
 	 * Details		
-	 * 	1. makeCookie ( response,cName,cValue,cTime)
+	 * 	1. makeCookie ( response,cName,cValue,cTime) => 쿠키생성.
 	 *  2. readCookie(request, cName)
 	 *  3. deleteCookie(request,cName)
 	 * Update------------------------------- 
@@ -35,9 +35,8 @@ public class CookieManager {
 	
 	//
 	public static String readCookie(HttpServletRequest request, String cName) {
-		
-		String cookieValue =""; // return value
-		
+		// return value
+		String cookieValue ="";
 		Cookie [] cookies =request.getCookies();
 		if (cookies != null) {
 			for (Cookie c: cookies ) {

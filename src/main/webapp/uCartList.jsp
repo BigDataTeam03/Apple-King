@@ -51,9 +51,7 @@
         <br><br>
         총 가격: <span id="totalPrice"></span>
         <br><br>
-        <form action="purchase.do" method="post">
-            <input type="submit" value="구매하기">
-        </form>
+        <button id="purchaseBtn"> 선택상품 구매하기</button>
       	<a href="cGoHome.do">상품목록으로 가기</a>
        
     </div>

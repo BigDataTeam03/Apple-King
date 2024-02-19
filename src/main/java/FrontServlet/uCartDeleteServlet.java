@@ -70,19 +70,11 @@ public class uCartDeleteServlet extends HttpServlet {
                 ps = conn_mysql.prepareStatement(deleteQuery);
                // 배열을 사용함으로 배열의 길이만큼 시행한다
              for (  int i = 0; i < selected.length; i++) {
-            	 			//배열의 첫번째는 0 으로 시작한다
-            	 	
+            //배열의 첫번째는 0 으로 시작한다
 	            	 ps.setString(1, selected[i]);
 	            	 ps.executeUpdate();
              }
-              
-	            
-	            // 쿼리 실행
-	            
-	            
-	            
-	            
-	            
+	        // 쿼리 실행
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	            out.print("failure");
