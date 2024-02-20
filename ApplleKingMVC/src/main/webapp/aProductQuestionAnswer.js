@@ -34,6 +34,7 @@ window.onload = function() {
             console.log(response[0].cust_id)
             console.log(response[0].product_code)
             console.log(response[0].inquire_date)
+            console.log(response[4].inquire_code)
         },
     });
 };
@@ -53,9 +54,9 @@ $(document).on("click", "#answerList tr", function() {
 // 확인 버튼 클릭 시 답글 전송
 $("#answerBtn").click(function() {
     let answer = $("#answer").val(); // 답글 내용 가져오기
+     let code = $("#answerList tr selected").data("inquire_code"); // 문의 코드 가져오기
     
-    
-    
+    alert(" 답글 보내보자" + answer + " 문의코드" + code);
 
     $.ajax({
 
@@ -66,7 +67,8 @@ $("#answerBtn").click(function() {
         url: "aProductAnswerInsertServlet",
 
         // request data (JSON)
-        data: { answer : answer },
+        data: { answer : answer,
+        		  code : code    },
 
         // response data type -> JSON
         dataType: "json",
@@ -101,22 +103,23 @@ function createTable(data) {
     let table =
         "<table border='1'>" +
         "<tr>" +
+        "<th>문의 코드<th>" +
         "<th>작성자</th>" +
         "<th>내용</th>" +
         "<th>날짜</th>" +
         "<th>상품명</th>" +
         "</tr>";
 
-    // insert data rows
+   // insert data rows
     for (let i = 0; i < data.length; i++) {
         table += "<tr>" +
-            "<td>" + data[i].cust_id + "</td>" + // col1 
-            "<td>" + data[i].inquire_content + "</td>" + // col2
-            "<td>" + data[i].inquire_date + "</td>" + // col3
-             "<td>" + data[i].product_name + "</td>" + // col4
+      		"<td>" + data[i].inquire_code + "</td>" + // col1 
+            "<td>" + data[i].cust_id + "</td>" + // col2 
+            "<td>" + data[i].inquire_content + "</td>" + // col3
+            "<td>" + data[i].inquire_date + "</td>" + // col4
+            "<td>" + data[i].product_name + "</td>" + // col5
             "</tr>"
     }
-
     // table end
     table += "</table>"
 
