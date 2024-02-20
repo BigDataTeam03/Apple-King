@@ -175,7 +175,7 @@
             <span class="close">&times;</span>
             <h3>문의 작성</h3>
             <form id="questionForm">
-                <label for="name">상품 이름: <%=session.getAttribute("product_name") %></label>                        
+                <label for="name">상품 이름: ${sessionScope.product_name}</label>                        
                 <label for="question">문의 내용:</label><br>
                 <textarea id="question" name="question" rows="4" required></textarea><br>
                 <input type="submit" value="작성">
@@ -183,7 +183,7 @@
         </div>
     </div>
  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="aProductDetailQuestion.js"></script>
+    <script src="uProductDetailQuestion.js"></script>
 
 </body>
 </html>
