@@ -1,0 +1,122 @@
+@charset "UTF-8";
+/*
+--------------------------------------------------------------
+* Description 	: Login 화면 CSS
+		Detail	:
+    		  	
+* Author 		: PDG
+* Date 			: 2024.02.09
+* ---------------------------Update---------------------------		
+* <<2024.02.09>> by PDG
+
+--------------------------------------------------------------
+*/
+
+/************POPUP part *********************/
+
+div#popup{
+	position : absolute; top:80px; left:1px; color:yellow;
+	width:200px ; height : 100px; background-color :gray;
+}
+div#popup>div{
+	position : relative; background-color : #ffffff; top: 0px;
+	padding: 0.2px; color: black;
+}
+
+ #checkpopup {
+    width: 100%;
+}	 
+form[name="popFrm"] {
+    width: 85%;
+}
+/********************************************/
+
+body {
+    display: flex;
+    justify-content: center; 		/* 수평 가운데 정렬 */
+    align-items: center; 			/* 수직 가운데 정렬 */
+    height: 100vh; 					/* 화면 전체 높이를 차지 */
+    background-color: #f4f4f4; 		/* 배경색 설정 */
+    font-family: Arial, sans-serif; /* 폰트 설정 */
+    margin: 0; 						/* 바디 마진 초기화 */
+    padding: 0; 					/* 바디 패딩 초기화 */
+}
+
+.container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+.form-container {
+        text-align: center;
+        width: 300px; /* 폼의 너비를 조절할 수 있습니다. */
+    }
+h3 {
+	color: #333;
+}
+img {
+            width: 400px; /* 이미지의 너비 조정 */
+        }
+
+/*로그인창이 가운데 정렬되고 수직으로 가운데 오게함 */
+form {
+	display: inline-block;
+	text-align: left;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 312px; /* 폼 너비 지정 */
+}
+
+
+input[type="text"], input[type="password"], button {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-sizing: border-box;
+	font-size: 16px;
+}
+
+button {
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #45a049;
+}
+
+input[type="submit"] {
+	background-color: #3498db;
+	color: white;
+	border: none;
+	cursor: pointer;
+	padding: 10px 20px;
+	text-decoration: none;
+	border-radius: 5px;
+}
+
+input[type="submit"]:hover {
+	background-color: #2980b9;
+}
+/* 회원가입 버튼의 스타일 */
+#signupBtn {
+	background-color: #3498db; /* 파란색 */
+	color: white;
+	border: none;
+	cursor: pointer;
+	padding: 10px 20px;
+	text-decoration: none;
+	border-radius: 5px;
+}
+
+#signupBtn:hover {
+	background-color: #2980b9;
+} /* 파란색 (hover 상태) */

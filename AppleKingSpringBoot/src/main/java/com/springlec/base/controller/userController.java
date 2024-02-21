@@ -32,13 +32,7 @@ public class userController {
 		 System.out.println(">> userController START ");
 		 //List<MemberDto> memberDto =  service.memberListDao();
 		 
-		 return "login_test";
+		 return "login_view";
 	 }
-	 
-	 
- 
- 
-
-	
 	
 }
