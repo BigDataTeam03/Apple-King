@@ -6,5 +6,5 @@ import com.springlec.base.model.ProductListDto;
 
 public interface ProductListDaoService {
 
-	public List<ProductListDto> listDao() throws Exception;
+	public int productCntDao() throws Exception;
 }
