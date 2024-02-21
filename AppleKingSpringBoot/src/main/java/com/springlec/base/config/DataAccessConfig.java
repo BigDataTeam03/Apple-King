@@ -10,14 +10,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 /*
  * Description  : SQL session factory bean 생성 클래스  
- * Detail 		:	1. Dao 와 연결해주는 Mapper 를 스캔. 
- * 					2. MVC 에서의 jdpc connection 과 prepared 등등의 설정과  server 의  tomcat xml  담당. . 
- * Author 		: 
- * Date 		:
+ * Detail 		: 1. Dao 와 연결해주는 Mapper 를 스캔. 
+ * Author 		: PDG
+ * Date 		: 2024.02.21
  * Update 		: 
  */
 @Configuration
-// Dao mapper 가 있는 base pakage 를 지정 
+
+// Dao mapper 가 있는 base pakage 를 지정 (수정필요)
 @MapperScan(basePackages = "com.springlec.base.dao")
 public class DataAccessConfig {
 	@Bean
