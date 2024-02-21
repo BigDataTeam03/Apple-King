@@ -54,7 +54,8 @@ $(document).on("click", "#answerList tr", function() {
 // 확인 버튼 클릭 시 답글 전송
 $("#answerBtn").click(function() {
     let answer = $("#answer").val(); // 답글 내용 가져오기
-     let code = $("#answerList tr selected").data("inquire_code"); // 문의 코드 가져오기
+    					
+     let code = $(this).find("td:eq(0)").text(); // 문의 코드 가져오기
     
     alert(" 답글 보내보자" + answer + " 문의코드" + code);
 
