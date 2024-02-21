@@ -1,9 +1,12 @@
 package com.springlec.base.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springlec.base.dao.MemberDao;
+import com.springlec.base.model.MemberDto;
 
 @Service
 public class MemberDaoServiceImpl implements MemberDaoService {
@@ -20,9 +23,10 @@ public class MemberDaoServiceImpl implements MemberDaoService {
 	@Autowired
 	MemberDao dao;
 	@Override
-	public void memberListDao() throws Exception {
+	public List<MemberDto> memberListDao() throws Exception {
 		// customer 정보를 list up 하는 다오 
-		dao.memberListDao();
+		return dao.memberListDao();
+		 
 	}
 
 
