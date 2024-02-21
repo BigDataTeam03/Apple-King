@@ -77,7 +77,7 @@
 	<br>
 	<div>
 	<!--  문의 게시판 출력 -->
-  <jsp:include page="aProductDetailQuestions.jsp"/>
+  <jsp:include page="uProductDetailQuestions.jsp"/>
 	 
 	</div>
     <!-- 상세페이지 탭 -->

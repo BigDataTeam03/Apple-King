@@ -45,7 +45,7 @@ function createTable(data) {
 
   
 
-    if (dataReal.length == 0) {
+    if ( parseInt(dataReal.length) === 0) {
         $("#questions").html("<p>등록된 문의가 없습니다.</p>");
         return;
     }
