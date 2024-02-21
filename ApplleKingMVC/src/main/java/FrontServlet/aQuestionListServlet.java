@@ -79,8 +79,8 @@ public class aQuestionListServlet extends HttpServlet {
 		        + "inquire.cust_id, "               //2
 		        + "inquire.product_code, "          //3
 		        + "inquire.inquire_date, "          //4
-		        + "inquire.inquire_content, "      //5
-		        + "product.product_name "           // 6
+		        + "inquire.inquire_content, "       //5
+		        + "product.product_name "           //6
 		        
 		        + "from inquire "
 		        
@@ -130,6 +130,12 @@ public class aQuestionListServlet extends HttpServlet {
 			 
 		}catch(Exception e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				
+			} catch (Exception e2) {
+			
+			}
 		}
 		
 		

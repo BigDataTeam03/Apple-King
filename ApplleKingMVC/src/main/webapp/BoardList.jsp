@@ -1,4 +1,4 @@
-<%@page import="dto.BoardDTO"%>
+<%@ page import="dto.BoardDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
