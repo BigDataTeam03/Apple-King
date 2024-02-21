@@ -69,3 +69,11 @@
  <br>&nbsp;&nbsp;4. 김수민  (Diana)<br>
       [![Forrest's GitHub stats](https://github-readme-stats.vercel.app/api?username=dianakim0411&hide=stars,contribs&count_private=true&show_icons=true&theme=merko)](https://github.com/dianakim0411/github-readme-stats)
 
+
+
+MVC model 2 version 
+
+<<Login Page >>
+<img width="1442" alt="image" src="https://github.com/ForrestDPark/Project02_AppleKing/assets/149550771/b01aeee0-89ae-47c6-9339-f6b01db8d396">
+
+
