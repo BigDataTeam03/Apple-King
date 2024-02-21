@@ -39,6 +39,15 @@ public class productController {
 			if(request.getParameter("pageNum") != null) {
 				pageNum = request.getParameter("pageNum");
 			}
+		String query = "product_name";
+		if(request.getParameter("query") != null) {
+			 query = request.getParameter("query");
+		}
+		
+		String searchContent = "";
+		if(request.getParameter("searchContent")!= null) {
+			searchContent = request.getParameter("searchContent");
+		}
 			int currentPage= Integer.parseInt(pageNum);
 			int pageSize = 8;
 			// 해당 페이지에서 출력할 첫번째 상품의 순번 :ex) 3페이지에서 보여줄 상품의 첫번째 코드는 17
@@ -52,7 +61,7 @@ public class productController {
 			int endPage = startPage + pageBlock -1;
 			//End page can be greater than the total page. 
 			//Last page to equalize with the total page count. 
-	
+			
 			model.addAttribute("pcnt",pcnt);
 			model.addAttribute("currentPage",currentPage);
 			model.addAttribute("pageSize",pageSize);
@@ -61,9 +70,10 @@ public class productController {
 			model.addAttribute("pageBlock",pageBlock);
 			model.addAttribute("startPage",startPage);
 			model.addAttribute("endPage",endPage);
-			
+			List<ProductListDto> productList = service.productListDao(query, searchContent, startRow, pageSize);
+			model.addAttribute("productList", productList);
 		}// pcnt !=0 end
-		return "/ProductPart/testProductDisplay";
+		return "uProductList";
 	}// testProductDisplay End
 	
 }
