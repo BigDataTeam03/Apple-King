@@ -63,7 +63,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Apple King</title>
-    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="resources/css/login.css" />
     <style>
 		div#popup{
 			position : absolute; top:20px; left:20px; color:black;
@@ -109,7 +109,7 @@
 	%>
 	<div class= "container">
 	  	<div>
-	    	<h1><img src="image/logo.png"></h1>
+	    	<h1><img src="resources/image/logo.png"></h1>
 	  	</div>
 	  	<div class="form-container">
 	  		<%//-----------------------Form Action(validationForm =>LoginProcess.jsp) --------- //%>
@@ -131,6 +131,7 @@
 	                   placeholder="아이디"
 	                   value ="<%= loginId %>"
 	                   required />
+	                   <br>
 	                <input
 	                   style=" vertical-align: top;margin-right: 5px;"
 	                   type="checkbox" 
@@ -138,7 +139,7 @@
 	                   value ="Y" <%=cookieCheck %> >
 	                   <span style="vertical-align: top;
 	                   				margin-right: 173px;
-	                   				color: blue;">아이디저장하기</span>
+	                   				color: blue;">아이디저장</span>
 	                    
 	        	</div>
 	        	<div>
@@ -209,9 +210,9 @@
 	}
 	</script>
      <!-- login 정규식 및 버튼 JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery. min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="login.js"></script> 
+    <script src="resources/js/login.js"></script> 
 
 </body>
 </html>
