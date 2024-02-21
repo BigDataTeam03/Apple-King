@@ -4,12 +4,17 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.springlec.base.dao.MemberDao;
 import com.springlec.base.model.MemberDto;
+import com.springlec.base.model.ProductListDto;
 import com.springlec.base.service.MemberDaoService;
+import com.springlec.base.service.ProductListDaoService;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class userController {
@@ -25,20 +30,23 @@ public class userController {
 	 */
 	
 	 @Autowired //service wired
-	 MemberDaoService service;
+	 //MemberDaoService service;
+	 ProductListDaoService service;
 	 
 	 @GetMapping("/")
 	 public String userLogin() throws Exception{
 		 System.out.println(">> userController START ");
-		 //List<MemberDto> memberDto =  service.memberListDao();
+		 //List<MemberDto> memberDto =  mservice.memberListDao();
 		 
 		 return "login_test";
 	 }
 	 
-	 
+	 @GetMapping("/productList")
+	 public String productList(Model model) throws Exception {
+		List<ProductListDto> list = service.listDao();
+			model.addAttribute("list", list );
+			return "productList";
+		}
+			
  
- 
-
-	
-	
 }
