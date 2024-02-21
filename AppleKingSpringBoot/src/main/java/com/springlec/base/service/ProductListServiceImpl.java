@@ -10,14 +10,23 @@ import com.springlec.base.model.ProductListDto;
 
 @Service
 public class ProductListServiceImpl implements ProductListDaoService {
-
+	/*
+	 * Description 	: productListDAO service interface 를 사용하는 Class 
+	 * Detail 		: 
+	 * 					1.
+	 * Author		: pdg
+	 * Date			: 2024.02.21
+	 * Update 		:
+	 * 
+	 */
 	@Autowired
 	ProductListDao dao;
 
+
 	@Override
-	public List<ProductListDto> listDao() throws Exception {
-		// TODO Auto-generated method stub
-		return dao.listDao();
+	public int productCntDao() throws Exception {
+		System.out.println("상품총 개수 :"+Integer.toString(dao.productCntDao()));
+		return dao.productCntDao();
 	}
 
 }

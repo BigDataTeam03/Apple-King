@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+/*-------------SEARCH BAR/SELECT LIST CSS---------------*/
+
+.searchContainer {
+    text-align: center; 
+    margin-top: 150px; 
+}
+
+#searchContent {
+    padding: 5px;
+    width: 500px;
+    display: inline-block;
+}
+
+#searchButton,
+#classifyOption,
+#itemsPerPageSelect {
+    padding: 5px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+#searchContent {
+    padding: 5px;
+    width: 500px;
+    display: inline-block;
+}
+
+#searchButton,
+#classifyOption,
+#itemsPerPageSelect {
+    padding: 5px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+/*-------------PRODUCT LIST CARD CSS---------------*/
+
+
+.card {
+    width: 200px;
+    height: 300px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+.card-title a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.red-price {
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.blue-price {
+    color: blue; 
+    font-size: 15px; 
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+/*-------------PAGE CONTROL CSS---------------*/
+
+
+#page_control {
+    margin-top: 40px;
+    text-align: center;
+}
+
+#page_control a {
+    padding: 5px 10px;
+    margin-right: 5px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}

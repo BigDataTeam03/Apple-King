@@ -25,13 +25,13 @@ public class productController {
 	
 	@Autowired
 	ProductListDaoService service;
-
-	@GetMapping("/productList")
-	 public String productList(Model model) throws Exception {
-		List<ProductListDto> list = service.listDao();
-			model.addAttribute("list", list );
-			return "productList";
-		}
+	
+	@GetMapping("/testProductDisplay")
+	public String testProductDisplay(Model model) throws Exception{
+		int pcnt = service.productCntDao();
+		model.addAttribute("pcnt",pcnt);
+		return "/ProductPart/testProductDisplay";
+	}
 	
 	
 	

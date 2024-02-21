@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/proListStyle.css" />
 </head>
 <body>
     <table width="500" cellpadding="0" cellspacing="0" border="1">
@@ -17,6 +18,7 @@
             <th bgcolor="#808080">사진</th>
             <th bgcolor="#808080">가격</th>
         </tr>
+       
         <c:forEach items="${list}" var="dto">
             <tr>
                 <td>${dto.product_name}</td>
