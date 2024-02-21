@@ -16,4 +16,5 @@ public interface ProductListDao {
 	 */
 	//Product 정보를 불러오는 DAO 
 	public int productCntDao() throws Exception;
+	public List<ProductListDto> productListDao(String query, String searchContent, int startRow, int pageSize) throws Exception;
 }

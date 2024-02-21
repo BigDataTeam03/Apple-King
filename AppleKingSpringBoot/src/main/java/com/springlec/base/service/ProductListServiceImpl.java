@@ -29,4 +29,13 @@ public class ProductListServiceImpl implements ProductListDaoService {
 		return dao.productCntDao();
 	}
 
+
+	@Override
+	public List<ProductListDto> productListDao(String query, String searchContent, int startRow, int pageSize) throws Exception {
+		System.out.println(">> productListDaoService 실행");
+		
+		searchContent = '%' + searchContent + '%';
+		return dao.productListDao(query, searchContent, startRow,pageSize);
+	}
+
 }

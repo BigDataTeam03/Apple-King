@@ -1,6 +1,6 @@
-<%@page import="dto.productDto"%>
+
 <%@page import="java.util.List"%>
-<%@page import="dao.ProductDao"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file ="top_user.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -33,6 +33,8 @@
 	  	2. paging 기능 완성 및 가격 포맷 jstl 로 수정
 	  <<2024.02.15> by pdg
 	  	1. 로그인 후에 들어올때 userId session 값을 사용해서 alert 띄워주는 기능 추가
+	  <<2024.02.21 >by pdg, dk, ls
+	  	1.기존 jsp 로 만든 것을 jstl 을 사용하고 controller 단에서 해결하도록 변경함.
 	--------------------------------------------------------------
 	*/
     		  	 %>
@@ -43,40 +45,10 @@
 	    <link rel="stylesheet" href="resources/css/proListStyle.css" />
 	</head>	
 	<body>
-		<%
-	
-	 	String userId = (String) session.getAttribute("userId"); // login id session 저장 .
-	 	String userName = (String )session.getAttribute("userName");
+
+		<%-- <input type="hidden" id ="userName" value ="${userName}"/>  --%>
+		<input type="hidden" id ="currentPage" value ="${currentPage}"/> 
 		
-	 	//상품목록 출력을 위해 dao 에 바로 접근함. 
-		ProductDao pdao =new ProductDao();
-		int pcnt = pdao.productCount();
-		
-		
-		// paging  process 
-		int pageSize = 8;
-		
-		// Curren page information 
-	 	String pageNum = request.getParameter("pageNum");
-		//out.print(pageNum);
-		if(pageNum == null){
-			pageNum ="1";
-		}
-		// First row number calc
-		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage-1)*pageSize +1;
-		String searchContent = request.getParameter("searchContent");
-		//String classifyOption = request.getParameter("classifyOption");
-		
-		List<productDto> productList = pdao.getProductList(startRow, pageSize,searchContent);
-	
-	
-	
-	
-	%>
-		${productList}	
-		<input type="hidden" id ="userName" value ="<%= userName%>"/> 
-		<input type="hidden" id ="currentPage" value ="<%= pageNum%>"/> 
 		
 	    <div class="searchContainer">
 			<input type="text" placeholder="찾고싶은 상품을 입력하세요!" id ="searchContent" size="50" ></input>
@@ -95,9 +67,11 @@
 			  <option value="10">10개씩 보기</option>
 			</select>
 		</div>
+			ㅁㄴㅇㄹㅁㄴㅇ
+		현재 페이지는 ${currentPage} 입니다. 
 	    <!-- 상품 전체 조회 -->
 	    	<div class="card-container">
-			 	<c:forEach var="item" items="<%=productList%>">
+			 	<c:forEach var="item" items="${productList}">
 			 		 	<div class ="card" >
 	 	 				<img src="image/${item.detail_image_name}">
 							<div class="card-body">
@@ -123,47 +97,29 @@
 	 					</div>
 	 			</c:forEach>
 	 		</div>
-	 	<div id ="page_control">
-	 		<% 
-	 			if(pcnt != 0){ // pcnt : 전체 상품 개수
-	 				// total page number calc
-	 				int pageCount = pcnt / pageSize + (pcnt%pageSize ==0? 0:1);
-	 				// 한페이지에 보여줄 페이지 블럭 : 페이지버튼의 개수
-	 				int pageBlock = 2;
-	 				// 한페이지에 보여줄 페이지 블럭 시작번호 계산 
-	 				// 전체 페이지 수를 페이지 블럭 으로쪼개면 12345, 67879 10
-	 				// 등으로 나누어지는데  이와중에 특정 블럭에 있는 페이지에서 1을 빼는이유는
-	 				// 마지막 페이지를 그냥 나누면 다음 페이지블록 첫 번째시작 번호가 나오기 때문. 
-	 				
- 	 				int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
-	 				int endPage = startPage + pageBlock -1;
-	 				//End page can be greater than the total page. 
-	 				//Last page to equalize with the total page count. 
-	 				if(endPage > pageCount){
-	 					endPage = pageCount;
-	 				}//if end
-	 				
-	 				// Previous button gen
-	 			    if(startPage>pageBlock){
-	 			%>
-		 				<a href ="cGoHome.do?pageNum=<%=startPage-pageBlock %>">Prev</a>
-	 			<%  }//if end %>
-	 		
-		 		<%  // Page button gen 
-		 			for(int i= startPage; i<=endPage; i++){ %>
-		 			<a href="cGoHome.do?pageNum=<%=i %>"><%=i %></a>
-		 		<%  } // for end%>
-		 		<%
-		 			// next button gen
-		 			if(endPage<pageCount){
-		 				%>
-		 				<a href ="cGoHome.do?pageNum=<%=startPage+pageBlock %>">Next</a>
-		 				<%
-		 			}
-		 		%>
-	 		<% }// pcnt If end%>
-	 	</div>
-	    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	    <script src="uProduct2.js?var=1"></script>
+
+		<div id="page_control">
+			<c:if test="${endPage> pageCount}">
+				<c:set var  ="endPage" value ="pageCount"/>
+			</c:if>
+			
+			<!-- PREVIOUS button generation -->
+			<c:if test="${startPage > pageBlock}">
+				<a href ="testProductDisplay?pageNum=${startPage-pageBlock}">Prev</a>
+			</c:if>
+			
+			<!-- Page number button generation -->
+			<c:forEach begin ="${startPage}" end ="${endPage}" var= "i">
+				<a href="testProductDisplay?pageNum=${i}">${i} </a>
+			</c:forEach>
+	
+			<!-- NEXT button generation -->
+			<c:if test="${endPage < pageCount}">
+				<a href ="testProductDisplay?pageNum=${startPage+pageBlock}">Next</a>
+			</c:if>
+		
+		</div>
+	    <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	    <script src="/resources/js/uProduct2.js?var=1"></script> -->
 	</body>
 </html>
