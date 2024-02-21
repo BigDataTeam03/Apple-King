@@ -29,10 +29,15 @@ public class userController {
 	 
 	 @GetMapping("/")
 	 public String userLogin() throws Exception{
-		 System.out.println(">> userController START ");
+		 System.out.println(">> userLogin START ");
 		 //List<MemberDto> memberDto =  service.memberListDao();
 		 
-		 return "login_view";
+		 return "/UserCheckPart/login_view";
+	 }
+	 @PostMapping("/signUpStart.do")
+	 public String userSignUp() throws Exception {
+		 System.out.println(">> userSignUp START ");
+		 return "/UserCheckPart/signup_view";
 	 }
 	
 }
