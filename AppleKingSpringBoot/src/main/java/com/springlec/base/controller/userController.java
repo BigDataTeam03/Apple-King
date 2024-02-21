@@ -36,8 +36,15 @@ public class userController {
 	 }
 	 @PostMapping("/signUpStart.do")
 	 public String userSignUp() throws Exception {
-		 System.out.println(">> userSignUp START ");
+		 System.out.println(">> userSignUp.do START ");
 		 return "/UserCheckPart/signup_view";
 	 }
-	
+	 @GetMapping("cGoHome.do")
+	 public String cGoHome() throws Exception {
+		 System.out.println(">> cGoHome.do START");
+		 return "productList";
+	 }
+
+	 
+	 
 }
