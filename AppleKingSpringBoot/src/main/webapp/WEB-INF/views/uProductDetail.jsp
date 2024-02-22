@@ -7,10 +7,13 @@
 <%/*
 --------------------------------------------------------------
 * Description 	: User product detail page
-*  Detail		: 상품 상세 정보 페이지
+* Detail		: 상품 상세 정보 페이지
 * Author 		: KBS, LS, Diana
 * Date 			: 2024.02.22
 * ---------------------------Update---------------------------		
+Update : 2024.02.22 by LS, DK 
+* 		 1. 기존의 uProductDetail 을 SpringBoot version 으로 변환. 
+* 		 2. productDetailController에서 listDao를 dto로 설정한 뒤 상품상세정보를 불러옴 
 --------------------------------------------------------------
 */ %>
 <!--producrtDetailCommand 에서 세션에 저장한 상품 상세 정보 dto  -->
@@ -72,12 +75,12 @@
 	<br>
 	<br>
 	
-	<%-- 
-	<div>
+	 
+	<%-- <div>
 	<!--  문의 게시판 출력 -->
   <jsp:include page="aProductDetailQuestions.jsp"/>
 	 
-	</div>
+	</div> --%>
     <!-- 상세페이지 탭 -->
         <div class="container">
 	        <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -137,11 +140,8 @@
 	            </div>
 	        </div>
     	</div>
-   	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="uProductDetail.js?var=1"></script> 
-   </div>--%> 
-		 <!--            </div>
-		        </div>
-		    </div>
-		</div> -->
+   <!-- 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="uProductDetail.js?var=1"></script>  -->
+    
+		
 </body>
