@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
- <%@ include file ="top_user.jsp" %>
- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- 
+<%@ include file ="top_user.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <%/*
 --------------------------------------------------------------
@@ -9,7 +8,9 @@
 * Detail		: 마이페이지 + 구매내역
 * Author 		: DK, LS
 * Date 			: 2024.02.22
-* ---------------------------Update---------------------------		
+* ---------------------------Update---------------------------	
+* <<2024.02.22> by DK
+	1. session 말고 sessionScope 를 사용해 세션에 저장된 사용자의 정보를 가져온다.
 --------------------------------------------------------------
 */ %>
 <html lang="en">
@@ -21,47 +22,40 @@
 <link rel="stylesheet" href="resources/css/myPageStyle.css">
 </head>
 <body>
-
       <div class="card-body">
           <h1>
-              <span id="cust_id" class="font-weight-bold">
-                  ${sessionScope.cust_id}
-              </span>
-              <span class="smaller-font">님</span> 
-              	  ${sessionScope.userName}
+             ${sessionScope.userName} <span class="smaller-font">님</span> 
+              	  
           </h1>
           <a class="nav-link ml-2 underline-blue" href="myInfo.do">회원정보 변경</a> 
       </div>
       
    	  <div style="margin-left: 20px;"> 
-	        <span style="font-weight: bold; font-size: 24px;">등급:  
-	        	${sessionScope.userRank}</span>
-	        &nbsp;&nbsp;&nbsp;
-	        <span style="font-weight: bold; font-size: 18px;">가입날짜: </span>
-	        ${sessionScope.regDate}
+	        <span style="font-weight: bold; font-size: 24px;">등급: ${sessionScope.userRank}</span>
+	        	&nbsp;&nbsp;&nbsp;
+	        <span style="font-weight: bold; font-size: 18px;">가입날짜: ${sessionScope.regDate}</span>
 	  </div><br><br>
  
 	 <div class="orderContainer">
-    <h4>${sessionScope.userName}님 의 구매내역</h4>
-	    <table>
+    	<h4>${sessionScope.userName}님 의 구매내역</h4>
+    	<table>
 	        <tr>
 	            <th>상품코드</th>
 	            <th>주문코드</th>
 	            <th>결제수단</th>
 	            <th>사용한 포인트</th>
 	        </tr>
-	        
-	        <c:forEach items="${order}" var="aaa">
+        
+	        <c:forEach items="${order}" var="orderList">
 	            <tr>
-	                <td>${aaa.product_code}</td>
-	                <td>${aaa.order_code}</td>
-	                <td>${aaa.payment_method}</td>
-	                <td>${aaa.used_point}</td>
+	                <td>${orderList.product_code}</td>
+	                <td>${orderList.order_code}</td>
+	                <td>${orderList.payment_method}</td>
+	                <td>${orderList.used_point}</td>
 	            </tr>
 	        </c:forEach>
-	    </table>
+    	</table>
 	</div>
-
 </body>
 
 </html>
