@@ -125,6 +125,7 @@ function decreaseQuantity(button) {
 function updateQuantity(input) {
     var cartCode = $(input).closest("tr").find("input[name='selectProduct']").val();
     var quantity = $(input).val();
+    alert("수량 업데이트")
     $.ajax({
         type: "post",
         url: "/qtyUpdate",
@@ -132,12 +133,13 @@ function updateQuantity(input) {
             cartCode: cartCode,
             quantity: quantity
         },
-        success: function(aa) {  
+        success: function(response) {  
 	
-			if(aa == "수량초과") {
-				alert(" 재고부족")
+			if(response == "실패") {
+				alert("선택하신 상품의 재고가 부족합니다")
+				return;
 			}			
-			     
+			if( response == "성공") {
             // 테이블 업데이트   
              	$.ajax({
 						type: "POST",
@@ -148,19 +150,9 @@ function updateQuantity(input) {
 							/* 서버에서 받은 응답 처리 */
 							createTable(response)//jason
 						}
-					})		       
-        },
-        error: function(xhr, status, error) {
-			alert("선택하신 상품의 재고가 부족합니다")
-            // 에러 처리
-            console.error("선택하신 상품의 재고가 부족합니다:", error);
-        },   complete: function(response) {
-			// 서블릿에서 준 실패 프린트
-            if (response.responseText === "수량초과") {
-                alert("재고가 부족해요.");
-            }
+					})		
+					}       
         }
-        
     });
 }
 

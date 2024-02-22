@@ -58,12 +58,26 @@ public class CartController {
 	}
 	
 	@PostMapping("/qtyUpdate")
-	public String qtyCount(HttpServletRequest request, Model model, HttpServletResponse response) throws Exception {
-				String qty = request.getParameter("quantity");
-				String code = request.getParameter("cartCode");
-				
-				service.updateqty(qty,code);
-			return "/showCartList";
+	public String qtyCount(HttpServletRequest request, Model model, HttpServletResponse response, HttpServletRequest session) throws Exception {
+				//String product_qty = (String) session.getAttribute("product_qty");
+	System.out.println(" 컨트롤러 등장");
+				String product_qty = "5";
+				int product_qtyInt = Integer.parseInt(product_qty);
+				String cart_qty = request.getParameter("quantity");
+				int cart_qtyInt = Integer.parseInt(cart_qty);
+				String cart_code = request.getParameter("cartCode");
+				System.out.println(" 상품 수량 선택수량 카트코드" + product_qty +cart_qty+ cart_code);
+					//  상품 재고보다 변경할 수량이 적을 때에만 실행
+				 if (cart_qtyInt <= product_qtyInt) {
+					 service.updateqty(cart_qty,cart_code);
+				        System.out.println(" if 문 입장");
+				    }else {
+				   System.out.println(" 실패");
+						return"실패";
+					}
+				 System.out.println(" 성공");
+			return "수량변경";
+			
 		
 	
 }
