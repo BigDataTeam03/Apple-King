@@ -27,6 +27,8 @@ public class aProductInsertCommand implements Command {
 		 * Administrator product image (MVC version) Author : PDG & KBS Date :
 		 * 2024.02.07 ---------------------------Update---------------------------
 		 * <<2024.02.05>> by PDG &KBS 1. 이미지 인서트 기능 추가
+		 * 
+		 * 
 		 *
 		 * --------------------------------------------------------------
 		 */
@@ -114,13 +116,10 @@ public class aProductInsertCommand implements Command {
 				ps.executeUpdate();
 			} catch (Exception e) {
 				e.printStackTrace();
-
 			}
-
 		} catch (Exception e) {
 			// 예외 처리 코드 작성
 			e.printStackTrace(); // 예외 내용을 출력
 		}
-
 	}
 }

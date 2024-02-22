@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+<%
+	/*
+		Description :  관리자 페이지 top 
+			Details : 
+			Author	: pdg
+			Date 	: 2024.02.02
+			Update	:
+	*/
+	
+
+%>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -23,11 +35,11 @@
 	  <br>
 	</nav>
 	</body>
-	<ul>
+<%-- 	<ul>
 		<li>page 영역 속성 : <%= pageContext.getAttribute("pAttr") %></li>
 		
 		<li>request 영역 속성 : <%= request.getAttribute("rAttr") %></li>
 	
-	</ul>
+	</ul> --%>
 	
 </html>
