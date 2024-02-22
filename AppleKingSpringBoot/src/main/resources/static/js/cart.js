@@ -22,6 +22,9 @@
  * <<2024.02.11 by KBS>
  *  1. 수량 수정, 총 가격문제 해결
  *  2  재고 초과시 메세지 출력 (추후 기능 추가 : 상품의 이름, 재고량 표시)
+ * 
+ * <<2024.02.22 by KBS>
+ * 	1. spring 으로 변환 작업중(리스트 출력 기능만 있음)
  */
 // 페이지 실행후 바로 장바구니 전체 조회
 window.onload = function() {
@@ -34,7 +37,7 @@ window.onload = function() {
 		url: "/showCartList",
 		
 		// response data type -> JSON
-		dataType :"json",
+		//dataType :"json",
 		
 		// server response success  -> response(Json data)
 		success: function(response) {
@@ -49,7 +52,7 @@ window.onload = function() {
 // 테이블 생성하는 함수
 function createTable(data) {
     //검색해온 데이터(dtos -> json -> Array  변환)
-    dataReal = Array.from(data)
+   // dataReal = Array.from(data)
 
     let table =
         "<table border='1'>" +
@@ -57,7 +60,7 @@ function createTable(data) {
         "<th>상품명</th>" +
         "<th>수량</th>" +
         "<th>이미지</th>" +
-         "<th>가격</th>" +
+         "<th>가격</th>" +	
         "</tr>";
         
     //총 가격 변수지정
@@ -118,13 +121,13 @@ function decreaseQuantity(button) {
     }
 }
 
-// 수량 변경 시 서블릿에 전송하는 함수
+// 수량 변경 시 컨트롤러에 전송하는 함수
 function updateQuantity(input) {
     var cartCode = $(input).closest("tr").find("input[name='selectProduct']").val();
     var quantity = $(input).val();
     $.ajax({
         type: "post",
-        url: "uCartQtyUpdateServlet",
+        url: "/qtyUpdate",
         data: {
             cartCode: cartCode,
             quantity: quantity
@@ -133,15 +136,14 @@ function updateQuantity(input) {
 	
 			if(aa == "수량초과") {
 				alert(" 재고부족")
-			}
-			
+			}			
 			     
             // 테이블 업데이트   
              	$.ajax({
 						type: "POST",
 						//다시 테이블 조회
-						url: "uCartListServlet",
-						//data: { cust_id: "sumin123" },
+						url: "/showCartList",
+						
 						success: function(response) {
 							/* 서버에서 받은 응답 처리 */
 							createTable(response)//jason

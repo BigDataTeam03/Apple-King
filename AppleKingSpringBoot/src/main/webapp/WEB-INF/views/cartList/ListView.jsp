@@ -7,14 +7,14 @@
 	--------------------------------------------------------------
 	* Description 	: User Cart page
 	*  Detail		: 장바구니페이지 
-	* Author 		: KBS, PDG 
-	* Date 			: 2024.02.08
+	* Author 		: KBS 
+	* Date 			: 2024.02.22
 	* ---------------------------Update---------------------------		
-	* <<2024.02.09>> by PDG
-	*		 1. 주석  및 정리
-	*<<2024.02.16>> by PDG
-			 1. productDetail.jsp 에서 상품을 누르면 productChk ->true
-			 2. uCarList.jsp 에서 새로고침했우는 productChk -> False  
+	* <<2024.02.22>> by KBS 
+	   1. 리스트 출력기능 완료( 추가작업 필요 )
+	   
+	   
+	*	
 			 
 			  
 	--------------------------------------------------------------
@@ -59,6 +59,6 @@
        
     </div>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="cart.js"></script>
+    <script src="resources/js/cart.js"></script>
 </body>
 </html>

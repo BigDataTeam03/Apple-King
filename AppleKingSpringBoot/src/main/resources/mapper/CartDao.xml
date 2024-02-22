@@ -16,5 +16,8 @@
 							 <!--로그인 한 아이디의 카트를 가져온다-->
 							 where cust_id= #{userId} order by cart_qty	
   					</select>
+  					<update id="updateqty">
+  							update cart set cart_qty = #{cart_qty} where cart_code = #{cart_code}
+  					</update>
   </mapper>
   
