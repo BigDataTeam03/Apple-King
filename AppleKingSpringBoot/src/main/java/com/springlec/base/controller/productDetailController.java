@@ -20,9 +20,12 @@ public class productDetailController {
 
 	/*--------------------------------------
 	 * Description: Apple King Controller (PRODUCT DETAIL)
-	 * Author : LS, Diana
+	 * Author : LS, dk
 	 * Date : 2024.02.22
-	 * Update :
+	 * Update : 2024.02.22 by LS, DK 
+	 * 		 1. 기존의 uProductList 를 SpringBoot version 으로 변환. 
+	 * 		 2. 상품상세페이지를 위하여 productDetailDAO 를 만들고 
+	 * 			해당 상품의 상세정보를 product_code를 통해 컨트롤러에서 가게함. 
 	 *-------------------------------------- 
 	 */
 	

@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+
+
+
+.card-body {
+    display: flex;
+    align-items: center;
+    margin-top: 150px;	
+    padding: 0rem;
+    margin-left: 20px;
+}
+
+.nav-link {
+    color: black;
+    text-decoration: none;
+    font-weight: normal;
+    margin-left: 10px;
+    padding: 8px 8px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+
+h4 {
+    margin-top: 20px;
+    
+}
+
+
+.smaller-font {
+    font-size: 28.5px; /* Apply smaller font size */
+}
+
+.underline-blue {
+    text-decoration: underline; /* Underline the text */
+    color: blue; /* Set the color to blue */
+}
+
+  /*-----------------ORDER LIST CSS----------------*/
+    
+    
+    .orderContainer {
+    width: 100%; /* Adjust the width of the container as needed */
+    padding: 20px; /* Add padding to the container */
+    border: 1px solid #ccc; /* Add a border to the container */
+    border-radius: 8px; /* Add border radius for rounded corners */
+	}
+	
+	table {
+	    width: 100%; /* Make the table fill the container width */
+	    border-collapse: collapse; /* Collapse borders for a cleaner look */
+	}
+	
+	th, td {
+	    padding: 8px; /* Add padding to table cells */
+	    text-align: center; /* Center-align content within cells */
+	    border: 1px solid #ccc; /* Add borders to table cells */
+	}
+	
+	th {
+	    background-color: #f7dca3; /* Light gray background color for table headers */
+	}
+	
+	/* Apply alternate background color to even rows for better readability */
+	tr:nth-child(even) {
+	    background-color: #f9f9f9; /* Lighter alternate background color */
+	}
+	    
