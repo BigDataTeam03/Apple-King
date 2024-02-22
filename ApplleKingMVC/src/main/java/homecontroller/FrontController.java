@@ -77,43 +77,43 @@ public class FrontController extends HttpServlet {
 		
 		//-------------- [ USER Part (MVC)] ----------------------------
 			
-		// SignUp do
+		// 1. SignUp do
 		case ("/signup.do"):
 			command = new SignupCommand();
 			executeCommand(com,command,request,response,"/loginStart.jsp");
 			break;
 		
-		// Login Process Page
+		// 2. Login Process Page
 		case("/loginProcess.do"):
 			command = new LoginCommand();
 			loginProcess(com,command,request,response,session);
 			break;
 			
-		//My Page (구매내역, 회원정보, 등급)
+		// 3. My Page (구매내역, 회원정보, 등급)
 		case ("/myPage.do"): 
 			command = new mypageCommand();
 			executeCommand(com,command,request,response,"/myPage.jsp");
 			break;
 					
-		//My Info (회원정보 수정, 회원탈퇴) 	
+		// 4. My Info (회원정보 수정, 회원탈퇴) 	
 		case ("/myInfo.do"): 
 			command = new myInfoCommand();
 			executeCommand(com,command,request,response,"/myInfo.jsp");
 			break;
 			
-		// Product Detail page
+		// 5. Product Detail page
 		case ("/productDetail.do"): 
 			command = new productDetailCommand();
 			executeCommand(com,command,request,response,"uProductDetail.jsp");
 			break;
 			
-		//Cart Page
+		// 6. Cart Page
 		case ("/cartInsert.do"): 
 			command = new cartCommand();
 			executeCommand(com,command,request,response,"uCartList.jsp");
 			break;
 			
-		//Purchase Page
+		// 7. Purchase Page
 		case ("/purchase.do"): 
 			command = new purchaseCommand();
 			executeCommand(com,command,request,response,"purchase.jsp");
@@ -129,38 +129,41 @@ public class FrontController extends HttpServlet {
 			break;
 			
 		//-------------- [ AJAX Part or Just ViewPage] ------------
-		// Go home of user (AJAX)
+		// 8. Go home of user (AJAX)
 		case("/cGoHome.do"):  			justGoPage(com,"uProductList.jsp", 	 	request, response);break;	
 		
-		// log out do
+		// 9. log out do
 		case ("/logout.do"):			justGoPage(com,"logout.jsp", 	 		request, response);break;
 		
-		// Login Page
+		// 10. Login Page
 		case ("/loginStart.do"):		justGoPage(com,"login_view.jsp", 	    request, response);break;
 		
-		// ID cookie save jsp process
+		// 11. ID cookie save jsp process
 		case ("/IdSaveProcess.do"):		justGoPage(com,"IdSaveProcess.jsp", 	request, response);break;
 		
-		// Sign Up page 
+		// 12. Sign Up page 
 		case ("/signUpStart.do"): 		justGoPage(com,"/USER/signup_view.jsp", request, response);break;
 		
-		// Go home of admin
+		///  Admin part
+		// 1. Go home of admin
 		case("/aGoHome.do"):			justGoPage(com,"aCustomerList.jsp", 	request, response);break;	
 		
-		// Product insert  (AJAX)
+		// 2. Product insert  (AJAX)
 		case("/aProductInsert.do"):		justGoPage(com,"aProductInsert.jsp", 	request, response);break;
 		
-		// product list update (AJAX)
+		// 3. product list update (AJAX)
 		case("/aProductListUpdate.do"): justGoPage(com,"aProductListUpdate.jsp",request, response);break;
 		
-		// customer list  (AJAX)
+		// 4.customer list  (AJAX)
 		case("/aCustomerList.do"):		justGoPage(com,"aCustomerList.jsp", 	request, response);break;
 		
-		// order list  (AJAX)
+		// 5.order list  (AJAX)
 		case("/aCustomerOrderList.do"):	justGoPage(com,"aCustomerOrderList.jsp",request, response);break;	
+		
 		//  top 을 누르면 나오는 장바구니 리스트
 		case("/uCartList.do"):			justGoPage(com,"uCartList.jsp",			request, response);break;
-		// 어드민 페이지에서 top 을 누르면 나오는 문의 내역 리스트
+		
+		// 6.어드민 페이지에서 top 을 누르면 나오는 문의 내역 리스트
 		case("/aProductQuestionList.do"): justGoPage(com,"aProductQuestionAnswer.jsp",			request, response);break;	
 		
 		

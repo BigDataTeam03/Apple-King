@@ -142,4 +142,10 @@ function createTable(data) {
             $(this).closest(".modal").modal("hide"); // 모달 닫기
         });
     });
+    
+    
+
+    
+    
+    
 
