@@ -28,7 +28,7 @@ public class productListController {
 	@Autowired
 	ProductListDaoService service;
 	
-	@GetMapping("/productList")
+	@GetMapping("/testProductDisplay")
 	public String testProductDisplay(HttpServletRequest request, Model model)
 			
 			throws Exception{
