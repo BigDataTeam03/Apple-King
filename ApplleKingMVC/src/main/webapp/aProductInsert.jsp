@@ -80,7 +80,7 @@
 </head>
 
 <body>
- <script src = "aProductUpdate.js"></script>
+<!--  <script src = "aProductUpdate.js"></script> -->
 <form  action="aProductInsertProcess.do" method="post" enctype="multipart/form-data">     
 <!--상품평 전체 조회 및 검색 결과 -->
 

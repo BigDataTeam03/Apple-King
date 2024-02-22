@@ -4,12 +4,10 @@
 <%@ include file ='top_admin.jsp' %>
 
 <%
-	// jsp 내장객체
-	// 파일의 절대경로 구하는 
 	ServletContext context = getServletContext();
-	//String realfolder = context.getRealPath(savefolder);
 %>
-	<!--
+<%
+	/*
 	--------------------------------------------------------------
 	* Description 	: Admin CRUD
 	* Author 		: PDG & KBS
@@ -24,14 +22,19 @@
 		3. undefined 고치기 
 	* <<2024.02.12>> by KBS
 		1. 검색기능과 정렬기능 연동
+		
+		<<2024.02.22>> by pdg
+		1.페이지 첫줄 을 상품 조회 수정으로 바꿈. 
+		2. 주석수정 
+		
 	--------------------------------------------------------------
-	-->
-
+	*/
+	
+%>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-
         <style>
             body {
             text-align: center;
@@ -75,9 +78,10 @@
 	</head>
 	<body>
 		<!--상품평 전체 조회 및 검색 결과 -->
-		<p><strong><h2>등록된 상품 목록 </h2></strong> 
-		
-	 	총 상품 갯수 :<div 	id = "productCount"></div>  
+		<p><strong><h2>상품 조회 수정 </h2></strong> 
+		<!-- 상품 총 개수  -->
+	 	총 상품 개수 :<div 	id = "productCount"></div>  
+	 	<!-- JS 에서 뿌려주는 Table 결과물 -->
 		<div 	id = "result"></div> 
 		<div>
 				<!--  정렬 콤보 박스  -->
