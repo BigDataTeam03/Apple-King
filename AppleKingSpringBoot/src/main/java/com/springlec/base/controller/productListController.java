@@ -13,9 +13,9 @@ import com.springlec.base.service.ProductListDaoService;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-public class productController {
+public class productListController {
 	/*--------------------------------------
-	 * Description: Apple King Controller (PRODUCT)
+	 * Description: Apple King Controller (PRODUCT LIST)
 	 * Author : PDG, KBS, LS, Diana
 	 * Date : 2024.02.21
 	 * Update :
@@ -28,7 +28,7 @@ public class productController {
 	@Autowired
 	ProductListDaoService service;
 	
-	@GetMapping("/testProductDisplay")
+	@GetMapping("/productList")
 	public String testProductDisplay(HttpServletRequest request, Model model)
 			
 			throws Exception{
@@ -72,8 +72,11 @@ public class productController {
 			model.addAttribute("endPage",endPage);
 			List<ProductListDto> productList = service.productListDao(query, searchContent, startRow, pageSize);
 			model.addAttribute("productList", productList);
+			
 		}// pcnt !=0 end
 		return "uProductList";
 	}// testProductDisplay End
+
 	
-}
+}//PRODCUT LIST CONTROLLER END
+
