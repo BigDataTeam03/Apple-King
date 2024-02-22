@@ -83,25 +83,25 @@
 	 			</c:forEach>
 	 		</div>
 		<div id="page_control">
-			<c:if test="${endPage> pageCount}">
-				<c:set var  ="endPage" value ="pageCount"/>
-			</c:if>
-			
-			<!-- PREVIOUS button generation -->
-			<c:if test="${startPage > pageBlock}">
-				<a href ="testProductDisplay?pageNum=${startPage-pageBlock}">Prev</a>
-			</c:if>
-			
-			<!-- Page number button generation -->
-			<c:forEach begin ="${startPage}" end ="${endPage}" var= "i">
-				<a href="testProductDisplay?pageNum=${i}">${i} </a>
-			</c:forEach>
-	
-			<!-- NEXT button generation -->
-			<c:if test="${endPage < pageCount}">
-				<a href ="testProductDisplay?pageNum=${startPage+pageBlock}">Next</a>
-			</c:if>
-		
-		</div>
+    <c:if test="${endPage gt pageCount}">
+        <c:set var="endPage" value="${pageCount}" />
+    </c:if>
+
+    <!-- PREVIOUS button generation -->
+    <c:if test="${startPage gt pageBlock}">
+        <a href="testProductDisplay?pageNum=${startPage-pageBlock}">PREV</a>
+    </c:if>
+
+    <!-- Page number button generation -->
+    <c:forEach begin="${startPage}" end="${endPage}" var="i">
+        <a href="testProductDisplay?pageNum=${i}">${i} </a>
+    </c:forEach>
+
+    <!-- NEXT button generation -->
+    <c:if test="${endPage lt pageCount}">
+        <a href="testProductDisplay?pageNum=${startPage+pageBlock}">NEXT</a>
+    </c:if>
+
+</div>
 	</body>
 </html>

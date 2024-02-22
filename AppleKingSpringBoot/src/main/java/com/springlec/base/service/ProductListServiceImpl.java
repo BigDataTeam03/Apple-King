@@ -35,7 +35,7 @@ public class ProductListServiceImpl implements ProductListDaoService {
 		System.out.println(">> productListDaoService 실행");
 		
 		searchContent = '%' + searchContent + '%';
-		return dao.productListDao(query, searchContent, startRow,pageSize);
+		return dao.productListDao(query, searchContent, startRow - 1,pageSize);
 	}
 
 }
