@@ -16,7 +16,7 @@
 	<body>
 	  <nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top">
 	        <a class="navbar-brand" href="cGoHome.do">
-	            <img src="image/logo.png" class="logo-img">
+	            <img src="resources/image/logo.png" class="logo-img">
 	        </a>
 	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
 	            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
