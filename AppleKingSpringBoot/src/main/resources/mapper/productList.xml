@@ -3,8 +3,12 @@
 
 <mapper namespace="com.springlec.base.dao.ProductListDao">
 
-<select id="listDao" resultType="com.springlec.base.model.ProductListDto">
-	select * from product
+<select id="productCntDao">
+	select count(product_code) as totalCount from product
+</select>
+
+<select id="productListDao">
+	select * from product where ${query} like #{searchContent} order by price asc limit #{startRow} , #{pageSize}
 </select>
 
 </mapper>
