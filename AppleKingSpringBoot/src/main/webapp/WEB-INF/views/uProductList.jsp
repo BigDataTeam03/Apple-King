@@ -1,6 +1,4 @@
-
 <%@page import="java.util.List"%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file ="top_user.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -45,11 +43,8 @@
 	    <link rel="stylesheet" href="resources/css/proListStyle.css" />
 	</head>	
 	<body>
-
 		<%-- <input type="hidden" id ="userName" value ="${userName}"/>  --%>
 		<input type="hidden" id ="currentPage" value ="${currentPage}"/> 
-		
-		
 	    <div class="searchContainer">
 			<input type="text" placeholder="찾고싶은 상품을 입력하세요!" id ="searchContent" size="50" ></input>
 			<button id ="searchButton">검색</button>
@@ -59,7 +54,6 @@
 			 	<option value="lowprice">낮은가격순</option>
 			 	<option value="product_code">상품코드</option>
 		    </select>
-		    
 		    <!-- 몇개씩 보기 기능 추가 (아이템 추가할경우 수정하기) -->
 			<select id="itemsPerPageSelect" onchange="setItemsPerPage(this.value)">
 			  <option value="5" selected>5개씩 보기</option>
@@ -67,24 +61,15 @@
 			  <option value="10">10개씩 보기</option>
 			</select>
 		</div>
-			ㅁㄴㅇㄹㅁㄴㅇ
 		현재 페이지는 ${currentPage} 입니다. 
 	    <!-- 상품 전체 조회 -->
 	    	<div class="card-container">
 			 	<c:forEach var="item" items="${productList}">
 			 		 	<div class ="card" >
-	 	 				<img src="image/${item.detail_image_name}">
+	 	 				<img src="resources/image/${item.product_image_names}" alt="${item.product_name} Image">
 							<div class="card-body">
 								<h5 class="card-title">
-									<a href="javascript:void(0);" onclick="saveProductInfo(${item.product_code},
-									'${item.product_name}',
-									 ${item.price},
-									'${item.origin}',
-									'${item.size}',
-									 ${item.weight},
-									 ${item.product_qty}
-									    
-									    )" class="bold">${item.product_name}</a>
+									<a href="productDetail?product_code=${item.product_code}">${item.product_name}</a>
 								</h5>
 								<p class="card-text">
 		                        <span class="red-price bold">
@@ -97,29 +82,26 @@
 	 					</div>
 	 			</c:forEach>
 	 		</div>
-
 		<div id="page_control">
-			<c:if test="${endPage> pageCount}">
-				<c:set var  ="endPage" value ="pageCount"/>
-			</c:if>
-			
-			<!-- PREVIOUS button generation -->
-			<c:if test="${startPage > pageBlock}">
-				<a href ="testProductDisplay?pageNum=${startPage-pageBlock}">Prev</a>
-			</c:if>
-			
-			<!-- Page number button generation -->
-			<c:forEach begin ="${startPage}" end ="${endPage}" var= "i">
-				<a href="testProductDisplay?pageNum=${i}">${i} </a>
-			</c:forEach>
-	
-			<!-- NEXT button generation -->
-			<c:if test="${endPage < pageCount}">
-				<a href ="testProductDisplay?pageNum=${startPage+pageBlock}">Next</a>
-			</c:if>
-		
-		</div>
-	    <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	    <script src="/resources/js/uProduct2.js?var=1"></script> -->
+    <c:if test="${endPage gt pageCount}">
+        <c:set var="endPage" value="${pageCount}" />
+    </c:if>
+
+    <!-- PREVIOUS button generation -->
+    <c:if test="${startPage gt pageBlock}">
+        <a href="testProductDisplay?pageNum=${startPage-pageBlock}">PREV</a>
+    </c:if>
+
+    <!-- Page number button generation -->
+    <c:forEach begin="${startPage}" end="${endPage}" var="i">
+        <a href="testProductDisplay?pageNum=${i}">${i} </a>
+    </c:forEach>
+
+    <!-- NEXT button generation -->
+    <c:if test="${endPage lt pageCount}">
+        <a href="testProductDisplay?pageNum=${startPage+pageBlock}">NEXT</a>
+    </c:if>
+
+</div>
 	</body>
 </html>
