@@ -22,7 +22,11 @@
  * <<2024.02.11 by KBS>
  *  1. 수량 수정, 총 가격문제 해결
  *  2  재고 초과시 메세지 출력 (추후 기능 추가 : 상품의 이름, 재고량 표시)
+ * 
+ * <<2024.02.23 by KBS>
+ *  1. spring boot 로 변환 완료
  */
+
 // 페이지 실행후 바로 장바구니 전체 조회
 window.onload = function() {
 	
@@ -133,7 +137,7 @@ function decreaseQuantity(button) {
     }
 }
 
-// 수량 변경 시 서블릿에 전송하는 함수
+// 수량 변경 시 컨트롤러에 전송하는 함수
 function updateQuantity(input) {
     var cartCode = $(input).closest("tr").find("input[name='selectProduct']").val();
     var quantity = $(input).val();
