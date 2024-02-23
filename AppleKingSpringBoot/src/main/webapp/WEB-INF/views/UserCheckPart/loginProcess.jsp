@@ -36,6 +36,12 @@
 	* <<2024.02.19>> by pdg 
 		1. 처음 로그인 했는지 체크하는 세션 추가  => first_check 값이 true 인 경우에만 환영합니다 메세지 띄움
 		
+	<<2024.02.23 > by Pdg 
+	
+		1. login proces jsp Dao => spring  controller 로 넘김.  login process 기능 자체를 controller
+		에서 하도록 변환함. 
+		
+		
 	--------------------------------------------------------------*/
 	// loginForm 에서 전송함  form value get.
 	String user_id = request.getParameter("userId");

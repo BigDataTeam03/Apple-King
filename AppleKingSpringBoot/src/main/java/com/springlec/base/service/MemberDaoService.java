@@ -1,22 +1,15 @@
 package com.springlec.base.service;
-
 import java.util.List;
-
 import com.springlec.base.model.MemberDto;
-
 public interface MemberDaoService {
 	/*
-	 * Description 	: Customer DB 를 사용하는 DAO interface 
+	 * Description 	: Customer table 이용하는 DAO interface
 	 * Detail 		: 
-	 * 					1.
-	 * Author		:
-	 * Date			:
-	 * Update 		:
+	 * 					1.membeChkDao
+	 * Author		: pdg
+	 * Date			: 2024.02.23
+	 * Update 		: 
 	 * 
 	 */
-	
-
-	public List<MemberDto> memberListDao() throws Exception ;
-
-
+	public String membeChkDao(String userId, String userPw) throws Exception;
 }

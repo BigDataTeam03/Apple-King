@@ -11,7 +11,7 @@ import com.springlec.base.model.MemberDto;
 @Service
 public class MemberDaoServiceImpl implements MemberDaoService {
 	/*
-	 * Description 	: DAO service interface 를 사용하는 Class 
+	 * Description 	: memberDAO service interface 를 사용하는 implement class
 	 * Detail 		: 
 	 * 					1.
 	 * Author		: pdg
@@ -21,12 +21,12 @@ public class MemberDaoServiceImpl implements MemberDaoService {
 	 */
 	
 	@Autowired
-	MemberDao dao;
+	MemberDao dao; // mapper 에 있는 MemberDao.xml 연결함. 
 	@Override
-	public List<MemberDto> memberListDao() throws Exception {
-		// customer 정보를 list up 하는 다오 
-		return dao.memberListDao();
-		 
+	public String membeChkDao(String userId, String userPw) throws Exception {
+		// userId 의 패스워드를 확인하여 회원 여부 를 확인. 
+		// 일치 -> true,불일치 -> false
+		return dao.memberChkDao(userId, userPw);
 	}
 
 
