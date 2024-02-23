@@ -8,12 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.springlec.base.model.ProductListDto;
 import com.springlec.base.service.ProductDetailDaoService;
 import com.springlec.base.service.ProductListDaoService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ProductDetailController {
@@ -27,6 +30,8 @@ public class ProductDetailController {
 	 * 		 2. 상품상세페이지를 위하여 productDetailDAO 를 만들고 
 	 * 			해당 상품의 상세정보를 product_code를 통해 컨트롤러에서 가게함. 
 	 *-------------------------------------- 
+	 * Update : 2024.02.23 by KBS
+	 * 		1. 장바구니로 인서트,업데이트 기능 추가함
 	 */
 	
 	@Autowired
@@ -40,18 +45,26 @@ public class ProductDetailController {
 		return "uProductDetail";
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 	
-	
-	
+	// 장바구니로 넣는 메소드
+	@PostMapping("/cartInsert")
+	public String insertCart(HttpSession session, HttpServletRequest request,
+						   HttpServletResponse response, Model model) throws Exception {
+		// 세션 받아야함
+		String product_code  = session.getAttribute("product_code").toString();
+		String cust_id 		 = session.getAttribute("userId").toString();
+		int cart_qty         = Integer.parseInt(request.getParameter("cart_qty"));
+		String product_name  = (String)session.getAttribute("product_name"); 
+		
+		boolean check = service.checkItem(cust_id, product_code);
+		if(check == true) {
+				service.insertCart(cust_id, product_code, cart_qty);
+		}else {
+				service.updateCart(cust_id, product_code, cart_qty);
+		}
+		return "cartList/ListView";
+	}
 	
 	
 	

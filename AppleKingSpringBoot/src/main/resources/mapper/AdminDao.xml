@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 				<!--관리자가 보는 상품 리스트 출력 -->
+<mapper namespace="com.springlec.base.dao.AdminDao">
+			<select id="productlist" resultType="com.springlec.base.model.ProductListDto">
+			SELECT 
+				product_code, 
+				product_name,
+				product_qty,
+				origin,
+				manufacture_date,
+				weight,
+				size,
+				detail_image_name,
+				view_count,
+				product_reg_date,
+				kind,
+				product_image_names,
+				price 
+			FROM 
+				product 
+			WHERE
+				<!--product 에서 product name 을 검색하지만 처음에는 아무것도 안들어감으로 모두 조회함. -->
+			     product_name LIKE #{product_name} ${selected} ${orderby}
+    
+    <!--  product_name LIKE '%%' and origin='한국' order by product_qty asc -->
+			</select>
+
+
+</mapper>
