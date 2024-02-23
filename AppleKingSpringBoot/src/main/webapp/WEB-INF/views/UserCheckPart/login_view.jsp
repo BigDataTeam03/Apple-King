@@ -36,6 +36,8 @@
 	    
 	    <<2024.02.19>> by pdg 
 	    1. 로그인  첫번에만 환영합니다 메세지가 나오도록 => 쿠키 이용.
+	    <<2024.02.23> by pdg
+	    1. 로그인 Process Jsp 가 아니라 controller 에서 비교하도록 코드 수정 (spring)
 
 	--------------------------------------------------------------*/
 		// Layer pop up 띄울지 여부
@@ -116,7 +118,7 @@
 	  		<%//-----------------------Form Action(validationForm =>LoginProcess.jsp) --------- //%>
 	    	<form 	class ="form-container"
 	    			name="loginForm" 
-	    			action="loginProcess.jsp" 
+	    			action="loginProcess" 
 	    			method="post"
 	    			onsubmit ="return validationForm(this);"> 
 	        	<div>
