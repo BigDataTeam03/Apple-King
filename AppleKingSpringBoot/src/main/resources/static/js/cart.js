@@ -35,13 +35,10 @@ window.onload = function() {
 		
 		// target server page
 		url: "/showCartList",
-		
-		// response data type -> JSON
-		//dataType :"json",
-		
+
 		// server response success  -> response(Json data)
 		success: function(response) {
-			alert("테이블 띄우기")
+			
 			createTable(response);
 	
 		},	
@@ -74,7 +71,7 @@ function createTable(data) {
             "<input type='text' class='quantity-input' name='cartQty' value='" + data[i].cart_qty + "' min='1' readonly>" + // 수량을 입력할 수 있는 input 태그
             "<button  onclick='increaseQuantity(this)'>+</button>" + // "+" 버튼
             "</td>" + 
-            "<td>" + "<img src='image/" + data[i].product_image_names + "'>" + "</td>" + // col3
+            "<td>" + "<img src='resources/mapper/image/" + data[i].product_image_names + "'>" + "</td>" + // col3
             "<td>" + data[i].price + "</td>" + // col4
             "<td><input type='checkbox' name='selectProduct' value='" + data[i].cart_code + "'></td>" + // 체크박스 열
             "</tr>"
@@ -125,33 +122,33 @@ function decreaseQuantity(button) {
 function updateQuantity(input) {
     var cartCode = $(input).closest("tr").find("input[name='selectProduct']").val();
     var quantity = $(input).val();
-    alert("수량 업데이트")
+   
     $.ajax({
         type: "post",
-        url: "/qtyUpdate",
+        url: "qtyUpdate",
         data: {
             cartCode: cartCode,
             quantity: quantity
         },
         success: function(response) {  
-	
-			if(response == "실패") {
-				alert("선택하신 상품의 재고가 부족합니다")
-				return;
-			}			
-			if( response == "성공") {
-            // 테이블 업데이트   
-             	$.ajax({
-						type: "POST",
-						//다시 테이블 조회
-						url: "/showCartList",
-						
-						success: function(response) {
-							/* 서버에서 받은 응답 처리 */
-							createTable(response)//jason
-						}
-					})		
-					}       
+            if(response == 1) {
+                alert("선택하신 상품의 재고가 부족합니다");
+                input.value = parseInt(quantity) - 1;
+            } else {		
+                // 테이블 업데이트   
+                $.ajax({
+                    type: "POST",
+                    //다시 테이블 조회
+                    url: "/showCartList",
+                    success: function(response) {
+                        /* 서버에서 받은 응답 처리 */
+                        createTable(response); // JSON
+                    }
+                });		
+            }		
+        },
+        error: function(xhr, status, error) {
+            console.error("Error:", error);
         }
     });
 }
@@ -187,8 +184,8 @@ $(document).ready(function() {
 			/* AJAX 요청 */
 			$.ajax({
 				type: "POST",
-				//삭제 기능이 있는 서블렛으로 보낸다
-				url: "uCartDeleteServlet", 
+				//삭제 기능이 있는 컨트롤러의 메소드로 보낸다
+				url: "/deleteCart", 
 				data: {
 					//카트 코드만 보내면 전부 사라진다
 					code : selected
@@ -199,8 +196,8 @@ $(document).ready(function() {
 					$.ajax({
 						type: "POST",
 						//다시 테이블 조회
-						url: "uCartListServlet",
-						//data: { cust_id: "sumin123" },
+						url: "/showCartList",
+						
 						success: function(response) {
 							/* 서버에서 받은 응답 처리 */
 							createTable(response)//jason
@@ -221,7 +218,7 @@ $(document).ready(function() {
 $(document).ready(function() {
 	/* 버튼 클릭시 AJAX 요청 */
 	$("#purchaseBtn").click(function() {
-		alert(" asdf")
+		
 		let selected = [];
 		// 체크된 상품의 상품코드를 배열에 추가. 
   	  	$("input[name='selectProduct']:checked").each(function() {
@@ -238,7 +235,7 @@ $(document).ready(function() {
     	
 		$.ajax({
 			type: "POST",
-			url: "purchaseServlet", 
+			url: "purchaseCart", 
 			data: {
 				cartCheckList : selected
 			

@@ -16,7 +16,8 @@ public class CartDaoServiceImpl implements CartDaoService {
 	 * Date : 2024.02.22
 	 * Update : 2024.02.22 KBS 
 	 * 		1. 리스트 출력과 수량 업데이트 기능두개 추가
-	 *    
+	 * Update : 2024.02.23 KBS 
+	 * 		1. 장바구니 삭제기능 추가
 	 *-------------------------------------- 
 	 */
 	
@@ -24,14 +25,26 @@ public class CartDaoServiceImpl implements CartDaoService {
 	CartDao dao;
 	
 	@Override
+	// 장바구니 리스트 출력
 	public List<CartDto> cartlistdao(String userId) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.cartlistdao(userId);
 	}
 
 	@Override
-	public void updateqty(String cart_code, String cart_qty) throws Exception {
+	// 장바구니 상품 수량 수정
+	public void updateqty(String cart_qty, String cart_code) throws Exception {
 		// TODO Auto-generated method stub
+	 dao.updateqty(cart_qty, cart_code);
+		
+		
+	}
+
+	@Override
+	// 장바구니 상품 삭제
+	public void deleteCart(String selected) throws Exception {
+		// TODO Auto-generated method stub
+		dao.deleteCart(selected);
 		
 	}
 
