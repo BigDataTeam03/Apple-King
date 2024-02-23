@@ -124,7 +124,7 @@
 	        	<div>
 	        		<!--  login error 메세지  -->
 	        		<span style ="color: red; font-size: 0.9em;">
-					<%= request.getAttribute("LoginErrMsg") ==null?"": request.getAttribute("LoginErrMsg")%>
+	        		${LoginErrMsg}
 					</span>		
 	        		<!--  ID 입력란 -->
 	            	<input type="text" 
@@ -212,6 +212,8 @@
 		return true
 	}
 	</script>
+
+	
      <!-- login 정규식 및 버튼 JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

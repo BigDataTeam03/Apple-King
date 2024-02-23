@@ -6,7 +6,7 @@ import com.springlec.base.model.CartDto;
 
 public interface CartDao {
 	/*--------------------------------------
-	 * Description: cartList  Dao
+	 * Description: cartList Dao
 	 * Author :  KBS
 	 * Date : 2024.02.22
 	 * Update : 2024.02.22 KBS 

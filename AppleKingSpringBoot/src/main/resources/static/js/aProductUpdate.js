@@ -15,14 +15,14 @@
  */
 // 페이지 실행후 바로 상품 전체 조회
 window.onload = function() {
-
+alert(" ajax 들어옴")
 	$.ajax({
 		
 		// post method server request
 		type: "POST",
 		
 		// target server page(Servlet) url
-		url: "aProductListServlet",
+		url: "aProductListUpdate",
 		
 		// request data (JSON)
 		data: { name: "" },
@@ -32,6 +32,7 @@ window.onload = function() {
 		
 		// server response success  -> response(Json data)
 		success: function(response) {
+			alert(" 리스트 받기 성공")
 			createTable(response);
 		},	
 	});
@@ -141,7 +142,7 @@ function handleClick(index){ //index : table cell number
 	product_reg_date.value 		= dataReal[index].product_reg_date
 	kind.value 					= dataReal[index].kind
 	product_image_names.value 	= dataReal[index].product_image_names
-	price.value 	= dataReal[index].price
+	price.value 				= dataReal[index].price
 	/*
 		이해가 안갈것 같아서 설명합니다.
 		data real 은 위에 함수에서 server 에서 받은 json 파일을 array 로 변환한 형태이다
@@ -168,8 +169,6 @@ function handleClick(index){ //index : table cell number
 	.*/
 	
 }
-
-	
 //상품 테이블 수정을 요청하는 메소드
 $(document).ready(function() {
 		/* 버튼 클릭시 AJAX 요청 */
@@ -193,7 +192,7 @@ $(document).ready(function() {
 			/* AJAX 요청 */
 			$.ajax({
 				type: "POST",
-				url: "aProductUpdateServlet",
+				url: "aProductUpdate",
 				data: {
 					code: code,
 					name: name,
@@ -214,7 +213,7 @@ $(document).ready(function() {
 					/* 서버에서 받은 응답 처리 */
 					$.ajax({
 						type: "POST",
-						url: "aProductListServlet",
+						url: "aProductListUpdate",
 						data: { name: "" },
 						success: function(response) {
 							/* 서버에서 받은 응답 처리 */
@@ -255,7 +254,7 @@ $(document).ready(function() {
 					/* 서버에서 받은 응답 처리 */
 					$.ajax({
 						type: "POST",
-						url: "aProductListServlet",
+						url: "aProductListUpdate",
 						data: { name: "" },
 						success: function(response) {
 							/* 서버에서 받은 응답 처리 */
@@ -276,7 +275,7 @@ $(document).ready(function() {
         // AJAX 요청을 통해 검색어를 서버에 전달하여 데이터 조회
         $.ajax({
             type: "POST",
-            url: "aProductListServlet",
+            url: "aProductListUpdate",
             data: { name: "" }, // 검색어 전달
             success: function(response) {
                 // 서버에서 받은 응답 처리
@@ -301,7 +300,7 @@ $(document).ready(function() {
         // AJAX 요청을 통해 검색어를 서버에 전달하여 데이터 조회
         $.ajax({
             type: "POST",
-            url: "aProductListServlet",
+            url: "aProductListUpdate",
             data: { name: name,
             		origin : origin,
             		size : size,
@@ -329,7 +328,7 @@ $(document).ready(function() {
         // AJAX 요청을 통해 상세 검색 조건을 서버에 전달하여 데이터 조회
         $.ajax({
             type: "POST",
-            url: "aProductListServlet",
+            url: "aProductListUpdate",
             data: { origin: origin,
            			  size: size, 
           		      kind: kind,
@@ -384,7 +383,7 @@ $(document).ready(function() {
         // AJAX 요청을 통해 선택된 정렬 방식을 서버에 전달하여 데이터 조회
         $.ajax({
             type: "POST",
-            url: "aProductListServlet",
+            url: "aProductListUpdate",
             data: {  sorting : selectedSorting,
              		 origin : origin,
              		 size : size,

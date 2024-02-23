@@ -23,10 +23,16 @@ public class MemberDaoServiceImpl implements MemberDaoService {
 	@Autowired
 	MemberDao dao; // mapper 에 있는 MemberDao.xml 연결함. 
 	@Override
-	public String membeChkDao(String userId, String userPw) throws Exception {
+	public String memberChkDao(String userId, String userPw) throws Exception {
 		// userId 의 패스워드를 확인하여 회원 여부 를 확인. 
 		// 일치 -> true,불일치 -> false
 		return dao.memberChkDao(userId, userPw);
+	}
+	@Override
+	public MemberDto memberInfoDao(String userId) throws Exception {
+		
+		
+		return dao.memberInfoDao(userId);
 	}
 
 

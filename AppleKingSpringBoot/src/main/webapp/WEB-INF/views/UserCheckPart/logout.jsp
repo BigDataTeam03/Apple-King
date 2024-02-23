@@ -18,7 +18,7 @@
 	session.removeAttribute("userRank");
 	// 세션 모두삭제 
 	session.invalidate();
-	response.sendRedirect("loginStart.do");
+	response.sendRedirect("/UserCheckPart/login_view");
 
 %>
 		
