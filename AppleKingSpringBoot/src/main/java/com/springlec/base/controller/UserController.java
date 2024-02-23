@@ -12,15 +12,17 @@ import com.springlec.base.model.MemberDto;
 import com.springlec.base.service.MemberDaoService;
 
 @Controller
-public class userController {
+public class UserController {
 	/*--------------------------------------
-	 * Description: Apple King Controller (USER)
-	 * Author : PDG, KBS, LS, Diana
+	 * Description: User controller - LogIn, signUp function 
+	 * Author : PDG
 	 * Date : 2024.02.21
 	 * Update :
 	 * 		Update 2024.02.21 by PDG
 	 * 		 1. 기존의 Appleking 을 SpringBoot version 으로 변환. 
 	 * 		 2. user login 을 위하여 member DAO 를 만들고 login page 생성한것을 컨트롤러에서 가게함. 
+	 * 
+	 * 
 	 *-------------------------------------- 
 	 */
 	
