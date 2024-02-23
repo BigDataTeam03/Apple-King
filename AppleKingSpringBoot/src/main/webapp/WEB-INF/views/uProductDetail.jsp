@@ -53,7 +53,7 @@ Update : 2024.02.22 by LS, DK
 		                    무게: ${dto.weight}kg<br><br><br>
 		                    </span>
 		                    
-		                    <form name="cartForm" action="cartInsert.do" method ="post">
+		                    <form name="cartForm" action="/cartInsert" method ="post">
 		                    <span style="font-weight: bold;">	
 	                        구매 수량 :<input type="number" id ="cart_qty"  name="cart_qty" min="1" max ="${dto.product_qty}" value ="1" style="margin-left: 10px"><br><br>
 	                        </span>

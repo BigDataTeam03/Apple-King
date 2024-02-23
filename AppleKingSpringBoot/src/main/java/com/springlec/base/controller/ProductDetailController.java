@@ -8,12 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.springlec.base.model.ProductListDto;
 import com.springlec.base.service.ProductDetailDaoService;
 import com.springlec.base.service.ProductListDaoService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ProductDetailController {
@@ -40,18 +43,26 @@ public class ProductDetailController {
 		return "uProductDetail";
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 	
-	
-	
+	// 장바구니로 넣는 메소드
+	@PostMapping("/cartInsert")
+	public void insertCart(HttpSession session, HttpServletRequest request,
+						   HttpServletResponse response, Model model) throws Exception {
+		// 세션 받아야함
+		String product_code  = session.getAttribute("product_code").toString();
+		String cust_id 		 = session.getAttribute("userId").toString();
+		int cart_qty         = Integer.parseInt(request.getParameter("cart_qty"));
+		String product_name  = (String)session.getAttribute("product_name"); 
+		
+		boolean check = service.checkItem(cust_id, product_code);
+		if(check == true) {
+				service.insertCart(cust_id, product_code, cart_qty);
+		}else {
+				service.updateCart(cust_id, product_code, cart_qty);
+		}
+		 
+	}
 	
 	
 	
