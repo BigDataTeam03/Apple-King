@@ -16,7 +16,7 @@ import com.springlec.base.service.ProductListDaoService;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-public class productDetailController {
+public class ProductDetailController {
 
 	/*--------------------------------------
 	 * Description: Apple King Controller (PRODUCT DETAIL)
