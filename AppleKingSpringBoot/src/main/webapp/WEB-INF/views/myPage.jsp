@@ -27,7 +27,7 @@
              ${sessionScope.userName} <span class="smaller-font">님</span> 
               	  
           </h1>
-          <a class="nav-link ml-2 underline-blue" href="myInfo.do">회원정보 변경</a> 
+          <a class="nav-link ml-2 underline-blue" href="myInfo">회원정보 변경</a> 
       </div>
       
    	  <div style="margin-left: 20px;"> 
