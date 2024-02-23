@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ 
+<mapper namespace="com.springlec.base.dao.CartDao">
+  					<!-- CartList 출력 -->
+  					<select id="cartlistdao" resultType="com.springlec.base.model.CartDto">
+  							 <!-- 카트 테이블에 존재하는 컬럼-->
+							 select cart.cart_code, cart.cust_id, cart.product_code, cart_qty,
+							 <!-- 상품목록에서 가져오는 정보 -->
+					         product.product_name, product.price, product_image_names 
+					         <!--선택한 테이블-->
+							 from cart 
+					         <!--선택한 상품 을 조회하기 위한 조인문 -->
+							 join product on cart.product_code = product.product_code
+							 <!--로그인 한 아이디의 카트를 가져온다-->
+							 where cust_id= #{userId} order by cart_qty	
+  					</select>
+  					<update id="updateqty">
+  							update cart set cart_qty = #{cart_qty} where cart_code = #{cart_code}
+  					</update>
+  </mapper>
+  

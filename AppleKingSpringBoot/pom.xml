@@ -74,7 +74,12 @@
 		    <groupId>org.glassfish.web</groupId>
 		    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
 		</dependency>
-		
+		<!-- Json -->
+	   <dependency>
+ 		 <groupId>org.json</groupId>
+ 		 <artifactId>json</artifactId>
+ 		 <version>20180813</version>
+	   </dependency>
 		
 	</dependencies>
 
