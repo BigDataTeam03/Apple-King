@@ -30,6 +30,8 @@ public class ProductDetailController {
 	 * 		 2. 상품상세페이지를 위하여 productDetailDAO 를 만들고 
 	 * 			해당 상품의 상세정보를 product_code를 통해 컨트롤러에서 가게함. 
 	 *-------------------------------------- 
+	 * Update : 2024.02.23 by KBS
+	 * 		1. 장바구니로 인서트,업데이트 기능 추가함
 	 */
 	
 	@Autowired
@@ -47,7 +49,7 @@ public class ProductDetailController {
 	
 	// 장바구니로 넣는 메소드
 	@PostMapping("/cartInsert")
-	public void insertCart(HttpSession session, HttpServletRequest request,
+	public String insertCart(HttpSession session, HttpServletRequest request,
 						   HttpServletResponse response, Model model) throws Exception {
 		// 세션 받아야함
 		String product_code  = session.getAttribute("product_code").toString();
@@ -61,7 +63,7 @@ public class ProductDetailController {
 		}else {
 				service.updateCart(cust_id, product_code, cart_qty);
 		}
-		 
+		return "cartList/ListView";
 	}
 	
 	
