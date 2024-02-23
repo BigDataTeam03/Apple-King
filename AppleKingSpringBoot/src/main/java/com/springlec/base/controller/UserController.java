@@ -93,6 +93,7 @@ public class UserController {
 
 			// login check process
 			if ("admin".equals(userId)) {// admin 사용자 인증
+				System.out.println(">> 관리자 입니다. ");
 				if (save_check != null && idSaveChk) {
 					// save check 되어있을 때 loginId 쿠키를 저장 (1분간)
 					CookieManager.makeCookie(response, "loginId", userId, 60 * 60 * 1);
@@ -101,8 +102,9 @@ public class UserController {
 					// save check 안되어있을 경우 쿠키 삭제함.
 					CookieManager.deleteCookie(response, "loginId");
 				}
-				return "testProductDisplay";
+				return "redirect:/testProductDisplay";
 			} else{// 일반 유저 인증 
+				System.out.println(">> 일반 사용자 입니다. ");
 				if(save_check != null && save_check.equals("Y")){
 					// save check 되어있을 때 쿠키 저장 (5분간)
 					CookieManager.makeCookie(response, "loginId", userId, 60*60*5); 
@@ -111,7 +113,7 @@ public class UserController {
 					// save check 안되어있을 경우 쿠키 삭제함. 
 					CookieManager.deleteCookie(response,"loginId");
 				}
-				return "testProductDisplay";
+				return "redirect:/testProductDisplay";
 			}
 		} else {
 			System.out.println(">>  정보가 불일치 합니다. ");
