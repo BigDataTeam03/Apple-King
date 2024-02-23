@@ -14,10 +14,15 @@
 					         <!--선택한 상품 을 조회하기 위한 조인문 -->
 							 join product on cart.product_code = product.product_code
 							 <!--로그인 한 아이디의 카트를 가져온다-->
-							 where cust_id= #{userId} order by cart_qty	
+							 where cust_id= #{userId} 
   					</select>
+  					<!-- 수량을 변경하는 쿼리문 -->
   					<update id="updateqty">
   							update cart set cart_qty = #{cart_qty} where cart_code = #{cart_code}
   					</update>
+  					<!-- 해당 품목을 삭제하는 쿼리문 -->
+  					<delete id="deleteCart">
+  							delete from cart where cart_code = #{selected}
+  					</delete>
   </mapper>
   
