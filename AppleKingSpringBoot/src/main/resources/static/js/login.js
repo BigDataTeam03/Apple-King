@@ -15,8 +15,18 @@
  * 	<<2024.02.10 by pdg>>
  *	1. 팝업창 닫기 버튼 추가 
  	2. login validation Form 수정
+ 	
+ 	<<2024.02.23 >> by pdg
+ 	1. 로그인 아이디를 잘못 친경우 alert message 를 보냄. 
  *----------------------------------------------------------
  */
+window.onload = function() {
+            // 알림 메시지 표시
+            alert("로그인에 실패했습니다. 아이디를 다시 확인해주세요.");
+            // 이전 페이지로 되돌아가기
+            window.history.back();
+        };
+
 // 팝업 닫기 버튼 
 $(document).ready(function() {
 	//alert("js start")
@@ -47,7 +57,6 @@ $(document).ready(function(){
 		location.href = "signup_view.jsp"
 		
 	})//Btn cliked end
-	
 })// Document ready end
 
 

@@ -16,5 +16,8 @@ public interface MemberDao {
 	 */
 	//customer 정보일치 여부 
 	public String memberChkDao(String userId, String userPw) throws Exception ;
+	
+	// Member 정보 가져오기
+	public MemberDto memberInfoDao(String userId) throws Exception ;
 
 }
