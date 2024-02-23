@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
 <!-- 
-	Description : 
-	Detail 		: !!첫실행시 mapper namspace 수정 할것
-	Date		:
-	Author 		:
+	Description : 고객정보를 확인하는 Database Access Object 
+	Detail 		: <<!!첫실행시 mapper namspace 수정 할것>>
+				
+				1. memberChkDao 추가 고객이 있으면 1 아니면 0 을 반환 
+				
+	Date		: 2024.02.23
+	Author 		: pdg
  -->
 <mapper namespace="com.springlec.base.dao.MemberDao">
-  <!-- *** List Dao ***-->
-  <select id="memberListDao" resultType="com.springlec.base.model.MemberDto">
-    SELECT * FROM customer
+  <!-- *** memberChkDao***-->
+  <select id="memberChkDao" resultType="java.lang.String">
+  	select count(cust_id) from customer where cust_id = #{userId} and cust_pw = #{userPw};
   </select>
-
-
 </mapper>

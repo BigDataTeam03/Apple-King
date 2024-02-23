@@ -14,7 +14,7 @@ public interface MemberDao {
 	 * Update 		:
 	 * 
 	 */
-	//cutomer 정보를 불러오는 DAO 
-	public List<MemberDto> memberListDao() throws Exception ;
+	//customer 정보일치 여부 
+	public String memberChkDao(String userId, String userPw) throws Exception ;
 
 }
