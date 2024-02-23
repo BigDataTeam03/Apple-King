@@ -1,13 +1,13 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file ='top_admin.jsp' %>
 
+<%-- 
 <%
 	ServletContext context = getServletContext();
-%>
-<%
-	/*
+%> --%>
+
+<!--	/*
 	--------------------------------------------------------------
 	* Description 	: Admin CRUD
 	* Author 		: PDG & KBS
@@ -29,8 +29,8 @@
 		3. 		
 	--------------------------------------------------------------
 	*/
-	
-%>
+-->	
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -80,7 +80,7 @@
 		<!--상품평 전체 조회 및 검색 결과 -->
 		<p><strong><h2>상품 조회 수정 </h2></strong> 
 		<!-- 상품 총 개수  -->
-	 	총 상품 개수 :<div 	id = "productCount"></div>  
+	 	총 상품 개수 :<div id = "productCount"></div>  
 	 	<!-- JS 에서 뿌려주는 Table 결과물 -->
 		<div 	id = "result"></div> 
 		<div>
@@ -134,7 +134,7 @@
     <label for="kind4">아리수</label>
 </div>
 
-	<button id="clearRadioBtn">라디오버튼 초기화</button>
+	<button id="clearRadioBtn">선택 항목 초기화</button>
 <!-- 확인 버튼 추가 -->
 <button type="button" id="confirmBtn" onclick="applyFilters()">확인</button>
 <div>
@@ -144,7 +144,7 @@
 </div>
 <div>
 	<br>
-	<button id =allBtn">전체 목록 보기</button>
+	<button id ="allBtn">전체 목록 보기</button>
 </div>
 
 <!--  -->
@@ -215,7 +215,7 @@
 		
 		
 		<script src = "https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	    <script src = "aProductUpdate.js"></script>
+	    <script src = "resources/js/aProductUpdate.js"></script>
    	    <footer>
         	<p>&copy; 2024 Apple Store. All rights reserved.</p>
     	</footer>

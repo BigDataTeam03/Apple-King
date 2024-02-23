@@ -24,10 +24,10 @@
 	</select>
 		<!-- 장바구니에 없다면 인서트하는 쿼리문 -->
 	<insert id="insertCart">
-			insert into cart (cust_id,product_code,cart_qty) values (#{cust_id},#{product_code,#{cart_qty})
+  		  insert into cart (cust_id, product_code, cart_qty) values (#{cust_id}, #{product_code}, #{cart_qty})
 	</insert>
 		<!--  장바구니에 존재하면 수량만 업데이트하는 쿼리문 -->
 	<update id="updateCart">
-			update cart set cart_qty = cart_qty + #{cart_qty} where cust_id = #{cust_id} and product_code = #{product_code}"
+			update cart set cart_qty = cart_qty + #{cart_qty} where cust_id = #{cust_id} and product_code = #{product_code}
 	</update>
 </mapper>
