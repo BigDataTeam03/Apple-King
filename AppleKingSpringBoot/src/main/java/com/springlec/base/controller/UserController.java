@@ -101,7 +101,7 @@ public class UserController {
 					// save check 안되어있을 경우 쿠키 삭제함.
 					CookieManager.deleteCookie(response, "loginId");
 				}
-				return "uProductList";
+				return "testProductDisplay";
 			} else{// 일반 유저 인증 
 				if(save_check != null && save_check.equals("Y")){
 					// save check 되어있을 때 쿠키 저장 (5분간)
@@ -111,7 +111,7 @@ public class UserController {
 					// save check 안되어있을 경우 쿠키 삭제함. 
 					CookieManager.deleteCookie(response,"loginId");
 				}
-				return "uProductList";
+				return "testProductDisplay";
 			}
 		} else {
 			System.out.println(">>  정보가 불일치 합니다. ");
@@ -120,7 +120,6 @@ public class UserController {
 			model.addAttribute("LoginErrMsg","아이디와 패스워드를 다시 확인하세요.");
 			return "/UserCheckPart/login_view";
 		}
-		
 	}// loginProcess END
 	
 	@GetMapping("/logout.do")
