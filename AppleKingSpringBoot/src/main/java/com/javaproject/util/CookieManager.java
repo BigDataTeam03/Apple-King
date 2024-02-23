@@ -24,11 +24,13 @@ public class CookieManager {
 			String cName,
 			String cValue,
 			int cTime) {
+		System.out.println(">> Cookie Manager START" );
 		
 		Cookie cookie = new Cookie(cName, cValue);
 		cookie.setPath("/");
 		cookie.setMaxAge(cTime);
 		response.addCookie(cookie);
+		System.out.println(">> loginId cookie 를 생성합니다. ");
 	}// Make cookie end
 	
 	// Read cookie
