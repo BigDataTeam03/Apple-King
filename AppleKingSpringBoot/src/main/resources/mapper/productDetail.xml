@@ -2,9 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.springlec.base.dao.ProductDetailDao">
-
+<!--  
+	  Description : 
+	  Author 	   : KBS
+	  Date 	   : 2024.02.23
+	  Details		
+	  Update  
+	  <2024.02.23> by KBS
+	   1. 장바구니로 상품을 넣을 때 장바구니에 같은상품이 있는지 판별하는 쿼리문 추가
+	   2. 장바구니 인서트 쿼리문 추가
+	   3. 장바구니 수량 업데이트 쿼리문 추가
+	   
+	
+-->
     <select id= "productDetailDao">
         SELECT * FROM product WHERE product_code = #{product_code}
     </select>
-
+    	<!-- 추가하려는 상품이 장바구니에 이미 존재하는지 판별하는 쿼리문 -->
+	<select id="checkItem">
+		select count(*) as count from cart where cust_id = #{cust_id} and product_code = #{product_code}
+	</select>
+		<!-- 장바구니에 없다면 인서트하는 쿼리문 -->
+	<insert id="insertCart">
+  		  insert into cart (cust_id, product_code, cart_qty) values (#{cust_id}, #{product_code}, #{cart_qty})
+	</insert>
+		<!--  장바구니에 존재하면 수량만 업데이트하는 쿼리문 -->
+	<update id="updateCart">
+			update cart set cart_qty = cart_qty + #{cart_qty} where cust_id = #{cust_id} and product_code = #{product_code}
+	</update>
 </mapper>
