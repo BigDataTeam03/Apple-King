@@ -8,7 +8,7 @@ public class CartDto {
 		String cart_code;
 		String cust_id;
 		String product_code;
-		String cart_qty;
+		int cart_qty;
 
 		// 상품 테이블에 있는 컬럼(join 문을 사용하기 위해 필요함)
 		String product_name;
@@ -21,7 +21,7 @@ public class CartDto {
 			// TODO Auto-generated constructor stub
 		}
 
-		public CartDto(String cart_code, String cust_id, String product_code, String cart_qty, String product_name,
+		public CartDto(String cart_code, String cust_id, String product_code, int cart_qty, String product_name,
 				int price, String product_image_names) {
 			super();
 			this.cart_code = cart_code;
@@ -57,11 +57,11 @@ public class CartDto {
 			this.product_code = product_code;
 		}
 
-		public String getCart_qty() {
+		public int getCart_qty() {
 			return cart_qty;
 		}
 
-		public void setCart_qty(String cart_qty) {
+		public void setCart_qty(int cart_qty) {
 			this.cart_qty = cart_qty;
 		}
 
