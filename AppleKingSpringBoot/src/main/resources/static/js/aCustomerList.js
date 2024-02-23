@@ -17,7 +17,7 @@ window.onload = function() {
 		type: "POST",
 		
 		// target server page(Servlet) url
-		url: "aCustomerListServlet",
+		url: "custmoerList",
 		
 		// request data (JSON)
 		data: { name: "" },
@@ -114,7 +114,7 @@ function handleClick(index){ //index : table cell number
 	cust_rank.value 	= dataReal[index].cust_rank
 	}
 	
-	//정렬기능과 검색기능을 같이 서버에 보내야 검색후 정렬을 시행해도 검색이 유지된다
+//정렬기능과 검색기능을 같이 서버에 보내야 검색후 정렬을 시행해도 검색이 유지된다
 $(document).ready(function() {
     // 정렬 콤보박스 값 변경 이벤트 처리
     $("#sortOption").change(function() {
@@ -125,7 +125,7 @@ $(document).ready(function() {
         // AJAX 요청
         $.ajax({
             type: "POST",
-            url: "aCustomerListServlet",
+            url: "/serchCustomer",
             data: { name: name, 
               sortOption: sortOption }, // 검색어와 정렬 옵션 함께 전송
             dataType: "json",
@@ -144,7 +144,7 @@ $(document).ready(function() {
         // AJAX 요청
         $.ajax({
             type: "POST",
-            url: "aCustomerListServlet",
+            url: "custmoerList",
             data: { name: name },
             success: function(response) {
                 // 서버에서 받은 응답 처리

@@ -12,10 +12,14 @@
  *----------------------------------------------------------
  <<2024.02.12 by KBS
  * 	1. 정렬과 검색 연동 완료.
+ * 
+ * <<2024.02.23 by KBS
+ * 	1. spring 연동 완료.
  */
+
 // 페이지 실행후 바로 상품 전체 조회
 window.onload = function() {
-alert(" ajax 들어옴")
+
 	$.ajax({
 		
 		// post method server request
@@ -32,7 +36,6 @@ alert(" ajax 들어옴")
 		
 		// server response success  -> response(Json data)
 		success: function(response) {
-			alert(" 리스트 받기 성공")
 			createTable(response);
 		},	
 	});

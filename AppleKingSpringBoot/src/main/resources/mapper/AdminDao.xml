@@ -42,5 +42,18 @@
 			WHERE 
 			  	   product_code=#{product_code}
 			</update>
+			<select id="custList">
+			SELECT  
+				   cust_id,
+				   name, 
+				   tel, 
+				   email, 		
+				   address,
+				   cust_rank,			
+				   reg_date 
+				 
+			 FROM customer where name like #{name} and ${notThis} ${orderby};
+			</select>
+		<!-- 고객 리스트 출력 -->
 
 </mapper>

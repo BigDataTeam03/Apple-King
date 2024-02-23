@@ -10,7 +10,6 @@
 
 // 페이지 실행후 바로 상품 전체 조회
 window.onload = function() {
-	alert("insert js 실행합니다. ")
 	$.ajax({
 		
 		// post method server request
