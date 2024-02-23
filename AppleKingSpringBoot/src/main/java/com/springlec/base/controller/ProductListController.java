@@ -13,7 +13,7 @@ import com.springlec.base.service.ProductListDaoService;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-public class productListController {
+public class ProductListController {
 	/*--------------------------------------
 	 * Description: Apple King Controller (PRODUCT LIST)
 	 * Author : PDG, KBS, LS, Diana
