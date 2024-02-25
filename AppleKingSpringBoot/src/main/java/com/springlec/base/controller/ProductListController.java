@@ -22,17 +22,16 @@ public class ProductListController {
 	 * 		Update 2024.02.21 by LS, DK 
 	 * 		 1. 기존의 Appleking 을 SpringBoot version 으로 변환. 
 	 * 		 2. 상품리스트를 위하여 product DAO 를 만들고 product page 생성한것을 컨트롤러에서 가게함. 
+	 * 
+	 * 		Update 2024.02.23 by pdg 
+	 * 		 1. 상품 선택할때 세션에 저장되는 기능 추가 .
 	 *-------------------------------------- 
 	 */
-	
 	@Autowired
 	ProductListDaoService service;
 	
 	@GetMapping("/testProductDisplay")
-	public String testProductDisplay(HttpServletRequest request, Model model)
-			
-			throws Exception{
-		
+	public String testProductDisplay(HttpServletRequest request, Model model) throws Exception{
 		int pcnt = service.productCntDao();
 		if(pcnt !=0) {
 			String pageNum ="1";
@@ -43,7 +42,6 @@ public class ProductListController {
 		if(request.getParameter("query") != null) {
 			 query = request.getParameter("query");
 		}
-		
 		String searchContent = "";
 		if(request.getParameter("searchContent")!= null) {
 			searchContent = request.getParameter("searchContent");
@@ -62,21 +60,18 @@ public class ProductListController {
 			//End page can be greater than the total page. 
 			//Last page to equalize with the total page count. 
 			
-			model.addAttribute("pcnt",pcnt);
+			model.addAttribute("pcnt"		,pcnt);
 			model.addAttribute("currentPage",currentPage);
-			model.addAttribute("pageSize",pageSize);
-			model.addAttribute("startRow",startRow);
-			model.addAttribute("pageCount",pageCount);
-			model.addAttribute("pageBlock",pageBlock);
-			model.addAttribute("startPage",startPage);
-			model.addAttribute("endPage",endPage);
+			model.addAttribute("pageSize"	,pageSize);
+			model.addAttribute("startRow"	,startRow);
+			model.addAttribute("pageCount"	,pageCount);
+			model.addAttribute("pageBlock"	,pageBlock);
+			model.addAttribute("startPage"	,startPage);
+			model.addAttribute("endPage"	,endPage);
 			List<ProductListDto> productList = service.productListDao(query, searchContent, startRow, pageSize);
 			model.addAttribute("productList", productList);
-			
 		}// pcnt !=0 end
 		return "uProductList";
 	}// testProductDisplay End
-
-	
 }//PRODCUT LIST CONTROLLER END
 
