@@ -19,14 +19,18 @@
  * <<2024.02.15 by pdg>>
  * 	1. 메인 페이지 들어갈때 로그인 페이지에서 받은 세션값을 이용하여 환영합니다 alert 띄움
  * 
+ * <<2024.02.23 by pdg>>
+ * 	1.  firstChk 를 이용하여 처음 들어왔을때만 환영합니다 메세지 띄우는 기능 실현
+ * 
  *----------------------------------------------------------------------------------*/
 
 // 환영 메세지 
 window.onload = function () {
 	let name = $("#userName").val()
-	
-	//let userName =  document.getElementById("userName").value()
-	alert(name+"님 환영합니다. ")
+	let firstChk = $("#firstChk")
+	if (firstChk){
+		alert(name+"님 환영합니다. ")
+	}
 }// window onload end
 
 // 천단위 콤마 추가 Function

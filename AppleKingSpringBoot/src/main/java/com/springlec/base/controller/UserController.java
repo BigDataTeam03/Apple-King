@@ -6,8 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
 import com.javaproject.util.CookieManager;
 import com.springlec.base.model.MemberDto;
 import com.springlec.base.service.MemberDaoService;
@@ -15,12 +19,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
+@SessionAttributes
 public class UserController {
 	/*--------------------------------------
-	 * Description: User controller - LogIn, signUp function 
-	 * Author : PDG
-	 * Date : 2024.02.21
-	 * Update :
+	 * Description	: User controller - LogIn, signUp function 
+	 * Detail 		:
+	 * 				1.userInfo session 
+	 * 					- 
+	 * Author 		: PDG
+	 * Date 		: 2024.02.21
+	 * Update 		
 	 * 		Update 2024.02.21 by PDG
 	 * o	 1. 기존의 Appleking 을 SpringBoot version 으로 변환. 
 	 * o	 2. user login 을 위하여 member DAO 를 만들고 login page 생성한것을 컨트롤러에서 가게함. 
@@ -31,6 +39,9 @@ public class UserController {
 	 * o	 3. 정보가 불일치 할경우 불일치함을 페이지에 표시하는 기능. 
 	 * o 	 4. admin 일경우 aGoHome 으로 가는 기능 
 	 * o	 5. log out 기능 추가
+	 * 		Update 2024.02.25 by PDG
+	 * 		 1. annoatation 을이용하여 userId session 을 사용하자.
+	 * o	 
 	 *-------------------------------------- 
 	 */
 
@@ -39,7 +50,7 @@ public class UserController {
 
 	@GetMapping("/")
 	public String userLogin() throws Exception {
-		System.out.println(">> userLogin START ");
+		System.out.println("** ROOT PAGE START **");
 		return "/UserCheckPart/login_view";
 	}
 
@@ -48,49 +59,52 @@ public class UserController {
 		System.out.println(">> userSignUp.do START ");
 		return "/UserCheckPart/signup_view";
 	}
-
-	@GetMapping("cGoHome.do")
-	public String cGoHome() throws Exception {
-		System.out.println(">> cGoHome.do START");
-		return "uProductList";
-	}
-
 	@PostMapping("loginProcess")
 	public String loginProcess(
+			@ModelAttribute("userId") String userId,
+			@ModelAttribute("save_check") String save_check,
+			@ModelAttribute("first_check") String first_check,
 			@RequestParam 
-			String userId, 		// userID
-			String userPw, 		// user Password
-			String save_check, 	// user ID save
-			String first_check, // 첫방문인지 확인.
+			String userPw, 		// user Password 는 session 에 저장하지 않음. 
 			HttpSession session, HttpServletResponse response,
 			Model model) throws Exception {
-
-	
+		
+		// Session  값 OPtional 을 이용한Null point  처리 
 		Optional<Boolean> login_test = Optional.ofNullable((Boolean) session.getAttribute("login_test_result"));
 		boolean login_test_result = login_test.orElse(false);
 
 		Optional<String> save_check_nullable = Optional.ofNullable(save_check);
-		boolean idSaveChk = save_check_nullable.map(val -> true).orElse(false);
+		boolean idSaveChk = save_check_nullable.map(val -> true).orElse(false);// null 일경우 false
 
-		Optional<String> first_check_nullable = Optional.ofNullable(save_check);
-		boolean firstChk = first_check_nullable.map(val -> true).orElse(false);
+		Optional<String> first_check_nullable = Optional.ofNullable(first_check);
+		boolean firstChk = first_check_nullable.map(val -> true).orElse(true);// null 일경우 true
 
 		// -------------------------------TEST CODE---------------------------//
-		System.out.println(">> LoginProcess START");
-		System.out.println(">>  userId : " + userId + "\n" + ">>  userPw :" + userPw + "\n" + ">>  save_check : "
-				+ idSaveChk + "\n" + ">>  first_check: " + firstChk);
+		System.out.println(">> **LoginProcess START**");
+		System.out.println(">>  userId : " + userId + "\n" + 
+						   ">>  userPw : " + userPw + "\n" + 
+						   ">>  save_check : "+ (idSaveChk? "체크됨"   :"체크안됨")+ "\n" + 
+						   ">>  first_check: "+ (firstChk?  "첫로그인임":"첫 로그인이 아님"));
 
 		if (!memberService.memberChkDao(userId, userPw).equals("0")) {
 			System.out.println(">>  login 성공.");
 			login_test_result = true;
-			session.setAttribute("login_test_result", login_test_result);
-			session.setAttribute("userId", userId);
+		
 			// user 정보를 세션에 저장.
-
 			MemberDto userInfo = memberService.memberInfoDao(userId);
-			session.setAttribute("userInfo", userInfo);
+			session.setAttribute("login_test_result", login_test_result);
+			session.setAttribute("firstChk", firstChk);
+			session.setAttribute("userId", userId);
+			session.setAttribute("userName"		, userInfo.getName());
+			session.setAttribute("userTel"		, userInfo.getTel());
+			session.setAttribute("userEmail"	, userInfo.getEmail());
+			session.setAttribute("userAddress"	, userInfo.getAddress());
+			session.setAttribute("userRegDate"	, userInfo.getReg_date());
+			session.setAttribute("userDeactDate", userInfo.getDeact_date());
+			session.setAttribute("userRank"		, userInfo.getCust_rank());
+			session.setAttribute("userPoint"	, userInfo.getCust_point());
 			System.out.println(">> Session 에 user 정보를 저장합니다.");
-
+			
 			// login check process
 			if ("admin".equals(userId)) {// admin 사용자 인증
 				System.out.println(">> 관리자 입니다. ");

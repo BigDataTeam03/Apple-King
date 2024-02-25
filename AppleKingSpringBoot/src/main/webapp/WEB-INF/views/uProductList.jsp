@@ -44,7 +44,9 @@
 	    <link rel="stylesheet" href="resources/css/proListStyle.css" />
 	</head>	
 	<body>
-		<%-- <input type="hidden" id ="userName" value ="${userName}"/>  --%>
+	
+		<input type="hidden" id ="userName" value ="${userName}"/> 
+		<input type="hidden" id ="fisrtChk" value ="${firstChk}"/> 
 		<input type="hidden" id ="currentPage" value ="${currentPage}"/> 
 	    <div class="searchContainer">
 			<input type="text" placeholder="찾고싶은 상품을 입력하세요!" id ="searchContent" size="50" ></input>
@@ -64,6 +66,7 @@
 		</div>
 	    <!-- 상품 전체 조회 -->
 	    	<div class="card-container">
+	   
 			 	<c:forEach var="item" items="${productList}">
 			 		 	<div class ="card" >
 	 	 				<img src="resources/image/${item.product_image_names}" alt="${item.product_name} Image">
@@ -103,5 +106,8 @@
     </c:if>
 
 </div>
+		<!--  Java Script Call -->
+		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	    <script src="resources/js/uProduct2.js?var=1"></script>
 	</body>
 </html>

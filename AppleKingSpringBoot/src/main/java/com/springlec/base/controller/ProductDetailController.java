@@ -20,7 +20,6 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ProductDetailController {
-
 	/*--------------------------------------
 	 * Description: Apple King Controller (PRODUCT DETAIL)
 	 * Author : LS, dk
@@ -33,7 +32,6 @@ public class ProductDetailController {
 	 * Update : 2024.02.23 by KBS
 	 * 		1. 장바구니로 인서트,업데이트 기능 추가함
 	 */
-	
 	@Autowired
 	ProductDetailDaoService service;
 	
@@ -43,8 +41,6 @@ public class ProductDetailController {
 		model.addAttribute("listDao", listDao);
 		System.out.println("상품목록 :" + listDao);
 		return "uProductDetail";
-		
-		
 	}
 	
 	// 장바구니로 넣는 메소드
@@ -64,13 +60,5 @@ public class ProductDetailController {
 				service.updateCart(cust_id, product_code, cart_qty);
 		}
 		return "cartList/ListView";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
+	}//insertCart END
 }//PRODUCT DETAIL CONTROLLER END
