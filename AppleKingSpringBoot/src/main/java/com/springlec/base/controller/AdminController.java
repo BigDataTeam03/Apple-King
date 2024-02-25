@@ -25,8 +25,9 @@ public class AdminController {
 	 * Author :  KBS
 	 * Date : 2024.02.23
 	 * Update : 2024.02.23 KBS 
-	 * 		1. 
-	 *      2. 
+	 * 		1.  리스트출력 기능 완료
+	 *      2.  정렬, 검색기능 호환 완료
+	 *      3.  상품 업데이트 기능 완료
 	 *-------------------------------------- 
 	
 	*/
@@ -133,17 +134,28 @@ public class AdminController {
 	@PostMapping("/aProductUpdate")
 	public void updateProduct(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		PrintWriter out = response.getWriter();
-		String code 		= request.getParameter("code");
-		String name 		= request.getParameter("name");
-		String qty 			= request.getParameter("qty");
+		// out 선언
+		
+		// 수정된 변수 받기
+		String product_name 		= request.getParameter("name");
+		String product_qty 			= request.getParameter("qty");
 		String origin 		= request.getParameter("origin");
-		String manufacture 	= request.getParameter("manufacture");
+		String manufacture_date 	= request.getParameter("manufacture");
 		String weight 		= request.getParameter("weight");
 		String size 		= request.getParameter("size");
-		String detailImage 	= request.getParameter("detailImage");
-		String view 		= request.getParameter("view");
-		String regDate 		= request.getParameter("regDate");
+		String detail_image_name 	= request.getParameter("detailImage");
+		String view_count 		= request.getParameter("view");
+		String product_reg_date 		= request.getParameter("regDate");
 		String kind 		= request.getParameter("kind");
-		String productImage = request.getParameter("productImage");
+		String product_image_names = request.getParameter("productImage");
+		String product_code 		= request.getParameter("code");
+		// 서비스를 통해 다오로 변수를 집어 넣는다
+		service.updateProduct(product_name, product_qty, origin,
+				manufacture_date, weight, size,
+							  detail_image_name, view_count, product_reg_date,
+							  kind, product_image_names, product_code);
+			out.print("성공");
+		
+		
 	}
 }

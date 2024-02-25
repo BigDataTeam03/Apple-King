@@ -215,11 +215,11 @@ $(document).ready(function() {
 						type: "POST",
 						url: "aProductListUpdate",
 						data: { name: "" },
-						success: function(response) {
+						success: function(response) {		
 							/* 서버에서 받은 응답 처리 */
 							createTable(response)//jason
 							//수정완료 후 입력란을 비우기
-							$("#product_code,#product_name,#product_qty,#origin, #manufacture_date,#weight,#size,#detail_image_name,#view_count, #product_reg_date,#kind,#product_image_names").val("")
+							$("#product_code,#product_name,#product_qty,#origin, #manufacture_date,#weight,#size,#detail_image_name,#view_count, #product_reg_date,#kind,#product_image_names, #price").val("")
 							
 						}
 					})

@@ -22,9 +22,25 @@
 			WHERE
 				<!--product 에서 product name 을 검색하지만 처음에는 아무것도 안들어감으로 모두 조회함. -->
 			     product_name LIKE #{product_name} ${selected} ${orderby}
-    
-    <!--  product_name LIKE '%%' and origin='한국' order by product_qty asc -->
+   
 			</select>
-
+			<!--  상품 업데이트 -->
+			<update id="updateProduct">
+			UPDATE product 
+			SET
+				   product_name=#{product_name},
+			   	   product_qty=#{product_qty},		
+			 	   origin=#{origin},		
+		 		   manufacture_date=#{manufacture_date},	
+			  	   weight=#{weight},			
+			  	   size=#{size},			
+		   		   detail_image_name=#{detail_image_name},
+			       view_count=#{view_count},	
+			       product_reg_date=now(),
+			       kind=#{kind},					
+			  	   product_image_names=#{product_image_names} 
+			WHERE 
+			  	   product_code=#{product_code}
+			</update>
 
 </mapper>
