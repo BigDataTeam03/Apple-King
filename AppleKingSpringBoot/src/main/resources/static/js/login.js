@@ -26,7 +26,7 @@
 $(document).ready(function() {
 	//alert("js start")
     $('#closeBtn').click(function() {
-		alert(" 닫기 버튼 눌림. ")
+		//alert(" 닫기 버튼 눌림. ")
         $('#popup').hide();
         
         // 오늘 하루 안보기 체크 여부( 문법 중요!! )

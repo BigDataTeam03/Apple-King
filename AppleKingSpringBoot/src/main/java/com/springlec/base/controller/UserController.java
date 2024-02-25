@@ -6,8 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
 import com.javaproject.util.CookieManager;
 import com.springlec.base.model.MemberDto;
 import com.springlec.base.service.MemberDaoService;
@@ -15,6 +19,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
+@SessionAttributes
 public class UserController {
 	/*--------------------------------------
 	 * Description	: User controller - LogIn, signUp function 
@@ -34,6 +39,8 @@ public class UserController {
 	 * o	 3. 정보가 불일치 할경우 불일치함을 페이지에 표시하는 기능. 
 	 * o 	 4. admin 일경우 aGoHome 으로 가는 기능 
 	 * o	 5. log out 기능 추가
+	 * 		Update 2024.02.25 by PDG
+	 * 		 1. annoatation 을이용하여 userId session 을 사용하자.
 	 * o	 
 	 *-------------------------------------- 
 	 */
@@ -52,17 +59,17 @@ public class UserController {
 		System.out.println(">> userSignUp.do START ");
 		return "/UserCheckPart/signup_view";
 	}
-
 	@PostMapping("loginProcess")
 	public String loginProcess(
+			@ModelAttribute("userId") String userId,
+			@ModelAttribute("save_check") String save_check,
+			@ModelAttribute("first_check") String first_check,
 			@RequestParam 
-			String userId, 		// userID
-			String userPw, 		// user Password
-			String save_check, 	// user ID save
-			String first_check, // 첫방문인지 확인.
+			String userPw, 		// user Password 는 session 에 저장하지 않음. 
 			HttpSession session, HttpServletResponse response,
 			Model model) throws Exception {
-	
+		
+		// Session  값 OPtional 을 이용한Null point  처리 
 		Optional<Boolean> login_test = Optional.ofNullable((Boolean) session.getAttribute("login_test_result"));
 		boolean login_test_result = login_test.orElse(false);
 
