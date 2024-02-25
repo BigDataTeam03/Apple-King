@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.springlec.base.model.InquireDto;
 import com.springlec.base.model.MemberDto;
 import com.springlec.base.model.ProductListDto;
 import com.springlec.base.service.AdminDaoService;
@@ -23,11 +24,15 @@ public class AdminController {
 	/*--------------------------------------
 	 * Description: Admin 컨트롤러
 	 * Author :  KBS
-	 * Date : 2024.02.23
+	 * Date : 2024.02.24
 	 * Update : 2024.02.23 KBS 
-	 * 		1.  리스트출력 기능 완료
+	 * 		1.  상품 리스트출력 기능 완료
 	 *      2.  정렬, 검색기능 호환 완료
 	 *      3.  상품 업데이트 기능 완료
+	 * Update : 2024.02.24 KBS 
+	 * 		1. 고객 리스트가 데이터가 안나옴..
+	 *      2. 문의 내역도 데이터가 안나옴
+	 *      3. jsp 에서 만든 페이지 연결 완료
 	 *-------------------------------------- 
 	
 	*/
@@ -121,9 +126,9 @@ public class AdminController {
      totalProductNumber++;
      session.setAttribute("totalProductNumber", totalProductNumber );
      //  서비스에 해당 변수를 넣어 다오를 실행시키고 리스트에 넣는다
-    System.out.println(" 서비스로 간다");
+  
      List<ProductListDto> productList = service.productlist(product_name, selected, orderby);
-     System.out.println("이제 뿌려준다" + productList);
+   
      return ResponseEntity.ok().body(productList);
 	}
 	
@@ -182,7 +187,7 @@ public class AdminController {
 	// 문의 내역
 	@GetMapping("/aProductQuestionList")
 	public String goquestion() throws Exception {
-		return "AdminPart/aProductQuestionList";
+		return "AdminPart/aProductQuestionAnswer";
 	}
 	// 유저 홈
 	@GetMapping("/cGoHome")
@@ -203,20 +208,20 @@ public class AdminController {
 	// 고객 리스트를 보여주는 메서드
 	@PostMapping("/custmoerList")
 	public ResponseEntity<List<MemberDto>> custlist(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		PrintWriter out = response.getWriter();
+		//PrintWriter out = response.getWriter();
 		// Json 값 한글 지정
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		// 이름 검색값 가져오는 변수
-		String name =    "%"+(String)request.getAttribute("name")+"%";
+		String name =    "'%"+(String)request.getAttribute("name")+"%'";
 		//정렬옵션 가져오는 변수 
 		String sortOption = request.getParameter("sortOption");
 		//시작시 선택되지 않았으니 디폴트값으로 날짜정렬
 		if (sortOption == null) {
-			sortOption = "dateNew";
+			sortOption = "reg_date";
 		}
 		//쿼리문 기본값 날짜
-		String orderby = "dateNew";
+		String orderby = " order by reg_date asc";
 		
 		//선택한 콤보박스값에 따라 정렬쿼리문 변경
 		if (sortOption.equals("rankHigh")) 
@@ -229,14 +234,24 @@ public class AdminController {
     	 	orderby = "order by reg_date asc";
 		//  .xml 에 <> 가 주석으로 인식되서 여기서 함....
 		//   고객 테이블에 어드민도 포함되어있기 때문에 어드민을 빼고 조회한다
-		String notThis = "cust_id <> admin123";
+		String notThis = "cust_id <> 'admin123' ";
 		// 서비스 실행 
 	List<MemberDto>	memberList = service.custList(name,notThis,orderby);
 		
-	int totalCustomerNumber =0;
+	
 			
 	return ResponseEntity.ok().body(memberList);
 		
+		
+	}
+	@PostMapping("/inqueireList")
+	public ResponseEntity<List<InquireDto>> qustionList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		
+		List<InquireDto> QList = service.questionList();
+		
+		return ResponseEntity.ok().body(QList);
 		
 	}
 	
