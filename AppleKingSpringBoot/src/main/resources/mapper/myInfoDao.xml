@@ -4,9 +4,15 @@
 
 
 <mapper namespace="com.springlec.base.dao.MyInfoDao">
-
 	<select id="MyInfoDao" resultType="com.springlec.base.model.MyInfoDto">
 		SELECT * FROM customer WHERE cust_id = #{userId}
 	</select>
-
+	
+	<update id="ModifyDao" >
+		UPDATE customer SET name=#{name}, cust_pw=#{cust_pw}, tel=#{tel}, email=#{email}, address= #{address} WHERE cust_id = #{cust_id} 
+	</update>
+	
+	<update id="DeactivateDao" >
+		UPDATE customer SET deact_date = now() WHERE cust_id = #{cust_id}
+	</update>
 </mapper>
