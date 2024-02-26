@@ -28,7 +28,7 @@
 window.onload = function () {
 	let name = $("#userName").val()
 	let firstChk = $("#firstChk")
-	if (firstChk){
+	if (!firstChk){
 		alert(name+"님 환영합니다. ")
 	}
 }// window onload end

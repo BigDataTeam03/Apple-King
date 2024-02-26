@@ -31,11 +31,12 @@ public class ProductListServiceImpl implements ProductListDaoService {
 
 
 	@Override
-	public List<ProductListDto> productListDao(String query, String searchContent, int startRow, int pageSize) throws Exception {
+	public List<ProductListDto> productListDao(String query, String searchContent, int startProduct, int pageSize) throws Exception {
 		System.out.println(">> productListDaoService 실행");
 		
 		searchContent = '%' + searchContent + '%';
-		return dao.productListDao(query, searchContent, startRow - 1,pageSize);
+		// 검색시 limit 을 이용함. startProduct 의 -1 해야 0 번째 부터 출력가능. 
+		return dao.productListDao(query, searchContent, startProduct - 1, pageSize);
 	}
 
 }

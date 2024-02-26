@@ -94,17 +94,17 @@
 
     <!-- PREVIOUS button generation -->
     <c:if test="${startPage gt pageBlock}">
-        <a href="testProductDisplay?pageNum=${startPage-pageBlock}">PREV</a>
+        <a href="ProductDisplay?pageNum=${startPage-pageBlock}">PREV</a>
     </c:if>
 
     <!-- Page number button generation -->
     <c:forEach begin="${startPage}" end="${endPage}" var="i">
-        <a href="testProductDisplay?pageNum=${i}">${i} </a>
+        <a href="ProductDisplay?pageNum=${i}">${i} </a>
     </c:forEach>
 
     <!-- NEXT button generation -->
     <c:if test="${endPage lt pageCount}">
-        <a href="testProductDisplay?pageNum=${startPage+pageBlock}">NEXT</a>
+        <a href="ProductDisplay?pageNum=${startPage+pageBlock}">NEXT</a>
     </c:if>
 
 </div>
