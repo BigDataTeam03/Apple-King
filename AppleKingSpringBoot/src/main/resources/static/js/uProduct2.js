@@ -90,7 +90,11 @@ $(document).ready(function() {
 		// 검색정렬 조건
 		let searchContent = $("#searchContent").val() 		// 검색 내용
 		let sortingOption = $("#sortingOption").val()		// 정렬 조건
-
+		
+		console.log("searchContent:"+searchContent)
+		console.log("sortingOption:"+sortingOption)
+		alert("asdfasdf:"+searchContent)
+		
 		// 페이지 조건
 		let currentPage = $("#currentPage").val() 	//현재페이지
 		let startProduct = $("#startProduct").val();//페이지 첫상품

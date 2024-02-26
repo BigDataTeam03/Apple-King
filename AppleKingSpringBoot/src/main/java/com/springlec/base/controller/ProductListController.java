@@ -74,7 +74,7 @@ public class ProductListController {
 		// 정렬 조건
 		String sortingOption = "highPrice";
 		if(request.getParameter("sortingOption")!= null) {
-			searchContent = request.getParameter("sortingOption");
+			sortingOption = request.getParameter("sortingOption");
 		}
 		
 		// 현재페이지 <- request 로 받음. 

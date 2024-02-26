@@ -11,7 +11,7 @@
     
     <!-- 검색조건과 정렬조건을 기준으로 상품을 조회하는 dao -->
     <select id="productListDao">
-        select * from product where ${searchQuery} like #{searchContent} ${sortingOption} limit #{startRow} , #{pageSize}
+        select * from product where product_name like #{searchContent} ${sortingOption} limit #{startRow} , #{pageSize}
         
     </select>
 
