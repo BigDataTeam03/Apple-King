@@ -197,7 +197,7 @@ public class AdminController {
 	// 유저 홈
 	@GetMapping("/cGoHome")
 	public String cGoHome() throws Exception {
-		return "uProductList";
+		return "ProductPart/uProductList";
 	}
 	// 관리자 홈
 	@GetMapping("/aGoHome")
@@ -256,8 +256,8 @@ public class AdminController {
 	public ResponseEntity<List<InquireDto>> qustionList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-		
-		List<InquireDto> QList = service.questionList();
+		String Not = " cust_id <> 'admin123' ";
+		List<InquireDto> QList = service.questionList(Not);
 		
 		return ResponseEntity.ok().body(QList);
 		

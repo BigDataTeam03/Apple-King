@@ -27,7 +27,7 @@ public interface AdminDao {
 	// 고객 리스트 출력 다오
 	public List<MemberDto> custList(String name, String notThis, String orderby2) throws Exception;
 	// 문의 게시판 출력 다오
-	public List<InquireDto> questionList() throws Exception;
+	public List<InquireDto> questionList(String Not) throws Exception;
 	// 문의에 대한 답변을 업데이트 하는 다오
 	public void updateQuestion(String answer, String inquire_code)throws Exception;
 	

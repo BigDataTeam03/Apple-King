@@ -29,7 +29,7 @@ public interface AdminDaoService {
 	public List<MemberDto> custList(String name,String notThis, String orderby2) throws Exception;
 	
 	//고객 문의 리스트 출력 하는 인터페이스
-	public List<InquireDto> questionList() throws Exception;
+	public List<InquireDto> questionList(String Not) throws Exception;
 	// 문의에 대한 답변을 업데이트하는 인터페이스
 	public void updateQuestion(String answer, String inquire_code)throws Exception;
 }

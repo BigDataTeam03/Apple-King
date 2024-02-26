@@ -46,9 +46,9 @@ public class AdminDaoServiceImpl implements AdminDaoService {
 	}
 	// 상품 문의내역 출력
 	@Override
-	public List<InquireDto> questionList() throws Exception {
+	public List<InquireDto> questionList(String Not) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.questionList();
+		return dao.questionList(Not);
 	}
 	// 상품 문의 답변 입력
 	@Override

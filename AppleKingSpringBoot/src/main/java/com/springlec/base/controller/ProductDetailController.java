@@ -50,8 +50,8 @@ public class ProductDetailController {
 		// 세션 받아야함
 		String product_code  = session.getAttribute("product_code").toString();
 		String cust_id 		 = session.getAttribute("userId").toString();
-		int cart_qty         = Integer.parseInt(request.getParameter("cart_qty"));
-		String product_name  = (String)session.getAttribute("product_name"); 
+		int cart_qty         = (int) request.getAttribute("cart_qty");
+		//String product_name  = (String)session.getAttribute("product_name"); 
 		
 		boolean check = service.checkItem(cust_id, product_code);
 		if(check == true) {
