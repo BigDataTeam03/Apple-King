@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file ="../top/top_user.jsp" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <%/*
 --------------------------------------------------------------
@@ -24,20 +24,20 @@
 <body>
       <div class="card-body">
           <h1>
-             ${sessionScope.userName} <span class="smaller-font">님</span> 
+             ${memberList.name} <span class="smaller-font">님</span> 
               	  
           </h1>
           <a class="nav-link ml-2 underline-blue" href="myInfo">회원정보 변경</a> 
       </div>
       
    	  <div style="margin-left: 20px;"> 
-	        <span style="font-weight: bold; font-size: 24px;">등급: ${sessionScope.userRank}</span>
+	        <span style="font-weight: bold; font-size: 24px;">등급: ${memberList.cust_rank}</span>
 	        	&nbsp;&nbsp;&nbsp;
-	        <span style="font-weight: bold; font-size: 18px;">가입날짜: ${sessionScope.regDate}</span>
+	        <span style="font-weight: bold; font-size: 18px;">가입날짜: ${memberList.reg_date}</span>
 	  </div><br><br>
  
 	 <div class="orderContainer">
-    	<h4>${sessionScope.userName}님 의 구매내역</h4>
+    	<h4>${memberList.name} 님의 구매내역</h4>
     	<table>
 	        <tr>
 	            <th>상품코드</th>
@@ -46,12 +46,12 @@
 	            <th>사용한 포인트</th>
 	        </tr>
         
-	        <c:forEach items="${order}" var="orderList">
+	        <c:forEach var="order" items="${orderList}">
 	            <tr>
-	                <td>${orderList.product_code}</td>
-	                <td>${orderList.order_code}</td>
-	                <td>${orderList.payment_method}</td>
-	                <td>${orderList.used_point}</td>
+	                <td>${order.product_code}</td>
+	                <td>${order.order_code}</td>
+	                <td>${order.payment_method}</td>
+	                <td>${order.used_point}</td>
 	            </tr>
 	        </c:forEach>
     	</table>
