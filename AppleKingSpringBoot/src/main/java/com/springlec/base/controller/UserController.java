@@ -68,15 +68,12 @@ public class UserController {
 		
 		return "";
 	}
-	
-	
-	
 	@PostMapping("loginProcess")
 	public String loginProcess(
 			@ModelAttribute("userId") String userId,
 			@ModelAttribute("save_check") String save_check,
 			@ModelAttribute("first_check") String first_check,
-			@RequestParam 
+			@RequestParam("userPw") 
 			String userPw, 		// user Password 는 session 에 저장하지 않음. 
 			HttpSession session, HttpServletResponse response,
 			Model model) throws Exception {
@@ -89,14 +86,14 @@ public class UserController {
 		boolean idSaveChk = save_check_nullable.map(val -> true).orElse(false);// null 일경우 false
 
 		Optional<String> first_check_nullable = Optional.ofNullable(first_check);
-		boolean firstChk = first_check_nullable.map(val -> true).orElse(true);// null 일경우 true
+		String firstChk = first_check_nullable.map(val -> "1").orElse("0");// 첫방문 => null => 1
 
 		// -------------------------------TEST CODE---------------------------//
 		System.out.println(">> **LoginProcess START**");
 		System.out.println(">>  userId : " + userId + "\n" + 
 						   ">>  userPw : " + userPw + "\n" + 
-						   ">>  save_check : "+ (idSaveChk? "체크됨"   :"체크안됨")+ "\n" + 
-						   ">>  first_check: "+ (firstChk?  "첫로그인임":"첫 로그인이 아님"));
+						   ">>  saveCheck : "+ (idSaveChk? "체크됨(true)"   :"체크안됨(false)")+ "\n" + 
+						   ">>  firstChk: "+ (firstChk.equals("1")?  "첫로그인임(1)":"첫 로그인이 아님(0)"));
 
 		if (!memberService.memberChkDao(userId, userPw).equals("0")) {
 			System.out.println(">>  login 성공.");
@@ -105,7 +102,7 @@ public class UserController {
 			// user 정보를 세션에 저장.
 			MemberDto userInfo = memberService.memberInfoDao(userId);
 			session.setAttribute("login_test_result", login_test_result);
-			session.setAttribute("firstChk", firstChk);
+			session.setAttribute("first_check", "1");
 			session.setAttribute("userId", userId);
 			session.setAttribute("userName"		, userInfo.getName());
 			session.setAttribute("userTel"		, userInfo.getTel());
@@ -115,6 +112,8 @@ public class UserController {
 			session.setAttribute("userDeactDate", userInfo.getDeact_date());
 			session.setAttribute("userRank"		, userInfo.getCust_rank());
 			session.setAttribute("userPoint"	, userInfo.getCust_point());
+			
+			model.addAttribute("first_check","1");
 			System.out.println(">> Session 에 user 정보를 저장합니다.");
 			
 			// login check process

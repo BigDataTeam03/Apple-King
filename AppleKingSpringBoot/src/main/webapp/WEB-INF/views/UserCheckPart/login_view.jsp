@@ -188,8 +188,8 @@
 	} else { // loginId session 에 값이 있는경우 ( 이미 로그인되어있다. )
     %>
     	<%=session.getAttribute("userId")%> 님 로그인된 상태입니다.<br/>
-    	<a href= "Logout.jsp">[로그아웃]</a>
-    	<a href= "cGoHome.do">[메인으로 가기]</a>
+    	<a href= "logout">[로그아웃]</a>
+    	<a href= "ProductDisplay">[메인으로 가기]</a>
     	
 	<%
 	}

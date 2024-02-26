@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file ='top_user.jsp' %>
+<%-- <%@ include file ='top_user.jsp' %> --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -76,11 +76,9 @@ Update : 2024.02.22 by LS, DK
 	<br>
 	
 	 
-	<%-- <div>
-	<!--  문의 게시판 출력 -->
-  <jsp:include page="aProductDetailQuestions.jsp"/>
-	 
-	</div> --%>
+<div>
+<jsp:include page="/gotoProductQuestion"/>
+</div>
     <!-- 상세페이지 탭 -->
         <div class="container">
 	        <ul class="nav nav-tabs" id="myTab" role="tablist">

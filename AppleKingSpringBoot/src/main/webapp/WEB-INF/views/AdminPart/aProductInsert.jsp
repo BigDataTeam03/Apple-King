@@ -81,7 +81,7 @@
 
 <body>
 <!--  <script src = "aProductUpdate.js"></script> -->
-<form  action="aProductInsertProcess.do" method="post" enctype="multipart/form-data">     
+<form  action="/aProductInsert" method="post" enctype="multipart/form-data">     
 <!--상품평 전체 조회 및 검색 결과 -->
 
 
@@ -91,7 +91,7 @@
     <table border="1">
         <tr>
             <td>상품코드(자동):</td>
-            <td class="input-style"><input type="text" id="product_code" name="product_code" placeholder="수정불가" readonly="readonly"></td>
+            <td class="input-style"><input type="text" id="product_code" name="product_code" placeholder="(자동 생성)" readonly="readonly"></td>
         </tr>
         <tr>
             <td>상품명:</td>
@@ -124,7 +124,7 @@
         </tr>
         <tr>
             <td>상품 등록일:</td>
-            <td class="input-style"><input type="text" name="product_reg_date" readonly="readonly" placeholder="등록일 (자동)" value = "2024-02-02"></td>
+            <td class="input-style"><input type="text" name="product_reg_date" readonly="readonly" placeholder="등록일 (자동 생성)" value = "2024-02-02"></td>
         </tr>
         <tr>
             <td>품종:</td>
@@ -152,7 +152,7 @@
 
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<!-- <script src = "aProductInsert.js"></script> -->
+	<!-- 	 <script src = "resources/js/aProductInsert.js"></script> --> 
 
 <footer>
     <p>&copy; 2024 Apple King. All rights reserved.</p>

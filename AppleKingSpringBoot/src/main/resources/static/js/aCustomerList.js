@@ -17,7 +17,7 @@ window.onload = function() {
 		type: "POST",
 		
 		// target server page(Servlet) url
-		url: "aCustomerListServlet",
+		url: "/custmoerList",
 		
 		// request data (JSON)
 		data: { name: "" },
@@ -35,7 +35,7 @@ window.onload = function() {
 // 테이블 생성하는 함수
 function createTable(data) {
 	//검색해온 데이터(dtos -> json -> Array  변환)
-	dataReal 	= Array.from(data)
+	//dataReal 	= Array.from(data)
 	let table 	=
 	"<table border='1'>"
 	
@@ -47,8 +47,8 @@ function createTable(data) {
 		"<th>전화번호			</th>" + // col3
 		"<th>이메일			</th>" + // col4
 	    "<th>주소				</th>" + // col5
-	    "<th>가입일자			</th>" + // col6
-	    "<th>등급				</th>" + // col7
+	    "<th>등급				</th>" + // col6
+	    "<th>가입일자			</th>" + // col7
 	    "</th>" + "</tr>"
 	    
 
@@ -56,13 +56,13 @@ function createTable(data) {
 	for(let i=0; i<data.length; i++)  {
 		
 		table += "<tr>" +
-		"<td id='" + data[i].name + "'>"+data[i].cust_id +"</td>" + 						// col1
+		"<td>"+data[i].cust_id                  +"</td>"  + 						// col1
 		"<td>" +"<a href='#' onclick='handleClick("+i+")'>" + data[i].name + "</a>"+ "</td>" +	// col2
 		"<td>" + data[i].tel  		          	+ "</td>" + // col3
 		"<td>" + data[i].email 				    + "</td>" +	// col4
 		"<td>" + data[i].address  		        + "</td>" + // col5
-		"<td>" + data[i].reg_date 				+ "</td>" + // col6
-		"<td>" + data[i].cust_rank  			+ "</td>" + // col7
+		"<td>" + data[i].cust_rank  			+ "</td>" + // col6
+		"<td>" + data[i].reg_date 				+ "</td>" + // col7
 		"</tr>"
 	}
 	
@@ -73,7 +73,7 @@ function createTable(data) {
 	$("#custList").html(table);
 	
 	// html cust_id 컨텐츠에 총 고객 수를 넣어줌. 
-	$("cust_id").html(data.length)
+	$("cust_idL").html(data.length)
 	
 	document.querySelector('#cust_id').value = data.length +1
 	
@@ -114,7 +114,7 @@ function handleClick(index){ //index : table cell number
 	cust_rank.value 	= dataReal[index].cust_rank
 	}
 	
-	//정렬기능과 검색기능을 같이 서버에 보내야 검색후 정렬을 시행해도 검색이 유지된다
+//정렬기능과 검색기능을 같이 서버에 보내야 검색후 정렬을 시행해도 검색이 유지된다
 $(document).ready(function() {
     // 정렬 콤보박스 값 변경 이벤트 처리
     $("#sortOption").change(function() {
@@ -125,7 +125,7 @@ $(document).ready(function() {
         // AJAX 요청
         $.ajax({
             type: "POST",
-            url: "aCustomerListServlet",
+            url: "/custmoerList",
             data: { name: name, 
               sortOption: sortOption }, // 검색어와 정렬 옵션 함께 전송
             dataType: "json",
@@ -139,13 +139,14 @@ $(document).ready(function() {
     // 검색 버튼 클릭 이벤트 처리	
     $("#searchBtn").click(function() {
         // 입력된 데이터 가져오기
-        let name = $("#name").val();
-
+        let name = $("#name").val();   			  //이름 검색값 가져오기
+ 		let sortOption = $("#sortOption").val(); // 정렬 옵션 가져오기
         // AJAX 요청
         $.ajax({
             type: "POST",
-            url: "aCustomerListServlet",
-            data: { name: name },
+            url: "/custmoerList",
+            data: { name: name,
+             sortOption : sortOption },
             success: function(response) {
                 // 서버에서 받은 응답 처리
                 createTable(response);
