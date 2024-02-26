@@ -74,7 +74,7 @@
 		
 		<div>
 			<br>
-			<input 	type ="text" id ="name" placeholder ="상품 검색">
+			<input 	type ="text" id ="name" placeholder ="고객 검색">
 			<button id ="searchBtn">검색</button>
 			
 		</div>
@@ -82,8 +82,8 @@
 		<div>
 			   <select id="sortOption">
             		 <option value="dateNew">가입최신순</option>
-            		  <option value="dateLate">가입오래된순</option>
-            		  <option value="rankHigh">등급높은순</option>
+            		 <option value="dateLate">가입오래된순</option>
+            		 <option value="rankHigh">등급높은순</option>
            			 <option value="rankLow">등급낮은순</option>
                </select>
 		</div>
@@ -91,7 +91,7 @@
 										
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js?ver=1"></script>
 		<script src = "https://code.jquery.com/jquery-3.6.4.min.js"></script>	
-		<script src ="aCustomerList.js?ver=1"> </script>
+		<script src ="resources/js/aCustomerList.js"> </script>
 	
  		<footer>
         	<p>&copy; 2024 Apple Store. All rights reserved.</p>

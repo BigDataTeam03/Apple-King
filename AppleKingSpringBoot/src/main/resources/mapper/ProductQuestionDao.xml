@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springlec.base.dao.ProductQuestionDao">
+		<select id="ShowList">
+				SELECT 
+					cust_id,
+					product_code, 
+					inquire_date, 
+					inquire_content,
+				    answer_content 
+				FROM 
+					inquire 
+				WHERE 
+					product_code= #{product_code} 
+		</select>
+		<insert id="insertQuestion">
+				INSERT INTO 
+					inquire 
+				    (cust_id, product_code, inquire_date, inquire_content) 
+				 values
+				    (#{cust_id},#{product_code},now(),#{question})	
+		</insert>
+</mapper>
