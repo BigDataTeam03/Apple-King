@@ -44,31 +44,30 @@ function numberWithCommas(price) {
 	return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-// 상품 선택시 Session 에 선택 상품의 정보를 저장하는 코드 
-function saveProductInfo(productCode, productName, price, origin, size, weight, product_qty) {
 
-	//alert(" saveProductInfo 실행 productname  :"+productName)
+
+
+
+// 상품 선택시 Session 에 선택 상품의 정보를 저장하는 코드 
+function saveProductInfo(product_code, product_name, price, origin, size, weight, product_qty) {
+
+	alert(" saveProductInfo 실행 productname  :"+product_name)
 	$.ajax({
 		type: "POST",
-		url: "saveProductInfoServlet",
+		url: "saveProductInfo",
 		data: {
-			productCode: productCode,
-			productName: productName,
-			price: price,
-			origin: origin,
-			size: size,
-			weight: weight,
-			product_qty: product_qty
+			product_code	: product_code,
+			product_name	: product_name,
+			price			: price,
+			origin			: origin,
+			size			: size,
+			weight			: weight,
+			product_qty		: product_qty
 		},
-		success: function(response) {
-			// 세션에 저장이 완료되면 상세 페이지로 이동합니다.
-			//alert("상품정보를 세션에 저장합니다")
-			window.location.href = "productDetail.do";
+		success: function() {
+			alert("Success")
+			window.location.href = "productDetail";
 		},
-		error: function(xhr, status, error) {
-			console.error("AJAX 오류: " + status, error);
-			alert("상품 정보를 저장하는 중 오류가 발생했습니다.");
-		}
 	});
 }
 
@@ -76,31 +75,48 @@ function saveProductInfo(productCode, productName, price, origin, size, weight, 
 //---------------------------------------------------
 //검색 기능과 정렬 기능을 동시에 사용하는 function
 $(document).ready(function() {
-	$("#searchButton").click(productSearchSort); 	// 검색 버튼 클릭시 상품검색 함수 실행 
-	$("#sortingOption").change(productSearchSort)	// 정렬 option 바뀌면 상품 검색 함수 실행
-	$("#searchContent").keypress(function(e) {  // 엔터키를 눌렀을때 상품 검색 함수 실행 
-		if (e.keyCode === 13) { // 엔터 키 keyCode = 13.
-			productSearchSort();
-		}
-	});
+	let searchContent = $("#searchContent").val();
+    // 정렬 옵션을 클릭했을 때
+    $("#productRank, #highPrice, #lowPrice, #sold_qty, #product_reg_date").click(function(e) {
+        e.preventDefault(); // 링크의 기본 동작 방지
+        let sortingOption = $(this).attr("id"); // 클릭된 링크의 id 값을 가져옴
+        alert(sortingOption)
+        productSort(sortingOption); // 정렬 옵션을 인자로 전달하여 검색 및 정렬 함수 호출
+    });
 
-	// 검색함수 
-	function productSearchSort() {
+    // 검색 버튼 클릭 시
+    $("#searchButton").click(function(){
+        let searchContent = $("#searchContent").val();
+        let sortingOption = $("#sortingOption > .active").attr("value");
+        productSearchSort(searchContent, sortingOption);
+    }); 
 
-		// 검색정렬 조건
-		let searchContent = $("#searchContent").val() 		// 검색 내용
-		let sortingOption = $("#sortingOption").val()		// 정렬 조건
+    // 엔터키를 눌렀을 때
+    $("#searchContent").keypress(function(e) {
+        if (e.keyCode === 13) {
+            let searchContent = $("#searchContent").val();
+            let sortingOption = $("#sortingOption > .active").attr("value");
+            productSearchSort(searchContent, sortingOption);
+        }
+    });
 
-		// 페이지 조건
-		let currentPage = $("#currentPage").val() 	//현재페이지
-		let startProduct = $("#startProduct").val();//페이지 첫상품
-		let pageSize = $("#pageSize").val(); 		//페이지당 상품 개수
-
-		//페이지 이동 (검색과 정렬조건을 가지고 이동.)
-		window.location.href =
-			"ProductDisplay?" +
-			"pageNum=1" +
-			"&searchContent=" + searchContent +
-			"&sortingOption=" + sortingOption
-	}
+    // 검색 및 정렬 함수
+    function productSearchSort(searchContent, sortingOption) {
+		//alert(sortingOption)
+        window.location.href =
+            "ProductDisplay?" +
+            "pageNum=1" +
+            "&searchContent=" + searchContent +
+            "&sortingOption=" + sortingOption;
+    }
+     function productSort(sortingOption) {
+		
+		let searchContent = $("#searchContent").val();
+		//alert(sortingOption, searchContent)
+        window.location.href =
+            "ProductDisplay?" +
+            "pageNum=1" +
+            "&sortingOption=" +sortingOption+
+            "&searchContent="+searchContent;
+    }
 });
