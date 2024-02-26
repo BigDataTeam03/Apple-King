@@ -25,7 +25,10 @@ public interface AdminDao {
 			String detail_image_name,String view_count,String product_reg_date,
 			String kind,String product_image_names, String product_code) throws Exception;
 	// 고객 리스트 출력 다오
-	public List<MemberDto> custList(String name, String notThis, String orderby) throws Exception;
+	public List<MemberDto> custList(String name, String notThis, String orderby2) throws Exception;
 	// 문의 게시판 출력 다오
 	public List<InquireDto> questionList() throws Exception;
+	// 문의에 대한 답변을 업데이트 하는 다오
+	public void updateQuestion(String answer, String inquire_code)throws Exception;
+	
 }

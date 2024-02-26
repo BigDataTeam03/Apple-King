@@ -4,14 +4,17 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springlec.base.model.InquireDto;
 import com.springlec.base.model.MemberDto;
+import com.springlec.base.model.OrderDto;
 import com.springlec.base.model.ProductListDto;
 import com.springlec.base.service.AdminDaoService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,6 +36,9 @@ public class AdminController {
 	 * 		1. 고객 리스트가 데이터가 안나옴..
 	 *      2. 문의 내역도 데이터가 안나옴
 	 *      3. jsp 에서 만든 페이지 연결 완료
+	 * Update : 2024.02.26 KBS
+	 * 		1. 문의 페이지 완성
+	 * 		2. 고객 리스트 출력 완성 
 	 *-------------------------------------- 
 	
 	*/
@@ -128,7 +134,6 @@ public class AdminController {
      //  서비스에 해당 변수를 넣어 다오를 실행시키고 리스트에 넣는다
   
      List<ProductListDto> productList = service.productlist(product_name, selected, orderby);
-   
      return ResponseEntity.ok().body(productList);
 	}
 	
@@ -199,12 +204,14 @@ public class AdminController {
 	public String aGoHome() throws Exception {
 		return "AdminPart/aProductListUpdate";
 	}
+
+	
 //------------------------------------------------------
 	// 상품 등록 메소드
-	@PostMapping("/aProductInsert")
-	public void insert(HttpServletRequest request) throws Exception {
-		
-	}
+//	@PostMapping("/aProductInsert")
+//	public void insert(HttpServletRequest request) throws Exception {
+//		
+//	}
 	// 고객 리스트를 보여주는 메서드
 	@PostMapping("/custmoerList")
 	public ResponseEntity<List<MemberDto>> custlist(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -213,7 +220,7 @@ public class AdminController {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		// 이름 검색값 가져오는 변수
-		String name =    "'%"+(String)request.getAttribute("name")+"%'";
+		String name =    "%"+(String)request.getParameter("name")+"%";
 		//정렬옵션 가져오는 변수 
 		String sortOption = request.getParameter("sortOption");
 		//시작시 선택되지 않았으니 디폴트값으로 날짜정렬
@@ -221,22 +228,22 @@ public class AdminController {
 			sortOption = "reg_date";
 		}
 		//쿼리문 기본값 날짜
-		String orderby = " order by reg_date asc";
+		String orderby2 = " order by reg_date asc";
 		
 		//선택한 콤보박스값에 따라 정렬쿼리문 변경
 		if (sortOption.equals("rankHigh")) 
-		 	orderby = "order by cust_rank desc";
+		 	orderby2 = "order by cust_rank desc";
 		if (sortOption.equals("dateNew"))
-			orderby = "order by reg_date desc";
+			orderby2 = "order by reg_date desc";
 		if (sortOption.equals("rankLow"))
-    	 	orderby = "order by cust_rank asc";
+    	 	orderby2 = "order by cust_rank asc";
 		if (sortOption.equals("dateLate"))
-    	 	orderby = "order by reg_date asc";
+    	 	orderby2 = "order by reg_date asc";
 		//  .xml 에 <> 가 주석으로 인식되서 여기서 함....
 		//   고객 테이블에 어드민도 포함되어있기 때문에 어드민을 빼고 조회한다
-		String notThis = "cust_id <> 'admin123' ";
+		String notThis = " cust_id <> 'admin123' ";
 		// 서비스 실행 
-	List<MemberDto>	memberList = service.custList(name,notThis,orderby);
+	List<MemberDto>	memberList = service.custList(name,notThis,orderby2);
 		
 	
 			
@@ -244,6 +251,7 @@ public class AdminController {
 		
 		
 	}
+	// 문의 내역을 출력하는 메서드
 	@PostMapping("/inqueireList")
 	public ResponseEntity<List<InquireDto>> qustionList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("application/json");
@@ -254,5 +262,17 @@ public class AdminController {
 		return ResponseEntity.ok().body(QList);
 		
 	}
+	// 관리자가 해당 문의에 답변을 달아주는 메서드
+	@PostMapping("/insertAnswer")
+	
+	public ResponseEntity<String> insertAnswer(@RequestParam("answer") String answer, @RequestParam("code") String code) {
+	    try {
+	        service.updateQuestion(answer, code);
+	        return ResponseEntity.ok("답변이 성공적으로 등록되었습니다.");
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("답변 등록 중 오류가 발생했습니다.");
+	    }
+	}
+	
 	
 }

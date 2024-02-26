@@ -27,7 +27,9 @@ public class ProductController_Question {
 	 * Update : 2024.02.25 KBS 
 	 * 		1.  테이블이 안나옴
 	 *      2. 인서트 기능 완료
-	 *   
+	 * Update : 2024.02.26 KBS
+	 * 		1. 테이블 나옴
+	 *      2. 관리자가 답변단 내용 확인 가능  
 	 *-------------------------------------- 
 	
 	*/
@@ -37,11 +39,13 @@ public class ProductController_Question {
 	@GetMapping("/goProductQuestion")
 	public ResponseEntity<List<InquireDto>> goQuestion(HttpSession session, HttpServletResponse response,
 							 HttpServletRequest request)throws Exception {
+		System.out.println(" 문의 테이블 생성");
 		// 세션으로 해당 상품의 코드를 받는다
-		String product_code = (String) session.getAttribute("product_code");
-		//String product_code = "1";
+		//String product_code = "'"+(String)session.getAttribute("product_code")+"'";
+		String product_code = "1";
 		// 배열에 결과값들을 넣는다
 		List<InquireDto> QuestionList = service.ShowList(product_code);
+		System.out.println("문의 리스트" + QuestionList);
 		// Json  형식으로 response 를 보낸다
 	return	ResponseEntity.ok().body(QuestionList);
 	}
@@ -62,7 +66,7 @@ public class ProductController_Question {
         String question = request.getParameter("question");
         // 서비스로 내용을 보낸다
         service.insertQuestion(cust_id, product_code,question);
-        // 기능이 끝나면 다시 테이블으 불러온다
+        // 기능이 끝나면 다시 테이블을 불러온다
         return"redirect:/goProductQuestion";
 	}
 }
