@@ -59,8 +59,8 @@ public class ProductController_Question {
 	public String insertQ(HttpServletRequest request, HttpSession session,
 						  HttpServletResponse response)throws Exception  {
 		// 세션으로 로그인 할 때 받는 아이디값, 해당 상품의 코드값을 받는다
-		//String product_code = (String) session.getAttribute("product_code"); // 세션에서 상품 이름 가져오기
-		String product_code = "1";
+		String product_code = (String) session.getAttribute("product_code"); // 세션에서 상품 이름 가져오기
+		//String product_code = "1";
         String cust_id = (String)session.getAttribute("userId");
         // 작성한 문의 내용을 가져온다
         String question = request.getParameter("question");

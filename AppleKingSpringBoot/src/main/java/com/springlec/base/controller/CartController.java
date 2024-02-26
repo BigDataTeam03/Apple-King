@@ -48,7 +48,7 @@ public class CartController {
 			 										   HttpServletResponse response  ) throws Exception {
 	        // 세션에서 유저 아이디 값 가져오기
 	        String userId = (String)session.getAttribute("userId");
-		
+		 System.out.println("세션아이디값" + userId);
 			// Json 값 한글 지정
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
@@ -69,11 +69,12 @@ public class CartController {
 	@PostMapping("/qtyUpdate")
 	public  void qtyCount(HttpServletRequest request, Model model,
 						  HttpServletResponse response, HttpServletRequest session) throws Exception {
-		//String product_qty = (String) session.getAttribute("product_qty");
+		String product_qty = (String) session.getAttribute("product_qty");
+		System.out.println("세션으로 받아온 수량값" +product_qty);
 		//response 를 보내기 위한 선언
 		PrintWriter out = response.getWriter();
 		//변수지정
-		String product_qty = "5";
+		//String product_qty = "5";
 		int product_qtyInt = Integer.parseInt(product_qty);
 		String cart_qty = request.getParameter("quantity");
 		int cart_qtyInt = Integer.parseInt(cart_qty);

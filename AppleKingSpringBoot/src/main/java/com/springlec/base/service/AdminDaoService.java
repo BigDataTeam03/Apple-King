@@ -2,6 +2,8 @@ package com.springlec.base.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.springlec.base.model.InquireDto;
 import com.springlec.base.model.MemberDto;
 import com.springlec.base.model.ProductListDto;
@@ -29,7 +31,26 @@ public interface AdminDaoService {
 	public List<MemberDto> custList(String name,String notThis, String orderby2) throws Exception;
 	
 	//고객 문의 리스트 출력 하는 인터페이스
-	public List<InquireDto> questionList() throws Exception;
+	public List<InquireDto> questionList(String Not) throws Exception;
 	// 문의에 대한 답변을 업데이트하는 인터페이스
 	public void updateQuestion(String answer, String inquire_code)throws Exception;
+	
+	// 상품 인서트 하는 인터페이스
+	public void productInsertDao(
+			String product_code 	,
+			String product_name 	,
+			String product_qty  	,
+			String origin  			,
+			String manufacture_date ,
+			String weight  			,
+			String size  			,
+			MultipartFile detail_images,  	
+			String view_count  		,
+			String kind 			,
+			String product_reg_date ,
+			MultipartFile product_image, 
+			String price
+			
+			) throws Exception ;
+	
 }
