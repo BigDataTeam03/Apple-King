@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springlec.base.dao.MemberDao;
 import com.springlec.base.dao.OrderDao;
+import com.springlec.base.model.MemberDto;
 import com.springlec.base.model.OrderDto;
 @Service
 public class OrderDaoServiceImpl implements OrderDaoService {
@@ -14,11 +16,17 @@ public class OrderDaoServiceImpl implements OrderDaoService {
 	@Autowired
 	OrderDao dao;
 	
+	@Autowired
+	MemberDao memberDao;
 	
 	@Override
-	public List<OrderDto> OrderDao(String cust_id) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.OrderDao(cust_id);
+	public List<OrderDto> OrderList(String userId) throws Exception {
+		return dao.OrderList(userId);
+	}
+
+	@Override
+	public MemberDto memberInfoDao(String userId) throws Exception {
+		return memberDao.memberInfoDao(userId);
 	}
 
 }
