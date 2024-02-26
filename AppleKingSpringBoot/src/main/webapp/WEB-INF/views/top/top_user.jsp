@@ -41,7 +41,7 @@
 	                    <a class="nav-link" href="ListView">장바구니</a>
 	                </li>
 	                <li class="nav-item">
-	                    <a class="nav-link" href="myPage">마이페이지</a>
+	                    <a class="nav-link" href="/MyPage">마이페이지</a>
 	                </li>
 	                <li class="nav-item">
 	                    <a class="nav-link" href="logout">로그아웃</a>
