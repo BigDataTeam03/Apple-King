@@ -12,9 +12,18 @@ public interface ProductListDao {
 	 * Author		:
 	 * Date			:
 	 * Update 		:
+	 * 	<<2024.02.26 By pdg>>
+	 * 	1. 정렬기능 추가.
 	 * 
 	 */
-	//Product 정보를 불러오는 DAO 
+	
+	// 상품 총 개수 반환 DAO
 	public int productCntDao() throws Exception;
-	public List<ProductListDto> productListDao(String query, String searchContent, int startRow, int pageSize) throws Exception;
+	
+	//Product (검색조건, 검색내용, 정렬) 정보를 불러오는 DAO 
+	public List<ProductListDto> productListDao(	String searchQuery,
+												String searchContent,
+												String sortingOption,
+												int startRow,
+												int pageSize) throws Exception;
 }

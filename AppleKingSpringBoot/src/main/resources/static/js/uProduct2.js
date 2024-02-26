@@ -76,31 +76,31 @@ function saveProductInfo(productCode, productName, price, origin, size, weight, 
 //---------------------------------------------------
 //검색 기능과 정렬 기능을 동시에 사용하는 function
 $(document).ready(function() {
-	$("#searchButton").click(productSearch); 	// 검색 버튼 클릭시 상품검색 함수 실행 
-	$("#sortingOption").change(productSearch)	// 정렬 option 바뀌면 상품 검색 함수 실행
+	$("#searchButton").click(productSearchSort); 	// 검색 버튼 클릭시 상품검색 함수 실행 
+	$("#sortingOption").change(productSearchSort)	// 정렬 option 바뀌면 상품 검색 함수 실행
 	$("#searchContent").keypress(function(e) {  // 엔터키를 눌렀을때 상품 검색 함수 실행 
 		if (e.keyCode === 13) { // 엔터 키 keyCode = 13.
-			productSearch();
+			productSearchSort();
 		}
 	});
 
 	// 검색함수 
-	function productSearch() {
+	function productSearchSort() {
 
 		// 검색정렬 조건
-		let searchContent = $("#searchContent").val() 	// 검색 내용
-		let sortingOption = $("#sortingOption").val()	// 정렬 조건
+		let searchContent = $("#searchContent").val() 		// 검색 내용
+		let sortingOption = $("#sortingOption").val()		// 정렬 조건
 
 		// 페이지 조건
 		let currentPage = $("#currentPage").val() 	//현재페이지
 		let startProduct = $("#startProduct").val();//페이지 첫상품
 		let pageSize = $("#pageSize").val(); 		//페이지당 상품 개수
 
-		//페이지 이동 
+		//페이지 이동 (검색과 정렬조건을 가지고 이동.)
 		window.location.href =
 			"ProductDisplay?" +
 			"pageNum=1" +
 			"&searchContent=" + searchContent +
-			"&SortingOption=" + sortingOption
+			"&sortingOption=" + sortingOption
 	}
 });

@@ -37,15 +37,12 @@ public class ProductListController {
 	 * 		 2. testProductDisplay =>ProductDisplay 
 	 * 		 3. page 버튼 클릭할 때마다 환영합니다 메세지 뜨는 문제 해결 
 	 * 		 4. query 를 searchCondition 으로 바꿈.
-	 * 
+	 * 		 5. (검색 판매자이름등으로 검색조건을 만들수는 있으나 사과만 팔기때문에 category 필요없음.-> Discard
 	 * 
 	 *-------------------------------------- 
 	 */
 	@Autowired
 	ProductListDaoService service;
-	
-
-	
 	
 	//paging 기능
 	@GetMapping("/ProductDisplay")
@@ -54,7 +51,6 @@ public class ProductListController {
 							   	 Model model
 							   	//@ModelAttribute("pageNum") String pageNum
 								) throws Exception{
-
 		
 		//총 product 개수
 		int pcnt = service.productCntDao(); 
@@ -66,16 +62,19 @@ public class ProductListController {
 				pageNum = request.getParameter("pageNum");
 			}
 			
-		//  검색 조건
-		String searchQuery = "product_name";
-		if(request.getParameter("searchCondition") != null) {
-			searchQuery = request.getParameter("query");
-		}
+		//  검색 조건 
+		String searchQuery = "product_name"; // 기본값은 상품이름으로 찾기
 		
-		// 검색내용
+		// 검색 내용
 		String searchContent = "";
 		if(request.getParameter("searchContent")!= null) {
 			searchContent = request.getParameter("searchContent");
+		}
+		
+		// 정렬 조건
+		String sortingOption = "highPrice";
+		if(request.getParameter("sortingOption")!= null) {
+			searchContent = request.getParameter("sortingOption");
 		}
 		
 		// 현재페이지 <- request 로 받음. 
@@ -98,8 +97,6 @@ public class ProductListController {
 		// End page can be greater than the total page. 
 		int endPage = startPage + pageBlock -1;
 		
-		
-		
 		//Last page to equalize with the total page count. 
 		model.addAttribute("pcnt"			,pcnt);
 		model.addAttribute("currentPage"	,currentPage);
@@ -110,7 +107,17 @@ public class ProductListController {
 		model.addAttribute("startPage"		,startPage);
 		model.addAttribute("endPage"		,endPage);
 		
-		List<ProductListDto> productList = service.productListDao(searchQuery, searchContent, startProduct, pageSize);
+		// Parameter check
+		System.out.println(">> searchContent :"+searchContent);
+		
+		// ServiceDao Call
+		List<ProductListDto> productList = 
+							service.productListDao(	searchQuery, 	// 검색조건
+													searchContent,	// 검색내용
+													sortingOption,	// 정렬조건
+													startProduct,	// 페이지 첫상품
+													pageSize);		// 한페이지당 상품수
+		
 		model.addAttribute("productList", productList);
 		// 첫번째 체크 로깅
 		System.out.println(">> first_check 값 : "+ session.getAttribute("first_check"));
@@ -119,7 +126,6 @@ public class ProductListController {
 		System.out.println("first_check check 이 1(첫사용자임) 입니다. 0(첫사용자 아님) 로 바꿈.");
 		session.setAttribute("first_check","0");
 		}
-		
 		}// pcnt !=0 end
 		return "/ProductPart/uProductList";
 		

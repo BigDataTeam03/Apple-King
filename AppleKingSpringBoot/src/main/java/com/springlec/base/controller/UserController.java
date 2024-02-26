@@ -68,9 +68,6 @@ public class UserController {
 		
 		return "";
 	}
-	
-	
-	
 	@PostMapping("loginProcess")
 	public String loginProcess(
 			@ModelAttribute("userId") String userId,
