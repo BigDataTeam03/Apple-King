@@ -50,13 +50,4 @@ public class myInfoController {
 		
 	return "/MyPagePart/myInfo";	
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-
 }//CONTROLLER END
