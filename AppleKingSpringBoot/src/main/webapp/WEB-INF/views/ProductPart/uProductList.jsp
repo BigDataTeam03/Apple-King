@@ -49,12 +49,12 @@
 	<body>
 	
 		<input type="hidden" id ="userName" value ="${userName}"/> 
-		<input type="hidden" id ="fisrtChk" value ="${firstChk}"/> 
+		<input type="hidden" id ="first_check" value ="${first_check}"/> 
 		<input type="hidden" id ="currentPage" value ="${currentPage}"/> 
 		<input type="hidden" id ="startProduct" value ="${startProduct}"/> 
 		<input type="hidden" id ="pageSize" value ="${pageSize}"/> 
-		<!--  로그인 이후에 이페이지를 본순간 부터 너는 첫번째 방문자가 아니다.  -->
-	
+		
+		
 		<!--상품 검색 -->
 	    <div class="searchContainer">
 			<input type="text" placeholder="찾고싶은 상품을 입력하세요!" id ="searchContent" size="50" ></input>
@@ -65,6 +65,9 @@
 			 	<option value="lowPrice">낮은가격순</option>
 			 	<option value="product_code">상품코드</option>
 		    </select>
+		
+	
+	
 		    <!-- 몇개씩 보기 기능 추가 (아이템 추가할경우 수정하기) -->
 			<select id="itemsPerPageSelect" onchange="setItemsPerPage(this.value)">
 			  <option value="5" selected>5개씩 보기</option>
