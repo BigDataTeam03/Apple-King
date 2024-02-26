@@ -36,6 +36,7 @@
 	  	1.JSP에서는 특수 문자를 그대로 사용할 수 없기 때문에 >와 <를 각각 gt와 lt로 바꿈.
 	  <<2024.02.26>> by pdg
 	  	1.  top_user 경로 설정 수정함. 
+	  	2. classifyOption => SortingOptions 로 수정, highprice 등등 carmelCasification
 	--------------------------------------------------------------
 	*/
     		  	 %>
@@ -50,13 +51,18 @@
 		<input type="hidden" id ="userName" value ="${userName}"/> 
 		<input type="hidden" id ="fisrtChk" value ="${firstChk}"/> 
 		<input type="hidden" id ="currentPage" value ="${currentPage}"/> 
+		<input type="hidden" id ="startProduct" value ="${startProduct}"/> 
+		<input type="hidden" id ="pageSize" value ="${pageSize}"/> 
+		<!--  로그인 이후에 이페이지를 본순간 부터 너는 첫번째 방문자가 아니다.  -->
+	
+		<!--상품 검색 -->
 	    <div class="searchContainer">
 			<input type="text" placeholder="찾고싶은 상품을 입력하세요!" id ="searchContent" size="50" ></input>
 			<button id ="searchButton">검색</button>
 			<!-- 가격순으로 정렬 -->
-		   	<select id="classifyOption">
-			 	<option value="highprice">높은가격순</option>
-			 	<option value="lowprice">낮은가격순</option>
+		   	<select id="sortingOption">
+			 	<option value="highPrice">높은가격순</option>
+			 	<option value="lowPrice">낮은가격순</option>
 			 	<option value="product_code">상품코드</option>
 		    </select>
 		    <!-- 몇개씩 보기 기능 추가 (아이템 추가할경우 수정하기) -->
@@ -68,7 +74,6 @@
 		</div>
 	    <!-- 상품 전체 조회 -->
 	    	<div class="card-container">
-	   
 			 	<c:forEach var="item" items="${productList}">
 			 		 	<div class ="card" >
 	 	 				<img src="resources/image/${item.product_image_names}" alt="${item.product_name} Image">

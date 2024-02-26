@@ -95,8 +95,8 @@ public class UserController {
 		System.out.println(">> **LoginProcess START**");
 		System.out.println(">>  userId : " + userId + "\n" + 
 						   ">>  userPw : " + userPw + "\n" + 
-						   ">>  save_check : "+ (idSaveChk? "체크됨"   :"체크안됨")+ "\n" + 
-						   ">>  first_check: "+ (firstChk?  "첫로그인임":"첫 로그인이 아님"));
+						   ">>  save_check : "+ (idSaveChk? "체크됨(true)"   :"체크안됨(false)")+ "\n" + 
+						   ">>  first_check: "+ (firstChk?  "첫로그인임(true)":"첫 로그인이 아님(false)"));
 
 		if (!memberService.memberChkDao(userId, userPw).equals("0")) {
 			System.out.println(">>  login 성공.");
