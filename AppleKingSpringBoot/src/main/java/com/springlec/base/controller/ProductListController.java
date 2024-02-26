@@ -13,6 +13,7 @@ import com.springlec.base.model.ProductListDto;
 import com.springlec.base.service.ProductListDaoService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @SessionAttributes("first_check")
@@ -43,12 +44,17 @@ public class ProductListController {
 	@Autowired
 	ProductListDaoService service;
 	
+
+	
+	
 	//paging 기능
 	@GetMapping("/ProductDisplay")
 	public String ProductDisplay(HttpServletRequest request,
+								 HttpSession session,
 							   	 Model model
 							   	//@ModelAttribute("pageNum") String pageNum
-			) throws Exception{
+								) throws Exception{
+
 		
 		//총 product 개수
 		int pcnt = service.productCntDao(); 
@@ -106,8 +112,20 @@ public class ProductListController {
 		
 		List<ProductListDto> productList = service.productListDao(searchQuery, searchContent, startProduct, pageSize);
 		model.addAttribute("productList", productList);
+		// 첫번째 체크 로깅
+		System.out.println(">> first_check 값 : "+ session.getAttribute("first_check"));
+		
+		if(session.getAttribute("first_check").equals("1")) {
+		System.out.println("first_check check 이 1(첫사용자임) 입니다. 0(첫사용자 아님) 로 바꿈.");
+		session.setAttribute("first_check","0");
+		}
+		
 		}// pcnt !=0 end
 		return "/ProductPart/uProductList";
+		
 	}// ProductDisplay End
+
 }//PRODCUT LIST CONTROLLER END
+
+
 

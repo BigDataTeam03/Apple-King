@@ -27,11 +27,14 @@
 // 환영 메세지 
 window.onload = function() {
 	let name = $("#userName").val()
-	let firstChk = $("#firstChk")
+	//J query 객체는 불린으로만들수 없다. 따라서 스트링으로 값을 비교한다. 
+	let first_check = $("#first_check").val()
 	
-	if (firstChk) {
-		alert(name + "님 환영합니다. ")
-		//Session 
+	//alert("first_check : "+first_check)
+	
+	if (first_check == "1") {
+		//alert(name + "님 환영합니다. ")
+		//Controller 호출하여 firstChk -> false 
 
 	}
 }// window onload end
