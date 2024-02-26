@@ -42,7 +42,7 @@ public class UserController {
 	 * o 	 4. admin 일경우 aGoHome 으로 가는 기능 
 	 * o	 5. log out 기능 추가
 	 * 		Update 2024.02.25 by PDG
-	 * 		 1. annoatation 을이용하여 userId session 을 사용하자.
+	 * 		 1. annoatation 을이용하여 userId session 을 사용하자. ->discard
 	 * o	 
 	 *-------------------------------------- 
 	 */
@@ -61,6 +61,7 @@ public class UserController {
 		System.out.println(">> userSignUp.do START ");
 		return "/UserCheckPart/signup_view";
 	}
+	
 	
 	@PostMapping("SignUpUserOverlapChk")
 	@ResponseBody
@@ -127,7 +128,7 @@ public class UserController {
 					// save check 안되어있을 경우 쿠키 삭제함.
 					CookieManager.deleteCookie(response, "loginId");
 				}
-				return "redirect:/ProductDisplay";
+				return "redirect:/aGoHome";
 			} else{// 일반 유저 인증 
 				System.out.println(">> 일반 사용자 입니다. ");
 				if(save_check != null && save_check.equals("Y")){

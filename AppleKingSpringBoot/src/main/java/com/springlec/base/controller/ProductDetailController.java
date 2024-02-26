@@ -36,8 +36,13 @@ public class ProductDetailController {
 	ProductDetailDaoService service;
 	
 	@GetMapping("/productDetail")
-	public String productDetailDisplay (HttpServletRequest request, Model model) throws Exception{
-		List<ProductListDto> listDao = service.productDetailDao(request.getParameter("product_code"));
+	public String productDetailDisplay (HttpServletRequest request,
+			HttpSession session,
+			Model model) throws Exception{
+		
+		String product_code = (String)session.getAttribute("product_code");
+				
+		List<ProductListDto> listDao = service.productDetailDao(product_code);
 		model.addAttribute("listDao", listDao);
 		System.out.println("상품목록 :" + listDao);
 		return "uProductDetail";

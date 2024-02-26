@@ -47,7 +47,7 @@ public class ProductListServiceImpl implements ProductListDaoService {
 		
 		switch(sortingOption) {
 		// 랭킹 순 
-		case "productRank": sortQuery= "order by productRank asc "; break;
+		case "productRank": sortQuery= "order by product_rank asc "; break;
 		// 높은 가격순
 		case "highPrice": sortQuery= "order by price asc "; break;
 		// 낮은 가격순
@@ -59,6 +59,7 @@ public class ProductListServiceImpl implements ProductListDaoService {
 			
 		}
 		sortingOption =sortQuery;
+		
 		System.out.println(">> SQL query :"+"select * from product where "
 				+ searchQuery +" like " +searchContent+ " "+sortingOption +" limit"+ Integer.toString(startProduct-1) +" ,"+ pageSize
 			);

@@ -65,14 +65,12 @@
 			<button id ="searchButton">검색</button>
 			
 			<!-- 가격순으로 정렬 -->
-		   	<select id="sortingOption">
-			 	<option value="productRank">		애플랭킹순</option>
-			 	<option value="highPrice">			높은 가격순</option>
-			 	<option value="lowPrice">			낮은 가격순</option>
-			 	<option value="sold_qty">			판매량순</option>
-			 	<option value="product_reg_date">	최신순</option>
-			 	
-		    </select>
+		    <a href="#" id="productRank" >애플랭킹순</a>
+			<a href="#" id="highPrice" >높은 가격순</a>
+			<a href="#" id="lowPrice">낮은 가격순</a>
+			<a href="#" id="sold_qty">판매량순</a>
+			<a href="#" id="product_reg_date">최신순</a>
+		    
 		    <!-- 몇개씩 보기 기능 추가 (아이템 추가할경우 수정하기) -->
 			<select id="itemsPerPageSelect" onchange="setItemsPerPage(this.value)">
 			  <option value="5" selected>	5개씩 보기</option>
@@ -87,7 +85,16 @@
 	 	 				<img src="resources/image/${item.product_image_names}" alt="${item.product_name} Image">
 							<div class="card-body">
 								<h5 class="card-title">
-									<a href="productDetail?product_code=${item.product_code}">${item.product_name}</a>
+								
+									<a href="javascript:void(0);" 
+									   onclick="saveProductInfo('${item.product_code}',
+									    '${item.product_name}',
+									     ${item.price},
+									    '${item.origin}',
+									    '${item.size}',
+									     ${item.weight},
+									     ${item.product_qty})">${item.product_name}</a>
+									
 								</h5>
 								<p class="card-text">
 		                        <span class="red-price bold">

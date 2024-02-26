@@ -28,7 +28,7 @@
 	</head>
 	<body>
 	  <nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top">
-	        <a class="navbar-brand" href="cGoHome.do">
+	        <a class="navbar-brand" href="ProductDisplay">
 	            <img src="resources/image/logo.png" class="logo-img">
 	        </a>
 	        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
