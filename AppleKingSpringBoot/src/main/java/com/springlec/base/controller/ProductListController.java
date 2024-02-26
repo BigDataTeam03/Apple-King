@@ -25,12 +25,15 @@ public class ProductListController {
 	 * 
 	 * 		Update 2024.02.23 by pdg 
 	 * 		 1. 상품 선택할때 세션에 저장되는 기능 추가 .
+	 * 		Update 2024.02.26 by pdg
+	 * 		 1. 검색기능 안됨 
+	 * 		 2. testProductDisplay =>ProductDisplay 
 	 *-------------------------------------- 
 	 */
 	@Autowired
 	ProductListDaoService service;
 	
-	@GetMapping("/testProductDisplay")
+	@GetMapping("/ProductDisplay")
 	public String testProductDisplay(HttpServletRequest request, Model model) throws Exception{
 		int pcnt = service.productCntDao();
 		if(pcnt !=0) {
@@ -71,7 +74,7 @@ public class ProductListController {
 			List<ProductListDto> productList = service.productListDao(query, searchContent, startRow, pageSize);
 			model.addAttribute("productList", productList);
 		}// pcnt !=0 end
-		return "uProductList";
+		return "/ProductPart/uProductList";
 	}// testProductDisplay End
 }//PRODCUT LIST CONTROLLER END
 
