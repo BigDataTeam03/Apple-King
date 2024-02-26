@@ -1,5 +1,6 @@
 package com.springlec.base.controller;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -11,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.springlec.base.model.InquireDto;
 import com.springlec.base.model.MemberDto;
@@ -208,10 +211,45 @@ public class AdminController {
 	
 //------------------------------------------------------
 	// 상품 등록 메소드
-//	@PostMapping("/aProductInsert")
-//	public void insert(HttpServletRequest request) throws Exception {
-//		
-//	}
+	@PostMapping("/aProductInsert")
+	public String aProductInsert(MultipartHttpServletRequest multiPartRequest ) throws Exception {
+		System.out.println(">> aProductInsert 실행");
+		
+		// detail_image_names 는 comma 로 연결됨.
+		String product_code 	=multiPartRequest.getParameter("product_code");
+		String product_name 	=multiPartRequest.getParameter("product_name");
+		String product_qty  	=multiPartRequest.getParameter("product_qty");
+		String origin  			=multiPartRequest.getParameter("origin");
+		String manufacture_date =multiPartRequest.getParameter("manufacture_date");
+		String weight  			=multiPartRequest.getParameter("weight");
+		String size  			=multiPartRequest.getParameter("size");
+		MultipartFile detail_images  	=multiPartRequest.getFile("detail_images"); // DB : detail_image_names ( 상세이미지)
+		String view_count  		=multiPartRequest.getParameter("view_count");
+		String kind 			=multiPartRequest.getParameter("kind");
+		String product_reg_date  =multiPartRequest.getParameter("product_reg_date");
+		MultipartFile product_image  =multiPartRequest.getFile("product_image"); // DB : product_image_name(섬네일 이미지)
+		String price = multiPartRequest.getParameter("price");
+		
+		service.productInsertDao(	
+								product_code, //1
+								product_name, //2
+								product_qty, //3
+								origin,//4
+								manufacture_date,//5
+								weight, //6
+								size, //7
+								detail_images,//8
+								view_count,//9
+								kind,//10
+								product_reg_date,//11
+								product_image,//12
+								price);//13
+		
+		return "redirect:aProductListUpdate";
+
+		
+		
+	} 
 	// 고객 리스트를 보여주는 메서드
 	@PostMapping("/custmoerList")
 	public ResponseEntity<List<MemberDto>> custlist(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -264,6 +302,7 @@ public class AdminController {
 	}
 	// 관리자가 해당 문의에 답변을 달아주는 메서드
 	@PostMapping("/insertAnswer")
+
 	
 	public ResponseEntity<String> insertAnswer(@RequestParam("answer") String answer, @RequestParam("code") String code) {
 	    try {

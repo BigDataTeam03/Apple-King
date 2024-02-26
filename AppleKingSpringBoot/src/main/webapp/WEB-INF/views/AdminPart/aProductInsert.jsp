@@ -133,7 +133,13 @@
         <tr>
             <td>섬네일 이미지:</td>
             <td class="input-style">
-            <input type="file" name="file" value = "null.png">
+           	 <input type="file" name="product_image" value = "null.png">
+            </td>
+        </tr>
+         <tr>
+            <td>상세 이미지:</td>
+            <td class="input-style">
+           	 <input type="file" name="detail_images" value = "null.png">
             </td>
         </tr>
         <tr>
