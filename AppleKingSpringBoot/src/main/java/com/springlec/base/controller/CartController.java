@@ -47,13 +47,13 @@ public class CartController {
 	 public ResponseEntity<List<CartDto>> showcartList(HttpServletRequest session, Model model,
 			 										   HttpServletResponse response  ) throws Exception {
 	        // 세션에서 유저 아이디 값 가져오기
-	        //String userId = (String)session.getAttribute("userId");
+	        String userId = (String)session.getAttribute("userId");
 		
 			// Json 값 한글 지정
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			//임시 
-			String userId = "pdg";
+			//String userId = "pdg";
 			
 	        // 유저 아이디에 해당하는 장바구니 리스트 가져오기
 	        List<CartDto> cartList = service.cartlistdao(userId);
@@ -124,7 +124,7 @@ public class CartController {
 	// 상품목록으로 돌아가기 버튼 기능
 	@GetMapping("/goProductList")
 	public String goback() throws Exception {
-		return"uProductList";
+		return"ProductPart/uProductList";
 	}
 	
 
