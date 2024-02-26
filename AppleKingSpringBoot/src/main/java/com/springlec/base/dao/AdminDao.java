@@ -2,6 +2,7 @@ package com.springlec.base.dao;
 
 import java.util.List;
 
+import com.springlec.base.model.InquireDto;
 import com.springlec.base.model.MemberDto;
 import com.springlec.base.model.ProductListDto;
 
@@ -25,5 +26,6 @@ public interface AdminDao {
 			String kind,String product_image_names, String product_code) throws Exception;
 	// 고객 리스트 출력 다오
 	public List<MemberDto> custList(String name, String notThis, String orderby) throws Exception;
-	
+	// 문의 게시판 출력 다오
+	public List<InquireDto> questionList() throws Exception;
 }

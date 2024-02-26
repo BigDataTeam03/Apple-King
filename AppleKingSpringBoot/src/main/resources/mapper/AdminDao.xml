@@ -42,5 +42,37 @@
 			WHERE 
 			  	   product_code=#{product_code}
 			</update>
-
+			<!-- 고객 리스트 출력 -->
+			<select id="custList">
+			SELECT  
+				   cust_id,
+				   name, 
+				   tel, 
+				   email, 		
+				   address,
+				   cust_rank,			
+				   reg_date 
+				 
+			 FROM customer where name like #{name} and ${notThis} ${orderby};
+			</select>
+			<!-- 고객 문의 게시판 출력 -->
+			<select id="questionList">
+			 SELECT 
+		        inquire.inquire_code,
+		        inquire.cust_id,
+		        inquire.product_code, 
+		        inquire.inquire_date,
+		        inquire.inquire_content, 
+		        product.product_name 
+		        
+		     FROM 
+		     	inquire
+		        
+		       <!--product 테이블과 조인-->
+		     INNER JOIN 
+		        product on inquire.product_code = product.product_code  
+		        <!--답글이 아직 안 달린 문의 내역만 가져온다-->
+		     WHERE 
+		        inquire.answer_content is null ORDER BY inquire.inquire_date desc
+			</select>
 </mapper>

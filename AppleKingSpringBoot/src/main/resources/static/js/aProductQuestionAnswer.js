@@ -20,7 +20,7 @@ window.onload = function() {
         type: "POST",
 
         // target server page(Servlet) url
-        url: "aQuestionListServlet",
+        url: "/inqueireList",
 
         // request data (JSON)
         //data: { product_code: '<%=session.getAttribute("product_code")%>' },

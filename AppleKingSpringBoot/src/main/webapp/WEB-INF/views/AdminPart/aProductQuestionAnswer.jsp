@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file ='top_admin.jsp' %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,20 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+
+
+			<!--
+	--------------------------------------------------------------
+	* Description 	:   관리자 페이지의 문의내역
+	* Author 		: KBS
+	* Date 			: 2024.02.24
+	* ---------------------------Update---------------------------		
+	* <<2024.02.24>> by KBS
+		1. spring boot 로 변경
+	
+	--------------------------------------------------------------
+	-->
 
 				
 	<!-- 문의 내용 출력 테이블 -->
@@ -44,7 +59,7 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="aProductQuestionAnswer.js"></script>
+    <script src="resources/js/aProductQuestionAnswer.js"></script>
     
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
