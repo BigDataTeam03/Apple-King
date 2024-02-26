@@ -62,6 +62,7 @@ public class CartController {
 	    }
 	@GetMapping("/ListView")
 	public String gomone() throws Exception{
+
 		return "cartList/ListView";
 	}
 	
@@ -126,14 +127,5 @@ public class CartController {
 	public String goback() throws Exception {
 		return"ProductPart/uProductList";
 	}
-	
-
-	
-	
-
-	
-	
-	
-	
 	
 }

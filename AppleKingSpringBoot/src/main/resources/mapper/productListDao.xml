@@ -3,12 +3,16 @@
 
 <mapper namespace="com.springlec.base.dao.ProductListDao">
 
+
+	<!-- 전체 상품 개수를 확인하는 Dao -->
     <select id="productCntDao">
         select count(product_code) as totalCount from product
     </select>
     
+    <!-- 검색조건과 정렬조건을 기준으로 상품을 조회하는 dao -->
     <select id="productListDao">
-        select * from product where ${query} like #{searchContent} order by price asc limit #{startRow} , #{pageSize}
+        select * from product where ${searchQuery} like #{searchContent} ${sortingOption} limit #{startRow} , #{pageSize}
+        
     </select>
 
 </mapper>
