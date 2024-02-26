@@ -1,18 +1,22 @@
 package com.springlec.base.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.springlec.base.model.ProductListDto;
 import com.springlec.base.service.ProductListDaoService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -43,6 +47,36 @@ public class ProductListController {
 	 */
 	@Autowired
 	ProductListDaoService service;
+	
+	// 선택된 상품 세션 저장
+	
+	@PostMapping("saveProductInfo")
+	public void saveProductIfo(
+			@ModelAttribute("product_code") String product_code,
+			@ModelAttribute("product_name") String product_name,
+			@ModelAttribute("price") String price,
+			@ModelAttribute("origin") String origin,
+			@ModelAttribute("size") String size,
+			@ModelAttribute("weight") String weight,
+			@ModelAttribute("product_qty") String product_qty,
+			HttpServletResponse response,
+			HttpSession session ) throws Exception{
+		System.out.println(">> saveProdcutInfo START");
+		session.setAttribute("product_code",	product_code);	
+		session.setAttribute("product_name",	product_name);	
+		session.setAttribute("price",		 	price		);
+		session.setAttribute("origin", 			origin		);	
+		session.setAttribute("size",			size		);
+		session.setAttribute("weight",			weight		);	
+		session.setAttribute("product_qty",		product_qty	);	
+		
+		System.out.println(">> Product information session saved");
+		PrintWriter out = response.getWriter();
+		out.print("sessionSaved");
+		
+		System.out.println(">> origin session value:"+session.getAttribute("origin"));
+		
+	}
 	
 	//paging 기능
 	@GetMapping("/ProductDisplay")
