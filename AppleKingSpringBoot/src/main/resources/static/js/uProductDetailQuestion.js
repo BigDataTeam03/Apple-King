@@ -16,7 +16,6 @@
    
    // 페이지 실행후 바로 상품 전체 조회
 window.onload = function() {
-	alert(" 문의 테이블 생성 ")
 	
 	$.ajax({
 		
@@ -33,8 +32,14 @@ window.onload = function() {
 		dataType :"json",
 		
 		// server response success  -> response(Json data)
-		success: function(response) {
+		success: function(response) {			
 			createTable(response);
+			console.log(response[0].inquire_content)
+            console.log(response[0].inquire_date)
+            console.log(response[1].inquire_content)
+            console.log(response[1].inquire_date)
+            console.log(response[0].answer_content)
+           
 		},	
 	});
 };
@@ -42,8 +47,6 @@ window.onload = function() {
 function createTable(data) {
     //검색해온 데이터(dtos -> json -> Array  변환)
     dataReal = Array.from(data)
-
-  
 
     if ( parseInt(dataReal.length) === 0) {
       $("#questions").html("<p>등록된 문의가 없습니다.</p>");
@@ -56,30 +59,48 @@ function createTable(data) {
         "<table border='1'>" +
         "<tr>" +
         "<th>작성자</th>" +
-        "<th>내용      </th>" +
-        "<th>날짜</th>" +       
+        "<th>내용 </th>" +
+        "<th>날짜 </th>" + 
+        "<th>답변 여부 </th>" +         
         "</tr>";
         
  
     // insert data rows
     for(let i=0; i<data.length; i++)  {
+	let answer = data[i].answer_content ? "<a href='#' class='answer-link'>답변보기</a>" : "미답변";
+	let answerRow = data[i].answer_content ? "<tr class='answer-row'><td colspan='4'>" + "(관리자)  :  " + data[i].answer_content + "</td></tr>" : "";
         table += "<tr>" +
-            "<td>" + i + "</td>" + // col1 
+            "<td>" + data[i].cust_id + "</td>" + // col1 
             "<td>" + data[i].inquire_content + "</td>" + // col2
             "<td>" + data[i].inquire_date + "</td>" + // col3
+            "<td>" + answer + "</td>" + 
            // "<td>" + data[i].answer_content + "</td>" + // col4
-            "</tr>"         
+            "</tr>";
+         table += answerRow;         
     }
+    
     
     
     // 만약 데이터가 비어 있다면, 특정 메시지를 표시하고 함수 종료
     // table end
     table += "</table>"
+    
 
-    $("#answerList").html(table);
+    $("#questions").html(table);
   
 }
+$(document).ready(function() {
+    // 페이지가 로드될 때 답변 행을 숨김
+    $(".answer-row").hide();
 
+    // 답변보기를 눌렀을 때 실행되는 기능
+    $(document).on("click", ".answer-link", function(event) {
+        // 해당 행의 다음 행에 답변을 표시
+        $(this).closest("tr").next(".answer-row").toggle();
+        // 기본 이벤트 동작 막기
+        event.preventDefault();
+    });
+});
 
    $(document).ready(function() {
     $('#questionForm').submit(function(e) {

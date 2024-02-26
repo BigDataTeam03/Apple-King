@@ -25,7 +25,8 @@
 	* ---------------------------Update---------------------------		
 	* <<2024.02.24>> by KBS
 		1. spring boot 로 변경
-	
+	  <<2024.02.26>> by KBS
+		1. 답변기능 완료
 	--------------------------------------------------------------
 	-->
 
@@ -46,6 +47,8 @@
                 </button>
             </div>
             <div class="modal-body">
+            <p>문의 코드</p>
+            <p id = "modalInquireCode"></p>
                 <p>문의 내용:</p>
                 <p id="modalInquireContent"></p>
                 <textarea class="form-control" id="answer" rows="4" placeholder="답글을 입력해주세요"></textarea>

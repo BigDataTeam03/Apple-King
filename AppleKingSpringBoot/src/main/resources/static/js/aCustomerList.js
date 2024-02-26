@@ -73,7 +73,7 @@ function createTable(data) {
 	$("#custList").html(table);
 	
 	// html cust_id 컨텐츠에 총 고객 수를 넣어줌. 
-	$("cust_id").html(data.length)
+	$("cust_idL").html(data.length)
 	
 	document.querySelector('#cust_id').value = data.length +1
 	
@@ -139,8 +139,8 @@ $(document).ready(function() {
     // 검색 버튼 클릭 이벤트 처리	
     $("#searchBtn").click(function() {
         // 입력된 데이터 가져오기
-        let name = $("#name").val();
- 		let sortOption = $(this).val();
+        let name = $("#name").val();   			  //이름 검색값 가져오기
+ 		let sortOption = $("#sortOption").val(); // 정렬 옵션 가져오기
         // AJAX 요청
         $.ajax({
             type: "POST",

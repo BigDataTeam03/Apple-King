@@ -19,6 +19,8 @@
 *		 1. 주석  및 정리
          2. 문의 작성을 위해 모달 사용
          3. spring boot 로 변경
+  <<2024.02.26>> by KBS
+*		 1. 리스트 출력과 답변이 달린 모습 구현 완료
          
 --------------------------------------------------------------
 -->	
@@ -152,6 +154,9 @@
     tr:nth-child(even) {
         background-color: #f2f2f2;
     }
+    .answer-row {
+        display: none;
+    }
   
 </style>
 </head>
@@ -164,6 +169,8 @@
         
         <!-- 문의 내용을 보여주는 영역 -->
         <div id="questions"></div>
+        
+        
     </div>
      
     <!-- 모달 -->
@@ -177,7 +184,7 @@
             <h3>문의 작성</h3>
             <form id="questionForm">
                 <label for="name">상품 이름: ${sessionScope.product_name}</label>                        
-                <label for="question">문의 내용:</label><br>
+                <label for="question">답변 내용</label><br>
                 <textarea id="question" name="question" rows="4" required></textarea><br>
                 <input type="submit" value="작성">
             </form>

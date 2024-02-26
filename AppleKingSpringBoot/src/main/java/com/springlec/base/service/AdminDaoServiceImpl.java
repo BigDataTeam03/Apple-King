@@ -19,6 +19,8 @@ public class AdminDaoServiceImpl implements AdminDaoService {
 	@Override
 	public List<MemberDto> custList(String name,String notThis, String orderby) throws Exception {
 		// TODO Auto-generated method stub
+		//System.out.println(" 갖져온거" + name + notThis +orderby);
+		//System.out.println("asdasdsd " +dao.custList(name,notThis,orderby).get(0));
 		return dao.custList(name,notThis,orderby);
 		
 		
@@ -26,9 +28,9 @@ public class AdminDaoServiceImpl implements AdminDaoService {
 
 	// 상품 리스트 출력
 	@Override
-	public List<ProductListDto> productlist(String product_name, String selected, String orderby) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.productlist(product_name, selected, orderby);
+	public List<ProductListDto> productlist(String product_name, String selected, String orderby2) throws Exception {
+		// TODO Auto-generated method stub		
+		return dao.productlist(product_name, selected, orderby2);
 	}
 
 	// 상품 수정
@@ -47,6 +49,14 @@ public class AdminDaoServiceImpl implements AdminDaoService {
 	public List<InquireDto> questionList() throws Exception {
 		// TODO Auto-generated method stub
 		return dao.questionList();
+	}
+	// 상품 문의 답변 입력
+	@Override
+	public void updateQuestion(String answer, String inquire_code) throws Exception {
+		// TODO Auto-generated method stub
+			dao.updateQuestion(answer, inquire_code);
+			
+			
 	}
 
 }

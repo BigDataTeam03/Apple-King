@@ -69,6 +69,8 @@
 
 		
 		<p><strong><h2>고객 목록 </h2></strong> 
+		<p> 고객 총 수 </p>
+		<div id="cust_idL"></div>
 		<!-- 전체 고객 정보 리스트 출력 -->
 		<div id = "custList"></div> 
 		

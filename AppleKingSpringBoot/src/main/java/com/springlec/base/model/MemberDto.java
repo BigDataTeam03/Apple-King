@@ -12,6 +12,7 @@ public class MemberDto {
 	String deact_date;
 	int cust_rank;
 	int cust_point;
+	
 
 	public MemberDto() {
 		// TODO Auto-generated constructor stub
