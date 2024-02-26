@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+	/*
+		Description : User view Top 
+		Date		: 2024.02.26
+		Author		: pdg
+		Detail		: Go other page paths => Cart, log-out 
+		Updates 
+		<<2024.02.26  by pdg >>
+			1.장바구니 로 가기 경로 설정 수정함. 
+	*/
+
+%>
+
 <html>
 	<head>
 	 <style>
@@ -25,13 +38,13 @@
 	        <div class="collapse navbar-collapse" id="navbarNav">
 	            <ul class="navbar-nav ml-auto">
 	             	<li class="nav-item">
-	                    <a class="nav-link" href="uCartList.do">장바구니</a>
+	                    <a class="nav-link" href="ListView">장바구니</a>
 	                </li>
 	                <li class="nav-item">
-	                    <a class="nav-link" href="myPage.do">마이페이지</a>
+	                    <a class="nav-link" href="myPage">마이페이지</a>
 	                </li>
 	                <li class="nav-item">
-	                    <a class="nav-link" href="logout.do">로그아웃</a>
+	                    <a class="nav-link" href="logout">로그아웃</a>
 	                </li>
 	            </ul>
 	        </div>

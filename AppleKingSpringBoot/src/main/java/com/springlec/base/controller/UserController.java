@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -59,6 +61,16 @@ public class UserController {
 		System.out.println(">> userSignUp.do START ");
 		return "/UserCheckPart/signup_view";
 	}
+	
+	@PostMapping("SignUpUserOverlapChk")
+	@ResponseBody
+	public String SignUpUserOverlapChk() throws Exception{
+		
+		return "";
+	}
+	
+	
+	
 	@PostMapping("loginProcess")
 	public String loginProcess(
 			@ModelAttribute("userId") String userId,
@@ -116,7 +128,7 @@ public class UserController {
 					// save check 안되어있을 경우 쿠키 삭제함.
 					CookieManager.deleteCookie(response, "loginId");
 				}
-				return "redirect:/testProductDisplay";
+				return "redirect:/ProductDisplay";
 			} else{// 일반 유저 인증 
 				System.out.println(">> 일반 사용자 입니다. ");
 				if(save_check != null && save_check.equals("Y")){
@@ -127,7 +139,7 @@ public class UserController {
 					// save check 안되어있을 경우 쿠키 삭제함. 
 					CookieManager.deleteCookie(response,"loginId");
 				}
-				return "redirect:/testProductDisplay";
+				return "redirect:/ProductDisplay";
 			}
 		} else {
 			System.out.println(">>  정보가 불일치 합니다. ");
@@ -138,7 +150,7 @@ public class UserController {
 		}
 	}// loginProcess END
 	
-	@GetMapping("/logout.do")
+	@GetMapping("/logout")
 	public String logOut(HttpSession session) throws Exception{
 		System.out.println(">> logout 을 실행합니다.");
 		

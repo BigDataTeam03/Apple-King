@@ -48,15 +48,6 @@ public class myInfoController {
 	//save user's info using session. 
     session.setAttribute("userId", userId);
 		
-	return "myInfo";	
+	return "/MyPagePart/myInfo";	
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-
 }//CONTROLLER END

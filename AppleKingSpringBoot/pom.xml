@@ -62,7 +62,7 @@
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<!-- configuration properties -->
+		<!-- Mybatis configuration properties -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
@@ -88,6 +88,12 @@
  		 <groupId>org.json</groupId>
  		 <artifactId>json</artifactId>
  		 <version>20180813</version>
+	   </dependency>
+	   <!-- COS jar  multipart form-data -->
+	   <dependency>
+		   <groupId>com.servlets</groupId>
+		   <artifactId>cos</artifactId>
+		   <version>05Nov2002</version>
 	   </dependency>
 		
 	</dependencies>

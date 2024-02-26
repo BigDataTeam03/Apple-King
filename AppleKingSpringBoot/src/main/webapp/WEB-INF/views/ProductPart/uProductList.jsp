@@ -1,6 +1,6 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file ="top_user.jsp" %>
+<%@ include file ="../top/top_user.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -34,6 +34,8 @@
 	  	1.기존 jsp 로 만든 것을 jstl 을 사용하고 controller 단에서 해결하도록 변경함.
 	  <<2024.02.22 >by dk, ls
 	  	1.JSP에서는 특수 문자를 그대로 사용할 수 없기 때문에 >와 <를 각각 gt와 lt로 바꿈.
+	  <<2024.02.26>> by pdg
+	  	1.  top_user 경로 설정 수정함. 
 	--------------------------------------------------------------
 	*/
     		  	 %>
@@ -92,17 +94,17 @@
 
     <!-- PREVIOUS button generation -->
     <c:if test="${startPage gt pageBlock}">
-        <a href="testProductDisplay?pageNum=${startPage-pageBlock}">PREV</a>
+        <a href="ProductDisplay?pageNum=${startPage-pageBlock}">PREV</a>
     </c:if>
 
     <!-- Page number button generation -->
     <c:forEach begin="${startPage}" end="${endPage}" var="i">
-        <a href="testProductDisplay?pageNum=${i}">${i} </a>
+        <a href="ProductDisplay?pageNum=${i}">${i} </a>
     </c:forEach>
 
     <!-- NEXT button generation -->
     <c:if test="${endPage lt pageCount}">
-        <a href="testProductDisplay?pageNum=${startPage+pageBlock}">NEXT</a>
+        <a href="ProductDisplay?pageNum=${startPage+pageBlock}">NEXT</a>
     </c:if>
 
 </div>

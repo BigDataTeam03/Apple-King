@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.springlec.base.model.ProductListDto;
 import com.springlec.base.service.ProductListDaoService;
@@ -13,6 +15,7 @@ import com.springlec.base.service.ProductListDaoService;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
+@SessionAttributes("first_check")
 public class ProductListController {
 	/*--------------------------------------
 	 * Description: Apple King Controller (PRODUCT LIST)
@@ -25,53 +28,79 @@ public class ProductListController {
 	 * 
 	 * 		Update 2024.02.23 by pdg 
 	 * 		 1. 상품 선택할때 세션에 저장되는 기능 추가 .
+	 * 
+	 * 		<<2024.02.26 by pdg >>
+	 * 		 1. 검색기능
+	 * 		 2. testProductDisplay =>ProductDisplay 
+	 * 		 3. page 버튼 클릭할 때마다 환영합니다 메세지 뜨는 문제 해결 
+	 * 
 	 *-------------------------------------- 
 	 */
 	@Autowired
 	ProductListDaoService service;
 	
-	@GetMapping("/testProductDisplay")
-	public String testProductDisplay(HttpServletRequest request, Model model) throws Exception{
-		int pcnt = service.productCntDao();
+	
+	
+	//paging 기능
+	@GetMapping("/ProductDisplay")
+	public String ProductDisplay(HttpServletRequest request,
+							   	 Model model
+							   	// @ModelAttribute("first_check") String first_check
+			) throws Exception{
+		
+		//총 product 개수
+		int pcnt = service.productCntDao(); 
+		
+		// 첫 페이지 버튼 
+		String pageNum ="1"; 
 		if(pcnt !=0) {
-			String pageNum ="1";
 			if(request.getParameter("pageNum") != null) {
 				pageNum = request.getParameter("pageNum");
 			}
-		String query = "product_name";
+			
+		//  검색 조건
+		String searchQuery = "product_name";
 		if(request.getParameter("query") != null) {
-			 query = request.getParameter("query");
+			searchQuery = request.getParameter("query");
 		}
+		
+		// 검색내용
 		String searchContent = "";
 		if(request.getParameter("searchContent")!= null) {
 			searchContent = request.getParameter("searchContent");
 		}
-			int currentPage= Integer.parseInt(pageNum);
-			int pageSize = 8;
-			// 해당 페이지에서 출력할 첫번째 상품의 순번 :ex) 3페이지에서 보여줄 상품의 첫번째 코드는 17
-			int startRow = (currentPage-1)*pageSize +1;
-			// total page number calc
-			int pageCount = pcnt / pageSize + (pcnt%pageSize ==0? 0:1);
-			// 한페이지에 보여줄 페이지 블럭 : 페이지버튼의 개수
-			int pageBlock = 2;
-				
-			int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
-			int endPage = startPage + pageBlock -1;
-			//End page can be greater than the total page. 
-			//Last page to equalize with the total page count. 
+		
+		// 현재페이지
+		int currentPage= Integer.parseInt(pageNum);
+		
+		//한페이지에 나타낼 상품개수
+		int pageSize = 8;
+		
+		// 해당 페이지에서 출력할 첫번째 상품코드 ex) 3페이지에서 보여줄 첫상품코드 : (3-1)*8+1 = 17
+		int startProduct = (currentPage-1)*pageSize +1;
+		
+		// total page number calc
+		int pageCount = pcnt / pageSize + (pcnt%pageSize ==0? 0:1);
+		// 한페이지에 보여줄 페이지 블럭 : 페이지버튼의 개수
+		int pageBlock = 2;
 			
-			model.addAttribute("pcnt"		,pcnt);
-			model.addAttribute("currentPage",currentPage);
-			model.addAttribute("pageSize"	,pageSize);
-			model.addAttribute("startRow"	,startRow);
-			model.addAttribute("pageCount"	,pageCount);
-			model.addAttribute("pageBlock"	,pageBlock);
-			model.addAttribute("startPage"	,startPage);
-			model.addAttribute("endPage"	,endPage);
-			List<ProductListDto> productList = service.productListDao(query, searchContent, startRow, pageSize);
-			model.addAttribute("productList", productList);
+		int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
+		int endPage = startPage + pageBlock -1;
+		//End page can be greater than the total page. 
+		//Last page to equalize with the total page count. 
+		
+		model.addAttribute("pcnt"			,pcnt);
+		model.addAttribute("currentPage"	,currentPage);
+		model.addAttribute("pageSize"		,pageSize);
+		model.addAttribute("startProduct"	,startProduct);
+		model.addAttribute("pageCount"		,pageCount);
+		model.addAttribute("pageBlock"		,pageBlock);
+		model.addAttribute("startPage"		,startPage);
+		model.addAttribute("endPage"		,endPage);
+		List<ProductListDto> productList = service.productListDao(searchQuery, searchContent, startProduct, pageSize);
+		model.addAttribute("productList", productList);
 		}// pcnt !=0 end
-		return "uProductList";
+		return "/ProductPart/uProductList";
 	}// testProductDisplay End
 }//PRODCUT LIST CONTROLLER END
 
