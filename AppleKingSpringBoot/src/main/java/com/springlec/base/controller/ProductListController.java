@@ -21,6 +21,8 @@ public class ProductListController {
 	 * Description: Apple King Controller (PRODUCT LIST)
 	 * Author : PDG, KBS, LS, Diana
 	 * Date : 2024.02.21
+	 * Details 
+	 * 	- where from??
 	 * Update :
 	 * 		Update 2024.02.21 by LS, DK 
 	 * 		 1. 기존의 Appleking 을 SpringBoot version 으로 변환. 
@@ -33,19 +35,19 @@ public class ProductListController {
 	 * 		 1. 검색기능
 	 * 		 2. testProductDisplay =>ProductDisplay 
 	 * 		 3. page 버튼 클릭할 때마다 환영합니다 메세지 뜨는 문제 해결 
+	 * 		 4. query 를 searchCondition 으로 바꿈.
+	 * 
 	 * 
 	 *-------------------------------------- 
 	 */
 	@Autowired
 	ProductListDaoService service;
 	
-	
-	
 	//paging 기능
 	@GetMapping("/ProductDisplay")
 	public String ProductDisplay(HttpServletRequest request,
 							   	 Model model
-							   	// @ModelAttribute("first_check") String first_check
+							   	//@ModelAttribute("pageNum") String pageNum
 			) throws Exception{
 		
 		//총 product 개수
@@ -53,14 +55,14 @@ public class ProductListController {
 		
 		// 첫 페이지 버튼 
 		String pageNum ="1"; 
-		if(pcnt !=0) {
+		if(pcnt !=0) {// current page 를 받아옴. 
 			if(request.getParameter("pageNum") != null) {
 				pageNum = request.getParameter("pageNum");
 			}
 			
 		//  검색 조건
 		String searchQuery = "product_name";
-		if(request.getParameter("query") != null) {
+		if(request.getParameter("searchCondition") != null) {
 			searchQuery = request.getParameter("query");
 		}
 		
@@ -70,7 +72,7 @@ public class ProductListController {
 			searchContent = request.getParameter("searchContent");
 		}
 		
-		// 현재페이지
+		// 현재페이지 <- request 로 받음. 
 		int currentPage= Integer.parseInt(pageNum);
 		
 		//한페이지에 나타낼 상품개수
@@ -83,12 +85,16 @@ public class ProductListController {
 		int pageCount = pcnt / pageSize + (pcnt%pageSize ==0? 0:1);
 		// 한페이지에 보여줄 페이지 블럭 : 페이지버튼의 개수
 		int pageBlock = 2;
-			
-		int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
-		int endPage = startPage + pageBlock -1;
-		//End page can be greater than the total page. 
-		//Last page to equalize with the total page count. 
 		
+		// Start page 
+		int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
+		
+		// End page can be greater than the total page. 
+		int endPage = startPage + pageBlock -1;
+		
+		
+		
+		//Last page to equalize with the total page count. 
 		model.addAttribute("pcnt"			,pcnt);
 		model.addAttribute("currentPage"	,currentPage);
 		model.addAttribute("pageSize"		,pageSize);
@@ -97,10 +103,11 @@ public class ProductListController {
 		model.addAttribute("pageBlock"		,pageBlock);
 		model.addAttribute("startPage"		,startPage);
 		model.addAttribute("endPage"		,endPage);
+		
 		List<ProductListDto> productList = service.productListDao(searchQuery, searchContent, startProduct, pageSize);
 		model.addAttribute("productList", productList);
 		}// pcnt !=0 end
 		return "/ProductPart/uProductList";
-	}// testProductDisplay End
+	}// ProductDisplay End
 }//PRODCUT LIST CONTROLLER END
 
