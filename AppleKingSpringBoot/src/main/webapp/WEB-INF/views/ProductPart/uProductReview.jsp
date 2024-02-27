@@ -8,6 +8,22 @@
 <!-- <link rel="stylesheet" type="text/css" href="review.css"> -->
 </head>
 <body>
+
+
+<!--
+--------------------------------------------------------------
+* Description 	: 	상품리뷰 페이지
+*  Detail		: 리뷰페이지에서 리뷰 입력과 리스트 출력
+* Author 		: KBS
+* Date 			: 2024.02.27
+* ---------------------------Update---------------------------		
+* <<2024.02.27>> by KBS
+*		 1. 리뷰 리스트 출력완료
+
+ 
+         
+--------------------------------------------------------------
+-->	
     <div class="container">
         <h2>상품 리뷰</h2>
         <!-- 리뷰 목록 -->
@@ -33,10 +49,12 @@
                         <td>${review.review_content}</td>
                         <td><br></td>
                         <td><br></td>
-                        <td>${review.helpful_count} 명의 사용자가 도움됬어요 <form action="goodReview" method="post">
+                        <td>${review.helpful_count} 명의 사용자가 도움됬어요 </td>
+                        <td> <form action="goodReview" method="post">
              			   												<input type="hidden" name="review" value="${review.review_code}">
               				  											<button type="submit">도움이 돼요</button>
             															</form>
+            															
             			</td>   
                     	<td><br></td>
                         <td><br></td>

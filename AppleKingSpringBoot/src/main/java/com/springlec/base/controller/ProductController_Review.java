@@ -20,6 +20,17 @@ import jakarta.servlet.http.HttpSession;
 @Controller	
 public class ProductController_Review {
 
+	/*--------------------------------------
+	 * Description: 상세페이지 리뷰 목록 컨트롤러
+	 * Author :  KBS
+	 * Date : 2024.02.27
+	 * Update : 2024.02.27 KBS 
+	 * 	     1. 리스트 출력기능 완료 
+	 *-------------------------------------- 
+	
+	*/
+	
+	
 	@Autowired
 	ProductReviewDaoService service;
 		
@@ -27,12 +38,12 @@ public class ProductController_Review {
 	public String review (HttpServletRequest request,HttpSession session,
 						  HttpServletResponse response, Model model) throws Exception{
 		   //String product_code = (String) sesstion.getAttribute("product_code");
-			System.out.println( " d컨트롤러 입장" );
+			
 		   	String product_code = "1";
 		 
 		   	List<ReviewDto> ListReview = service.reviewList(product_code);
 		   	model.addAttribute("ListReview", ListReview);
-		   	System.out.println(" 가져온 리뷰목록" + ListReview);
+		  
 		   	
 			return "ProductPart/uProductReview";		 			
 	}
