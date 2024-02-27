@@ -23,7 +23,7 @@ public class myPageController {
 	
 	/*--------------------------------------
 	 * Description: myPage 컨트롤러
-	 * Author :  DK, LS 
+	 * Author :  DK, LS ,pdg
 	 * Date : 2024.02.22
 	 * ----------------------------------------
 	 * Update : 2024.02.22 DK, LS 
@@ -44,10 +44,8 @@ public class myPageController {
 
 	@Autowired 
 	OrderDaoService service;
-
 	
 	@GetMapping("/MyPage")
-	
     public String myPage(HttpSession session, HttpServletRequest request, Model model) throws Exception {
 	//get session for the user's ID, NAME, RANK and REGDATE
 	 String userId    = 	(String)session.getAttribute("userId");

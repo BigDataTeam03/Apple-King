@@ -15,7 +15,7 @@ import com.springlec.base.model.ReviewDto;
 public class OrderDaoServiceImpl implements OrderDaoService {
 
 	@Autowired
-	OrderDao dao;
+	OrderDao orderDao;
 	
 	@Autowired
 	MemberDao memberDao;
@@ -23,7 +23,7 @@ public class OrderDaoServiceImpl implements OrderDaoService {
 	
 	@Override
 	public List<OrderDto> OrderList(String userId) throws Exception {
-		return dao.OrderList(userId);
+		return orderDao.OrderList(userId);
 	}
 
 	@Override
@@ -32,6 +32,10 @@ public class OrderDaoServiceImpl implements OrderDaoService {
 	}
 
 	@Override
+
+	public OrderDto orderInsertDao() throws Exception {
+		return orderDao.orderInsertDao();
+
 	public List<ReviewDto> ReviewList(String userId) throws Exception {
 		return dao.ReviewList(userId);
 	}

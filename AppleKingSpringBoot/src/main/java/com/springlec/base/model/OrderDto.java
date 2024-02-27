@@ -1,10 +1,38 @@
 package com.springlec.base.model;
 
+/*
+ * Description : Order DTO
+ * Date 		: 2024.02.27
+ * Author 		: pdg, diana
+ * Detail		:
+ * Update		: 
+ * 		1. insert 할때 일일히 비교하기 귀찮아서 구매 테이블 칼럼을 이 dto field 에 맞추어서 다시 설계함.  
+ */
+
+
 public class OrderDto {
 
 	//Field 
 
+
+	//Field 
 	// ORDER TABLE COLUMNS
+
+	String cust_id; 		// 상품을 구매한 구매자 id
+	String name; 			// 구매자 이름
+	String product_code; 	// 구매한 상품 코드
+	String product_name; 	// 구매한 상품 이름
+	int price; 				// 구매한 상품 가격
+	int product_qty; 		// 구매한 상품 재고?
+	String order_code; 		// 결제 코드
+	String payment_method; 	// 결제 방법
+	int used_point; 		// 결제시 사용한 포인트
+	int order_qty; 			// 결제상품 개수
+	String orderdate; 		// 결제일
+	int soldout; 			// 매진 정보
+	
+	// Constructor
+
 	String userId; // <-- cust_id
 	String order_code;
 	String payment_method;
@@ -26,15 +54,55 @@ public class OrderDto {
 	String userName; //
 
 	public OrderDto() {
-		// TODO Auto-generated constructor stub
+	}
+	
+	// Getters and setters
+	public String getCust_id() {
+		return cust_id;
 	}
 
-	public String getUserId() {
-		return userId;
+	public void setCust_id(String cust_id) {
+		this.cust_id = cust_id;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getProduct_code() {
+		return product_code;
+	}
+
+	public void setProduct_code(String product_code) {
+		this.product_code = product_code;
+	}
+
+	public String getProduct_name() {
+		return product_name;
+	}
+
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getProduct_qty() {
+		return product_qty;
+	}
+
+	public void setProduct_qty(int product_qty) {
+		this.product_qty = product_qty;
 	}
 
 	public String getOrder_code() {
@@ -131,4 +199,5 @@ public class OrderDto {
 	public String getProduct_image() {
 		return product_image;
 	}
+
 }// END
