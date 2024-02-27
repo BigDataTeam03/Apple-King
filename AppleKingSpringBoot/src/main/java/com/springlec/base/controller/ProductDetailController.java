@@ -43,7 +43,7 @@ public class ProductDetailController {
 			Model model) throws Exception{
 		
 		String product_code = (String)session.getAttribute("product_code");
-				
+				System.out.println("상품코드 aaaaa" + product_code);
 		List<ProductListDto> listDao = service.productDetailDao(product_code);
 		model.addAttribute("listDao", listDao);
 		System.out.println(">> 상품목록 :" + listDao);
