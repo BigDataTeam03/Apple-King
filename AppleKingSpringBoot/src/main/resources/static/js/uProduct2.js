@@ -51,7 +51,7 @@ function numberWithCommas(price) {
 // 상품 선택시 Session 에 선택 상품의 정보를 저장하는 코드 
 function saveProductInfo(product_code, product_name, price, origin, size, weight, product_qty) {
 
-	alert(" saveProductInfo 실행 productname  :"+product_name)
+	//alert(" saveProductInfo 실행 productname  :"+product_name)
 	$.ajax({
 		type: "POST",
 		url: "saveProductInfo",

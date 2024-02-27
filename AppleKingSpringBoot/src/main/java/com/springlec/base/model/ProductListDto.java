@@ -7,7 +7,7 @@ public class ProductListDto {
 	Integer product_code;
 	String product_name;
 	Integer product_rank;
-	Integer product_qty;
+	int product_qty;
 	String origin;
 	String manufacture_date;
 	Double weight;
