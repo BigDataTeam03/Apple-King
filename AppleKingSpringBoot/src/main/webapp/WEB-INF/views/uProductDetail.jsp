@@ -74,11 +74,14 @@ Update : 2024.02.22 by LS, DK
 	<br>
 	<br>
 	<br>
-	
-	 
-<div>
-<jsp:include page="/gotoProductQuestion"/>
-</div>
+	<div>
+	<jsp:include page="/gotoProductReview"/>
+	</div>
+	<br>
+	<br>
+	<div>
+	<jsp:include page="/gotoProductQuestion"/>
+	</div>
     <!-- 상세페이지 탭 -->
         <div class="container">
 	        <ul class="nav nav-tabs" id="myTab" role="tablist">
