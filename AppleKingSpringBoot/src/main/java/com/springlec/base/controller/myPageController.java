@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.springlec.base.model.MemberDto;
 import com.springlec.base.model.MyInfoDto;
 import com.springlec.base.model.OrderDto;
+import com.springlec.base.model.ReviewDto;
 import com.springlec.base.service.MyInfoDaoService;
 import com.springlec.base.service.OrderDaoService;
 
@@ -35,6 +36,9 @@ public class myPageController {
 	 * <<2024.02.26 by DK>>
 	 * 	1. Get the user's ID, NAME, RANK, and REGDATE by session
 	 * 	2. Use pre-made memberList to get user's information after update.
+	 * 
+	 * <<2024.02.07 by DK>>
+	 * 1. Get the user's review history. 
 	 *-------------------------------------- 
 	 */
 
@@ -57,6 +61,11 @@ public class myPageController {
 	MemberDto memberList = service.memberInfoDao(userId);
 	model.addAttribute("orderList", orderList);
 	model.addAttribute("memberList", memberList);
+	
+	
+	//get the user's review history using orderDao.
+	List<ReviewDto> reviewList = service.ReviewList(userId);
+	model.addAttribute("reviewList", reviewList);
 	
     return "/MyPagePart/myPage"; 
     }

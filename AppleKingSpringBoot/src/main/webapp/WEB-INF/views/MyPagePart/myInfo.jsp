@@ -99,7 +99,7 @@ Update: 2024.02.26 DK
 <script>
     
     function redirectToMyPage() {
-        window.location.href = 'myPage';
+        window.location.href = 'MyPage';
     }
 
 </script>
