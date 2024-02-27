@@ -21,4 +21,18 @@ public class ProductReviewDaoServiceImpl implements ProductReviewDaoService {
 		
 	}
 
+	@Override
+	public void upHelpful(String review_code) throws Exception {
+		dao.upHelpful(review_code);
+		
+	}
+
+	@Override
+	public void insertReview(String cust_id, String product_code, String rating, String content, String image,
+			String product_name) throws Exception {
+		dao.insertReview(cust_id, product_code, rating, content, image, product_name);
+		
+		
+	}
+
 }
