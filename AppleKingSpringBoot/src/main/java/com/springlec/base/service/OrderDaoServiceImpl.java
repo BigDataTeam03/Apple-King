@@ -14,19 +14,24 @@ import com.springlec.base.model.OrderDto;
 public class OrderDaoServiceImpl implements OrderDaoService {
 
 	@Autowired
-	OrderDao dao;
+	OrderDao orderDao;
 	
 	@Autowired
 	MemberDao memberDao;
 	
 	@Override
 	public List<OrderDto> OrderList(String userId) throws Exception {
-		return dao.OrderList(userId);
+		return orderDao.OrderList(userId);
 	}
 
 	@Override
 	public MemberDto memberInfoDao(String userId) throws Exception {
 		return memberDao.memberInfoDao(userId);
+	}
+
+	@Override
+	public OrderDto orderInsertDao() throws Exception {
+		return orderDao.orderInsertDao();
 	}
 
 }

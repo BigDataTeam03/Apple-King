@@ -24,7 +24,7 @@ import jakarta.servlet.http.HttpSession;
 public class ProductDetailController {
 	/*--------------------------------------
 	 * Description: Apple King Controller (PRODUCT DETAIL)
-	 * Author : LS, dk
+	 * Author : LS, dk ,pdg
 	 * Date : 2024.02.22
 	 * Update : 2024.02.22 by LS, DK 
 	 * 		 1. 기존의 uProductList 를 SpringBoot version 으로 변환. 
@@ -38,31 +38,43 @@ public class ProductDetailController {
 	 * 		1.상품 체크 관련 주석 수정. 
 	 */
 	
+	//DI
 	@Autowired
 	ProductDetailDaoService service;
 	
+	// 상품 상세페이지 
 	@GetMapping("/productDetail")
-	public String productDetailDisplay (HttpServletRequest request,
-			HttpSession session,
-			Model model) throws Exception{
+	public String productDetailDisplay (HttpServletRequest 	request,
+										HttpSession 		session,
+										Model 				model) 
+									    throws Exception{
+		
+		// *** START Message***
+		System.out.println("**<<ProductDetailController @GET:[productDetailDisplay]>>**");
+		
+		// Session 정보 불러옴.
 		String product_code = (String)session.getAttribute("product_code");
 		ProductListDto listDao = service.productDetailDao(product_code);
+		
+		//model add
 		model.addAttribute("listDao", listDao);
 		System.out.println(">> 상품목록 :" + listDao);
 		System.out.println(">> 상품재고수 :" + Integer.toString(listDao.getProduct_qty()));
+		
 		return "/ProductPart/uProductDetail";
-	}
+	}// END
 	
-	// 장바구니로 넣는 메소드
+	// 장바구니로 담기
 	@PostMapping("/cartInsert")
 	public String insertCart(	HttpSession session,
 								HttpServletRequest request,
 								HttpServletResponse response,
 								Model model
 								) throws Exception {
-		System.out.println(">> cartInsert in ProductDetailController 실행");
+		// *** START Message***
+		System.out.println("**<<ProductDetailController @POST:[insertCart]>>**");
 		
-		// 세션 받아야함
+		// 세션값 받음
 		String product_code  = (String)session.getAttribute("product_code");
 		String cust_id 		 = (String)session.getAttribute("userId");
 		Integer cart_qty     = Integer.parseInt(request.getParameter("cart_qty"));

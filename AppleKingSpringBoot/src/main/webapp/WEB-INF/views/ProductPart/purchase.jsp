@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file ='../top/top_user.jsp' %>
+ <%@ include file ='../top/top_user.jsp' %>
 <!DOCTYPE html>
-<%
+	<%
 	/*
 	--------------------------------------------------------------
 	* Description 	: User Purchase page
@@ -13,24 +13,40 @@
 					4. 총 결제금액
 					5. 결제수단
 					6. 결제하기 버튼 
-					
-	* Author 		: LS
+	* Author 		: LS, pdg
 	* Date 			: 2024.02.16
+	* ---------------------------Update---------------------------		
 	 <<Update 2024.02.19>
 	 <<Update 2024.02.27>>
 		1. 코드정리
-	* ---------------------------Update---------------------------		
-	* 
+		2. 이페이지는 최종 결제를 확인하는 페이지임. 결제 버튼을 눌렀을때 결제완료페이지로 가는데 
+		   이페이지가 바로 그 결제 완료 페이지임. 
+		3. order table 에 필요한 정보 중 5개를 controller 에 넘겨야함.
+			- payment_method
+			- used_point
+	    	- order_qty
+	    	- orderdate
+	    	- soldout
+			
 	--------------------------------------------------------------
-	*/
-%>	
+	*/%>
 
 <html lang="ko">
 	<head>
 		<meta charset="UTF-8">
 		<title>주문/결제 페이지</title>
+		<!-- CSS 추가 -->
+	    <link rel="stylesheet" href="resources/css/purchase.css" />
+		
 	</head>
 	<body>
+		<select>
+			<option>
+			
+		
+		</select>
+	
+	
 	    <h1>주문/결제</h1>
 	    <hr>
 	    <h2>구매자 정보</h2><br>
@@ -54,6 +70,12 @@
 		        <th>총결제금액</th>
 		        <th>결제방법</th>
    		   </tr>
+   		   <tr>			 		 
+		 	 	 <td>${memberList.price * memberList.product_qty}</td>
+      			 <td>${memberList.product_qty}</td>
+        		 <td>${memberList.price * memberList.product_qty - memberList.cust_point}</td>
+        		 <td>${memberList.payment_method}</td>	
+			</tr>		
         </table>
   		<form action="purchaseComplete" method="post">
             <input type="submit" value="결제하기">

@@ -30,7 +30,9 @@ public class ProductListServiceImpl implements ProductListDaoService {
 
 	@Override
 	public int productCntDao() throws Exception {
-		System.out.println("상품총 개수 :"+Integer.toString(dao.productCntDao()));
+		// *** START Message***
+		System.out.println("=> @Service Start : (ProductListServiceImpl.productCntDao)");
+		System.out.println(">> 상품총 개수 :"+Integer.toString(dao.productCntDao()));
 		return dao.productCntDao();
 	}
 
@@ -40,8 +42,9 @@ public class ProductListServiceImpl implements ProductListDaoService {
 												String sortingOption,
 												int startProduct,
 												int pageSize) throws Exception {
-		System.out.println(">> productListDaoService 실행");
-	
+		// *** START Message***
+		System.out.println("=> @Service Start : (ProductListServiceImpl.productListDao)");
+		System.out.println(">> Sorting option : "+sortingOption);
 		searchContent = '%' + searchContent + '%';
 
 		String sortQuery= "";
@@ -68,7 +71,7 @@ public class ProductListServiceImpl implements ProductListDaoService {
 		
 		// 실제 들어가는 쿼리문 
 		System.out.println(">> SQL query :"+"select * from product where "
-				+ searchQuery 	+	" like " 
+				+ searchQuery 	+	" like " 	
 				+ searchContent	+ 	" "
 				+ sortingOption	+	" limit"
 				+ Integer.toString(startProduct-1) +" ,"

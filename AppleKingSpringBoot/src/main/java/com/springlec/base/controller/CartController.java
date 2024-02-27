@@ -50,7 +50,7 @@ public class CartController {
 			 HttpServletResponse response  ) throws Exception {
 	        // 세션에서 유저 아이디 값 가져오기
 	     String userId = (String)session.getAttribute("userId");
-		 System.out.println("세션아이디값" + userId);
+		 System.out.println(">> 세션아이디값" + userId);
 			// Json 값 한글 지정
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
@@ -72,7 +72,7 @@ public class CartController {
 	public  void qtyCount(HttpServletRequest request, Model model,
 						  HttpServletResponse response, HttpServletRequest session) throws Exception {
 		String product_qty = (String) session.getAttribute("product_qty");
-		System.out.println("세션으로 받아온 수량값" +product_qty);
+		System.out.println(">> 세션으로 받아온 수량값" +product_qty);
 		//response 를 보내기 위한 선언
 		PrintWriter out = response.getWriter();
 		//변수지정
@@ -81,18 +81,19 @@ public class CartController {
 		String cart_qty = request.getParameter("quantity");
 		int cart_qtyInt = Integer.parseInt(cart_qty);
 		String cart_code = request.getParameter("cartCode");
-		System.out.println(" 상품 수량 선택수량 카트코드" + product_qty +cart_qty+ cart_code);
-					//  상품 재고보다 변경할 수량이 적을 때에만 실행
-				 if (cart_qtyInt <= product_qtyInt) {
-				        System.out.println(" if 문 입장");
-				        System.out.println(" 성공");
-				        
-				    service.updateqty(cart_qty,cart_code);
-				   
-				    out.print("성공");
-				    }else  {
-				    	   out.print(1);	
-					}
+		
+		System.out.println(">> 상품 수량 선택수량 카트코드" + product_qty +cart_qty+ cart_code);
+		// 상품 재고보다 변경할 수량이 적을 때에만 실행
+		if (cart_qtyInt <= product_qtyInt) {
+			System.out.println(" if 문 입장");
+			System.out.println(" 성공");
+
+			service.updateqty(cart_qty, cart_code);
+
+			out.print("성공");
+		} else {
+			out.print(1);
+		}
 }
 	// 카트 상품 삭제 메소드
 	@PostMapping("/deleteCart")

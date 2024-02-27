@@ -51,17 +51,21 @@ public class ProductListController {
 	// 선택된 상품 세션 저장
 	// saveProductInfo 는 uProduct2.js 에서 call 하여 쏴주는 request body 정보를 session 에 저장함. 
 	@PostMapping("saveProductInfo")
-	public void saveProductInfo(
-			@ModelAttribute("product_code") String product_code,
-			@ModelAttribute("product_name") String product_name,
-			@ModelAttribute("price") 		String price,
-			@ModelAttribute("origin") 		String origin,
-			@ModelAttribute("size") 		String size,
-			@ModelAttribute("weight") 		String weight,
-			@ModelAttribute("product_qty") 	String product_qty,
-			HttpServletResponse response,
-			HttpSession session ) throws Exception{
-		System.out.println(">> saveProdcutInfo START");
+	public void saveProductInfo(@ModelAttribute("product_code") String product_code,
+								@ModelAttribute("product_name") String product_name,
+								@ModelAttribute("price") 		String price,
+								@ModelAttribute("origin") 		String origin,
+								@ModelAttribute("size") 		String size,
+								@ModelAttribute("weight") 		String weight,
+								@ModelAttribute("product_qty") 	String product_qty,
+								HttpServletResponse response,
+								HttpSession session ) 
+								throws Exception{
+								
+		// *** START Message***
+		System.out.println("**<<ProductListController @POST:[saveProductInfo]>>**");
+		
+		// Session save
 		session.setAttribute("product_code",	product_code);	
 		session.setAttribute("product_name",	product_name);	
 		session.setAttribute("price",		 	price		);
@@ -69,13 +73,13 @@ public class ProductListController {
 		session.setAttribute("size",			size		);
 		session.setAttribute("weight",			weight		);	
 		session.setAttribute("product_qty",		product_qty	);	
-		
 		System.out.println(">> Product information session saved");
+		
+		//JS response
 		PrintWriter out = response.getWriter();
 		out.print("sessionSaved");
 		
 		System.out.println(">> origin session value:"+session.getAttribute("origin"));
-		
 	}
 	
 	//paging 기능
@@ -85,7 +89,9 @@ public class ProductListController {
 							   	 Model model
 							   	//@ModelAttribute("pageNum") String pageNum
 								) throws Exception{
-		
+		// *** START Message***
+		System.out.println("**<<ProductListController @POST:[ProductDisplay]>>**");
+				
 		//총 product 개수
 		int pcnt = service.productCntDao(); 
 		
@@ -142,7 +148,7 @@ public class ProductListController {
 		model.addAttribute("endPage"		,endPage);
 		
 		// Parameter check
-		System.out.println(">> searchContent :"+searchContent);
+		System.out.println(">> searchContent :" + searchContent);
 		
 		// ServiceDao Call
 		List<ProductListDto> productList = 
