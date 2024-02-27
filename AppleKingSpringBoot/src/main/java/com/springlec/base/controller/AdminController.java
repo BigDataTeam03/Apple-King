@@ -42,6 +42,9 @@ public class AdminController {
 	 * Update : 2024.02.26 KBS
 	 * 		1. 문의 페이지 완성
 	 * 		2. 고객 리스트 출력 완성 
+	 * 
+	 * <<2024.02.27 by pdg , LS>>
+	 * 		1. admin page 이미지 하나 삽입 기능 추가
 	 *-------------------------------------- 
 	
 	*/
@@ -136,7 +139,7 @@ public class AdminController {
      session.setAttribute("totalProductNumber", totalProductNumber );
      //  서비스에 해당 변수를 넣어 다오를 실행시키고 리스트에 넣는다
   
-     List<ProductListDto> productList = service.productlist(product_name, selected, orderby);
+     List<ProductListDto> productList = service.productList(product_name, selected, orderby);
      return ResponseEntity.ok().body(productList);
 	}
 	
@@ -149,15 +152,15 @@ public class AdminController {
 		// 수정된 변수 받기
 		String product_name 		= request.getParameter("name");
 		String product_qty 			= request.getParameter("qty");
-		String origin 		= request.getParameter("origin");
+		String origin 				= request.getParameter("origin");
 		String manufacture_date 	= request.getParameter("manufacture");
-		String weight 		= request.getParameter("weight");
-		String size 		= request.getParameter("size");
+		String weight 				= request.getParameter("weight");
+		String size 				= request.getParameter("size");
 		String detail_image_name 	= request.getParameter("detailImage");
-		String view_count 		= request.getParameter("view");
-		String product_reg_date 		= request.getParameter("regDate");
-		String kind 		= request.getParameter("kind");
-		String product_image_names = request.getParameter("productImage");
+		String view_count 			= request.getParameter("view");
+		String product_reg_date 	= request.getParameter("regDate");
+		String kind 				= request.getParameter("kind");
+		String product_image_names 	= request.getParameter("productImage");
 		String product_code 		= request.getParameter("code");
 		// 서비스를 통해 다오로 변수를 집어 넣는다
 		service.updateProduct(product_name, product_qty, origin,
@@ -209,41 +212,48 @@ public class AdminController {
 	}
 
 	
-//------------------------------------------------------
+	//------------------------------------------------------
 	// 상품 등록 메소드
 	@PostMapping("/aProductInsert")
 	public String aProductInsert(MultipartHttpServletRequest multiPartRequest ) throws Exception {
 		System.out.println(">> aProductInsert 실행");
 		
-		// detail_image_names 는 comma 로 연결됨.
-		String product_code 	=multiPartRequest.getParameter("product_code");
-		String product_name 	=multiPartRequest.getParameter("product_name");
-		String product_qty  	=multiPartRequest.getParameter("product_qty");
-		String origin  			=multiPartRequest.getParameter("origin");
-		String manufacture_date =multiPartRequest.getParameter("manufacture_date");
-		String weight  			=multiPartRequest.getParameter("weight");
-		String size  			=multiPartRequest.getParameter("size");
-		MultipartFile detail_images  	=multiPartRequest.getFile("detail_images"); // DB : detail_image_names ( 상세이미지)
-		String view_count  		=multiPartRequest.getParameter("view_count");
-		String kind 			=multiPartRequest.getParameter("kind");
-		String product_reg_date  =multiPartRequest.getParameter("product_reg_date");
-		MultipartFile product_image  =multiPartRequest.getFile("product_image"); // DB : product_image_name(섬네일 이미지)
-		String price = multiPartRequest.getParameter("price");
+		// aProductInsert.jsp 에서 보내준 mutipart format body 를 변수로 받음.( body attribute name 과 변수이름 순서 통일!!)
+		/*1.*/  String product_code 			= multiPartRequest.getParameter	("product_code");
+		/*2.*/  String product_name 			= multiPartRequest.getParameter	("product_name");
+		/*3.*/  String product_rank 			= multiPartRequest.getParameter	("product_rank");
+		/*4.*/  String product_qty  			= multiPartRequest.getParameter	("product_qty");
+		/*5.*/  String origin  					= multiPartRequest.getParameter	("origin");
+		/*6.*/  String manufacture_date 		= multiPartRequest.getParameter	("manufacture_date");
+		/*7.*/  String weight  					= multiPartRequest.getParameter	("weight");
+		/*8.*/  String size  					= multiPartRequest.getParameter	("size");
+		/*9.*/  String product_reg_date  		= multiPartRequest.getParameter	("product_reg_date");
+		/*10.*/ String kind 					= multiPartRequest.getParameter	("kind");
+		/*11.*/ MultipartFile product_image  	= multiPartRequest.getFile		("product_image"); // DB : product_image_name(섬네일 이미지)
+		/*12.*/ MultipartFile detail_image  	= multiPartRequest.getFile		("detail_image"); // DB : detail_image_name ( 상세이미지)
+		/*13.*/ String view_count  				= multiPartRequest.getParameter	("view_count");
+		/*14.*/ String price 					= multiPartRequest.getParameter	("price");
+		/*15.*/ String sold_qty 				= multiPartRequest.getParameter	("sold_qty");
+		/*16.*/ String seller_id 				= multiPartRequest.getParameter	("seller_id");
 		
 		service.productInsertDao(	
-								product_code, //1
-								product_name, //2
-								product_qty, //3
-								origin,//4
-								manufacture_date,//5
-								weight, //6
-								size, //7
-								detail_images,//8
-								view_count,//9
-								kind,//10
-								product_reg_date,//11
-								product_image,//12
-								price);//13
+								product_code, 	//1
+								product_name, 	//2
+								product_rank,	//3
+								product_qty, 	//4
+								origin,			//5
+								manufacture_date,//6
+								weight, 		//7
+								size, 			//8
+								product_reg_date,//9
+								kind,			//10
+								product_image,	//11
+								detail_image,	//12
+								view_count,		//13
+								price,			//14
+								sold_qty,		//15
+								seller_id		//16
+								);			
 		
 		return "redirect:aProductListUpdate";
 
