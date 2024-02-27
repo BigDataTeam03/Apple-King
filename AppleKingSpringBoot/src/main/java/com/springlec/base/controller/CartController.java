@@ -49,7 +49,7 @@ public class CartController {
 			 Model model,
 			 HttpServletResponse response  ) throws Exception {
 	        // 세션에서 유저 아이디 값 가져오기
-	        String userId = (String)session.getAttribute("userId");
+	     String userId = (String)session.getAttribute("userId");
 		 System.out.println("세션아이디값" + userId);
 			// Json 값 한글 지정
 			response.setContentType("application/json");
