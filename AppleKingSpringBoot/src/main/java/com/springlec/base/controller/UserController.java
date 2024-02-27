@@ -3,6 +3,7 @@ package com.springlec.base.controller;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,8 +42,12 @@ public class UserController {
 	 * o	 3. 정보가 불일치 할경우 불일치함을 페이지에 표시하는 기능. 
 	 * o 	 4. admin 일경우 aGoHome 으로 가는 기능 
 	 * o	 5. log out 기능 추가
+	 * 
 	 * 		Update 2024.02.25 by PDG
 	 * 		 1. annoatation 을이용하여 userId session 을 사용하자. ->discard
+	 * 
+	 * 		<<2024.02.28 by pdg>>
+	 * 		 1. sign up 기능 
 	 * o	 
 	 *-------------------------------------- 
 	 */
@@ -56,18 +61,23 @@ public class UserController {
 		return "redirect:ProductDisplay";
 	}
 
-	@PostMapping("/signUpStart.do")
+	@PostMapping("/signUpStart")
 	public String userSignUp() throws Exception {
-		System.out.println(">> userSignUp.do START ");
+		// *** START Message ***
+		System.out.println("**<<UserController @Post : userSignUp>>**");
 		return "/UserCheckPart/signup_view";
 	}
 	
 	
 	@PostMapping("SignUpUserOverlapChk")
 	@ResponseBody
-	public String SignUpUserOverlapChk() throws Exception{
+	public ResponseEntity<Boolean> SignUpUserOverlapChk() throws Exception{
+		// *** START Message ***
+		System.out.println("**<<UserController @Post : SignUpUserOverlapChk>>**");
 		
-		return "";
+		
+		
+		return ResponseEntity.ok(true);
 	}
 	@PostMapping("loginProcess")
 	public String loginProcess(

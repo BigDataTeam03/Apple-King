@@ -86,9 +86,19 @@
 		 			<!-- CARD -->
 		 		 	<div class ="card" >
 		 		 		<!-- Product image Plot -->
- 	 					<img src="resources/image/${item.product_image}" alt="${item.product_name} Image">
+ 	 					
 						<!--Card Body -->
 						<div class="card-body">
+						<a href="javascript:void(0);" 
+								   onclick="saveProductInfo('${item.product_code}',
+								    '${item.product_name}',
+								     ${item.price},
+								    '${item.origin}',
+								    '${item.size}',
+								     ${item.weight},
+								     ${item.product_qty})">
+ 	 						<img src="resources/image/${item.product_image}" alt="${item.product_name} Image" ">
+						</a>
 							<!--Card Title -->
 							<h5 class="card-title">
 								<a href="javascript:void(0);" 
@@ -103,7 +113,7 @@
 							<!--  Card content -->
 							<p class="card-text">
 	                        	<span class="red-price bold">
-	                         		<fmt:formatNumber value="${item.price}"  pattern="0,000"/> 원<br />
+	                         		<fmt:formatNumber value="${item.price}"  pattern="0,000"/> 원
 	                        	</span>
 		                        <span class="blue-price">
 		                         	(100g당 <fmt:formatNumber value="${item.price /(item.weight *100)}" pattern= "#" />원)<br /> 
