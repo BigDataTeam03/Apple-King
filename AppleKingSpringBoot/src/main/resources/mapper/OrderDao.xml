@@ -4,7 +4,18 @@
 <mapper namespace="com.springlec.base.dao.OrderDao">
 
 	<select id="OrderList" resultType="com.springlec.base.model.OrderDto">
-		SELECT * FROM orders WHERE cust_id = #{userId}
+		<!-- 오더 테이블에 존재하는 컬럼-->
+		 SELECT orders.product_code, orders.order_code, orders.payment_method, orders.order_qty, orders.orderdate, orders.used_point,
+		 <!-- 상품목록에서 가져오는 정보 -->
+         product.product_name, product.price, product.product_image 
+         <!--선택한 테이블-->
+		 FROM orders 
+         <!--선택한 상품 을 조회하기 위한 조인문 -->
+		 JOIN product on orders.product_code = product.product_code
+		 <!--로그인 한 아이디의 카트를 가져온다-->
+		 WHERE cust_id= #{userId} 
+		 <!--  구매날짜를 내림차 순으로 정렬하자. -->
+		 ORDER BY orders.orderdate DESC;
 	</select>
 
 </mapper>

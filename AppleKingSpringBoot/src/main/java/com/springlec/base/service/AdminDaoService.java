@@ -20,7 +20,7 @@ public interface AdminDaoService {
 	 *-------------------------------------- 
 	 */
 	//  상품목록 전체를 보여주고 정렬, 검색 변수가 추가된 인터페이스
-	public List<ProductListDto> productlist(String product_name,
+	public List<ProductListDto> productList(String product_name,
 			 String selected, String orderby ) throws Exception;
 	// 선택 상품 업데이트하는 변수가 추가된 인터페이스
 	public void updateProduct(String product_name,String product_qty,String origin,
@@ -37,19 +37,22 @@ public interface AdminDaoService {
 	
 	// 상품 인서트 하는 인터페이스
 	public void productInsertDao(
-			String product_code 	,
-			String product_name 	,
+			String product_code 	,//1
+			String product_name 	,//2
+			String product_rank		,//3	
 			String product_qty  	,
 			String origin  			,
 			String manufacture_date ,
 			String weight  			,
 			String size  			,
-			MultipartFile detail_images,  	
-			String view_count  		,
 			String kind 			,
 			String product_reg_date ,
 			MultipartFile product_image, 
-			String price
+			MultipartFile detail_image,  	
+			String view_count  		,
+			String price,
+			String sold_qty,
+			String seller_id
 			
 			) throws Exception ;
 	

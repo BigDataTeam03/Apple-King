@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file ="../top/top_user.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <%/*
 --------------------------------------------------------------
@@ -10,7 +11,9 @@
 * Date 			: 2024.02.22
 * ---------------------------Update---------------------------	
 * <<2024.02.22> by DK
-	1. session 말고 sessionScope 를 사용해 세션에 저장된 사용자의 정보를 가져온다.
+*	1. session 말고 sessionScope 를 사용해 세션에 저장된 사용자의 정보를 가져온다.
+*<<2024.2.27> by DK 
+*	1. 구매내역 컬럼 더 추가해서 불러오기. 
 --------------------------------------------------------------
 */ %>
 <html lang="en">
@@ -37,21 +40,29 @@
 	  </div><br><br>
  
 	 <div class="orderContainer">
-    	<h4>${memberList.name} 님의 구매내역</h4>
+    	<h4><strong>${memberList.name} 님의 구매내역</strong></h4><br>
     	<table>
 	        <tr>
-	            <th>상품코드</th>
+	            <th>구매날짜</th>
 	            <th>주문코드</th>
+	            <th>상품명</th>
+	            <th>가격</th>
+	            <th>구매수량</th>
 	            <th>결제수단</th>
-	            <th>사용한 포인트</th>
+	            <th>사용한포인트</th>
+	            <th>사진</th>
 	        </tr>
         
 	        <c:forEach var="order" items="${orderList}">
 	            <tr>
-	                <td>${order.product_code}</td>
+	                <td>${order.orderdate}</td>
 	                <td>${order.order_code}</td>
+	                <td><strong>${order.product_name}</strong></td>
+	                <td><fmt:formatNumber value="${order.price}" pattern="#,###"/></td>
+	                <td>${order.order_qty}</td>
 	                <td>${order.payment_method}</td>
-	                <td>${order.used_point}</td>
+	              	<td>${order.used_point}</td>
+	                <td style="width: 15%; height: 15%;"> <img src="resources/image/${order.product_image}" alt="상품 이미지" style="max-width:100%; max-height: 100%;"></td>
 	            </tr>
 	        </c:forEach>
     	</table>

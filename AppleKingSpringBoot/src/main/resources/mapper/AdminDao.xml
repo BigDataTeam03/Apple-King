@@ -2,43 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  				<!--관리자가 보는 상품 리스트 출력 -->
 <mapper namespace="com.springlec.base.dao.AdminDao">
+
+
 			<insert id="productInsertDao">
 				insert into product
-					( 
-					product_name,
-					product_qty,
-					origin,
-					manufacture_date,
-					weight,
-					size,
-					detail_image_names,
-					view_count,
-					product_reg_date,
-					kind,
-					product_image_name,
-					price) 
+			 		(product_name, 	
+			 		product_rank,	
+			 		product_qty, 	
+			 		origin,			
+			 		manufacture_date,
+			 		weight, 		
+			 		size, 			
+			 		product_reg_date,
+			 		kind,			
+			 		product_image,	
+			 		detail_image,
+			 		view_count,		
+			 		price,		
+			 		sold_qty,		
+			 		seller_id	)	
 				values(
 					#{product_name},
+					#{product_rank},
 					#{product_qty},
 					#{origin},
 					#{manufacture_date},
 					#{weight},
 					#{size},
-					#{detail_image_names},
-					#{view_count},
 					#{product_reg_date},
 					#{kind},
 					#{product_image_name},
-					#{price}) 
-				)
-				
-				
-				
+					#{detail_image_name},
+					#{view_count},
+					#{price},
+					#{sold_qty},
+					#{seller_id}) 
 				
 			</insert>
-
-
-			<select id="productlist" resultType="com.springlec.base.model.ProductListDto">
+			<select id="productList" resultType="com.springlec.base.model.ProductListDto">
 			SELECT 
 				product_code, 
 				product_name,
@@ -47,11 +48,11 @@
 				manufacture_date,
 				weight,
 				size,
-				detail_image_names,
+				detail_image,
 				view_count,
 				product_reg_date,
 				kind,
-				product_image_name,
+				product_image,
 				price 
 			FROM 
 				product 
@@ -70,11 +71,11 @@
 		 		   manufacture_date=#{manufacture_date},	
 			  	   weight=#{weight},			
 			  	   size=#{size},			
-		   		   detail_image_name=#{detail_image_name},
+		   		   detail_image=#{detail_image_name},
 			       view_count=#{view_count},	
 			       product_reg_date=now(),
 			       kind=#{kind},					
-			  	   product_image_names=#{product_image_names} 
+			  	   product_image=#{product_image_name} 
 			WHERE 
 			  	   product_code=#{product_code}
 			</update>

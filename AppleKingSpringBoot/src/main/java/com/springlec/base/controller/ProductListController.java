@@ -79,7 +79,7 @@ public class ProductListController {
 	}
 	
 	//paging 기능
-	@GetMapping("/ProductDisplay")
+	@GetMapping("ProductDisplay")
 	public String ProductDisplay(HttpServletRequest request,
 								 HttpSession session,
 							   	 Model model
@@ -153,13 +153,7 @@ public class ProductListController {
 													pageSize);		// 한페이지당 상품수
 		
 		model.addAttribute("productList", productList);
-		// 첫번째 체크 로깅
-		System.out.println(">> first_check 값 : "+ session.getAttribute("first_check"));
-		
-		if(session.getAttribute("first_check").equals("1")) {
-		System.out.println("first_check check 이 1(첫사용자임) 입니다. 0(첫사용자 아님) 로 바꿈.");
-		session.setAttribute("first_check","0");
-		}
+
 		}// pcnt !=0 end
 		return "/ProductPart/uProductList";
 		
