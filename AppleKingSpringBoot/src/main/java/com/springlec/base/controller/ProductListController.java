@@ -49,16 +49,16 @@ public class ProductListController {
 	ProductListDaoService service;
 	
 	// 선택된 상품 세션 저장
-	
+	// saveProductInfo 는 uProduct2.js 에서 call 하여 쏴주는 request body 정보를 session 에 저장함. 
 	@PostMapping("saveProductInfo")
-	public void saveProductIfo(
+	public void saveProductInfo(
 			@ModelAttribute("product_code") String product_code,
 			@ModelAttribute("product_name") String product_name,
-			@ModelAttribute("price") String price,
-			@ModelAttribute("origin") String origin,
-			@ModelAttribute("size") String size,
-			@ModelAttribute("weight") String weight,
-			@ModelAttribute("product_qty") String product_qty,
+			@ModelAttribute("price") 		String price,
+			@ModelAttribute("origin") 		String origin,
+			@ModelAttribute("size") 		String size,
+			@ModelAttribute("weight") 		String weight,
+			@ModelAttribute("product_qty") 	String product_qty,
 			HttpServletResponse response,
 			HttpSession session ) throws Exception{
 		System.out.println(">> saveProdcutInfo START");

@@ -17,7 +17,7 @@ Update : 2024.02.22 by LS, DK
 --------------------------------------------------------------
 */ %>
 <!--producrtDetailCommand 에서 세션에 저장한 상품 상세 정보 dto  -->
-<c:set var="dto" value="${listDao[0]}" />
+<c:set var="dto" value="${listDao}" />
 
 <html lang="en">
 	<head>
@@ -32,12 +32,8 @@ Update : 2024.02.22 by LS, DK
 		        <div class="col-md-7"> <!-- 가운데 정렬을 위해 너비를 조정 -->
 		            <div class="product-details">
 		                 <div class="product-image">
-		                  <c:forEach var="image" items="${listDao}">
-								 
-                         				<img src="resources/image/${image.detail_image}" alt="상품 이미지">  
-                    			 
-							</c:forEach>
-							</div> 
+                         	<img src="resources/image/${dto.detail_image}" alt="상품 이미지">  
+						 </div> 
 							
 		                <div class="product-info">
 		                	<span style="font-weight: bold; font-size: 35px;">
@@ -63,7 +59,7 @@ Update : 2024.02.22 by LS, DK
 	                        		 	    class="btn btn-primary" 
 	                        		        value="장바구니담기" />
 		                    </form><br><br>
-		                    <form action="purchase.do" method="post">
+		                    <form action="purchase" method="get">
 		                    		 <input type="submit" 
 	                        		        value="바로결제" />
 		                    </form>
@@ -75,11 +71,14 @@ Update : 2024.02.22 by LS, DK
 	<br>
 	<br>
 	<br>
-	
-	 
-<div>
-<jsp:include page="/gotoProductQuestion"/>
-</div>
+	<div>
+	<jsp:include page="/gotoProductReview"/>
+	</div>
+	<br>
+	<br>
+	<div>
+	<jsp:include page="/gotoProductQuestion"/>
+	</div>
     <!-- 상세페이지 탭 -->
         <div class="container">
 	        <ul class="nav nav-tabs" id="myTab" role="tablist">

@@ -15,13 +15,13 @@ public class ProductDetailDaoServiceImpl implements ProductDetailDaoService {
 	ProductDetailDao dao;
 
 	@Override
-	public List<ProductListDto> productDetailDao(String product_code) throws Exception {
-		
+	public ProductListDto productDetailDao(String product_code) throws Exception {
+	
 		return dao.productDetailDao(product_code);
 	}
 	// 장바구니에 넣을 때 장바구니에 이미 존재하는지 여부를 가리는 서비스
 	@Override
-	public boolean checkItem(String cust_id, String product_code) throws Exception {
+	public String checkItem(String cust_id, String product_code) throws Exception {
 		return dao.checkItem(cust_id, product_code);
 	}
 	// 장바구니에 인서트하는 서비스
