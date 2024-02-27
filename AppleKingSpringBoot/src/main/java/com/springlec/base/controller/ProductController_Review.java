@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.springlec.base.model.ProductListDto;
 import com.springlec.base.model.ReviewDto;
+import com.springlec.base.service.ProductDetailDaoService;
 import com.springlec.base.service.ProductReviewDaoService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -35,6 +37,10 @@ public class ProductController_Review {
 	
 	@Autowired
 	ProductReviewDaoService service;
+	
+	@Autowired
+	ProductDetailDaoService servic2;
+	
 		
 	@GetMapping("/gotoProductReview")
 	public String review (HttpServletRequest request,HttpSession session,
@@ -67,7 +73,7 @@ public class ProductController_Review {
 	
 	@GetMapping("/insertReview")
 	public String insertReview(HttpSession session,HttpServletRequest request,
-							   HttpServletResponse response, RedirectAttributes redirectAttributes) throws Exception {
+							   HttpServletResponse response, RedirectAttributes redirectAttributes, Model model) throws Exception {
 			// 로그인 안된 상태에서의 예외처리
 			if(session.getAttribute("userId") == null) {
 				redirectAttributes.addFlashAttribute("errorMessage", "로그인 후 이용해주세요.");
@@ -86,9 +92,11 @@ public class ProductController_Review {
 	System.out.println(" 가져온 값들" + cust_id + content + image + product_code + product_name + rating);		
 		 service.insertReview(cust_id, product_code, rating, 
 			    			  content, image, product_name);
-		 
+		  ProductListDto listDao = servic2.productDetailDao(product_code);
+		  model.addAttribute("listDao", listDao);
+		 System.out.println("리스트 목록" + listDao);
 		 //session.setAttribute("product_code", product_code);
-		 return "ProductPart/uProductList";
+		 return "ProductPart/productDetail";
 	}
 	
 	
