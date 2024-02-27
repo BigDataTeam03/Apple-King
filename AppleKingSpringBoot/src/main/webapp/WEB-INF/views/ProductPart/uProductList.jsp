@@ -77,6 +77,7 @@
 			  <option value="8">			8개씩 보기</option>
 			  <option value="10">			10개씩 보기</option>
 			</select>
+			
 		</div>
 	    	
     	<!-- Card Container -->
@@ -107,7 +108,7 @@
 								    '${item.origin}',
 								    '${item.size}',
 								     ${item.weight},
-								     ${item.product_qty})">${item.product_name}</a>
+								     ${item.product_qty})"> <span class="product-name">${item.product_name}</span></a>
 							</h5><!--Card Title END-->
 							<!--  Card content -->
 							<p class="card-text">
