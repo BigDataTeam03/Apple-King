@@ -98,6 +98,10 @@
             <td class="input-style"><input type="text" name="product_name" placeholder="상품명을 입력하세요" value="다사과"></td>
         </tr>
         <tr>
+            <td>상품등급:</td>
+            <td class="input-style"><input type="text" id="product_rank" name="product_code" placeholder="(자동 생성)" readonly="readonly"></td>
+        </tr>
+        <tr>
             <td>수량:</td>
             <td class="input-style"><input type="text" name="product_qty" placeholder="수량 입력" value="0"></td>
         </tr>
@@ -119,10 +123,6 @@
             <td class="input-style"><input type="text" name="size" placeholder="사이즈" value="대"></td>
         </tr>
         <tr>
-            <td>상세 이미지:</td>
-            <td class="input-style"><input type="text" name="detail_image_name" placeholder="수정불가" value="asdf.png"></td>
-        </tr>
-        <tr>
             <td>상품 등록일:</td>
             <td class="input-style"><input type="text" name="product_reg_date" readonly="readonly" placeholder="등록일 (자동 생성)" value = "2024-02-02"></td>
         </tr>
@@ -131,7 +131,7 @@
             <td class="input-style"><input type="text" name="kind" placeholder="품종" value="부사"></td>
         </tr>
         <tr>
-            <td>섬네일 이미지:</td>
+            <td>상품 이미지:</td>
             <td class="input-style">
            	 <input type="file" name="product_image" value = "null.png">
             </td>
@@ -139,12 +139,24 @@
          <tr>
             <td>상세 이미지:</td>
             <td class="input-style">
-           	 <input type="file" name="detail_images" value = "null.png">
+           	 <input type="file" name="detail_image" value = "null.png">
             </td>
         </tr>
         <tr>
+            <td>조회수 :</td>
+            <td class="input-style"><input type="text" name="view_count"  value="0"></td>
+        </tr>
+        <tr>
             <td>가격 :</td>
-            <td class="input-style"><input type="text" name="price" placeholder="가격" value="15000"></td>
+            <td class="input-style"><input type="text" name="price"  value="15000"></td>
+        </tr>
+        <tr>
+            <td>판매량 :</td>
+            <td class="input-style"><input type="text" name="sold_qty"  value="1"></td>
+        </tr>
+        <tr>
+            <td>판매자ID :</td>
+            <td class="input-style"><input type="text" name="seller_id"  value="pdg"></td>
         </tr>
     </table>
 </div>

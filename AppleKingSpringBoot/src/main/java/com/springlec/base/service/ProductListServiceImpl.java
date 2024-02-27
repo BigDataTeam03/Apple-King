@@ -18,7 +18,9 @@ public class ProductListServiceImpl implements ProductListDaoService {
 	 * Author		: pdg
 	 * Date			: 2024.02.21
 	 * Update 		:
-	 * 	1.sortQuery 	
+	 * << 2024.02.26 by pdg>
+	 * 	1.sortQuery  정렬기능 생성 
+	 *  2. 높은 가격 낮은가격 거꾸로 되는 문제 해결
 	 * 		
 	 * 
 	 */
@@ -46,23 +48,32 @@ public class ProductListServiceImpl implements ProductListDaoService {
 		// sortingOption 에따라서 들어가는 query변환
 		
 		switch(sortingOption) {
-		// 랭킹 순 
+		
+		// 애플랭킹 순 
 		case "productRank": sortQuery= "order by product_rank asc "; break;
+		
 		// 높은 가격순
-		case "highPrice": sortQuery= "order by price asc "; break;
+		case "highPrice": 	sortQuery= "order by price desc "; break;
+		
 		// 낮은 가격순
-		case "lowPrice": sortQuery= "order by price desc "; break;
+		case "lowPrice": 	sortQuery= "order by price asc "; break;
+		
 		// 판매량순
-		case "sold_qty": sortQuery= "order by sold_qty asc "; break;
+		case "sold_qty": 	sortQuery= "order by sold_qty asc "; break;
+		
 		// 최신순 (상품 등록일 순) 
 		case "product_reg_date": sortQuery= "order by product_reg_date asc "; break;
-			
 		}
-		sortingOption =sortQuery;
+		sortingOption =	sortQuery; // query 문으로 대체
 		
+		// 실제 들어가는 쿼리문 
 		System.out.println(">> SQL query :"+"select * from product where "
-				+ searchQuery +" like " +searchContent+ " "+sortingOption +" limit"+ Integer.toString(startProduct-1) +" ,"+ pageSize
-			);
+				+ searchQuery 	+	" like " 
+				+ searchContent	+ 	" "
+				+ sortingOption	+	" limit"
+				+ Integer.toString(startProduct-1) +" ,"
+				+ pageSize);
+			
 		// 검색시 limit 을 이용함. startProduct 의 -1 해야 0 번째 부터 출력가능. 
 		return dao.productListDao(searchQuery, searchContent, sortingOption, startProduct - 1, pageSize);
 	}

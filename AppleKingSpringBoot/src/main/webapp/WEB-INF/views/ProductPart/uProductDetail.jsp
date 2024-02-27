@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%-- <%@ include file ='top_user.jsp' %> --%>
+<%@ include file ='../top/top_user.jsp' %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -138,7 +138,7 @@ Update : 2024.02.22 by LS, DK
 	            </div>
 	        </div>
     	</div>
-   <!-- 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!-- 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="uProductDetail.js?var=1"></script>  -->
     
 		
