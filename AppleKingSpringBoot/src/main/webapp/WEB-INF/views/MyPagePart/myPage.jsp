@@ -12,8 +12,9 @@
 * ---------------------------Update---------------------------	
 * <<2024.02.22> by DK
 *	1. session 말고 sessionScope 를 사용해 세션에 저장된 사용자의 정보를 가져온다.
-*<<2024.2.27> by DK 
-*	1. 구매내역 컬럼 더 추가해서 불러오기. 
+* <<2024.02.27> by DK 
+*	1. 구매내역 컬럼 더 추가해서 불러오기.
+*   2. 유저가 작성한 리뷰내역을 불러오기.
 --------------------------------------------------------------
 */ %>
 <html lang="en">
@@ -63,6 +64,29 @@
 	                <td>${order.payment_method}</td>
 	              	<td>${order.used_point}</td>
 	                <td style="width: 15%; height: 15%;"> <img src="resources/image/${order.product_image}" alt="상품 이미지" style="max-width:100%; max-height: 100%;"></td>
+	            </tr>
+	        </c:forEach>
+    	</table>
+
+	
+    	<h4><strong>나의 리뷰내역</strong></h4><br>
+    	<table>
+	        <tr>
+	            <th>날짜</th>
+	            <th>상품명</th>
+	            <th>별점</th>
+	            <th>내용</th>
+	            <th>리뷰사진</th>
+	            
+	        </tr>
+        
+	        <c:forEach var="review" items="${reviewList}">
+	            <tr>
+	                <td>${review.review_date}</td>
+	                <td>${review.product_name}</td>
+	                <td>${review.rating}</td>
+	                <td>${review.review_content}</td>
+	                <td style="width: 15%; height: 15%;"> <img src="resources/image/${review.review_image}" alt="리뷰이미지" style="max-width:100%; max-height: 100%;"></td>
 	            </tr>
 	        </c:forEach>
     	</table>

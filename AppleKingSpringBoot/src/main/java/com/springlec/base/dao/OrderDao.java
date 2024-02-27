@@ -8,4 +8,8 @@ import com.springlec.base.model.OrderDto;
 public interface OrderDao {
 	public List<OrderDto> OrderList(String userId) throws Exception;
 	public MemberDto memberInfoDao(String userId) throws Exception ;
+	
+	//구매 정보 insert
+	public OrderDto orderInsertDao() throws Exception;
+	
 }

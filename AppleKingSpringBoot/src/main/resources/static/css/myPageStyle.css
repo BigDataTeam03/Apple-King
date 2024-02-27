@@ -65,6 +65,14 @@ h4 {
     border-radius: 8px; /* Add border radius for rounded corners */
 	}
 	
+	
+    .myReviewContainer {
+    width: 100%; /* Adjust the width of the container as needed */
+    padding: 20px; /* Add padding to the container */
+    border: 1px solid #ccc; /* Add a border to the container */
+    border-radius: 8px; /* Add border radius for rounded corners */
+	}
+	
 	table {
 	    width: 100%; /* Make the table fill the container width */
 	    border-collapse: collapse; /* Collapse borders for a cleaner look */

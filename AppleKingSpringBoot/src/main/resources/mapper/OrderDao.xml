@@ -17,5 +17,31 @@
 		 <!--  구매날짜를 내림차 순으로 정렬하자. -->
 		 ORDER BY orders.orderdate DESC;
 	</select>
+	<!-- order code 는 auto increase 임으로 추가 안함.  -->
+	
+	<insert id="orderInsertDao">
+		insert into orders (cust_id, 		<!-- 1 -->
+		 					product_code,	<!-- 2 -->
+		 					payment_method,	<!-- 3 -->
+		 					used_point,		<!-- 4 -->
+		 					order_qty,		<!-- 5 -->
+		 					soldout,		<!-- 6 -->
+		 					orderdate  )	<!-- 7 --> 
+		 					values (
+		 					#{cust_id},
+		 					#{product_code},
+		 					#{payment_method},
+		 					#{used_point},
+		 					#{order_qty},
+		 					#{soldout},
+		 					#{orderdate}  )					
+		
+	</insert>
+
+
+	<select id="ReviewList" resultType="com.springlec.base.model.ReviewDto">
+		SELECT * FROM review WHERE cust_id =#{userId}
+	</select>
+
 
 </mapper>

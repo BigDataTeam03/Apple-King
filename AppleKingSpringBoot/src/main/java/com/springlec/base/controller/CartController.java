@@ -38,14 +38,16 @@ public class CartController {
 	 *      4. 구매페이지로 이동 완료
 	 *       
 	 */
-	@Autowired
-	CartDaoService service;
-	
-	@PostMapping("/showCartList")
-	
-	//Json 형식의 데이터를 받기위한 어노테이션
-	 public ResponseEntity<List<CartDto>> showcartList(HttpServletRequest session, Model model,
-			 										   HttpServletResponse response  ) throws Exception {
+	 @Autowired
+	 CartDaoService service;
+	 
+	 @PostMapping("/showCartList")
+	 //Json 형식의 데이터를 받기위한 어노테이션
+	 public ResponseEntity<List<CartDto>> showcartList(
+			 HttpSession session,
+			 HttpServletRequest request,
+			 Model model,
+			 HttpServletResponse response  ) throws Exception {
 	        // 세션에서 유저 아이디 값 가져오기
 	     String userId = (String)session.getAttribute("userId");
 		 System.out.println("세션아이디값" + userId);
@@ -61,7 +63,7 @@ public class CartController {
 	        return ResponseEntity.ok().body(cartList);
 	    }
 	@GetMapping("/ListView")
-	public String gomone() throws Exception{
+	public String goHome() throws Exception{
 
 		return "cartList/ListView";
 	}
