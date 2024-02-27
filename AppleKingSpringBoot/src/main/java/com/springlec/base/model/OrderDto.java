@@ -2,7 +2,7 @@ package com.springlec.base.model;
 
 public class OrderDto {
 
-//Field 
+	//Field 
 
 	// ORDER TABLE COLUMNS
 	String userId; // <-- cust_id
@@ -15,9 +15,12 @@ public class OrderDto {
 
 	// Product information
 	String product_code; // product_code
+
+
 	String product_name;
 	int price;
 	String product_qty;
+	String product_image;
 
 	// User information
 	String userName; //
@@ -122,4 +125,10 @@ public class OrderDto {
 		this.userName = userName;
 	}
 
+	public void setProduct_image(String product_image) {
+		this.product_image = product_image;
+	}
+	public String getProduct_image() {
+		return product_image;
+	}
 }// END
