@@ -42,7 +42,7 @@
 	out.print("pagechek 값 : "+result);
 %> --%>
 <body>
-
+		
     <div class="container"> 
         <h2>장바구니 목록</h2>
         <div>총 상품 종류: <span id="cartTot"></span></div><br>

@@ -2,6 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  				<!--관리자가 보는 상품 리스트 출력 -->
 <mapper namespace="com.springlec.base.dao.AdminDao">
+			<insert id="productInsertDao">
+				insert into product
+					( 
+					product_name,
+					product_qty,
+					origin,
+					manufacture_date,
+					weight,
+					size,
+					detail_image_names,
+					view_count,
+					product_reg_date,
+					kind,
+					product_image_name,
+					price) 
+				values(
+					#{product_name},
+					#{product_qty},
+					#{origin},
+					#{manufacture_date},
+					#{weight},
+					#{size},
+					#{detail_image_names},
+					#{view_count},
+					#{product_reg_date},
+					#{kind},
+					#{product_image_name},
+					#{price}) 
+				)
+				
+				
+				
+				
+			</insert>
+
+
 			<select id="productlist" resultType="com.springlec.base.model.ProductListDto">
 			SELECT 
 				product_code, 
@@ -11,11 +47,11 @@
 				manufacture_date,
 				weight,
 				size,
-				detail_image_name,
+				detail_image_names,
 				view_count,
 				product_reg_date,
 				kind,
-				product_image_names,
+				product_image_name,
 				price 
 			FROM 
 				product 
@@ -76,7 +112,7 @@
 		        product on inquire.product_code = product.product_code  
 		        <!--답글이 아직 안 달린 문의 내역만 가져온다-->
 		     WHERE 
-		        inquire.answer_content is null ORDER BY inquire.inquire_date desc
+		        inquire.answer_content is null AND ${Not} ORDER BY inquire.inquire_date desc
 			</select>
 			<!-- 문의에 대한 답변을 달아준다 -->
 			<update id="updateQuestion">

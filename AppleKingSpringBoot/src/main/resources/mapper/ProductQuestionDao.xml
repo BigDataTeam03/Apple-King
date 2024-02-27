@@ -23,4 +23,5 @@
 				values
 				    (#{cust_id},#{product_code},now(),#{question})	
 		</insert>
+		
 </mapper>
