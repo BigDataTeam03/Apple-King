@@ -118,4 +118,26 @@ $(document).ready(function() {
             "&sortingOption=" +sortingOption+
             "&searchContent="+searchContent;
     }
+    
+    
+    function setItemsPerPage (value){
+		
+		$.ajax({
+			type: "GET",
+			url:  "/updateItemsPerPage",
+			data: {itemsPerPage : value},
+			success: function(response){
+				
+			},
+			error: function(xhr, status, error){
+				
+				
+			}
+		})
+		
+	}
+    
+    
+    
+    
 });

@@ -38,4 +38,10 @@
 		
 	</insert>
 
+
+	<select id="ReviewList" resultType="com.springlec.base.model.ReviewDto">
+		SELECT * FROM review WHERE cust_id =#{userId}
+	</select>
+
+
 </mapper>
