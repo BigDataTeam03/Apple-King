@@ -34,8 +34,8 @@ public class PurchaseController {
 	 *  4. 결제자 정보는 굳이 다오를 사용하지않아도 세션값에서 충분히 표기 할수있으므로 service 를 사용하지 않도록 함. 
 	 */
 	
-	//@Autowired
-	//PurchaseDaoService service;
+	@Autowired
+	PurchaseDaoService service;
 	
 	@Autowired
 	OrderDaoService service_order;
@@ -46,13 +46,16 @@ public class PurchaseController {
 	}
 	
 	//즉시결제시 구매자 정보 + 결제 정보 불러오기 
-	@GetMapping("/directPurchase")
+	@PostMapping("/directPurchase")
 	public String PurchaserInfoDao (HttpSession session, HttpServletRequest request, Model model) throws Exception{
 		
 		// 구매자 정보(session 값 fetch) 
 		String userId 	= (String)session.getAttribute("userId");
 		String userName = (String)session.getAttribute("userName");
 		
+		if (userId ==null) {
+			return "/UserCheckPart/login_view";
+		}
 		// 결제 할 상품 정보. (즉시결제) 
 		String product_code = (String)session.getAttribute("product_code");
 		String product_name = (String)session.getAttribute("product_name");
@@ -61,7 +64,8 @@ public class PurchaseController {
 		String size			= (String)session.getAttribute("size"); 
 		String weight		= (String)session.getAttribute("weight"); 
 		String product_qty	= (String)session.getAttribute("product_qty"); 
-		
+		MemberDto memberList = service.memberInfoDao(userId);
+		model.addAttribute("memberList", memberList);
 //		service_order.orderInsertDao(
 //						userId,
 //						userName,

@@ -20,7 +20,19 @@
     display: inline-block;
     vertical-align: top;
 }
+#searchButton:hover {
+    background-color: #0056b3;
+}
 
+#searchButton {
+    padding: 8px 16px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
 
 #searchContent {
     padding: 5px;
@@ -35,14 +47,23 @@
     display: inline-block;
     vertical-align: top;
 }
-
+#productRank, #highPrice, #lowPrice, #sold_qty, #product_reg_date {
+    margin: 0 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+#itemsPerPageSelect {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
 /*-------------PRODUCT LIST CARD CSS---------------*/
 
 
 .card {
-    width: 200px;
-    height: 300px;
+    width: 300px;
+    height: 320px;
     border: 2px solid #ddd;
     border-radius: 5px;
     margin: 10px;
@@ -50,9 +71,18 @@
     overflow: hidden;
 }
 
+.card:hover {
+    transform: scale(1.05);
+}
 .card img {
-    width: 100%;
-    height: auto;
+   	width: 180px; /* 원하는 너비 값으로 설정 */
+    height: auto; /* 높이를 자동으로 조절하여 비율 유지 */
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+        display: block; /* 이미지를 블록 요소로 만듭니다. */
+    
+    margin: 0 auto; /* 좌우 마진을 auto로 설정하여 가운데 정렬합니다. */
+    
 }
 
 .card-body {
@@ -63,18 +93,16 @@
     color: #333;
     text-decoration: none;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .red-price {
     color: red;
     font-weight: bold;
-    font-size: 18px;
 }
 
 .blue-price {
     color: blue; 
-    font-size: 15px; 
 }
 
 .card-container {

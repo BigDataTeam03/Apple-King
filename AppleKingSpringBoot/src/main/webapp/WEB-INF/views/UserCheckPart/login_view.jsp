@@ -112,7 +112,10 @@
 	%>
 	<div class= "container">
 	  	<div>
-	    	<h1><img src="resources/image/logo.png"></h1>
+	    	<a href="ProductDisplay">
+	    	<img src="resources/image/logo.png">
+	    	
+	    	</a>
 	  	</div>
 	  	<div class="form-container">
 	  		<%//-----------------------Form Action(validationForm =>LoginProcess.jsp) --------- //%>
@@ -171,7 +174,7 @@
 	    		<br>
 	    	</div>
 	    	<form class  = "form-container"
-	    		  action = "signUpStart.do" 
+	    		  action = "signUpStart" 
 	    		  method = "post">
 	    		<div>
 	            	<!-- 회원가입 버튼 -->

@@ -36,6 +36,7 @@ public class ProductDetailController {
 	 * 
 	 * <<2024.02.27 by pdg , ls>
 	 * 		1.상품 체크 관련 주석 수정. 
+	 * 		2.login 안된 상태에서는 장바구니 담기를 누르면 로그인페이지로 이동하는 기능
 	 */
 	
 	//DI
@@ -76,26 +77,29 @@ public class ProductDetailController {
 		
 		// 세션값 받음
 		String product_code  = (String)session.getAttribute("product_code");
-		String cust_id 		 = (String)session.getAttribute("userId");
+		String userId 		 = (String)session.getAttribute("userId");
 		Integer cart_qty     = Integer.parseInt(request.getParameter("cart_qty"));
+		
+		if(userId ==null) {
+			return "/UserCheckPart/login_view";
+		}
 		
 		int cart_qty_int = cart_qty != null ? (int) cart_qty: 0;
 		String product_name  = (String)session.getAttribute("product_name"); 
 		System.out.println(">>  product code : " + product_code +" \n"
-						  +">>  cust id      : " + cust_id + "\n"
+						  +">>  user Id		 : " + userId + "\n"
 					      +">>  product name : " + product_name + "\n"
-					      +">>  상품 선택 개수   : " + cart_qty_int );
+					      +">>  상품 선택 개수  : " + cart_qty_int );
 		
 		// 장바구니에 이미 있는 상품인지 체크 
-		String checkAlreadyInCart = service.checkItem(cust_id, product_code);
-		System.out.println(">> 상품 존재 여부 : "+checkAlreadyInCart);
+		String checkAlreadyInCart = service.checkItem(userId, product_code);
 		System.out.println(">> 장바구니에 있는 상품인지 체크 :"+ checkAlreadyInCart);
 		if( !checkAlreadyInCart.equals("0")) { // cart 에 상품이 이미 있을때 
 			System.out.println(">> 장바구니에 삽입합니다.");
-			service.updateCart(cust_id, product_code, cart_qty);
+			service.updateCart(userId, product_code, cart_qty);
 		}else { // cart 에 상품이 없을때 
 			System.out.println(">> 장바구니 개수를 수정합니다.");
-			service.insertCart(cust_id, product_code, cart_qty);
+			service.insertCart(userId, product_code, cart_qty);
 		}
 		return "cartList/ListView";
 	}//insertCart END
