@@ -17,6 +17,19 @@ import com.springlec.base.model.InquireDto;
 import com.springlec.base.model.MemberDto;
 import com.springlec.base.model.ProductListDto;
 
+
+/*
+ * Description 	: adminDao service implement 
+ * Date 		: 2024.02.27
+ * Author 		: kbs, pdg , ls 		
+ * Detail 		: 관리자 crud
+ * Update		: 
+ * 	<<2024.02.27 by pdg>>
+ * 		1.multipart request 를 사용하여 이미지 저장 성공 (다중이미지.)
+ * 		2. 이미지 이름이 이상하게 저장됨? => 상관없나?? => 그럴듯한 이미지 제목으로 바꾸어서 저장필요??
+ * 
+ */
+
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class AdminDaoServiceImpl implements AdminDaoService {

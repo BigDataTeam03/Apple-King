@@ -34,7 +34,7 @@ Update : 2024.02.22 by LS, DK
 		                 <div class="product-image">
 		                  <c:forEach var="image" items="${listDao}">
 								 
-                        				<img src="resources/image/${image.detail_image_name}" alt="상품 이미지">
+                         				<img src="resources/image/${image.detail_image}" alt="상품 이미지">  
                     			 
 							</c:forEach>
 							</div> 
@@ -51,6 +51,7 @@ Update : 2024.02.22 by LS, DK
 	                        <span style="font-weight: bold;">
 		                    크기:  ${dto.size}<br>
 		                    무게: ${dto.weight}kg<br><br><br>
+		                    재고수량: ${dto.product_qty }
 		                    </span>
 		                    
 		                    <form name="cartForm" action="/cartInsert" method ="post">

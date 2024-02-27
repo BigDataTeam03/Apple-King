@@ -15,7 +15,7 @@
 	   
 	
 -->
-    <select id= "productDetailDao">
+    <select id= "productDetailDao" resultType="com.springlec.base.model.ProductListDto">
         SELECT * FROM product WHERE product_code = #{product_code}
     </select>
     	<!-- 추가하려는 상품이 장바구니에 이미 존재하는지 판별하는 쿼리문 -->

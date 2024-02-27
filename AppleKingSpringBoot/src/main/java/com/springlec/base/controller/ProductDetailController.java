@@ -44,8 +44,8 @@ public class ProductDetailController {
 				
 		List<ProductListDto> listDao = service.productDetailDao(product_code);
 		model.addAttribute("listDao", listDao);
-		System.out.println("상품목록 :" + listDao);
-		return "uProductDetail";
+		System.out.println(">> 상품목록 :" + listDao);
+		return "/ProductPart/uProductDetail";
 	}
 	
 	// 장바구니로 넣는 메소드
