@@ -65,7 +65,6 @@ function saveProductInfo(product_code, product_name, price, origin, size, weight
 			product_qty		: product_qty
 		},
 		success: function() {
-			alert("Success")
 			window.location.href = "productDetail";
 		},
 	});
@@ -80,7 +79,7 @@ $(document).ready(function() {
     $("#productRank, #highPrice, #lowPrice, #sold_qty, #product_reg_date").click(function(e) {
         e.preventDefault(); // 링크의 기본 동작 방지
         let sortingOption = $(this).attr("id"); // 클릭된 링크의 id 값을 가져옴
-        alert(sortingOption)
+        //alert(sortingOption)
         productSort(sortingOption); // 정렬 옵션을 인자로 전달하여 검색 및 정렬 함수 호출
     });
 

@@ -85,7 +85,7 @@
 		 			<!-- CARD -->
 		 		 	<div class ="card" >
 		 		 		<!-- Product image Plot -->
- 	 					<img src="resources/image/${item.product_image_names}" alt="${item.product_name} Image">
+ 	 					<img src="resources/image/${item.product_image}" alt="${item.product_name} Image">
 						<!--Card Body -->
 						<div class="card-body">
 							<!--Card Title -->
