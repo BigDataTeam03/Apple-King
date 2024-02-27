@@ -59,7 +59,7 @@ Update : 2024.02.22 by LS, DK
 	                        		 	    class="btn btn-primary" 
 	                        		        value="장바구니담기" />
 		                    </form><br><br>
-		                    <form action="purchase.do" method="post">
+		                    <form action="purchase" method="get">
 		                    		 <input type="submit" 
 	                        		        value="바로결제" />
 		                    </form>

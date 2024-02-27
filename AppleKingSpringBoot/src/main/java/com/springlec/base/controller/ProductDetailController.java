@@ -87,9 +87,4 @@ public class ProductDetailController {
 		}
 		return "cartList/ListView";
 	}//insertCart END
-	
-
-	
-	
-	
 }//PRODUCT DETAIL CONTROLLER END
