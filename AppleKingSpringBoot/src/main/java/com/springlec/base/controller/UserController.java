@@ -53,7 +53,7 @@ public class UserController {
 	@GetMapping("/")
 	public String userLogin() throws Exception {
 		System.out.println("** ROOT PAGE START **");
-		return "/UserCheckPart/login_view";
+		return "redirect:ProductDisplay";
 	}
 
 	@PostMapping("/signUpStart.do")
@@ -150,7 +150,10 @@ public class UserController {
 		}
 	}// loginProcess END
 	
-	@GetMapping("/logout")
+
+	
+	
+	@GetMapping({"/logout", "login"})
 	public String logOut(HttpSession session) throws Exception{
 		System.out.println(">> logout 을 실행합니다.");
 		

@@ -65,10 +65,10 @@
 			<button id ="searchButton">검색</button>
 			
 			<!-- 가격순으로 정렬 -->
-		    <a href="#" id="productRank" >애플랭킹순</a>
-			<a href="#" id="highPrice" >높은 가격순</a>
-			<a href="#" id="lowPrice">낮은 가격순</a>
-			<a href="#" id="sold_qty">판매량순</a>
+		    <a href="#" id="productRank" >애플랭킹순</a> &nbsp;
+			<a href="#" id="highPrice" >높은 가격순</a>&nbsp;
+			<a href="#" id="lowPrice">낮은 가격순</a>&nbsp;
+			<a href="#" id="sold_qty">판매량순</a>&nbsp;
 			<a href="#" id="product_reg_date">최신순</a>
 		    
 		    <!-- 몇개씩 보기 기능 추가 (아이템 추가할경우 수정하기) -->
@@ -78,35 +78,41 @@
 			  <option value="10">			10개씩 보기</option>
 			</select>
 		</div>
-	    <!-- 상품 전체 조회 -->
-	    	<div class="card-container">
-			 	<c:forEach var="item" items="${productList}">
-			 		 	<div class ="card" >
-	 	 				<img src="resources/image/${item.product_image_names}" alt="${item.product_name} Image">
-							<div class="card-body">
-								<h5 class="card-title">
-								
-									<a href="javascript:void(0);" 
-									   onclick="saveProductInfo('${item.product_code}',
-									    '${item.product_name}',
-									     ${item.price},
-									    '${item.origin}',
-									    '${item.size}',
-									     ${item.weight},
-									     ${item.product_qty})">${item.product_name}</a>
-									
-								</h5>
-								<p class="card-text">
-		                        <span class="red-price bold">
-		                         <fmt:formatNumber value="${item.price}"  pattern="0,000"/> 원<br />
+	    	
+    	<!-- Card Container -->
+    	<div class="card-container">
+		 	<c:forEach var="item" items="${productList}">
+		 			<!-- CARD -->
+		 		 	<div class ="card" >
+		 		 		<!-- Product image Plot -->
+ 	 					<img src="resources/image/${item.product_image_names}" alt="${item.product_name} Image">
+						<!--Card Body -->
+						<div class="card-body">
+							<!--Card Title -->
+							<h5 class="card-title">
+								<a href="javascript:void(0);" 
+								   onclick="saveProductInfo('${item.product_code}',
+								    '${item.product_name}',
+								     ${item.price},
+								    '${item.origin}',
+								    '${item.size}',
+								     ${item.weight},
+								     ${item.product_qty})">${item.product_name}</a>
+							</h5><!--Card Title END-->
+							<!--  Card content -->
+							<p class="card-text">
+	                        	<span class="red-price bold">
+	                         		<fmt:formatNumber value="${item.price}"  pattern="0,000"/> 원<br />
+	                        	</span>
+		                        <span class="blue-price">
+		                         	(100g당 <fmt:formatNumber value="${item.price /(item.weight *100)}" pattern= "#" />원)<br /> 
 		                        </span>
-		                         <span class="blue-price">(100g당 <fmt:formatNumber value="${item.price /(item.weight *100)}" pattern= "#" />원)<br />
-		                        </span>
-		                    </p>
-							</div>
-	 					</div>
-	 			</c:forEach>
-	 		</div>
+	                    	</p><!--  Card content END -->
+						</div><!--/ Card Body END -->
+ 					</div><!-- CARD END-->
+ 			</c:forEach>
+ 		</div><!-- Card Container END -->
+	 		
 		<div id="page_control">
     <c:if test="${endPage gt pageCount}">
         <c:set var="endPage" value="${pageCount}" />
