@@ -7,7 +7,7 @@
 		SELECT o.product_code, o.order_code, o.payment_method, o.order_qty, o.orderdate, o.used_point,
        	p.product_name, p.price, p.product_image 
        	
-		FROM `order` o
+		FROM `orders` o
 		
 		JOIN product p ON o.product_code = p.product_code
 		
