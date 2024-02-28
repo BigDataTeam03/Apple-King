@@ -44,7 +44,7 @@ Update: 2024.02.26 DK
        <div class="col-md-3">
         <h3 class="text-center mb-4">${sessionScope.userName}님의 회원정보</h3>
 
-       <form name="modifyForm" action="modify" method="post" onsubmit="return validateForm()">
+       <form name="modifyForm" action="modify" method="post" >
             <div class="form-group">
 			    <label for="name">성명 :</label>
 			    <c:forEach var="info" items="${myInfo}">
@@ -60,7 +60,10 @@ Update: 2024.02.26 DK
 			<div class="form-group">
 			    <label for="cust_pw">비밀번호 :</label>
 			    <c:forEach var="info" items="${myInfo}">
-			        <input type='text' class='form-control short-text-input' id='cust_pw' name='cust_pw' value='${info.cust_pw}'>
+			        <input type='password' class='form-control short-text-input' id='cust_pw' name='cust_pw' value='${info.cust_pw}' readonly>
+			         <div class="input-group-append">
+			            <button type="button" class="btn btn-primary" id="editpassword">비밀번호 재설정</button>
+			        </div>
 			    </c:forEach>
 			</div>
 			<div class="form-group">
@@ -80,13 +83,13 @@ Update: 2024.02.26 DK
 			    <c:forEach var="info" items="${myInfo}">
 			        <input type='text' class='form-control short-text-input' id='useraddress' name='useraddress' value='${info.address}'readonly>
 			        <div class="input-group-append">
-			            <button type="button" class="btn btn-primary" id="editaddress" onclick="addressForm()">수정하기</button>
+			            <button type="button" class="btn btn-primary" id="editaddress" onclick="addressForm()">주소찾기</button>
 			        </div>
 			    </c:forEach>
 			</div>
 			*수정 후 완료 버튼을 누르세요!<br><br>
 			<div class="text-center">
-			    <button type="submit" class="btn btn-primary mr-2" onclick="validateForm()">수정완료</button>
+			    <button type="submit" class="btn btn-primary mr-2">수정완료</button>
 			</div>
         </form>
 		<form action="deactivate" method="post">        
