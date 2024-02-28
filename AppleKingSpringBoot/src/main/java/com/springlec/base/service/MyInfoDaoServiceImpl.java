@@ -29,7 +29,17 @@ public class MyInfoDaoServiceImpl implements MyInfoDaoService {
 	public void DeactivateDao(String deact_date,String cust_id) throws Exception {
 		dao.DeactivateDao( deact_date,cust_id);
 	}
-	
+
+	@Override
+	public String getUserPwById(String cust_id) throws Exception {
+		return dao.getUserPwById(cust_id);
+	}
+
+
+	@Override
+	public void updatePassword( String cust_id, String confirmPassword) throws Exception {
+	    dao.updatePassword(cust_id, confirmPassword);
+	}
 	
 	
 	
