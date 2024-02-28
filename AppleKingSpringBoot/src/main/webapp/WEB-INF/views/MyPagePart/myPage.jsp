@@ -69,7 +69,7 @@
     	</table>
 
 	
-    	<h4><strong>나의 리뷰내역</strong></h4><br>
+    	<h4><strong>리뷰내역</strong></h4><br>
     	<table>
 	        <tr>
 	            <th>날짜</th>

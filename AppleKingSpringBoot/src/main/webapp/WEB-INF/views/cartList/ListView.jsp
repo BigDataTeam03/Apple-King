@@ -6,16 +6,17 @@
  /*
 	--------------------------------------------------------------
 	* Description 	: User Cart page
-	*  Detail		: 장바구니페이지 
+	* Detail		: 장바구니페이지 
 	* Author 		: KBS 
 	* Date 			: 2024.02.22
 	* ---------------------------Update---------------------------		
 	* <<2024.02.22>> by KBS 
-	   1. 리스트 출력기능 완료( 추가작업 필요 )
+	*  1. 리스트 출력기능 완료( 추가작업 필요 )
+	* <<2024.02.28>> by DK 
+	*  1. 카트리스트 CSS 추가. 
 	--------------------------------------------------------------
 */
 -->
-
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -23,7 +24,6 @@
     <title>장바구니 목록</title>
 	<link rel = "stylesheet" href ="resources/css/cart.css"> 
 </head>
-
 <%-- <%
 	String product_name = (String)session.getAttribute("product_name");
 	Boolean pageChk = false ;
@@ -37,25 +37,22 @@
 	out.print("pagechek 값 : "+result);
 %> --%>
 <body>
-		
     <div class="container" > 
         <h2>장바구니 목록</h2>
         <div>총 상품 종류: <span id="cartTot"></span></div><br>
         <div id="cartList"></div> 
         <br>
-         <div style="display: inline-block;">
-        	<button id="cartAllSelectBtn">전체 선택</button>
-   		 </div>
-    	 <div style="display: inline-block; margin-left: 10px;">
+        <div style="display: inline-block;">
+       		<button id="cartAllSelectBtn">전체 선택</button>
+   		</div>
+    	<div style="display: inline-block; margin-left: 10px;">
         	<button id="cartDeleteBtn">선택 삭제</button>
-   		 </div>
+   		</div>
         <br><br>
-        총 가격: <span id="totalPrice"></span>
+       <div style="font-size: 24px;">총 가격: <span id="totalPrice" style="font-size: 20px; color: red;"></span>원</div>
         <br><br>
-        <button id="purchaseBtn"> 선택상품 구매하기</button>
-        
+        <button id="purchaseBtn" style="font-size: 20px;"> 선택상품 구매하기</button>
       	<a href="ProductDisplay">상품목록으로 가기</a> 
-       
     </div>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="resources/js/cart.js"></script>
