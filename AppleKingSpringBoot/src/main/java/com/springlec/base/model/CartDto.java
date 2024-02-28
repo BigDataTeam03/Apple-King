@@ -13,7 +13,7 @@ public class CartDto {
 		// 상품 테이블에 있는 컬럼(join 문을 사용하기 위해 필요함)
 		String product_name;
 		int price;
-		String product_image_names;
+		String product_image;
 
 		// Constructor
 
@@ -22,7 +22,7 @@ public class CartDto {
 		}
 
 		public CartDto(String cart_code, String cust_id, String product_code, int cart_qty, String product_name,
-				int price, String product_image_names) {
+				int price, String product_image) {
 			super();
 			this.cart_code = cart_code;
 			this.cust_id = cust_id;
@@ -30,7 +30,7 @@ public class CartDto {
 			this.cart_qty = cart_qty;
 			this.product_name = product_name;
 			this.price = price;
-			this.product_image_names = product_image_names;
+			this.product_image = product_image;
 		}
 
 		public String getCart_code() {
@@ -81,12 +81,12 @@ public class CartDto {
 			this.price = price;
 		}
 
-		public String getProduct_image_names() {
-			return product_image_names;
+		public String getProduct_image() {
+			return product_image;
 		}
 
-		public void setProduct_image_names(String product_image_names) {
-			this.product_image_names = product_image_names;
+		public void setProduct_image_names(String product_image) {
+			this.product_image = product_image;
 		}
 
 		// Method

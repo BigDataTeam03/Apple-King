@@ -8,7 +8,7 @@
   							 <!-- 카트 테이블에 존재하는 컬럼-->
 							 select cart.cart_code, cart.cust_id, cart.product_code, cart_qty,
 							 <!-- 상품목록에서 가져오는 정보 -->
-					         product.product_name, product.price, product_image
+					         product.product_name, product.price, product.product_image
 					         <!--선택한 테이블-->
 							 from cart 
 					         <!--선택한 상품 을 조회하기 위한 조인문 -->

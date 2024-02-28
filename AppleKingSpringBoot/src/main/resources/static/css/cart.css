@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+    .container {
+        width: 80%; /* Set the width of the container */
+        margin: 0 auto; /* Center the container horizontally */
+        padding: 20px; /* Add some padding for spacing */
+        border: 1px solid #ccc; /* Add a border for visual separation */
+        border-radius: 10px; /* Add border radius for rounded corners */
+        background-color: #f9f9f9; /* Add background color */
+        margin-top: 150px;
+    }
+
+    h2 {
+        text-align: center; /* Center the heading */
+    }
+
+
+    #totalPrice {
+        font-weight: bold; /* Make total price text bold */
+    }
+
+    a {
+        display: block; /* Make link a block element for better spacing */
+        text-align: center; /* Center the link text */
+        margin-top: 20px; /* Add some margin above the link */
+    }
+	
+	/* CSS for the dynamically created table */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.cart-table th,
+.cart-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.cart-table th {
+    background-color: #f2f2f2;
+}
+
+.cart-table img {
+    max-width: 100px; /* Adjust the maximum width of images */
+}

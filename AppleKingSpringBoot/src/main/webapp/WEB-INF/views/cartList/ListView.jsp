@@ -12,11 +12,6 @@
 	* ---------------------------Update---------------------------		
 	* <<2024.02.22>> by KBS 
 	   1. 리스트 출력기능 완료( 추가작업 필요 )
-	   
-	   
-	*	
-			 
-			  
 	--------------------------------------------------------------
 */
 -->
@@ -26,7 +21,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>장바구니 목록</title>
-	<!--  <link rel = "stylesheet" href ="uCartList.css"> -->
+	<link rel = "stylesheet" href ="resources/css/cart.css"> 
 </head>
 
 <%-- <%
@@ -43,14 +38,17 @@
 %> --%>
 <body>
 		
-    <div class="container"> 
+    <div class="container" > 
         <h2>장바구니 목록</h2>
         <div>총 상품 종류: <span id="cartTot"></span></div><br>
         <div id="cartList"></div> 
         <br>
-        <button id="cartAllSelectBtn">전체 선택</button>
-        <br><br>
-        <button id="cartDeleteBtn">선택 삭제</button>
+         <div style="display: inline-block;">
+        	<button id="cartAllSelectBtn">전체 선택</button>
+   		 </div>
+    	 <div style="display: inline-block; margin-left: 10px;">
+        	<button id="cartDeleteBtn">선택 삭제</button>
+   		 </div>
         <br><br>
         총 가격: <span id="totalPrice"></span>
         <br><br>

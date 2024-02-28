@@ -52,12 +52,12 @@ function createTable(data) {
    // dataReal = Array.from(data)
 
     let table =
-        "<table border='1'>" +
+        "<table class='cart-table'>" +
         "<tr>" +
         "<th>상품명</th>" +
         "<th>수량</th>" +
         "<th>이미지</th>" +
-         "<th>가격</th>" +	
+        "<th>가격</th>" +	
         "</tr>";
         
     //총 가격 변수지정
@@ -71,7 +71,7 @@ function createTable(data) {
             "<input type='text' class='quantity-input' name='cartQty' value='" + data[i].cart_qty + "' min='1' readonly>" + // 수량을 입력할 수 있는 input 태그
             "<button  onclick='increaseQuantity(this)'>+</button>" + // "+" 버튼
             "</td>" + 
-            "<td>" + "<img src='resources/mapper/image/" + data[i].product_image_names + "'>" + "</td>" + // col3
+            "<td>" + "<img src='resources/image/" + data[i].product_image + "'>" + "</td>" + // col3
             "<td>" + data[i].price + "</td>" + // col4
             "<td><input type='checkbox' name='selectProduct' value='" + data[i].cart_code + "'></td>" + // 체크박스 열
             "</tr>"
