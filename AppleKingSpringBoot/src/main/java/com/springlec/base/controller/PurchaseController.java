@@ -47,8 +47,9 @@ public class PurchaseController {
 	
 	//즉시결제시 구매자 정보 + 결제 정보 불러오기 
 	@PostMapping("/directPurchase")
-	public String PurchaserInfoDao (HttpSession session, HttpServletRequest request, Model model) throws Exception{
-		
+	public String directPurchase (HttpSession session, HttpServletRequest request, Model model) throws Exception{
+		// *** START massage ***
+		System.out.println("**<< PurchaseController @Post : directPurchase>>**");
 		// 구매자 정보(session 값 fetch) 
 		String userId 	= (String)session.getAttribute("userId");
 		String userName = (String)session.getAttribute("userName");
