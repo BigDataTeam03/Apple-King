@@ -18,6 +18,8 @@ Update : 2024.02.23 DK
 Update: 2024.02.26 DK
 	1. 회원정보수정/회원탈퇴 기능 구현.
 	2. 회원탈퇴버튼 FORM 따로 빼줌.
+Update: 2024.02.28 DK
+	1. 비번재설정 버튼 -> redirectToPasswordReset()
 --------------------------------------------------------------
 */ %>
 <html>
@@ -42,7 +44,7 @@ Update: 2024.02.26 DK
 <body>
 <div class="row justify-content-center align-items-center h-100" style="margin-top: 5.5vh;">
        <div class="col-md-3">
-        <h3 class="text-center mb-4">${sessionScope.userName}님의 회원정보</h3>
+        <h3 class="text-center mb-4">회원정보</h3>
 
        <form name="modifyForm" action="modify" method="post" >
             <div class="form-group">
@@ -62,7 +64,7 @@ Update: 2024.02.26 DK
 			    <c:forEach var="info" items="${myInfo}">
 			        <input type='password' class='form-control short-text-input' id='cust_pw' name='cust_pw' value='${info.cust_pw}' readonly>
 			         <div class="input-group-append">
-			            <button type="button" class="btn btn-primary" id="editpassword">비밀번호 재설정</button>
+			            <button type="button" class="btn btn-primary" onClick="redirectToPasswordReset()">비밀번호 재설정</button>
 			        </div>
 			    </c:forEach>
 			</div>
@@ -105,6 +107,10 @@ Update: 2024.02.26 DK
         window.location.href = 'MyPage';
     }
 
+
+    function redirectToPasswordReset(){
+    	window.location.href = 'passwordReset';
+    }
 </script>
 </body>
 </html>
