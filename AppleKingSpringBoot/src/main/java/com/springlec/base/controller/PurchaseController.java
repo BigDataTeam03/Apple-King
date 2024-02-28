@@ -38,6 +38,9 @@ public class PurchaseController {
 	 *  <<2024.02.28 by pdg>
 	 *  1. 결제 버튼 기능 활성화
 	 *  2. 직접결제에서 수량 변경할 때 총상품금액 바로 변경되는 기능  
+	 *  3. 즉시 결제기능 완성
+	 *  4. 장바구니 결제 기능 
+	 *  
 	 */
 	
 	@Autowired
@@ -58,7 +61,7 @@ public class PurchaseController {
 		
 		System.out.println(">> payment_method : "+ payment_method	+ "\n"+
 						   ">> used_point 	  : "+ used_point  		+ "\n"+
-						   ">> order_qty 	  : "+ order_qty		+ "\n"
+						   ">> order_qty 	  : "+ order_qty		
 				);
 		// orderinfo -> order table 에 insert 
 		service_order.orderInsertDao(
@@ -69,10 +72,8 @@ public class PurchaseController {
 		Integer.parseInt(orderInfo.get("price")),
 		payment_method,
 		used_point,
-		order_qty
-				);
-		
-		return "/MyPagePart/myPage";
+		order_qty);
+		return "redirect:/MyPage";
 	}
 	
 	//즉시결제시 구매자 정보 + 결제 정보 불러오기 

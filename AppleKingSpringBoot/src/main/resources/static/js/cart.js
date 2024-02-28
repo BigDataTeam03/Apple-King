@@ -26,21 +26,71 @@
  * <<2024.02.22 by KBS>
  * 	1. spring 으로 변환 작업중(리스트 출력 기능만 있음)
  */
+// 카트 수량 변경할때 가격 같이 변경되는 함수 by pdg
+$(document).ready(function() {
+	//Start message
+	console.log("**<< JS START cart.js >>**")
+	$('input[name="cartQty"]').change(function(){
+		let cart_qty =$(this).val()
+		console.log("수량 :"+ cart_qty)
+	})
+	
+});
+//선택된 상품 배열  -> 구매하기 
+$(document).ready(function() {
+
+	//ust_id, name,product_code, product_name, price, payment_method, used_point, order_qty 
+	
+	console.log("**<< JS START cart.js >>**")
+	$("#purchaseBtn").click(function() {
+	
+		//let selected = [];
+		let selectedProducts = [];
+		
+		// 체크된 상품의 상품코드를 배열에 추가. 
+  	  	$("input[name='selectProduct']:checked").each(function() {
+   	    	//selected.push($(this).val());
+   	    	let product = {
+				cart_code: $(this).val(),
+				cart_qty: $(this).closest('tr').find('.quantity-input').val()
+			};
+			selectedProducts.push(product);
+			console.log(product)
+   		});
+		$.ajax({
+			type: "POST",
+			url: "purchaseCart", // where to go: CartController 
+			contentType: "application/json", // 데이터 유형 설정
+			data: JSON.stringify({ selectedProducts: selectedProducts }), 
+			success: function(response) {
+				alert("구매되었습니다")
+				// 장바구니 삭제 
+				window.location.href ="ProductDisplay"
+			},
+			error : function(error){
+				alert("구매 시 문제가 발생되었습니다."+ error)
+			}//ERROR END
+		})//AJAX END
+	})//CLICKED END
+})//DOCUMENT READY END
+
+
+
+
+
+
+
+
 // 페이지 실행후 바로 장바구니 전체 조회
 window.onload = function() {
-	
 	$.ajax({			
 		// post method server request
 		type: "post",
-		
 		// target server page
-		url: "/showCartList",
-
+		url: "/showCartList", // where to go : CartController
 		// server response success  -> response(Json data)
 		success: function(response) {
-			
-			createTable(response);
-	
+			createTable(response); //cart code
 		},	
 	});
 };
@@ -48,9 +98,8 @@ window.onload = function() {
 
 // 테이블 생성하는 함수
 function createTable(data) {
-    //검색해온 데이터(dtos -> json -> Array  변환)
-   // dataReal = Array.from(data)
-
+	let cartQtyArray = [];
+	
     let table =
         "<table class='cart-table'>" +
         "<tr>" +
@@ -59,26 +108,29 @@ function createTable(data) {
         "<th>이미지</th>" +
         "<th>가격</th>" +	
         "</tr>";
-        
     //총 가격 변수지정
-  var totalPrice = 0;
+  	var totalPrice = 0;
     // insert data rows
     for(let i=0; i<data.length; i++)  {
         table += "<tr>" +
           	"<td><strong>" + data[i].product_name + "</strong></td>" + // col1
             "<td>" +
             "<button  onclick='decreaseQuantity(this)'>-</button>" + // "-" 버튼
-            "<input type='text' class='quantity-input' name='cartQty' value='" + data[i].cart_qty + "' min='1' readonly>" + // 수량을 입력할 수 있는 input 태그
+            "<input type='text' class='quantity-input' name='cartQty"+i+"' value='" + data[i].cart_qty + "' min='1' readonly>" + // 수량을 입력할 수 있는 input 태그
             "<button  onclick='increaseQuantity(this)'>+</button>" + // "+" 버튼
             "</td>" + 
             "<td>" + "<img src='resources/image/" + data[i].product_image + "'>" + "</td>" + // col3
             "<td>" + data[i].price.toLocaleString() + "</td>" + // col4
-            "<td><input type='checkbox' name='selectProduct' value='" + data[i].cart_code + "'></td>" + // 체크박스 열
+            "<td><input type='checkbox' name='selectProduct' checked='checked' value='" + data[i].cart_code + "'></td>" + // 체크박스 열
             "</tr>"
             //상품의 가격을 수량만큼 곱한다
              var productTotalPrice = data[i].price * data[i].cart_qty;
     	    // 총 가격 합산
              totalPrice += productTotalPrice;
+             
+            let cartQty = data[i].cart_qty;
+    		cartQtyArray.push(cartQty);
+             
     }
     
     // table end
@@ -214,42 +266,7 @@ $(document).ready(function() {
 })//DOCUMENT READY END
 
 
-//선택된 상품 배열 -> uCartInsertServlet
-$(document).ready(function() {
-	/* 버튼 클릭시 AJAX 요청 */
-	$("#purchaseBtn").click(function() {
-		
-		let selected = [];
-		// 체크된 상품의 상품코드를 배열에 추가. 
-  	  	$("input[name='selectProduct']:checked").each(function() {
-			alert("seleced product : "+$(this).val())
-   	    	selected.push($(this).val());
-   		});
-   	    alert("구할 물건품목" +selected)
-		
-		// 만약 선택된 상품이 없다면 알림을 표시하고 함수 종료
-   	 	if (selected.length === 0) {
-        	alert("삭제할 상품을 선택하세요.");
-        return;
-    	}// IF END
-    	
-		$.ajax({
-			type: "POST",
-			url: "purchaseCart", 
-			data: {
-				cartCheckList : selected
-			
-			},			
-			traditional: true, // list array 있을경우 필수
-			success: function() {
-				alert("구매되었습니다")
-			},
-			error : function(error){
-				alert("구매 시 문제가 발생되었습니다."+ error)
-			}//ERROR END
-		})//AJAX END
-	})//CLICKED END
-})//DOCUMENT READY END
+
 
 
 

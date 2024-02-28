@@ -24,5 +24,16 @@
   					<delete id="deleteCart">
   							delete from cart where cart_code = #{selected}
   					</delete>
+  					
+  					<!-- cart code 를 사용하여 결제에 필요한 모든 정보를 수집하는 다오 -->
+  					
+  					<select id ="orderInfoFromCart" resultType="com.springlec.base.model.OrderDto">
+						SELECT cu.cust_id, cu.name, ca.product_code, p.product_name, p.price
+						FROM customer AS cu
+						INNER JOIN cart AS ca ON cu.cust_id = ca.cust_id
+						INNER JOIN product AS p ON ca.product_code = p.product_code
+						WHERE ca.cart_code = #{cart_code};
+  					</select>
+  					
   </mapper>
   
