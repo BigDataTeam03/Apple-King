@@ -7,7 +7,7 @@
         border: 1px solid #ccc; /* Add a border for visual separation */
         border-radius: 10px; /* Add border radius for rounded corners */
         background-color: #f9f9f9; /* Add background color */
-        margin-top: 150px;
+        margin-top: 100px;
     }
 
     h2 {
@@ -26,23 +26,23 @@
     }
 	
 	/* CSS for the dynamically created table */
-.cart-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-.cart-table th,
-.cart-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-}
-
-.cart-table th {
-    background-color: #f2f2f2;
-}
-
-.cart-table img {
-    max-width: 100px; /* Adjust the maximum width of images */
-}
+	.cart-table {
+	    width: 100%;
+	    border-collapse: collapse;
+	    margin-top: 10px;
+	}
+	
+	.cart-table th,
+	.cart-table td {
+	    border: 1px solid #ddd;
+	    padding: 8px;
+	    text-align: center;
+	}
+	
+	.cart-table th {
+	    background-color: #f2f2f2;
+	}
+	
+	.cart-table img {
+	    max-width: 100px; /* Adjust the maximum width of images */
+	}

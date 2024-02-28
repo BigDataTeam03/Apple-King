@@ -65,14 +65,14 @@ function createTable(data) {
     // insert data rows
     for(let i=0; i<data.length; i++)  {
         table += "<tr>" +
-            "<td>" + data[i].product_name + "</td>" + // col1
+          	"<td><strong>" + data[i].product_name + "</strong></td>" + // col1
             "<td>" +
             "<button  onclick='decreaseQuantity(this)'>-</button>" + // "-" 버튼
             "<input type='text' class='quantity-input' name='cartQty' value='" + data[i].cart_qty + "' min='1' readonly>" + // 수량을 입력할 수 있는 input 태그
             "<button  onclick='increaseQuantity(this)'>+</button>" + // "+" 버튼
             "</td>" + 
             "<td>" + "<img src='resources/image/" + data[i].product_image + "'>" + "</td>" + // col3
-            "<td>" + data[i].price + "</td>" + // col4
+            "<td>" + data[i].price.toLocaleString() + "</td>" + // col4
             "<td><input type='checkbox' name='selectProduct' value='" + data[i].cart_code + "'></td>" + // 체크박스 열
             "</tr>"
             //상품의 가격을 수량만큼 곱한다
