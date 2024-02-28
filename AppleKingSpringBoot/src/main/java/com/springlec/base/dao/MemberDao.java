@@ -1,6 +1,5 @@
 package com.springlec.base.dao;
 
-import java.util.List;
 
 import com.springlec.base.model.MemberDto;
 
@@ -20,4 +19,6 @@ public interface MemberDao {
 	// Member 정보 가져오기
 	public MemberDto memberInfoDao(String userId) throws Exception ;
 
+	// 아이디 중복 체크
+	public Integer checkDuplicateId(String userId) throws Exception;
 }
