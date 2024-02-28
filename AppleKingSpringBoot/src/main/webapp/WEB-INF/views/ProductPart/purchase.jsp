@@ -63,16 +63,20 @@
     <table>
         <tr>
             <th>총상품가격</th>
+            <th>구매수량</th>
             <th>결제방법</th>
+            
         </tr>
         <tr>
-            <td><fmt:formatNumber value="${orderInfo.price * orderInfo.product_qty}" pattern ="#"/>원</td>
+            <td><fmt:formatNumber value="${orderInfo.price}" pattern ="#"/>원</td>
+        	<td><input type="number" name="order_qty" value ="1" min ="1" max ="${orderInfo.product_qty}" ></td>
             <td>
                 <select id="payment_method">
                     <option value="신용카드">신용카드</option>
                     <option value="카카오페이">카카오페이</option>
                     <option value="계좌이체">계좌이체</option>
                 </select>
+                
             </td>
         </tr>
     </table>
