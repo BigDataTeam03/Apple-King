@@ -33,11 +33,20 @@ public class OrderDaoServiceImpl implements OrderDaoService {
 
 	@Override
 
-	public OrderDto orderInsertDao() throws Exception {
-		return orderDao.orderInsertDao();
-	}
 	public List<ReviewDto> ReviewList(String userId) throws Exception {
 		return orderDao.ReviewList(userId);
+	}
+
+	// 즉시결제할때 Order table insert!! 
+	@Override
+	public void orderInsertDao( String cust_id,
+									String name,
+									String product_code,
+									String product_name,
+									String price,
+									String payment_method,
+									String used_point,
+									String order_qty) throws Exception {
 	}
 
 }

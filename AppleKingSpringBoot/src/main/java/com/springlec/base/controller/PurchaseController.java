@@ -1,7 +1,9 @@
 package com.springlec.base.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,7 +43,27 @@ public class PurchaseController {
 	OrderDaoService service_order;
 	
 	@PostMapping("purchaseComplete")
-	public String purchaseComplete() throws Exception {
+	public String purchaseComplete(HttpSession session, HttpServletRequest request, Model model) throws Exception {
+		// ***START massage ***
+		System.out.println("**<<PurchaseController @Post: purchaseComlete>>**");
+		Map<String, String> orderInfo =(Map<String, String>) session.getAttribute("orderInfo");
+		
+		String payment_method= request.getParameter("payment_method");
+		String used_point= request.getParameter("used_point");
+		String order_qty= request.getParameter("order_qty");
+		
+		// orderinfo -> order table 에 insert 
+		service_order.orderInsertDao(
+		orderInfo.get("userId"),
+		orderInfo.get("userName"),
+		orderInfo.get("product_code"),
+		orderInfo.get("product_name"),
+		orderInfo.get("price"),
+		payment_method,
+		used_point,
+		order_qty
+	  );
+		
 		return "";
 	}
 	
@@ -65,22 +87,23 @@ public class PurchaseController {
 		String size			= (String)session.getAttribute("size"); 
 		String weight		= (String)session.getAttribute("weight"); 
 		String product_qty	= (String)session.getAttribute("product_qty"); 
-		MemberDto memberList = service.memberInfoDao(userId);
-		model.addAttribute("memberList", memberList);
-//		service_order.orderInsertDao(
-//						userId,
-//						userName,
-//						product_code,
-//						product_name,
-//						price,
-//						product_qty
-					  //order_code, --> auto increased
-//					  payment_method,
-//					  used_point,
-//					  order_qty,
-//					  orderdate,
-//					  soldout
-//					  );
+		
+		
+		// 결제정보를 만든다. 
+		Map<String, String> orderInfo = new HashMap<String, String>();
+		
+		orderInfo.put("userId",userId);
+		orderInfo.put("userName",userName);
+		orderInfo.put("product_code",product_code);
+		orderInfo.put("product_name",product_name);
+		orderInfo.put("price",price);
+		orderInfo.put("origin",origin);
+		orderInfo.put("size",size);
+		orderInfo.put("weight",weight);
+		orderInfo.put("product_qty",product_qty);
+		model.addAttribute("orderInfo", orderInfo);
+		//구매 정보를 세션에 저장. 
+		session.setAttribute("orderInfo", orderInfo);
 		
 		return "/ProductPart/purchase";	
 		}// DirectPurchase END

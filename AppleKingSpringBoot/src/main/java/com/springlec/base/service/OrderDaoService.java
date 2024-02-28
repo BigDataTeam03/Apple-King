@@ -22,8 +22,15 @@ public interface OrderDaoService {
 
 	
 	// 결제 페이지에서 결제 버튼 눌렀을때 insert 실행 Dao
-	public OrderDto orderInsertDao( ) throws Exception;
-
+	public void orderInsertDao(String cust_id,			//1
+								   String name,				//2
+								   String product_code,		//3
+								   String product_name,		//4
+								   String price,			//5
+								   String payment_method,	//6
+								   String used_point,		//7
+								   String order_qty			//8
+								   ) throws Exception;
 
 	public List<ReviewDto> ReviewList (String userId) throws Exception;
 
