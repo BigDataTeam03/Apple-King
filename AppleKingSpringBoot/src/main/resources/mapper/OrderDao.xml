@@ -7,7 +7,7 @@
 		SELECT o.product_code, o.order_code, o.payment_method, o.order_qty, o.orderdate, o.used_point,
        	p.product_name, p.price, p.product_image 
        	
-		FROM `order` o
+		FROM `orders` o
 		
 		JOIN product p ON o.product_code = p.product_code
 		
@@ -17,7 +17,8 @@
 	</select>
 	<!-- order code 는 auto increase 임으로 추가 안함.  -->
 	<insert id="orderInsertDao">
-		insert into order (cust_id, 		<!-- 1 -->
+		insert into orders (cust_id, 		<!-- 1 -->
+							name,
 		 					product_code,	<!-- 2 -->
 		 					product_name,	<!-- 3 -->
 		 					price,			<!-- 4 -->
@@ -34,7 +35,7 @@
 		 					#{payment_method},
 		 					#{used_point},
 		 					#{order_qty},
-		 					now()  )					
+		 					NOW()  )					
 	</insert>
 
 	<select id="ReviewList" resultType="com.springlec.base.model.ReviewDto">

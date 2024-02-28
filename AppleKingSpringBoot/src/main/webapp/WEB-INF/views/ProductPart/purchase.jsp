@@ -44,6 +44,7 @@
     <link rel="stylesheet" href="resources/css/purchase.css" />
 </head>
 <body>
+
     <h1>주문/결제</h1>
     <hr>
     <h2>구매자 정보</h2><br>
@@ -55,11 +56,12 @@
         </tr>
         <tr>
             <td>${orderInfo.userName}</td>
-            <td>${orderInfo.email}</td>
-            <td>${orderInfo.phone}</td>
+            <td><%=session.getAttribute("userEmail") %></td>
+            <td><%=session.getAttribute("userTel") %></td>
         </tr>
     </table>
     <h2>결제 정보</h2><br>
+    <form action="purchaseComplete" method="post"> 
     <table>
         <tr>
             <th>총상품가격</th>
@@ -68,10 +70,12 @@
             
         </tr>
         <tr>
-            <td><fmt:formatNumber value="${orderInfo.price}" pattern ="#"/>원</td>
-        	<td><input type="number" name="order_qty" value ="1" min ="1" max ="${orderInfo.product_qty}" ></td>
+        	
+            <td id = "total_price"><fmt:formatNumber  value="${orderInfo.price}" pattern ="#,###"/>원</td>
+            
+        	<td ><input type="number" name="order_qty" value ="1" min ="1" max ="${orderInfo.product_qty}" ></td>
             <td>
-                <select id="payment_method">
+                <select id="payment_method" name ="payment_method">
                     <option value="신용카드">신용카드</option>
                     <option value="카카오페이">카카오페이</option>
                     <option value="계좌이체">계좌이체</option>
@@ -80,10 +84,13 @@
             </td>
         </tr>
     </table>
-    <form action="purchaseComplete" method="post">
-        <input type="submit" value="결제하기">
+    <!--Go to PurchaseController -->
+    
+   	<input type="hidden" id="product_price" name= "price" value="${orderInfo.price}"/>
+	<input type="hidden" id="used_point" name = "used_point" value ="0"/>
+    <input type="submit" value="결제하기">
     </form>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="/resources/js/purchase.js"></script>
+    <script src="resources/js/purchase.js"></script>
 </body>
 </html>

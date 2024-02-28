@@ -33,7 +33,11 @@ public class PurchaseController {
 	 * 	1. 결제하기 버튼을 눌렀을 때 -> Order table 에 insert 하는 기능
 	 *  2. 결제하기 위해서 해당 결제정보를 불러오는 기능 ( 구매자, 물건정보, 등등을 orderDto 로 전환하여 사용할것.)
 	 *  3. 즉시 결제와 장바구니 결제를 나누어 작성함 ( directPurchase, cartPurchase)
-	 *  4. 결제자 정보는 굳이 다오를 사용하지않아도 세션값에서 충분히 표기 할수있으므로 service 를 사용하지 않도록 함. 
+	 *  4. 결제자 정보는 굳이 다오를 사용하지않아도 세션값에서 충분히 표기 할수있으므로 service 를 사용하지 않도록 함.
+	 *  
+	 *  <<2024.02.28 by pdg>
+	 *  1. 결제 버튼 기능 활성화
+	 *  2. 직접결제에서 수량 변경할 때 총상품금액 바로 변경되는 기능  
 	 */
 	
 	@Autowired
@@ -47,24 +51,28 @@ public class PurchaseController {
 		// ***START massage ***
 		System.out.println("**<<PurchaseController @Post: purchaseComlete>>**");
 		Map<String, String> orderInfo =(Map<String, String>) session.getAttribute("orderInfo");
+		// Request body information
+		String payment_method	= request.getParameter("payment_method");
+		Integer used_point		= Integer.parseInt(request.getParameter("used_point"));
+		Integer order_qty		= Integer.parseInt(request.getParameter("order_qty"));
 		
-		String payment_method= request.getParameter("payment_method");
-		String used_point= request.getParameter("used_point");
-		String order_qty= request.getParameter("order_qty");
-		
+		System.out.println(">> payment_method : "+ payment_method	+ "\n"+
+						   ">> used_point 	  : "+ used_point  		+ "\n"+
+						   ">> order_qty 	  : "+ order_qty		+ "\n"
+				);
 		// orderinfo -> order table 에 insert 
 		service_order.orderInsertDao(
 		orderInfo.get("userId"),
 		orderInfo.get("userName"),
-		orderInfo.get("product_code"),
+		Integer.parseInt(orderInfo.get("product_code")),
 		orderInfo.get("product_name"),
-		orderInfo.get("price"),
+		Integer.parseInt(orderInfo.get("price")),
 		payment_method,
 		used_point,
 		order_qty
-	  );
+				);
 		
-		return "";
+		return "/MyPagePart/myPage";
 	}
 	
 	//즉시결제시 구매자 정보 + 결제 정보 불러오기 

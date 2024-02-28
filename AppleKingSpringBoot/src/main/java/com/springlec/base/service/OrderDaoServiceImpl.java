@@ -39,14 +39,34 @@ public class OrderDaoServiceImpl implements OrderDaoService {
 
 	// 즉시결제할때 Order table insert!! 
 	@Override
-	public void orderInsertDao( String cust_id,
+	public void orderInsertDao(     String cust_id,
 									String name,
-									String product_code,
+									Integer product_code,
 									String product_name,
-									String price,
+									Integer price,
 									String payment_method,
-									String used_point,
-									String order_qty) throws Exception {
+									Integer used_point,
+									Integer order_qty) throws Exception {
+		
+	
+		String insertQuery= "insert into order (cust_id, name,	product_code,product_name, price,"			
+			+"payment_method,used_point,order_qty,orderdate )"+	
+			"values ("
+			+cust_id+","+
+			name+","+
+			product_code+","+
+			product_name+","+
+			price+","+
+			payment_method+","+
+			used_point+","+
+			order_qty+","+
+			"now()  )";					
+		System.out.println(">> Insert Query : "+insertQuery);
+		
+		orderDao.orderInsertDao(cust_id, name, product_code, product_name, price, payment_method, used_point, order_qty);
+		
+		
+	
 	}
 
 }
