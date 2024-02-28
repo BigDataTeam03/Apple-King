@@ -19,22 +19,23 @@
 	<insert id="orderInsertDao">
 		insert into order (cust_id, 		<!-- 1 -->
 		 					product_code,	<!-- 2 -->
-		 					payment_method,	<!-- 3 -->
-		 					used_point,		<!-- 4 -->
-		 					order_qty,		<!-- 5 -->
-		 					soldout,		<!-- 6 -->
-		 					orderdate  )	<!-- 7 --> 
+		 					product_name,	<!-- 3 -->
+		 					price,			<!-- 4 -->
+		 					payment_method,	<!-- 5 -->
+		 					used_point,		<!-- 6 -->
+		 					order_qty,		<!-- 7 -->
+		 					orderdate  )	<!-- 8 --> 
 		 					values (
 		 					#{cust_id},
+		 					#{name},
 		 					#{product_code},
+		 					#{product_name},
+		 					#{price},
 		 					#{payment_method},
 		 					#{used_point},
 		 					#{order_qty},
-		 					#{soldout},
-		 					#{orderdate}  )					
-		
+		 					now()  )					
 	</insert>
-
 
 	<select id="ReviewList" resultType="com.springlec.base.model.ReviewDto">
 		SELECT * FROM review WHERE cust_id =#{userId}
