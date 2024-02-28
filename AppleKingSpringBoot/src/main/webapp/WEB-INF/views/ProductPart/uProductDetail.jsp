@@ -36,7 +36,7 @@ Update : 2024.02.22 by LS, DK
 						 </div> 
 							
 		                <div class="product-info">
-		                	<span style="font-weight: bold; font-size: 35px;">
+		                	<span style="font-weight: bold; font-size: 28px;">
    								 ${dto.product_name}
 							</span><br>
 		                    원산지: ${dto.origin}<br>
