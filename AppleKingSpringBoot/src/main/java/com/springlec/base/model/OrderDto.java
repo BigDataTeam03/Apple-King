@@ -18,14 +18,14 @@ public class OrderDto {
 
 	String cust_id; // 상품을 구매한 구매자 id
 	String name; // 구매자 이름
-	String product_code; // 구매한 상품 코드
+	Integer product_code; // 구매한 상품 코드
 	String product_name; // 구매한 상품 이름
-	int price; // 구매한 상품 가격
-	int product_qty; // 구매한 상품 재고?
-	String order_code; // 결제 코드
+	Integer price; // 구매한 상품 가격
+	Integer product_qty; // 구매한 상품 재고?
+	Integer order_code; // 결제 코드
 	String payment_method; // 결제 방법
-	int used_point; // 결제시 사용한 포인트
-	int order_qty; // 결제상품 개수
+	Integer used_point; // 결제시 사용한 포인트
+	Integer order_qty; // 결제상품 개수
 	String orderdate; // 결제일
 	int soldout; // 매진 정보
 
@@ -52,11 +52,11 @@ public class OrderDto {
 		this.name = name;
 	}
 
-	public String getProduct_code() {
+	public Integer getProduct_code() {
 		return product_code;
 	}
 
-	public void setProduct_code(String product_code) {
+	public void setProduct_code(Integer product_code) {
 		this.product_code = product_code;
 	}
 
@@ -68,27 +68,27 @@ public class OrderDto {
 		this.product_name = product_name;
 	}
 
-	public int getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 
-	public int getProduct_qty() {
+	public Integer getProduct_qty() {
 		return product_qty;
 	}
 
-	public void setProduct_qty(int product_qty) {
+	public void setProduct_qty(Integer product_qty) {
 		this.product_qty = product_qty;
 	}
 
-	public String getOrder_code() {
+	public Integer getOrder_code() {
 		return order_code;
 	}
 
-	public void setOrder_code(String order_code) {
+	public void setOrder_code(Integer order_code) {
 		this.order_code = order_code;
 	}
 
@@ -100,19 +100,19 @@ public class OrderDto {
 		this.payment_method = payment_method;
 	}
 
-	public int getUsed_point() {
+	public Integer getUsed_point() {
 		return used_point;
 	}
 
-	public void setUsed_point(int used_point) {
+	public void setUsed_point(Integer used_point) {
 		this.used_point = used_point;
 	}
 
-	public int getOrder_qty() {
+	public Integer getOrder_qty() {
 		return order_qty;
 	}
 
-	public void setOrder_qty(int order_qty) {
+	public void setOrder_qty(Integer order_qty) {
 		this.order_qty = order_qty;
 	}
 
@@ -139,6 +139,8 @@ public class OrderDto {
 	public void setProduct_image(String product_image) {
 		this.product_image = product_image;
 	}
+
+	
 
 	// Getters and setters
 

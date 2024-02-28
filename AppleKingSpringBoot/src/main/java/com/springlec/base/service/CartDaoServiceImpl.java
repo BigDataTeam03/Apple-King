@@ -1,12 +1,14 @@
 package com.springlec.base.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springlec.base.dao.CartDao;
 import com.springlec.base.model.CartDto;
+import com.springlec.base.model.OrderDto;
 @Service
 public class CartDaoServiceImpl implements CartDaoService {
 
@@ -46,6 +48,12 @@ public class CartDaoServiceImpl implements CartDaoService {
 		// TODO Auto-generated method stub
 		dao.deleteCart(selected);
 		
+	}
+	// 장바구니 결제에 필요한 정보를 수집하는 cartdao
+	@Override
+	public OrderDto orderInfoFromCart(Integer cart_code) throws Exception {
+		
+		return dao.orderInfoFromCart(cart_code);
 	}
 
 }

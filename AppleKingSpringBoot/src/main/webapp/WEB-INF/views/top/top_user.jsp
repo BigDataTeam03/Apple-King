@@ -42,7 +42,7 @@
 	                </li>
 	            
 	             	<li class="nav-item">
-	                    <a class="nav-link" href="ListView">장바구니</a>
+	                    <a class="nav-link" href="cartList">장바구니</a>
 	                </li>
 	                <li class="nav-item">
 	                    <a class="nav-link" href="/MyPage">마이페이지</a>
