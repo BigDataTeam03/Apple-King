@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* 줄 바꿈을 위해 추가 */
+}
+.form-label {
+    font-weight: bold;
+    flex-basis: 100px; /* 열의 너비를 100px로 설정 */
+    margin-right: 20px; /* 라벨과 입력 필드 사이의 간격 설정 */
+}
+.form-control {
+    flex: 2;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.btn-primary {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+#passwordMessage {
+    font-size: 14px;
+    margin-top: 5px;
+}

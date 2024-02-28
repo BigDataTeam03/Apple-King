@@ -14,12 +14,21 @@
  -->
 <mapper namespace="com.springlec.base.dao.MemberDao">
   <!-- *** member Check Dao ***-->
-  <select id="memberChkDao" resultType="java.lang.String">
-  	select count(cust_id) from customer where cust_id = #{userId} and cust_pw = #{userPw};
+  <select id="memberChkDao">
+  		select count(cust_id) from customer where cust_id = #{userId} and cust_pw = #{userPw};
   </select>
   <!-- *** member Information Get Dao ***-->
-    <select id="memberInfoDao" resultType="com.springlec.base.model.MemberDto">
-  	select * from customer where cust_id = #{userId};
+   <select id="memberInfoDao" resultType="com.springlec.base.model.MemberDto">
+  		select * from customer where cust_id = #{userId};
   </select>
+  
+ 
+    <!-- *** Check Duplicate ID *** -->
+    <select id="checkDuplicateId" resultType="java.lang.Integer" parameterType="java.lang.String">
+        SELECT COUNT(*) FROM customer WHERE cust_id = #{userId}
+    </select>
+  
+ 
+  
   
 </mapper>

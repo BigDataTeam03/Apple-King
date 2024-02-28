@@ -23,28 +23,33 @@
         background-color: #f0f0f0;
     }
     form {
-        max-width: 400px;
-        margin: 0 auto;
-        padding: 20px;
+        max-width: 700px;
+        margin: 50px auto; /* 탑 마진을 50px로 설정 */
+        padding: 15px;
         background-color: #fff;
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: left; /* 아이디, 비밀번호 등의 요소를 왼쪽 정렬로 변경 */
     }
     .form-group {
         margin-bottom: 20px;
         display: flex;
         align-items: center;
+        flex-wrap: wrap; /* 줄 바꿈을 위해 추가 */
+        justify-content: space-between; /* 요소들을 양쪽 정렬로 변경 */
     }
     .form-label {
         font-weight: bold;
-        flex: 1;
+        flex-basis: 120px; /* 열의 너비를 100px로 설정 */
+        margin-right: 30px; /* 라벨과 입력 필드 사이의 간격 설정 */
     }
     .form-control {
-        flex: 2;
-        padding: 10px;
+        flex: 1;
+        padding: 10px 20px;
         border: 1px solid #ccc;
         border-radius: 4px;
         box-sizing: border-box;
+        margin-right: 20px;
     }
     .btn-primary {
         display: inline-block;
@@ -71,7 +76,7 @@
          <div class="form-group">
              <label for="id" class="form-label">아이디 :</label>
              <input type="text" class="form-control" id="id" name="id" placeholder="아이디 중복체크를 이용하세요" required>
-             <button type="button" id="idCheckBtn" class="btn btn-default">중복체크</button>
+             &nbsp;<button type="button" id="idCheckBtn" class="btn btn-default">중복체크</button>
          </div>
          <div class="form-group">
              <label for="pw" class="form-label">비밀번호 :</label>
@@ -91,10 +96,10 @@
              <input type="text" class="form-control" id="tel" name="tel" required>
          </div>
          <div class="form-group">
-             <label for="tel" class="form-label">이메일 :</label>
-            <input type="text" name="email" size="10" required> @
+             <label for="eamil" class="form-label">이메일 :</label>
+            <input type="text" class="form-control" id="email" name="email" required style="width: 200px;"> @&nbsp;
      
-            <select name="domain" style="vertical-align: middle;">
+            <select name="domain" class="form-control" style="width: 150px;">
                 <option value="@naver.com">naver.com</option>
                 <option value="@yahoo.com">yahoo.com</option>
                 <option value="@gmail.com">gmail.com</option>
@@ -103,8 +108,8 @@
          </div>
          <div class="form-group">
              <label for="tel" class="form-label">주소 :</label>
-             <input type="button" name="address" id="address" size="100px" onClick="addressForm()" value="주소찾기">
-             <input type="text" class="form-control" id="useraddress" name="useraddress" value="경기도 하남시" readonly="readonly" required>
+             <input type="text" class="form-control" id="useraddress" name="useraddress" readonly="readonly" required>
+             &nbsp;<input type="button" name="address" id="address" size="100px" onClick="addressForm()" value="주소찾기">
          </div>
           <button type="button" onClick="validateForm()" class="btn btn-primary">회원가입</button>
      </form>
@@ -113,7 +118,6 @@
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
      <script src="resources/js/signup.js"></script>
-     
      <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
      <script src="resources/js/address1.js"></script>
 

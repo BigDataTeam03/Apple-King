@@ -36,8 +36,7 @@ Update : 2024.02.22 by LS, DK
 						 </div> 
 							
 		                <div class="product-info">
-		                 	<div style="max-width: 200px; overflow: hidden; text-overflow: ellipsis;">
-		                	<span style="font-weight: bold; font-size: 35px;">
+		                	<span style="font-weight: bold; font-size: 28px;">
    								 ${dto.product_name}
 							</span><br>
 		                    원산지: ${dto.origin}<br>
@@ -80,7 +79,7 @@ Update : 2024.02.22 by LS, DK
 	<div>
 	<jsp:include page="/gotoProductQuestion"/>
 	</div>
-<!--     상세페이지 탭
+    <!-- 상세페이지 탭 -->
         <div class="container">
 	        <ul class="nav nav-tabs" id="myTab" role="tablist">
 	            <li class="nav-item" role="presentation">
@@ -119,26 +118,26 @@ Update : 2024.02.22 by LS, DK
 	            	 id="상세정보" 
 	            	 role="tabpanel" 
 	            	 aria-labelledby="details-tab">
-	                상세정보 내용
+	                <!-- 상세정보 내용 -->
 	                <p>Welcome to GeeksforGeek.</p>
 	            </div>
 	            <div class="tab-pane fade" 
 	            	 id="상품평" 
 	            	 role="tabpanel" 
 	            	 aria-labelledby="reviews-tab">
-	                상품평 내용
+	                <!-- 상품평 내용 -->
 	                <p>Hello Everyone.</p>
 	            </div>
 	            <div class="tab-pane fade" 
 	            	 id="상품문의" 
 	            	 role="tabpanel" 
 	            	 aria-labelledby="questions-tab">
-	                상품문의 내용
+	                <!-- 상품문의 내용 -->
         	        <p>수민씨는 집에가고싶다.</p>
 	                
 	            </div>
 	        </div>
-    	</div> -->
+    	</div>
 <!-- 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="uProductDetail.js?var=1"></script>  -->
     

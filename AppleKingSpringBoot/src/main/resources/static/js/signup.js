@@ -54,17 +54,17 @@ function validateForm() {
 	}
 
 	// Validate Passwordcheck
-	let pwcheck = signupForm.pwcheck.value.trim();
-	if (pw === "") {
+	let pwcheck = signupForm.confirmpw.value.trim();
+	if (pwcheck === "") {
 		alert("비밀번호 확인을 입력해주세요.");
-		signupForm.pw.focus();
+		signupForm.confirmpw.focus();
 		return false;
 	}
 
 	// Validate Passworderror
-	if (signupForm.pw.value != signupForm.pwcheck.value) {
+	if (pw != pwcheck) {
 		alert("입력하신 비밀번호가 일치하지 않습니다.");
-		signupForm.pw.focus();
+		signupForm.confirmpw.focus();
 		return false;
 	}
 
@@ -92,10 +92,10 @@ function validateForm() {
 	}
 
 	// Validate address
-	let address = signupForm.address.value.trim()
+	let address = signupForm.useraddress.value.trim()
 	if (address === "") {
 		alert("주소를  입력해주세요.");
-		signupForm.address.focus();
+		signupForm.useraddress.focus();
 		return false;
 	}
 
@@ -103,7 +103,7 @@ function validateForm() {
 	let idRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{1,10}$/;
 	if (!idRegex.test(id)) {
 		alert("아이디는 영어와 숫자를 조합하여 10자 이내로 입력해주세요.");
-		form.id.focus();
+		signupForm.id.focus();
 		return;
 	}
 
@@ -111,7 +111,7 @@ function validateForm() {
 	let pwRegex = /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])[a-z\d!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]{1,10}$/;
 	if (!pwRegex.test(pw)) {
 		alert("비밀번호는 영어 소문자, 숫자, 특수문자를 모두 포함하여 10자 이내로 입력해주세요.");
-		form.pw.focus();
+		signupForm.pw.focus();
 		return;
 	}
 
@@ -142,6 +142,16 @@ function validateForm() {
 	}
 
 	signupForm.submit();
+
+function addressForm(){
+    new daum.Postcode({
+        oncomplete: function(data) {
+            document.getElementById('useraddress').value = data.address;
+        }
+    }).open();
+}
+
+
 
 }
 
