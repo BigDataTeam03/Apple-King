@@ -23,7 +23,7 @@ public interface OrderDaoService {
 	
 	// 결제 페이지에서 결제 버튼 눌렀을때 insert 실행 Dao
 	public OrderDto orderInsertDao( ) throws Exception;
-}// interface END
+
 
 	public List<ReviewDto> ReviewList (String userId) throws Exception;
 
