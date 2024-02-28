@@ -10,23 +10,31 @@
     display: flex;
     justify-content: space-between;
     margin-top: 20px; /* Add some space between the container and the details */
+    align-items: center;
+}
+
+.product-image {
+    flex: 1; /* 이미지 영역이 텍스트 영역과 같은 비중을 가지도록 설정 */
+    margin-right: 20px; /* 이미지와 텍스트 간의 간격을 설정 */
 }
 
 .product-image img {
     width: 100%;
-    height: 300px;
+    height: auto;
     display: block;
     margin: 0 auto;
+    margin-bottom: 20px;
 }
 
 .product-info {
+    flex: 2; /* 텍스트 영역이 이미지 영역보다 두 배로 넓도록 설정 */
     margin-top: 50px; 
-    margin-right: 20px; 
     font-size: 18px; 
     color: #333; 
 }
 
 .product-info input[type="submit"] {
+	margin-top: 20px; /* 버튼과 텍스트 사이에 추가 간격 설정 */   
     font-size: 18px; 
     font-weight: bold; 
     color: white; 

@@ -64,24 +64,25 @@
 .card {
     width: 300px;
     height: 320px;
-    border: 2px solid #ddd;
+    border: 2px solid transparent;
     border-radius: 5px;
     margin: 60px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
     overflow: hidden;
+    transition: transform 0.3s ease; /* 호버 효과를 위한 변환 효과 */
     
 }
 
 .card:hover {
-    transform: scale(1.05);
+    transform: scale(1.05); /* 호버시 크기 확대 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 그림자 효과 증가 */
 }
 .card img {
    	width: 180px; /* 원하는 너비 값으로 설정 */
     height: auto; /* 높이를 자동으로 조절하여 비율 유지 */
     object-fit: cover;
     border-bottom: 1px solid #ddd;
-        display: block; /* 이미지를 블록 요소로 만듭니다. */
-    
+    display: block; /* 이미지를 블록 요소로 만듭니다. */
     margin: 0 auto; /* 좌우 마진을 auto로 설정하여 가운데 정렬합니다. */
     
 }
