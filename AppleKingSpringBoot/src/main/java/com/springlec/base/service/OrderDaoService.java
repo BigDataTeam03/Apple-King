@@ -22,7 +22,7 @@ public interface OrderDaoService {
 
 	
 	// 결제 페이지에서 결제 버튼 눌렀을때 insert 실행 Dao
-	public void orderInsertDao(String cust_id,			//1
+	public void orderInsertDao(    String cust_id,			//1
 								   String name,				//2
 								   Integer product_code,		//3
 								   String product_name,		//4

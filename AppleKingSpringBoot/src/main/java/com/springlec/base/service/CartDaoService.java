@@ -1,8 +1,10 @@
 package com.springlec.base.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.springlec.base.model.CartDto;
+import com.springlec.base.model.OrderDto;
 
 public interface CartDaoService {
 
@@ -22,4 +24,7 @@ public interface CartDaoService {
 			public void updateqty(String cart_qty, String cart_code) throws Exception;
 			// 장바구니 상품 삭제
 			public void deleteCart(String selected) throws Exception;
+			
+			//장바구니 결제를 위한 결제정보 불러오기
+			public OrderDto orderInfoFromCart(Integer cart_code) throws Exception; 
 }
