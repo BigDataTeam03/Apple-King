@@ -33,11 +33,37 @@ public class OrderDaoServiceImpl implements OrderDaoService {
 
 	@Override
 
-	public OrderDto orderInsertDao() throws Exception {
-		return orderDao.orderInsertDao();
-	}
 	public List<ReviewDto> ReviewList(String userId) throws Exception {
 		return orderDao.ReviewList(userId);
+	}
+
+	// 장바구니로 결제할 때 
+	
+	
+	// 즉시결제할때 Order table insert!! 
+	@Override
+	public void orderInsertDao(     String cust_id,
+									String name,
+									Integer product_code,
+									String product_name,
+									Integer price,
+									String payment_method,
+									Integer used_point,
+									Integer order_qty) throws Exception {
+		String insertQuery= "insert into order (cust_id, name, product_code, product_name, price,"			
+			+"payment_method, used_point, order_qty, orderdate )"+	
+			"values (+"+"\n"+
+			cust_id+","+
+			name+","+
+			product_code+","+
+			product_name+","+
+			price+","+
+			payment_method+","+
+			used_point+","+
+			order_qty+","+
+			"NOW()  )";					
+		System.out.println(">> Insert Query : "+insertQuery);
+		orderDao.orderInsertDao(cust_id, name, product_code, product_name, price, payment_method, used_point, order_qty);
 	}
 
 }

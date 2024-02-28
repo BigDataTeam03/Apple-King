@@ -1,68 +1,27 @@
-window.onload = function() {
-	
-	$.ajax({
-		
-		// post method server request
-		type: "POST",
-		
-		// target server page(Servlet) url
-		url: "purchaseServlet",
-		
-		// request data (JSON)
-		//data: { cust_id: "s" }, 
-		
-		// response data type -> JSON
-		dataType :"json",
-		
-		// server response success  -> response(Json data)
-		success: function(response) {
-			createTable(response);
-	
-		},	
-		
-		error: function(xhr, status, error) {
-            console.error("Error occurred while sending AJAX request:", error);
-        }
-	});
-};
 
-// 테이블 생성하는 함수
-function createTable(data) {
-   // JSON 데이터를 파싱합니다.
-    var purchaseData = JSON.parse(data);
+/*
+	
+	Description : 구매페이지에서 수량 변경할때 실시간으로 구매 총금액이 바뀌게
+	Date 		:2024.02.28
+	Author		:pdg
+	Udpate
+*/
 
-  // 테이블 컨테이너에 대한 참조를 가져옵니다.
-    var tableContainer = $("#purchase");
-  
-    var tableHtml =
-        "<table border='1'>" +
-        "<tr>" +
-        "<th>이름</th>" +
-        "<th>이메일</th>" +
-        "<th>휴대폰 번호</th>" +
-        "</tr>";
-        
-     // 데이터를 순회하며 테이블에 행을 추가합니다.
-    for (var i = 0; i < purchaseData.length; i++) {
-        var rowData = purchaseData[i];
-        tableHtml += "<tr>" +
-                     "<td>" + rowData.name + "</td>" +
-                     "<td>" + rowData.email + "</td>" +
-                     "<td>" + rowData.tel + "</td>" +
-                     "</tr>";
-    }    
-        
-          // table end
-    tableHtml += "</table>";
-        
-     // html result <- table
-    tableContainer.html(tableHtml);
-         
-         
-         }
-    
-   
-    
+
+
+$(document).ready(function() {
+	//Start message
+	console.log("**<< JS START purchase.js >>**")
+	$('input[name="order_qty"]').change(function() {
+		let order_qty = $(this).val()
+		console.log("구매수량 : " + order_qty)
+		var product_price = document.getElementById("product_price").value;
+		console.log("상품가격 " + order_qty * product_price)
+		let total_price = order_qty * product_price
+		$('#total_price').text(total_price.toLocaleString() + '원');
+	})
+});
+
         
         
         

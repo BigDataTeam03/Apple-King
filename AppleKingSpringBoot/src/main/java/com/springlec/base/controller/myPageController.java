@@ -64,6 +64,7 @@ public class myPageController {
 	//get the user's review history using orderDao.
 	List<ReviewDto> reviewList = service.ReviewList(userId);
 	model.addAttribute("reviewList", reviewList);
+	System.out.println(">> userId : "+ userId);
 	
     return "/MyPagePart/myPage"; 
     }

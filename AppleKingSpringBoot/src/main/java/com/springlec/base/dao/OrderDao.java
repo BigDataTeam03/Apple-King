@@ -12,6 +12,15 @@ public interface OrderDao {
 	public List<ReviewDto> ReviewList (String userId) throws Exception;
 	
 	//구매 정보 insert
-	public OrderDto orderInsertDao() throws Exception;
+	public void orderInsertDao(
+			   String cust_id,			//1
+			   String name,				//2
+			   Integer product_code,		//3
+			   String product_name,		//4
+			   Integer price,			//5
+			   String payment_method,	//6
+			   Integer used_point,		//7
+			   Integer order_qty			//8
+			   ) throws Exception;
 	
 }

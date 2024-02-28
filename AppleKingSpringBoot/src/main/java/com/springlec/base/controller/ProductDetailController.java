@@ -101,6 +101,6 @@ public class ProductDetailController {
 			System.out.println(">> 장바구니 개수를 수정합니다.");
 			service.insertCart(userId, product_code, cart_qty);
 		}
-		return "cartList/ListView";
+		return "CartPart/cartList";
 	}//insertCart END
 }//PRODUCT DETAIL CONTROLLER END
