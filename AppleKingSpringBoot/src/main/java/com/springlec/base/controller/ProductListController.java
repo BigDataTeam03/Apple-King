@@ -111,8 +111,8 @@ public class ProductListController {
 			searchContent = request.getParameter("searchContent");
 		}
 		
-		// 정렬 조건
-		String sortingOption = "highPrice";
+		// 정렬 조건 ( 첫페이지는 애플랭킹순)
+		String sortingOption = "productRank";
 		if(request.getParameter("sortingOption")!= null) {
 			sortingOption = request.getParameter("sortingOption");
 		}
@@ -149,6 +149,7 @@ public class ProductListController {
 		
 		// Parameter check
 		System.out.println(">> searchContent :" + searchContent);
+		System.out.println(">> sortingOption :" + sortingOption);
 		
 		// ServiceDao Call
 		List<ProductListDto> productList = 

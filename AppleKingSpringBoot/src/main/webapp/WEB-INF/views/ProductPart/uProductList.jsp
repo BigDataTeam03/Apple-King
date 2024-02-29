@@ -38,7 +38,10 @@
 	  	1.  top_user 경로 설정 수정함. 
 	  	2. classifyOption => SortingOptions 로 수정, highprice 등등 carmelCasification
 	  	3  정렬 옵션 을 셀렉트가아닌 링크로 바꿔야함. 	
-	  
+	  <<2024.02.29>> by pdg 
+	    1. 몇개씩 보기 기능 제거
+	    2. 조회수순 보기 기능 추가
+	    3. 추천수순 보기 기능추가 
 	--------------------------------------------------------------
 	*/
     		  	 %>
@@ -66,17 +69,20 @@
 			
 			<!-- 가격순으로 정렬 -->
 		    <a href="#" id="productRank" >애플랭킹순</a> &nbsp;
+			<a href="#" id="starred">추천순</a>&nbsp;
+			<a href="#" id="view_count">조회순</a>&nbsp;
+			<a href="#" id="sold_qty">판매량순</a>&nbsp;
 			<a href="#" id="highPrice" >높은 가격순</a>&nbsp;
 			<a href="#" id="lowPrice">낮은 가격순</a>&nbsp;
-			<a href="#" id="sold_qty">판매량순</a>&nbsp;
 			<a href="#" id="product_reg_date">최신순</a>
+			
 		    
 		    <!-- 몇개씩 보기 기능 추가 (아이템 추가할경우 수정하기) -->
-			<select id="itemsPerPageSelect" onchange="setItemsPerPage(this.value)">
+			<!-- select id="itemsPerPageSelect" onchange="setItemsPerPage(this.value)">
 			  <option value="5" selected>	5개씩 보기</option>
 			  <option value="8">			8개씩 보기</option>
 			  <option value="10">			10개씩 보기</option>
-			</select>
+			</select> -->
 			
 		</div>
 	    	
@@ -118,6 +124,16 @@
 		                        <span class="blue-price">
 		                         	(100g당 <fmt:formatNumber value="${item.price /(item.weight *100)}" pattern= "#" />원)<br /> 
 		                        </span>
+		                        
+		                        <span>
+		                        별점 수:${item.starred}
+		                        조회수 :${item.view_count}
+		                       	판매량 : ${item.sold_qty } <br>
+		                       	상품등록일 : ${item.product_reg_date }
+		                        
+		                        </span>
+		                        
+		                        
 	                    	</p><!--  Card content END -->
 						</div><!--/ Card Body END -->
  					</div><!-- CARD END-->
