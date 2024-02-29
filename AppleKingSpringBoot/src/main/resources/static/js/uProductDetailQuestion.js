@@ -160,7 +160,9 @@ function closeModal() {
             modal.style.display = "none";
         }
     }
-
-   
+// 모달창 닫기
+   $(".close").click(function() {
+    $("#insertQuestion").hide();
+});
 
     

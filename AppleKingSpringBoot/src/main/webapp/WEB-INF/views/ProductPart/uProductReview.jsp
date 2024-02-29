@@ -104,6 +104,7 @@
 * ---------------------------Update---------------------------		
 * <<2024.02.27>> by KBS
 *		 1. 리뷰 리스트 출력완료
+		 2. 리뷰 등록 완료
   
 --------------------------------------------------------------
 -->	
@@ -113,7 +114,13 @@
   	 					<button id="writeReview">리뷰 작성</button>
      <div class="title-separator"></div>    
      	<!-- 리뷰 작성 버튼 -->
-    <!-- 리뷰 목록 -->
+    <!-- 리뷰 목록 -->   
+    
+    <c:choose>
+        <c:when test="${empty ListReview}">
+            <p>등록된 리뷰가 없습니다.</p>
+        </c:when>
+        <c:otherwise>
     <c:forEach var="review" items="${ListReview}">
         <tr>
             <td> 작성자 :${review.cust_id}</td> 
@@ -140,9 +147,6 @@
             <td>${review.product_name}</td>
             <td><br><br></td>
            
-            <td>${review.review_image}</td>
-            <td><br><br></td>
-           
             <td>${review.review_content}</td>
             <td><br><br></td>
             <td>${review.helpful_count} 명의 사용자가 도움됬어요 </td>
@@ -158,6 +162,8 @@
       
        <div class="separator"></div>
     </c:forEach>
+    </c:otherwise>
+    </c:choose>
 </div>
 
 <!-- 리뷰 작성 모달 -->
@@ -171,22 +177,20 @@
             <div>
                 <label for="rating">별점:</label>
     			  <select id="rating" name="rating">
-                    <option value="5">★</option>
-                    <option value="4">★★</option>
+                    <option value="1">★</option>
+                    <option value="2">★★</option>
                     <option value="3">★★★</option>
-                    <option value="2">★★★★</option>
-                    <option value="1">★★★★★</option>
+                    <option value="4">★★★★</option>
+                    <option value="5">★★★★★</option>
                 </select>
             </div>
             <div>
                 <label for="content">내용:</label>
                 <textarea id="content" name="content"></textarea>
             </div>
-            <div>
-                <label for="image">사진:</label>
-                <input type="file" id="image" name="image">
-            </div>
-            <input type="submit" value="작성 완료">
+ 
+             <input type="submit" value="작성 완료" id="closeModal"> 
+           <!--  <button type="button" id="submitReview">작성 완료</button> -->
         </form>
     </div>
 </div>
