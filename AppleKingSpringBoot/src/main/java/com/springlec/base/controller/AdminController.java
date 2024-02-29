@@ -45,6 +45,8 @@ public class AdminController {
 	 * 
 	 * <<2024.02.27 by pdg , LS>>
 	 * 		1. admin page 이미지 하나 삽입 기능 추가
+	 * <<2024.02.29 by pdg>>
+	 * 		1. 관리자 starred 별점 0 으로 초기 세팅 
 	 *-------------------------------------- 
 	
 	*/
@@ -194,6 +196,7 @@ public class AdminController {
 		/*14.*/ String price 					= multiPartRequest.getParameter	("price");
 		/*15.*/ String sold_qty 				= multiPartRequest.getParameter	("sold_qty");
 		/*16.*/ String seller_id 				= multiPartRequest.getParameter	("seller_id");
+		/*17.*/ String starred 					= multiPartRequest.getParameter	("starred");
 		
 		service.productInsertDao(	
 								product_code, 	//1
@@ -211,7 +214,7 @@ public class AdminController {
 								view_count,		//13
 								price,			//14
 								sold_qty,		//15
-								seller_id		//16
+								starred		//16
 								);			
 		
 		return "redirect:aProductListUpdate";

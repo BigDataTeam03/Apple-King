@@ -98,7 +98,7 @@ public class AdminDaoServiceImpl implements AdminDaoService {
 			String view_count  		,
 			String price,
 			String sold_qty,
-			String seller_id
+			String starred
 			) throws Exception {
 		
 		// 파일 업로드 후 고유한 파일 이름을 받아옴( imageUpload function 은 밑에 생성함.)
@@ -122,7 +122,7 @@ public class AdminDaoServiceImpl implements AdminDaoService {
 				view_count,		//13
 				price,			//14
 				sold_qty,		//15
-				seller_id		//16
+				Double.parseDouble(starred)		//16
 				);
 		
 	}// END

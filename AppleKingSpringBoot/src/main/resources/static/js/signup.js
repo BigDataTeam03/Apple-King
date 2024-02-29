@@ -98,7 +98,7 @@ function validateForm() {
 		signupForm.useraddress.focus();
 		return false;
 	}
-
+/*
 	// Validate ID (only alphanumeric, up to 10 characters)
 	let idRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{1,10}$/;
 	if (!idRegex.test(id)) {
@@ -114,7 +114,7 @@ function validateForm() {
 		signupForm.pw.focus();
 		return;
 	}
-
+*/
 	// Validate Name (only Korean, up to 5 characters)
 	let nameRegex = /^[가-힣]{1,5}$/;
 	if (!nameRegex.test(name)) {

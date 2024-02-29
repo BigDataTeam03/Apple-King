@@ -20,7 +20,7 @@
 			 		view_count,		
 			 		price,		
 			 		sold_qty,		
-			 		seller_id	)	
+			 		starred	)	
 				values(
 					#{product_name},
 					#{product_rank},
@@ -36,7 +36,7 @@
 					#{view_count},
 					#{price},
 					#{sold_qty},
-					#{seller_id}) 
+					#{starred}) 
 				
 			</insert>
 			<select id="productList" resultType="com.springlec.base.model.ProductListDto">
