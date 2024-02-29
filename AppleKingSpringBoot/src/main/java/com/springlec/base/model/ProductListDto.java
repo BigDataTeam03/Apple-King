@@ -20,9 +20,22 @@ public class ProductListDto {
 	Integer price;
 	Integer sold_qty;
 	String seller_id;
+	Double starred;
 
 	public ProductListDto() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public Double getStarred() {
+		return starred;
+	}
+
+	public void setStarred(Double starred) {
+		this.starred = starred;
+	}
+
+	public void setProduct_qty(int product_qty) {
+		this.product_qty = product_qty;
 	}
 
 	public Integer getProduct_code() {

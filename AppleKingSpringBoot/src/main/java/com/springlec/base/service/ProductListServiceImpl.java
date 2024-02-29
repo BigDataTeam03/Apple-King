@@ -22,7 +22,8 @@ public class ProductListServiceImpl implements ProductListDaoService {
 	 * 	1.sortQuery  정렬기능 생성 
 	 *  2. 높은 가격 낮은가격 거꾸로 되는 문제 해결
 	 * 		
-	 * 
+	 * <<2-24.0.29 by pdg>>
+	 *  1.조회수순, 별점순, 리뷰순 정렬 추가
 	 */
 	@Autowired
 	ProductListDao dao;
@@ -55,6 +56,12 @@ public class ProductListServiceImpl implements ProductListDaoService {
 		// 애플랭킹 순 
 		case "productRank": sortQuery= "order by product_rank asc "; break;
 		
+		// 조회수 순
+		case "view_count": sortQuery= "order by view_count desc "; break;
+		
+		// 별점
+		case "starred": sortQuery= "order by starred desc "; break;
+		
 		// 높은 가격순
 		case "highPrice": 	sortQuery= "order by price desc "; break;
 		
@@ -62,10 +69,10 @@ public class ProductListServiceImpl implements ProductListDaoService {
 		case "lowPrice": 	sortQuery= "order by price asc "; break;
 		
 		// 판매량순
-		case "sold_qty": 	sortQuery= "order by sold_qty asc "; break;
+		case "sold_qty": 	sortQuery= "order by sold_qty desc "; break;
 		
 		// 최신순 (상품 등록일 순) 
-		case "product_reg_date": sortQuery= "order by product_reg_date asc "; break;
+		case "product_reg_date": sortQuery= "order by product_reg_date desc "; break;
 		}
 		sortingOption =	sortQuery; // query 문으로 대체
 		

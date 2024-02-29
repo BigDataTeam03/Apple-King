@@ -102,7 +102,6 @@
 									'${item.size}',
 									 ${item.weight},
 									 ${item.product_qty}
-									    
 									    )" class="bold">${item.product_name}</a>
 								</h5>
 								<p class="card-text">
