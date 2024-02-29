@@ -35,4 +35,10 @@ public class ProductReviewDaoServiceImpl implements ProductReviewDaoService {
 		
 	}
 
+	@Override
+	public void rateUpdate(String product_code, String rating) throws Exception {
+			dao.rateUpdate(product_code, rating);
+		
+	}
+
 }
