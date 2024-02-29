@@ -76,7 +76,6 @@
 	            <th>상품명</th>
 	            <th>별점</th>
 	            <th>내용</th>
-	            <th>리뷰사진</th>
 	            
 	        </tr>
         
@@ -86,7 +85,6 @@
 	                <td>${review.product_name}</td>
 	                <td>${review.rating}</td>
 	                <td>${review.review_content}</td>
-	                <td style="width: 15%; height: 15%;"> <img src="resources/image/${review.review_image}" alt="리뷰이미지" style="max-width:100%; max-height: 100%;"></td>
 	            </tr>
 	        </c:forEach>
     	</table>
