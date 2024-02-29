@@ -43,5 +43,14 @@
 					   0, #{product_name})
 	 
 		</insert>
-
+		<!-- 리뷰작성 시 상품의 평균 평점 업데이트 -->
+	 	<update id="rateUpdate">
+	 		UPDATE product
+			SET starred = (
+   		    SELECT CAST(IFNULL(AVG(rating), #{rating}) AS DECIMAL(3, 1))
+    		FROM review
+    		WHERE product_code = #{product_code}
+			)
+			WHERE product_code = #{product_code};
+	 	</update>
 </mapper>

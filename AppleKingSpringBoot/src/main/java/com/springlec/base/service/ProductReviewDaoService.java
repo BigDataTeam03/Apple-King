@@ -13,5 +13,6 @@ public interface ProductReviewDaoService {
 	public void upHelpful(String review_code) throws Exception;
 	public void insertReview(String cust_id, String product_code, String rating, 
 							 String content, String product_name) throws Exception;
+	public void rateUpdate(String product_code, String rating) throws Exception;
 	
 }

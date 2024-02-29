@@ -95,7 +95,7 @@
         </tr>
         <tr>
             <td>상품명:</td>
-            <td class="input-style"><input type="text" name="product_name" placeholder="상품명을 입력하세요" value="다사과"></td>
+            <td class="input-style"><input type="text" name="product_name" placeholder="상품명을 입력하세요"></td>
         </tr>
         <tr>
             <td>상품등급:</td>
@@ -103,60 +103,60 @@
         </tr>
         <tr>
             <td>수량:</td>
-            <td class="input-style"><input type="text" name="product_qty" placeholder="수량 입력" value="0"></td>
+            <td class="input-style"><input type="text" name="product_qty" placeholder="수량 입력" ></td>
         </tr>
         <tr>
             <td>원산지:</td>
-            <td class="input-style"><input type="text" name="origin" placeholder="원산지" value="한국"></td>
+            <td class="input-style"><input type="text" name="origin" placeholder="원산지" ></td>
         </tr>
         <tr>
   		  <td>생산일:</td>
-  		  <td class="input-style"><input type="text" name="manufacture_date" placeholder="생산일" value = "2024-02-02"></td>
+  		  <td class="input-style"><input type="text" name="manufacture_date" placeholder="생산일"></td>
        		 
     		
 		</tr>
             <td>무게(kg):</td>
-            <td class="input-style"><input type="text" name="weight" placeholder="무게" value="15"></td>
+            <td class="input-style"><input type="text" name="weight" placeholder="무게"></td>
         </tr>
         <tr>
             <td>사이즈:</td>
-            <td class="input-style"><input type="text" name="size" placeholder="사이즈" value="대"></td>
+            <td class="input-style"><input type="text" name="size" placeholder="사이즈"></td>
         </tr>
         <tr>
             <td>상품 등록일:</td>
-            <td class="input-style"><input type="text" name="product_reg_date" readonly="readonly" placeholder="등록일 (자동 생성)" value = "2024-02-02"></td>
+            <td class="input-style"><input type="text" name="product_reg_date" readonly="readonly" placeholder="등록일 (자동 생성)"></td>
         </tr>
         <tr>
             <td>품종:</td>
-            <td class="input-style"><input type="text" name="kind" placeholder="품종" value="부사"></td>
+            <td class="input-style"><input type="text" name="kind" placeholder="품종"></td>
         </tr>
         <tr>
             <td>상품 이미지:</td>
             <td class="input-style">
-           	 <input type="file" name="product_image" value = "null.png">
+           	 <input type="file" name="product_image" >
             </td>
         </tr>
          <tr>
             <td>상세 이미지:</td>
             <td class="input-style">
-           	 <input type="file" name="detail_image" value = "null.png">
+           	 <input type="file" name="detail_image" value >
             </td>
         </tr>
         <tr>
             <td>조회수 :</td>
-            <td class="input-style"><input type="text" name="view_count"  value="0"></td>
+            <td class="input-style"><input type="text" name="view_count"  value="0" readonly="readonly"></td>
         </tr>
         <tr>
             <td>가격 :</td>
-            <td class="input-style"><input type="text" name="price"  value="15000"></td>
+            <td class="input-style"><input type="text" name="price" ></td>
         </tr>
         <tr>
             <td>판매량 :</td>
-            <td class="input-style"><input type="text" name="sold_qty"  value="1"></td>
+            <td class="input-style"><input type="text" name="sold_qty"  value="0" readonly="readonly"></td>
         </tr>
         <tr>
             <td>평균 별점 :</td>
-            <td class="input-style"><input type="text" name="starred"  value="0"></td>
+            <td class="input-style"><input type="text" name="starred"  value="0" readonly="readonly"></td>
         </tr>
     </table>
 </div>

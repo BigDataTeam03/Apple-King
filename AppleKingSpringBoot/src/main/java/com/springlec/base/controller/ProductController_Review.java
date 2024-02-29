@@ -100,9 +100,12 @@ public class ProductController_Review {
 				//String image = request.getParameter("image");
 				String product_name = (String) session.getAttribute("product_name");
 				System.out.println(" 상품코드" + product_code);
-	//System.out.println(" 가져온 값들" + cust_id + content + image + product_code + product_name + rating);		
+	//System.out.println(" 가져온 값들" + cust_id + content + image + product_code + product_name + rating);	
+		 // 리뷰 인서트
 		 service.insertReview(cust_id, product_code, rating, 
 			    			  content, product_name);
+		 // 상품의 평점 업데이트
+		 service.rateUpdate(product_code,rating); 
 		 // 다시 상품 상세 페이지에 사용되는 상품에 정보를 다시 받아준다
 		 ProductListDto listDao = servic2.productDetailDao(product_code);
 		 model.addAttribute("listDao", listDao);
