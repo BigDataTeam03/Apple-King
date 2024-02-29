@@ -34,8 +34,8 @@ public interface AdminDao {
 	// 선택한 상품 목록을 업데이트하는 다오	
 	public void updateProduct(String product_name,String product_qty,String origin,
 			String manufacture_date,String weight,String size,
-			String detail_image_name,String view_count,String product_reg_date,
-			String kind,String product_image_names, String product_code) throws Exception;
+			String detail_image,String view_count,String product_reg_date,
+			String kind,String product_image, String product_code) throws Exception;
 	
 	// 고객 리스트 출력 다오
 	public List<MemberDto> custList(String name, String notThis, String orderby2) throws Exception;
@@ -58,8 +58,8 @@ public interface AdminDao {
 			String size, 			//8
 			String product_reg_date,//9
 			String kind,			//10
-			String product_image_name,	//11
-			String detail_image_name,	//12
+			String product_image,	//11
+			String detail_image,	//12
 			String view_count,		//13
 			String price,			//14
 			String sold_qty,		//15

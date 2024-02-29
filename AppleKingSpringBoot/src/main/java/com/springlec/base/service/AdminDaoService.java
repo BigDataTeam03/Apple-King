@@ -25,8 +25,8 @@ public interface AdminDaoService {
 	// 선택 상품 업데이트하는 변수가 추가된 인터페이스
 	public void updateProduct(String product_name,String product_qty,String origin,
 			String manufacture_date,String weight,String size,
-			String detail_image_name,String view_count,String product_reg_date,
-			String kind,String product_image_names, String product_code) throws Exception;
+			String detail_image,String view_count,String product_reg_date,
+			String kind,String product_image, String product_code) throws Exception;
 	// 고객 리스트를 출력하는 인터페이스
 	public List<MemberDto> custList(String name,String notThis, String orderby2) throws Exception;
 	
