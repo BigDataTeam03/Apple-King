@@ -40,6 +40,7 @@ Update : 2024.02.22 by LS, DK
    								 ${dto.product_name}
 							</span><br>
 		                    원산지: ${dto.origin}<br>
+		                    별점 : ${dto.starred}<br>
 		                    <span style="font-weight: bold; font-size: 25px; color: red;">
 		                        <fmt:formatNumber value="${dto.price}" type="number" pattern="###,###"/>원
 		                    </span>
@@ -48,6 +49,7 @@ Update : 2024.02.22 by LS, DK
 		                    크기:  ${dto.size}<br>
 		                    무게: ${dto.weight}kg<br><br><br>
 		                    재고수량: ${dto.product_qty }
+		                    
 		                    </span>
 		                    
 		                    <form name="cartForm" action="/cartInsert" method ="post">
