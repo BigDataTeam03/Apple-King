@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.javaproject.util.CookieManager;
 import com.springlec.base.model.MemberDto;
 import com.springlec.base.service.MemberDaoService;
+
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
@@ -62,7 +64,37 @@ public class UserController {
 		System.out.println("** ROOT PAGE START **");
 		return "redirect:ProductDisplay";
 	}
-
+	@PostMapping("signup")
+	public String signupForm(
+				HttpServletRequest request
+			
+			
+			) throws Exception {
+		// START Message
+		System.out.println("**<< UserController @POST : signupForm>>**");
+		//request 로 받은 정보를 변수로 저장 
+		String userId = request.getParameter("id");
+		String userPw = request.getParameter("pw");
+		String userName = request.getParameter("name");
+		String userTel = request.getParameter("tel");
+		String userEmail = request.getParameter("email");
+		String userAddress = request.getParameter("useraddress");
+	
+		
+		System.out.println( ">> userId : "+ userId+ "\n"+
+							">> userPw :"+userPw+"\n"+
+							">> userName :"+userName+"\n"+
+							">> userTel :"+userTel+"\n"+
+							">> userEmail :"+userEmail+"\n"+
+							">> userAddress :"+userAddress
+				);	
+		// customer DB 에 추가 
+		memberService.signUpDao(userId,userPw,userName ,userTel ,userEmail,userAddress);
+		
+		
+		return "/UserCheckPart/login_view";
+	}
+	
 	@PostMapping("/signUpStart")
 	public String userSignUp() throws Exception {
 		// *** START Message ***

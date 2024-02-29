@@ -21,4 +21,14 @@ public interface MemberDao {
 
 	// 아이디 중복 체크
 	public Integer checkDuplicateId(String userId) throws Exception;
+	
+	// 회원 가입
+	public void signUpDao(
+			String userId,
+			String userPw, 
+			String userName, 
+			String userTel, 
+			String userEmail,
+			String userAddress) throws Exception ;
+	
 }

@@ -39,7 +39,25 @@ public class MemberDaoServiceImpl implements MemberDaoService {
 		// TODO Auto-generated method stub
 		return dao.checkDuplicateId(userId);
 	}
+	@Override
+	public void signUpDao(
+			String userId,
+			String userPw, 
+			String userName, 
+			String userTel, 
+			String userEmail,
+			String userAddress) throws Exception {
+		
+		dao.signUpDao( userId,
+				 userPw, 
+				 userName, 
+				 userTel, 
+				 userEmail,
+				 userAddress);
+		
+	}
 	
+
 
 	
 

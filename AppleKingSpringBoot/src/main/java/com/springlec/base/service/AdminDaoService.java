@@ -52,7 +52,7 @@ public interface AdminDaoService {
 			String view_count  		,
 			String price,
 			String sold_qty,
-			String seller_id
+			String starred
 			
 			) throws Exception ;
 	
