@@ -2,12 +2,13 @@
    
    /* Description: 모달을 사용해서 문의를 등록한다
  * Author : KBS
- * Date : 2024.02.13
+ * Date : 2024.02.25
  * Warning :
  * Update --------------------------------------------------
- * <<2024.02.13 by KBS>>
+ * <<2024.02.25 by KBS>>
  *	1. 주석 달음.
  *	2. 모달 팝업
+    3. 기능 완료
  *----------------------------------------------------------
  */
    
@@ -67,6 +68,7 @@ function createTable(data) {
  
     // insert data rows
     for(let i=0; i<data.length; i++)  {
+		//  삼항 연산자를 사용하여 답변상태 표
 	let answer = data[i].answer_content ? "<a href='#' class='answer-link'>답변보기</a>" : "미답변";
 	let answerRow = data[i].answer_content ? "<tr class='answer-row'><td colspan='4'>" + "(관리자)  :  " + data[i].answer_content + "</td></tr>" : "";
         table += "<tr>" +

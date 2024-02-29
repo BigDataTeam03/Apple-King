@@ -158,17 +158,17 @@ public class AdminController {
 		String manufacture_date 	= request.getParameter("manufacture");
 		String weight 				= request.getParameter("weight");
 		String size 				= request.getParameter("size");
-		String detail_image_name 	= request.getParameter("detailImage");
+		String detail_image 	= request.getParameter("detailImage");
 		String view_count 			= request.getParameter("view");
 		String product_reg_date 	= request.getParameter("regDate");
 		String kind 				= request.getParameter("kind");
-		String product_image_names 	= request.getParameter("productImage");
+		String product_image 	= request.getParameter("productImage");
 		String product_code 		= request.getParameter("code");
 		// 서비스를 통해 다오로 변수를 집어 넣는다
 		service.updateProduct(product_name, product_qty, origin,
 							  manufacture_date, weight, size,
-							  detail_image_name, view_count, product_reg_date,
-							  kind, product_image_names, product_code);
+							  detail_image, view_count, product_reg_date,
+							  kind, product_image, product_code);
 			out.print("성공");
 		
 		

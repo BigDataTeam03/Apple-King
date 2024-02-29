@@ -31,8 +31,8 @@
 					#{size},
 					#{product_reg_date},
 					#{kind},
-					#{product_image_name},
-					#{detail_image_name},
+					#{product_image},
+					#{detail_image},
 					#{view_count},
 					#{price},
 					#{sold_qty},
@@ -71,11 +71,11 @@
 		 		   manufacture_date=#{manufacture_date},	
 			  	   weight=#{weight},			
 			  	   size=#{size},			
-		   		   detail_image=#{detail_image_name},
+		   		   detail_image=#{detail_image},
 			       view_count=#{view_count},	
 			       product_reg_date=now(),
 			       kind=#{kind},					
-			  	   product_image=#{product_image_name} 
+			  	   product_image=#{product_image} 
 			WHERE 
 			  	   product_code=#{product_code}
 			</update>
