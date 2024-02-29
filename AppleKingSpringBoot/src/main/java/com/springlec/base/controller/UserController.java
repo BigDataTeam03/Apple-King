@@ -3,6 +3,7 @@ package com.springlec.base.controller;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,6 +55,7 @@ public class UserController {
 
 	@Autowired // service wired
 	MemberDaoService memberService;
+	private boolean checkDuplicateId;
 
 	@GetMapping("/")
 	public String userLogin() throws Exception {
@@ -68,17 +70,33 @@ public class UserController {
 		return "/UserCheckPart/signup_view";
 	}
 	
-	
 	@PostMapping("SignUpUserOverlapChk")
 	@ResponseBody
-	public ResponseEntity<Boolean> SignUpUserOverlapChk() throws Exception{
-		// *** START Message ***
-		System.out.println("**<<UserController @Post : SignUpUserOverlapChk>>**");
-		
-		
-		
-		return ResponseEntity.ok(true);
+	public ResponseEntity<Boolean> SignUpUserOverlapChk(@RequestParam("id") String userId) {
+	    // *** START Message ***
+	    System.out.println("**<<UserController @Post : SignUpUserOverlapChk>>**");
+
+	    try {
+	        // 중복 여부를 DB에서 확인
+	        Integer result = memberService.checkDuplicateId(userId);
+
+	        // 중복 여부에 따라 결과 반환
+	        if (result != null && result > 0) {
+	            // 중복된 아이디일 경우
+	            System.out.println("중복된 아이디입니다.");
+	            return ResponseEntity.ok(true);
+	        } else {
+	            // 사용 가능한 아이디일 경우
+	            System.out.println("사용가능한 아이디입니다.");
+	            return ResponseEntity.ok(false);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        // 예외 발생 시 서버 오류 반환
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+	    }
 	}
+
 	@PostMapping("loginProcess")
 	public String loginProcess(
 			@ModelAttribute("userId") String userId,

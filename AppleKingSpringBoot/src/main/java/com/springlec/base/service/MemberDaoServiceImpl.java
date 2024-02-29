@@ -34,6 +34,13 @@ public class MemberDaoServiceImpl implements MemberDaoService {
 		
 		return dao.memberInfoDao(userId);
 	}
+	@Override
+	public Integer checkDuplicateId(String userId) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.checkDuplicateId(userId);
+	}
+	
 
+	
 
 }

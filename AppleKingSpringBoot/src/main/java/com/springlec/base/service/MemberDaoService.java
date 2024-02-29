@@ -15,4 +15,6 @@ public interface MemberDaoService {
 	
 	// Member 정보 가져오기
 	public MemberDto memberInfoDao(String userId) throws Exception ;
+
+	public Integer checkDuplicateId(String userId) throws Exception;
 }
