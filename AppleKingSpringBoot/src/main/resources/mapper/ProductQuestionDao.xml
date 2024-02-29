@@ -13,7 +13,7 @@
 				FROM 
 					inquire 
 				WHERE 
-					product_code= #{product_code} 
+					product_code= #{product_code} order by inquire_date asc
 		</select>
 		<!-- 고객이 상품에 문의를 작성한다 -->
 		<insert id="insertQuestion">

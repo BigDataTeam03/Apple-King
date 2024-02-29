@@ -172,49 +172,8 @@ public class AdminController {
 			out.print("성공");
 		
 		
-	}
-	
-//-----------------------------------------------------
-// 			Admin top 의 연결 부분	
-//-----------------------------------------------------
-	// 상품 조회 수정
-	@GetMapping("/aProductListUpdate")
-	public String go() throws Exception{
-		return "AdminPart/aProductListUpdate";
 	}		
-	// 상품 등록
-	@GetMapping("/aProductInsert")
-	public String goinsert() throws Exception {
-		return "AdminPart/aProductInsert";
-	}
-	// 회원 목록 조회
-	@GetMapping("/aCustomerList")
-	public String goCustomerList() throws Exception {
-		return "AdminPart/aCustomerList";
-	}
-	// 매출 조회
-	@GetMapping("/aCustomerOrderList")
-	public String goOrderList() throws Exception {
-		return "AdminPart/aCustomerOrderList";
-	}
-	// 문의 내역
-	@GetMapping("/aProductQuestionList")
-	public String goquestion() throws Exception {
-		return "AdminPart/aProductQuestionAnswer";
-	}
-	// 유저 홈
-	@GetMapping("/cGoHome")
-	public String cGoHome() throws Exception {
-		return "ProductPart/uProductList";
-	}
-	// 관리자 홈
-	@GetMapping("/aGoHome")
-	public String aGoHome() throws Exception {
-		return "AdminPart/aProductListUpdate";
-	}
-
 	
-	//------------------------------------------------------
 	// 상품 등록 메소드
 	@PostMapping("/aProductInsert")
 	public String aProductInsert(MultipartHttpServletRequest multiPartRequest ) throws Exception {
@@ -292,7 +251,7 @@ public class AdminController {
     	 	orderby2 = "order by reg_date asc";
 		//  .xml 에 <> 가 주석으로 인식되서 여기서 함....
 		//   고객 테이블에 어드민도 포함되어있기 때문에 어드민을 빼고 조회한다
-		String notThis = " cust_id <> 'admin123' ";
+		String notThis = " cust_id <> 'admin' ";
 		// 서비스 실행 
 	List<MemberDto>	memberList = service.custList(name,notThis,orderby2);
 		
@@ -326,5 +285,45 @@ public class AdminController {
 	    }
 	}
 	
-	
+//-----------------------------------------------------
+//		Admin top 의 연결 부분	
+//-----------------------------------------------------
+// 상품 조회 수정
+@GetMapping("/aProductListUpdate")
+public String go() throws Exception{
+return "AdminPart/aProductListUpdate";
+}		
+// 상품 등록
+@GetMapping("/aProductInsert")
+public String goinsert() throws Exception {
+return "AdminPart/aProductInsert";
+}
+// 회원 목록 조회
+@GetMapping("/aCustomerList")
+public String goCustomerList() throws Exception {
+return "AdminPart/aCustomerList";
+}
+// 매출 조회
+@GetMapping("/aCustomerOrderList")
+public String goOrderList() throws Exception {
+return "AdminPart/aCustomerOrderList";
+}
+// 문의 내역
+@GetMapping("/aProductQuestionList")
+public String goquestion() throws Exception {
+return "AdminPart/aProductQuestionAnswer";
+}
+// 유저 홈
+@GetMapping("/cGoHome")
+public String cGoHome() throws Exception {
+return "ProductPart/uProductList";
+}
+// 관리자 홈
+@GetMapping("/aGoHome")
+public String aGoHome() throws Exception {
+return "AdminPart/aProductListUpdate";
+}
+
+
+//------------------------------------------------------
 }
