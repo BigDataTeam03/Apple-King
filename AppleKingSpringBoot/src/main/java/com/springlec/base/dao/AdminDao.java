@@ -54,7 +54,7 @@ public interface AdminDao {
 			String product_qty, 	//4
 			String origin,			//5
 			String manufacture_date,//6
-			String weight, 		//7
+			String weight, 			//7
 			String size, 			//8
 			String product_reg_date,//9
 			String kind,			//10
@@ -63,6 +63,6 @@ public interface AdminDao {
 			String view_count,		//13
 			String price,			//14
 			String sold_qty,		//15
-			String seller_id		//16
+			Double starred
 		 ) throws Exception ;
 }

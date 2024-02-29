@@ -17,4 +17,15 @@ public interface MemberDaoService {
 	public MemberDto memberInfoDao(String userId) throws Exception ;
 
 	public Integer checkDuplicateId(String userId) throws Exception;
+	
+	// 회원 가입 
+	public void signUpDao (
+				String userId,
+				String userPw,
+				String userName ,
+				String userTel ,
+				String userEmail,
+				String userAddress) throws Exception;
+	
+	//memberService.signUpDao(userId,userPw,userName ,userTel ,userEmail,userAddress);
 }

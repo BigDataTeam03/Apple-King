@@ -155,8 +155,8 @@
             <td class="input-style"><input type="text" name="sold_qty"  value="1"></td>
         </tr>
         <tr>
-            <td>판매자ID :</td>
-            <td class="input-style"><input type="text" name="seller_id"  value="pdg"></td>
+            <td>평균 별점 :</td>
+            <td class="input-style"><input type="text" name="starred"  value="0"></td>
         </tr>
     </table>
 </div>

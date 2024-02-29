@@ -29,6 +29,10 @@
     </select>
   
  
+ 	<insert id="signUpDao">
+		INSERT INTO customer (cust_id, cust_pw, name, tel, email, address, reg_date, cust_rank, cust_point)
+		VALUES (#{userId},#{userPw},#{userName},#{userTel},#{userEmail},#{userAddress}, NOW(), 0,0)
+ 	</insert>
   
   
 </mapper>
