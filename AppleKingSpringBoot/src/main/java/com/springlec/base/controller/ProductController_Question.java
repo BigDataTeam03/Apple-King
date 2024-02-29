@@ -41,8 +41,8 @@ public class ProductController_Question {
 							 HttpServletRequest request)throws Exception {
 		System.out.println(" 문의 테이블 생성");
 		// 세션으로 해당 상품의 코드를 받는다
-		//String product_code = "'"+(String)session.getAttribute("product_code")+"'";
-		String product_code = "1";
+		String product_code = (String)session.getAttribute("product_code");
+		//String product_code = "1";
 		// 배열에 결과값들을 넣는다
 		List<InquireDto> QuestionList = service.ShowList(product_code);
 		System.out.println("문의 리스트" + QuestionList);

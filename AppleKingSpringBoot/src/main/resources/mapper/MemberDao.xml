@@ -15,7 +15,7 @@
 <mapper namespace="com.springlec.base.dao.MemberDao">
   <!-- *** member Check Dao ***-->
   <select id="memberChkDao">
-  		select count(cust_id) from customer where cust_id = #{userId} and cust_pw = #{userPw};
+  		select count(cust_id) from customer where deact_date is null and cust_id = #{userId} and cust_pw = #{userPw};
   </select>
   <!-- *** member Information Get Dao ***-->
    <select id="memberInfoDao" resultType="com.springlec.base.model.MemberDto">
