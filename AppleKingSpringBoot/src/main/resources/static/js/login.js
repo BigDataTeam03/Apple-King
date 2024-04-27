@@ -48,7 +48,7 @@ $(document).ready(function() {
 
 $(document).ready(function(){
 	$('#signupBtn').click(function(){
-		alert("회원가입창으로 이동합니다. ")
+		//alert("회원가입창으로 이동합니다. ")
 		location.href = "signup_view.jsp"
 		
 	})//Btn cliked end

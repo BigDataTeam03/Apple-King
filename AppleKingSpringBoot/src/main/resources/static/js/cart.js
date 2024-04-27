@@ -218,7 +218,7 @@ function updateQuantity(input) {
 $(document).ready(function() {
 		/* 버튼 클릭시 AJAX 요청 */
 		$("#cartDeleteBtn").click(function() {
-		alert("삭제클릭.")
+		    //alert("삭제클릭.")
 			/* 입력된 데이터 가져오기 */
 			//  몇개를 선택할지 모르니 배열에 집어넣는다
 			let selected = [];
@@ -227,7 +227,7 @@ $(document).ready(function() {
       	  $("input[name='selectProduct']:checked").each(function() {
        	     selected.push($(this).val());
        		 });
-       	     alert("삭제할 물건품목" +selected)
+       	     //alert("삭제할 물건품목" +selected)
 			 // 만약 선택된 상품이 없다면 알림을 표시하고 함수 종료
        	 if (selected.length === 0) {
             alert("삭제할 상품을 선택하세요.");

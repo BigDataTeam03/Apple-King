@@ -244,7 +244,7 @@ $(document).ready(function() {
 			/* 입력된 데이터 가져오기 */
 			let code = $("#product_code").val()
 			//let name = $("#product_name").val()
-			alert("code : "+ code )
+			//alert("code : "+ code )
 			/* AJAX 요청 */
 			$.ajax({
 				type: "POST",

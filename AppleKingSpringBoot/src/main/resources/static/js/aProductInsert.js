@@ -193,7 +193,7 @@ $(document).ready(function() {
 $(document).ready(function() {
 		/* 버튼 클릭시 AJAX 요청 */
 		$("#insertBtn").click(function() {
-			alert("입력버튼이 눌렸습니다.")
+			//alert("입력버튼이 눌렸습니다.")
 			/* 입력된 데이터 가져오기 */
 			let form = document.insertForm
 			let code = $("#product_code").val()
@@ -245,7 +245,7 @@ $(document).ready(function() {
 							$("#product_code,#product_name,#product_qty,#origin, #manufacture_date,#weight,#size,#detail_image_name,#view_count, #product_reg_date,#kind,#product_image_names,#price").val("")
 						}
 					})
-					alert("입력 되었습니다")
+					//alert("입력 되었습니다")
 					form.submit();
 					
 				},
