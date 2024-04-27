@@ -57,11 +57,11 @@ public class AdminDaoServiceImpl implements AdminDaoService {
 	// 상품 수정
 	@Override
 	public void updateProduct(String product_name, String product_qty, String origin, String manufacture_date,
-			String weight, String size, String detail_image_name, String view_count, String product_reg_date,
-			String kind, String product_image_names, String product_code) throws Exception {
+			String weight, String size, String detail_image, String view_count, String product_reg_date,
+			String kind, String product_image, String product_code) throws Exception {
 		
-			dao.updateProduct(product_name, product_qty, origin, manufacture_date, weight, size, detail_image_name,
-					view_count, product_reg_date, kind, product_image_names, product_code);
+			dao.updateProduct(product_name, product_qty, origin, manufacture_date, weight, size, detail_image,
+					view_count, product_reg_date, kind, product_image, product_code);
 			
 		
 	}
